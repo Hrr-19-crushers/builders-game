@@ -1,0 +1,7 @@
+node_modules
+
+# ignore webpack config
+\webpack.config\
+
+# ignore build files
+build/*

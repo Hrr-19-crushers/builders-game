@@ -1,8 +1,8 @@
-const webpack = require('webpack');
-const path = require('path');
-const WebpackNotifierPlugin = require('webpack-notifier');
+import webpack from 'webpack';
+import path from 'path';
+import WebpackNotifierPlugin from 'webpack-notifier';
 
-module.exports = {
+export default {
   devtool: 'eval',
   // This will be our app's entry point (webpack will look for it in the 'src' directory due to the modulesDirectory setting below). Feel free to change as desired.
   entry: [
@@ -40,4 +40,4 @@ module.exports = {
       alwaysNotify: true
     }),
   ]
-}
+};

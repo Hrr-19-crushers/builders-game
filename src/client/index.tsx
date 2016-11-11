@@ -11,7 +11,7 @@ const { AppContainer } = require('react-hot-loader');
 // Tell Typescript that there is a global variable called module - see below
 declare var module: { hot: any };
 
-const rootEl = document.getElementById('app');
+const rootEl: HTMLElement = document.getElementById('app');
 
 //And render our App into it, inside the HMR App ontainer which handles the hot reloading
 render(

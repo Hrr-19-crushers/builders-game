@@ -47,6 +47,7 @@
     "webpack-notifier": "^1.4.1"
   },
   "dependencies": {
+    "@types/socket.io": "^1.4.27",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   }

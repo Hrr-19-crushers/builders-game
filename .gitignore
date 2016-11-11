@@ -1,3 +1,6 @@
 node_modules
 .vs_code
 build
+
+*.log
+yarn.lock

@@ -18,11 +18,13 @@
         "no-trailing-whitespace": true,
         "no-unsafe-finally": true,
         "no-var-keyword": true,
+        "no-require-imports": true, 
         "one-line": [
             true,
             "check-open-brace",
             "check-whitespace"
         ],
+        "only-arrow-functions": true,
         "quotemark": [
             true,
             "single"
@@ -31,10 +33,7 @@
             true,
             "always"
         ],
-        "triple-equals": [
-            true,
-            "allow-null-check"
-        ],
+        "triple-equals": true,
         "typedef-whitespace": [
             true, {
                 "call-signature": "nospace",

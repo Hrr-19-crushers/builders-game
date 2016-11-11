@@ -2,9 +2,14 @@ import * as io from 'socket.io';
 
 // connect to server socket
 const socket: any = io('http:localhost');
-// an event handler for 'someEvent'
-socket.on('serverResponse', (data) => {
-  console.log(data);
-  // emits an event,'response', along with a some data
-  socket.emit('response', data);
+
+// this should be triggered in the function that sends the message 
+export const onClick = (message) =>{
+  socket.emit('newMessage', message);
+};
+
+
+//
+socket.on('userMessage', (data) => {
+  // display data onto the dom 
 });

@@ -1,7 +1,7 @@
 node_modules
 .vs_code
 build
-
+.DS_Store
 *.log
 yarn.lock
 

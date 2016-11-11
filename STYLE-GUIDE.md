@@ -41,6 +41,34 @@ transmogrify({
 }});
 ```
 
+* for readability never nest more than two brackets/curly brackets without making a newline
+
+```javascript
+// bad:
+funStuff()
+  .reduce((x,y) => {return {a: {b: {}}}});
+
+// better
+funStuff()
+  .reduce((x,y) => {
+    return { 
+      a: { 
+        b: {}
+      }
+    }
+  });
+
+// best to refactor out verbose things declarartively
+
+const makeABObj = (x,y) => {
+  a: {
+    b: {}
+  }
+};
+
+funStuff()
+  .reduce(makeABObj);
+```
 
 ### Line Spacing
 

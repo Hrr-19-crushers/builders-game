@@ -34,15 +34,10 @@
         "eslint": "^3.9.1",
         "eslint-loader": "^1.6.1",
         "eslint-plugin-react": "^6.6.0",
-        <<
-        << << < HEAD "react-hot-loader": "^3.0.0-beta.6",
-        ||
-        || || | merged common ancestors ===
-        === =
+        "react-hot-loader": "^3.0.0-beta.6",
         "mocha": "^3.1.2",
         "sinon": "^1.17.6",
-        >>>
-        >>> > eebffa9632211f17d0ce593a35af28e00565892e "ts-loader": "^1.1.0",
+        "ts-loader": "^1.1.0",
         "tslint": "^3.15.1",
         "tslint-react": "^1.1.0",
         "typescript": "^2.0.8",

@@ -6,9 +6,8 @@
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": false,
-        "outDir": "build",
-        "jsx": "preserve",
-        "rootDirs": ["src/server"]
+        "outDir": "build/server",
+        "jsx": "preserve"
     },
     "exclude": [
         "node_modules"

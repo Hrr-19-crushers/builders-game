@@ -1,4 +1,3 @@
-/// <reference path="../../type-declarations/require.d.ts" />
 import * as React from 'react'; //this is the babel way
 import { render } from 'react-dom';
 

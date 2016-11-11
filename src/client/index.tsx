@@ -1,5 +1,6 @@
-import React from 'react';
-import {render} from 'react-dom';
+/// <reference path="../../type-declarations/require.d.ts" />
+import * as React from 'react'; //this is the babel way
+import { render } from 'react-dom';
 
 import HelloWorld from './components/App';
 import AnotherComp from './components/AnotherComponent';
@@ -29,8 +30,8 @@ if (module.hot) {
     const NextApp = require('./components/App').default;
     // And render it into the root element again
     render(
-        <AppContainer>
-         <NextApp />
+      <AppContainer>
+        <NextApp />
       </AppContainer>,
       rootEl
     );

@@ -3,5 +3,5 @@ node_js:
   - '6.7'
   - '6.9'
 script:
-  npm test
-  npm run lint-ts
+  npm test;
+  npm run lint-ts;

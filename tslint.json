@@ -1,7 +1,4 @@
 {
-    "extends": [
-        "tslint", "tslint-react"
-    ],
     "rules": {
         "class-name": true,
         "comment-format": [
@@ -18,7 +15,7 @@
         "no-trailing-whitespace": true,
         "no-unsafe-finally": true,
         "no-var-keyword": true,
-        "no-require-imports": true, 
+        "no-require-imports": true,
         "one-line": [
             true,
             "check-open-brace",
@@ -54,9 +51,6 @@
             "check-operator",
             "check-separator",
             "check-type"
-        ],
-        "jsx-no-lambda": true,
-        "jsx-self-close": true,
-        "jsx-alignment": true
+        ]
     }
 }

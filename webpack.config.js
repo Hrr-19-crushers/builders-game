@@ -26,7 +26,7 @@ module.exports = {
     // lint all files before compile, transpile
     preLoaders: [{
       test: /\.js$/,
-      exclude: /node_modules/,
+      exclude: "node_modules",
       loader: 'eslint-loader'
     }],
     loaders: [
@@ -39,7 +39,7 @@ module.exports = {
     ]
   },
   plugins: [
-    // Set up the notifier plugin - you can remove this (or set alwaysNotify false) if desired
+    new webpack.HotModuleReplacementPlugin(),
     new WebpackNotifierPlugin({
       alwaysNotify: true
     }),

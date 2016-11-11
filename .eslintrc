@@ -35,7 +35,7 @@
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
     "react/wrap-multilines": 1,
-    "semi": [2, "never"]
+    "semi": [2]
   },
   "env": {
     "es6": true,

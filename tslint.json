@@ -1,7 +1,4 @@
 {
-    "extends": [
-        "tslint-react"
-    ],
     "rules": {
         "class-name": true,
         "comment-format": [
@@ -54,9 +51,6 @@
             "check-operator",
             "check-separator",
             "check-type"
-        ],
-        "jsx-no-lambda": true,
-        "jsx-self-close": true,
-        "jsx-alignment": true
+        ]
     }
 }

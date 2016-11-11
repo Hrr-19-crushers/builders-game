@@ -22,6 +22,7 @@ console.log('connected listening on port 3000');
 app.get('/', (req, res) => res.sendFile('index'));
 
 
+
 // connects client to server socket 
 io.on('connection', (socket) => {
   // sends a message to all clients A new player has joined
@@ -37,6 +38,4 @@ io.on('connection', (socket) => {
     io.emit('user d/c')
   });
 });
-
-
 

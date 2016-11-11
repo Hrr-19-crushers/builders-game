@@ -25,6 +25,9 @@
   "devDependencies": {
     "@types/react": "^0.14.46",
     "@types/react-dom": "^0.14.18",
+    "@types/express": "^4.0.33",
+    "@types/node": "^6.0.46",
+    "@types/socket.io": "^1.4.27",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
@@ -47,9 +50,6 @@
     "webpack-notifier": "^1.4.1"
   },
   "dependencies": {
-    "@types/express": "^4.0.33",
-    "@types/node": "^6.0.46",
-    "@types/socket.io": "^1.4.27",
     "express": "^4.14.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

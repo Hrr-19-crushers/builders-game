@@ -1,17 +1,17 @@
-import webpack from 'webpack';
-import path from 'path';
-import WebpackNotifierPlugin from 'webpack-notifier';
+const webpack = require('webpack');
+const path = require('path');
+const WebpackNotifierPlugin = require('webpack-notifier');
 
-export default {
+module.exports = {
   devtool: 'eval',
   // This will be our app's entry point (webpack will look for it in the 'src' directory due to the modulesDirectory setting below). Feel free to change as desired.
   entry: [
-    'index.tsx'
+    'client/index.tsx'
   ],
   // Output the bundled JS to dist/app.js
   output: {
     filename: 'bundle.js',
-    path: path.resolve('dist')
+    path: path.resolve('build/client')
   },
   resolve: {
     // Look for modules in .ts(x) files first, then .js(x)
@@ -30,6 +30,7 @@ export default {
       // .ts(x) files should first pass through the Typescript loader, and then through babel
       {
         test: /\.tsx?$/,
+        include: path.join(__dirname, 'src'),
         loaders: ['babel', 'ts-loader']
       },
     ]

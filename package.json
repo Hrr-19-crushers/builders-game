@@ -26,6 +26,10 @@
   "devDependencies": {
     "@types/react": "^0.14.46",
     "@types/react-dom": "^0.14.18",
+    "@types/socket.io": "^1.4.27",
+    "@types/express": "^4.0.33",
+    "@types/node": "^6.0.46",
+    "@types/socket.io": "^1.4.27",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
@@ -35,10 +39,11 @@
     "eslint": "^3.9.1",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-react": "^6.6.0",
-    "mocha": "^3.1.2",
     "react-hot-loader": "^3.0.0-beta.6",
+    "mocha": "^3.1.2",
     "sinon": "^1.17.6",
     "ts-loader": "^1.1.0",
+    "tslint": "^3.15.1",
     "tslint-react": "^1.1.0",
     "typescript": "^2.0.8",
     "typescript-eslint-parser": "^0.4.0",
@@ -48,8 +53,9 @@
     "webpack-notifier": "^1.4.1"
   },
   "dependencies": {
-    "@types/socket.io": "^1.4.27",
+    "express": "^4.14.0",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "socket.io": "^1.5.1"
   }
 }

@@ -1,6 +1,6 @@
 {
     "extends": [
-        "tslint-react"
+        "tslint", "tslint-react"
     ],
     "rules": {
         "class-name": true,
@@ -36,8 +36,7 @@
             "allow-null-check"
         ],
         "typedef-whitespace": [
-            true,
-            {
+            true, {
                 "call-signature": "nospace",
                 "index-signature": "nospace",
                 "parameter": "nospace",
@@ -56,6 +55,9 @@
             "check-operator",
             "check-separator",
             "check-type"
-        ]
+        ],
+        "jsx-no-lambda": true,
+        "jsx-self-close": true,
+        "jsx-alignment": true
     }
 }

@@ -5,13 +5,15 @@ import HelloWorld from './components/react';
 
 const forty: number = 42;
 
-// Import the Hot Module Reloading App Container – more on why we use 'require' below
+// using require to import npm module without type declarations
 const { AppContainer } = require('react-hot-loader');
 
 // Tell Typescript that there is a global variable called module - see below
 declare var module: { hot: any };
 
-// And render our App into it, inside the HMR App ontainer which handles the hot reloading
+const rootEl = document.getElementById('app');
+
+//And render our App into it, inside the HMR App ontainer which handles the hot reloading
 render(
   <AppContainer>
     <HelloWorld />
@@ -19,7 +21,7 @@ render(
   rootEl
 );
 
-// Handle hot reloading requests from Webpack
+// // // Handle hot reloading requests from Webpack
 if (module.hot) {
   module.hot.accept('./containers/App', () => {
     // If we receive a HMR request for our App container, then reload it using require (we can't do this dynamically with import)
@@ -27,3 +29,10 @@ if (module.hot) {
 
     // And render it into the root element again
     render(
+        <AppContainer>
+         <NextApp />
+      </AppContainer>,
+      rootEl
+    );
+  })
+}

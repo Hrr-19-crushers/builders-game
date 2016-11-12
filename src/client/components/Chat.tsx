@@ -1,12 +1,12 @@
-import React, {Component}from 'react';
-import {onClick} from '../socket_io';
-const Chat = () =>{
+import * as React from 'react';
+import { onClick } from '../socket_io';
+
+const Chat = () => {
   return (
     <div>
-      <input id='message'/>
-      <button onClick={() => onClick(document.getElementById('message').val()}/>
+      <input className='message' />
+      <button onClick={() => onClick(document.getElementsByClassName('message')[0].innerHTML)}>Send</button>
     </div>
-  )
+  );
 };
-
 export default Chat;

@@ -5,7 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node devServer.js",
+    "start": "node build/server.js",
+    "dev-server": "node devServer.js",
     "build-server": "tsc --pretty",
     "build-client": "webpack --config webpack.config.js",
     "watch-server": "tsc --pretty -w & npm run test",
@@ -29,9 +30,9 @@
     "@types/react": "^0.14.46",
     "@types/react-dom": "^0.14.18",
     "@types/express": "^4.0.33",
-    "@types/node": "^6.0.46",
     "@types/socket.io": "^1.4.27",
     "@types/socket.io-client": "^1.4.28",
+    "@types/redux": "^3.6.31",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
@@ -56,16 +57,13 @@
   },
   "dependencies": {
     "express": "^4.14.0",
-    "@types/socket.io": "^1.4.27",
-<<<<<<< 500a2cc144fd0847480fa30f111a5ac30cd33158
     "phaser": "^2.6.2",
-=======
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "path": "^0.12.7",
->>>>>>> engine: get redis cache going
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "redux": "^3.6.0",
     "socket.io": "^1.5.1",
     "socket.io-client": "^1.5.1",
     "redis": "^2.6.3"

@@ -1,14 +1,13 @@
 {
     "compilerOptions": {
-        "module": "es6",
+        "module": "commonjs",
         "target": "es6",
         "sourceMap": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": false,
-        "outDir": "build",
-        "jsx": "preserve",
-        "rootDirs": ["src/server"]
+        "outDir": "build/server",
+        "jsx": "preserve"
     },
     "exclude": [
         "node_modules"

@@ -19,8 +19,6 @@ class BuilderGame extends Game {
 
     this.state.start('Boot');
   }
-
-
 }
 
 window.onload = () => {

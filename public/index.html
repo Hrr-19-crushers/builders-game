@@ -34,6 +34,7 @@
         $(() => {
           const app = {
             init: userId => {
+              app.api = '/api/chat';
               app.userId = userId;
             },
             send: message => {
@@ -42,7 +43,7 @@
               data.userId = app.userId;
               data.message = message;
               $.ajax({
-                url: '/api/chat',
+                url: api,
                 type: 'POST',
                 data: data,
                 success: message => {

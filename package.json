@@ -55,6 +55,8 @@
   },
   "dependencies": {
     "express": "^4.14.0",
+    "@types/socket.io": "^1.4.27",
+    "phaser": "^2.6.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "socket.io": "^1.5.1",

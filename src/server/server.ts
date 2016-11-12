@@ -8,15 +8,14 @@ const server = http.createServer(app);
 const io = socket_io.listen(server);
 
 app.use(express.static(path.join(__dirname, '../client')));
-server.listen(3000);
-console.log('connected listening on port 3000');
 
 app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));
 
 // connects client to server socket 
 io.on('connection', (socket) => {
+    console.log('a new player connected');
     // sends a message to all clients A new player has joined
-    io.emit('A new player joined');
+    io.emit('new player joined');
     // when a the server recieves a message from the client execute callback
     socket.on('newMessage', (data) => {
         // sends an event 'userMessage' and the data form the callback to all clients
@@ -28,3 +27,5 @@ io.on('connection', (socket) => {
         io.emit('user d/c');
     });
 });
+
+server.listen(3000, () => console.log('connected listening on port 3000'));

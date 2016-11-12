@@ -1,16 +1,18 @@
 import * as io from 'socket.io-client';
 
 // connect to server socket
-const socket: any = io.connect('http:localhost:3000');
+const socket = io();
 
 // this should be triggered in the function that sends the message 
 export const onClick = (message) => {
     socket.emit('newMessage', message);
 };
 
-socket.on('userMessage', (data) => {
-    // display data onto the dom 
+socket.on('new player joined', () => {
+    console.log('a new player joined');
+});
 
+socket.on('userMessage', (data) => {
     // an event handler for 'someEvent'
     socket.on('serverResponse', (data) => {
         console.log(data);

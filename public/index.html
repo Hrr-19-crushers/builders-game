@@ -18,7 +18,7 @@
 						<ul id="feed"></ul>
             
             <form id="form_chat">
-              <input id="input_message" type="text" placeholder="write your message!" autofocus />
+              <input id="input_message" type="text" placeholder="write your message!" value="1234" autofocus />
               <button id="input_submit" type="submit">Send</button>
 						</form>
 
@@ -28,5 +28,41 @@
 			</div>
         
 			<!--<script src="/scripts"></script>-->
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+      <script>
+        $(() => {
+          const app = {
+            init: userId => {
+              app.userId = userId;
+            },
+            send: message => {
+              const data = {};
+              data.msgId = Math.random() * 100000000000000;
+              data.userId = app.userId;
+              data.message = message;
+              $.ajax({
+                url: '/api/chat',
+                type: 'POST',
+                data: data,
+                success: message => {
+                  $('#feed').prepend(`<li>${message}</li>`);
+                  $('#input_message').val('');
+                  console.log(`Message sent successfully`);
+                },
+                error: err => {
+                  console.error(`Error sending message, ${err}`);
+                }
+              });
+            }
+          };
+          $('form#form_chat').on('submit', e => {
+            e.preventDefault();
+            const message = $('input#input_message').val();
+            if (message) app.send(message);
+          });
+          app.init('001');
+        });
+      </script>
     </body>
 </html>

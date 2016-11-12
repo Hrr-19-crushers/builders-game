@@ -43,7 +43,7 @@
               data.userId = app.userId;
               data.message = message;
               $.ajax({
-                url: api,
+                url: app.api,
                 type: 'POST',
                 data: data,
                 success: message => {

@@ -1,4 +1,4 @@
-import * as React from 'react'; //this is the babel way
+import * as React from 'react'; // this is the babel way
 import { render } from 'react-dom';
 
 import HelloWorld from './components/App';
@@ -15,7 +15,7 @@ declare var module: { hot: any };
 
 const rootEl = document.getElementById('root');
 
-//And render our App into it, inside the HMR App ontainer which handles the hot reloading
+// And render our App into it, inside the HMR App ontainer which handles the hot reloading
 render(
   <AppContainer>
     <Chat />
@@ -35,5 +35,5 @@ if (module.hot) {
       </AppContainer>,
       rootEl
     );
-  })
+  });
 }

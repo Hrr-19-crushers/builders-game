@@ -5,7 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node devServer.js",
+    "start": "node build/server.js",
+    "dev-server": "node devServer.js",
     "build-server": "tsc --pretty",
     "build-client": "webpack --config webpack.config.js",
     "watch-server": "tsc --pretty -w & npm run test",

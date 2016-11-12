@@ -25,7 +25,7 @@ cache.on('connect', err => {
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------
 
-app.use(express.static('web'));
+app.use(express.static(`${__dirname}/public`));
 
 app.use(bodyParser.json());
 
@@ -35,22 +35,6 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname + '/public/index.html'));
 });
-
-// app.get('/about', (req, res) => {
-//   res.status(200).sendFile(path.join(__dirname + '/web/public/about.html'));
-// });
-
-// app.get('/css/styles', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/web/public/css/styles.css'));
-// });
-
-// app.get('/js/vendor', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/web/public/js/vendor.min.js'));
-// });
-
-// app.get('/js/scripts', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/web/public/js/scripts.min.js'));
-// });
 
 // ------------------ API Routes ---------------------
 // ---------------------------------------------------

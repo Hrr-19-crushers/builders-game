@@ -4,7 +4,7 @@ import * as socket_io from 'socket.io';
 import * as path from 'path';
 
 const app = express();
-const server = http.createServer(app);
+const server = app.listen(3000, () => console.log('connected listening on port 3000'));
 const io = socket_io.listen(server);
 
 app.use(express.static(path.join(__dirname, '../client')));
@@ -29,4 +29,4 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3000, () => console.log('connected listening on port 3000'));
+// server.listen(3000, ;

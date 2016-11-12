@@ -1,7 +1,8 @@
 {
   "name": "builders-game",
   "version": "1.0.0",
-  "description": "",
+  "description": "crusher app will crush!",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "node devServer.js",
@@ -56,10 +57,17 @@
   "dependencies": {
     "express": "^4.14.0",
     "@types/socket.io": "^1.4.27",
+<<<<<<< 500a2cc144fd0847480fa30f111a5ac30cd33158
     "phaser": "^2.6.2",
+=======
+    "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
+    "path": "^0.12.7",
+>>>>>>> engine: get redis cache going
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "socket.io": "^1.5.1",
-    "socket.io-client": "^1.5.1"
+    "socket.io-client": "^1.5.1",
+    "redis": "^2.6.3"
   }
 }

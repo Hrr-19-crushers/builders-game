@@ -4,5 +4,5 @@ build
 .DS_Store
 *.log
 yarn.lock
-
+.env
 .vscode

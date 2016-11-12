@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { onClick } from '../socket_io';
+import { onClick } from '../utils/socket_io';
 
 const Chat = () => {
     return (
         <div>
-            <ul id="messages"></ul>
+            <ul id='messages'></ul>
             <input className='message' />
             <button onClick={() => onClick(document.getElementsByClassName('message')[0].innerHTML)}>Send</button>
         </div>

@@ -7,7 +7,6 @@
     }],
     "no-var": ["error"],
     "jsx-quotes": 1,
-    "no-var": ["error"],
     "linebreak-style": [2, "unix"],
     "no-mixed-spaces-and-tabs": 2,
     "camelcase": 2,

@@ -14,10 +14,10 @@ const cache = redis.createClient(process.env.REDIS_URL); // TODO need to connect
 // const store = redis.createClient();   
 // const pub = redis.createClient();
 // const sub = redis.createClient();
-cache.on('connect', (err) => {
+cache.on('connect', err => {
   if (err) console.log(`Error connecting to cache, ${err}`);
   else console.log(`Successfully connected to cache`);
-  cache.del('messages', (err) => { // clear out any existing data; TODO remove this once prod
+  cache.del('messages', err => { // clear out any existing data; TODO remove this once prod
     if (!err) cache.rpush('messages', 'jimmy'); // initialize chat
   }); 
 });
@@ -32,9 +32,9 @@ app.use(bodyParser.json());
 // ------------- Static Asset Routes -----------------
 // ---------------------------------------------------
 
-// app.get('/', (req, res) => {
-//   res.status(200).sendFile(path.join(__dirname + '/web/public/index.html'));
-// });
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 // app.get('/about', (req, res) => {
 //   res.status(200).sendFile(path.join(__dirname + '/web/public/about.html'));
@@ -63,7 +63,7 @@ app.get('/api/chat', (req, res) => {
 
 app.post('/api/chat', (req, res) => {
   const message = JSON.stringify(req.body);
-  cache.rpush('messages', message, (err) => {
+  cache.rpush('messages', message, err => {
     err ? res.status(500).send(`Error saving message to cache, ${err}`) : res.status(201).send(message);
   });
 });

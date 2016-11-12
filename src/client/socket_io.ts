@@ -4,7 +4,7 @@ import * as io from 'socket.io-client';
 const socket = io();
 
 // this should be triggered in the function that sends the message 
-export const onClick = (message) => {
+export const postMessage = (message) => {
     socket.emit('newMessage', message);
 };
 

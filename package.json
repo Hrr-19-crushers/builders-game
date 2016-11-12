@@ -11,7 +11,7 @@
     "build-client": "webpack --config webpack.config.js",
     "watch-server": "tsc --pretty -w & npm run test",
     "watch-client": "webpack --config webpack.config.js --watch & npm run test",
-    "test": "mocha",
+    "test": "karma start",
     "lint-ts": "eslint --parser typescript-eslint-parser src/**/*.ts"
   },
   "repository": {
@@ -48,6 +48,7 @@
     "eslint-plugin-react": "^6.6.0",
     "karma": "^1.3.0",
     "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.0.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.0",
     "karma-phantomjs-launcher": "^1.0.2",

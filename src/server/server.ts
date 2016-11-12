@@ -24,6 +24,7 @@ io.on('connection', (socket) => {
     // when a client disconnects
     socket.on('disconnect', () => {
         // sends a message to all clients
+        console.log('user disconnected');
         io.emit('user d/c');
     });
 });

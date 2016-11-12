@@ -1,7 +1,8 @@
 {
   "name": "builders-game",
   "version": "1.0.0",
-  "description": "",
+  "description": "crusher app will crush!",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "node devServer.js",
@@ -60,6 +61,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "socket.io": "^1.5.1",
-    "socket.io-client": "^1.5.1"
+    "socket.io-client": "^1.5.1",
+    "redis": "^2.6.3"
   }
 }

@@ -8,6 +8,8 @@ module.exports = function (config) {
     browsers: ['PhantomJS'],
     frameworks: ['mocha', 'chai', 'sinon'],
     files: [
+      // polyfill so using Object.assign doesn't break tests
+      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
       "test/**/*.ts",
       "test/**/*.ts"
     ],

@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node build/server.js",
+    "start": "nodemon build/server/server.js",
     "dev-server": "node devServer.js",
     "build-server": "tsc --pretty",
     "build-client": "webpack --config webpack.config.js",

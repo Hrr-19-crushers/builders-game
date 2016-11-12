@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as http from 'http';
 import * as socket_io from 'socket.io';
 import * as path from 'path';
 

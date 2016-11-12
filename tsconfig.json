@@ -7,8 +7,7 @@
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": false,
         "outDir": "build/server",
-        "jsx": "preserve",
-        "rootDirs": ["src/server"]
+        "jsx": "preserve"
     },
     "exclude": [
         "node_modules"

@@ -27,6 +27,3 @@ io.on('connection', (socket) => {
         io.emit('user d/c');
     });
 });
-
-
-

@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Hrr-19-crushers/builders-game#readme",
   "devDependencies": {
+    "@types/node": "^6.0.46",
     "@types/react": "^0.14.46",
     "@types/react-dom": "^0.14.18",
     "@types/express": "^4.0.33",

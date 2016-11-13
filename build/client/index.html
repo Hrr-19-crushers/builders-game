@@ -6,9 +6,46 @@
   <title>Builder App</title>
 </head>
 
-<body>
-  <div id="root"></div>
-  <script src="bundle.js"></script>
+<body>  
+  <!--<div id="root"></div>-->
+<!--<script src="bundle.js"></script>-->
+
+
+
+
+<!-- ############ temp work around for sending messages delete below this when ever -->
+  <div id='chat'>chat </div>
+
+    <form id="messageForm">
+      <input id= "message"/>
+      <input type="submit"/>
+    </form>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      jQuery(function($){
+        var socket = io.connect("http://localhost:3000");
+        var $messageForm = $("#messageForm");
+        var $message = $("#message");
+
+        $messageForm.submit(function(e){
+          e.preventDefault();
+          socket.emit('newMessage', $message.val());
+          $message.val('');
+        });
+
+          socket.on('new player joined', function(){
+            console.log('new player joined');
+        });
+  
+        socket.on('userMessage', function(data){
+          console.log(data);
+        });
+      });
+    </script>
+<!-- temp work around for sending messages delete above when ever ################### -->
 </body>
 
 </html>

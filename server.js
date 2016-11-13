@@ -40,8 +40,12 @@ app.get('/api/chat', (req, res) => {
 });
 
 app.post('/api/chat', (req, res) => {
-  const message = JSON.stringify(req.body);
-  cache.rpush('messages', message, err => {
+  const message = {
+    msgId: Math.random() * 10000000000000000,
+    userId: req.body.userId,
+    text: req.body.text
+  };
+  cache.lpush('messages', JSON.stringify(message), err => {
     err ? res.status(500).send(`Error saving message to cache, ${err}`) : res.status(201).send(message);
   });
 });

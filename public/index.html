@@ -15,12 +15,20 @@
 				<div class="sector sector-search">
 					<div class="center">
 						
-						<ul id="feed"></ul>
+						<ul id="feed">
+              <script type="text/template" class="template">
+                <li class="message" data-id="<%- message.msgId %>">
+                  <span><%- message.text %></span>
+                </li>
+              </script>
+            </ul>
             
             <form id="form_chat">
-              <input id="input_message" type="text" placeholder="write your message!" value="1234" autofocus />
+              <input id="input_message" type="text" placeholder="write your message!" autofocus />
               <button id="input_submit" type="submit">Send</button>
 						</form>
+
+            <button id="get_chats">Get All Chats!</button>
 
 					</div>
 				</div> 
@@ -36,31 +44,64 @@
             init: userId => {
               app.api = '/api/chat';
               app.userId = userId;
+              _.templateSettings.variable = 'message'; 
+              app.template = _.template($('script.template').html());
             },
-            send: message => {
-              const data = {};
-              data.msgId = Math.random() * 100000000000000;
-              data.userId = app.userId;
-              data.message = message;
+            clearInput: () => {
+              $('#input_message').val('');
+            },
+            clearFeed: () => {
+              $('#feed').html('');
+            },
+            renderFeed: arr => {
+              _.each(arr, function(elem) {
+                $('#feed').prepend(app.template(JSON.parse(elem)));
+              });
+            },
+            sendMsg: message => {
+              const data = {
+                userId: app.userId,
+                text: message
+              };
               $.ajax({
                 url: app.api,
                 type: 'POST',
-                data: data,
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify(data),
                 success: message => {
-                  $('#feed').prepend(`<li>${message}</li>`);
-                  $('#input_message').val('');
-                  console.log(`Message sent successfully`);
+                  app.clearInput();
+                  app.getMsgs();
+                  console.log(`Message sent successfully`, JSON.stringify(data));
                 },
                 error: err => {
                   console.error(`Error sending message, ${err}`);
                 }
               });
+            },
+            getMsgs: () => {
+              $.ajax({
+                url: app.api,
+                type: 'GET',
+                success: messages => {
+                  app.clearFeed();
+                  app.renderFeed(messages);
+                  console.log(`Messages fetched successfully`);
+                },
+                error: err => {
+                  console.error(`Error fetching messages, ${err}`);
+                }
+              });
             }
           };
-          $('form#form_chat').on('submit', e => {
+          $('#form_chat').on('submit', e => {
             e.preventDefault();
-            const message = $('input#input_message').val();
-            if (message) app.send(message);
+            const message = $('#input_message').val();
+            if (message) app.sendMsg(message);
+          });
+          $('#get_chats').on('click', e => {
+            e.preventDefault();
+            app.getMsgs();
           });
           app.init('001');
         });

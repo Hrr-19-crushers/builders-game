@@ -2,17 +2,18 @@ const env = require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 1337;
-const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
 const bodyParser = require('body-parser');
 const path = require('path');
 
 // ------------------ Chat System --------------------
 // ---------------------------------------------------
 
+const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
 const redis = require('redis');
 const cache = redis.createClient(redisUrl); // TODO need to connect via dyno and not via http
+const clearCacheAuth = process.env.CHAT_DELETE;
 cache.on('connect', err => {
-  if (err) console.log(`Error connecting to cache, ${err}`);
+  if (err) console.log(`Error connecting to cache`, err);
   else console.log(`Successfully connected to cache`);
 });
 
@@ -35,7 +36,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/chat', (req, res) => {
   cache.lrange('messages', 0, -1, (err, data) => {
-    err ? res.status(500).send(`Error fetching from cache, ${err}`) : res.status(200).send(data);
+    err ? res.status(500).send(`Error fetching from cache`, err) : res.status(200).send(data);
   });
 });
 
@@ -46,14 +47,18 @@ app.post('/api/chat', (req, res) => {
     text: req.body.text
   };
   cache.lpush('messages', JSON.stringify(message), err => {
-    err ? res.status(500).send(`Error saving message to cache, ${err}`) : res.status(201).send(message);
+    err ? res.status(500).send(`Error saving message to cache`, err) : res.status(201).send(message);
   });
 });
 
 app.delete('/api/chat', (req, res) => {
-  cache.del('messages', err => {
-    err ? res.status(500).send(`Error clearning message cache, ${err}`) : res.status(200).send('message cache successfully cleared');
-  });
+  if (req.body.password === clearCacheAuth) {
+    cache.del('messages', err => {
+      err ? res.status(500).send(`Error clearning message cache`, err) : res.status(200).send('message cache successfully cleared');
+    });
+  } else {
+    res.status(401).send('Clear cache failed, incorrect password given');
+  }
 });
 
 // ---------------------------------------------------

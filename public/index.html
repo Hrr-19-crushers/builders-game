@@ -32,6 +32,14 @@
 
             <button id="stop_polling">Cancel Polling for New Messages (to save your internet)</button>
 
+            <hr>
+            <hr>
+
+            <form id="clear_cache">
+              <input id="input_auth" type="password" placeholder="enter your password"/>
+              <button id="clear_submit" type="submit">Clear (!!!WARNING!!!)</button>
+						</form>
+
 					</div>
 				</div> 
 
@@ -93,13 +101,33 @@
                   console.log(`Messages fetched successfully`);
                 },
                 error: err => {
-                  console.error(`Error fetching messages, ${err}`);
+                  console.error(`Error fetching messages, ${err.toString()}`);
                 }
               });
             },
             cancelPoll: () => {
               clearInterval(app.poll);
               console.log(`no longer watching for new messages, bye!`)
+            },
+            clearCache: password => {
+              const data = {
+                password: password
+              };
+              $.ajax({
+                url: app.api,
+                type: 'DELETE',
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify(data),
+                success: () => {
+                  app.clearFeed();
+                  console.log(`Cache cleared successfully`);
+                },
+                error: err => {
+                  app.clearFeed();
+                  console.error(`Error clearing cache`, err);
+                }
+              });
             }
           };
           $('#form_chat').on('submit', e => {
@@ -114,6 +142,11 @@
           $('#stop_polling').on('click', e => {
             e.preventDefault();
             app.cancelPoll();
+          });
+          $('#clear_cache').on('submit', e => {
+            e.preventDefault();
+            const password = $('#input_auth').val();
+            app.clearCache(password);
           });
           app.init('001');
         });

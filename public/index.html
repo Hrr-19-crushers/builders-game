@@ -30,6 +30,8 @@
 
             <button id="get_chats">Get All Chats!</button>
 
+            <button id="stop_polling">Cancel Polling for New Messages (to save your internet)</button>
+
 					</div>
 				</div> 
 
@@ -46,6 +48,8 @@
               app.userId = userId;
               _.templateSettings.variable = 'message'; 
               app.template = _.template($('script.template').html());
+              app.getMsgs();
+              app.poll = setInterval(() => { app.getMsgs(); console.log('checked for new messages'); }, 2000);
             },
             clearInput: () => {
               $('#input_message').val('');
@@ -72,7 +76,7 @@
                 success: message => {
                   app.clearInput();
                   app.getMsgs();
-                  console.log(`Message sent successfully`, JSON.stringify(data));
+                  console.log(`Message sent successfully`);
                 },
                 error: err => {
                   console.error(`Error sending message, ${err}`);
@@ -92,6 +96,10 @@
                   console.error(`Error fetching messages, ${err}`);
                 }
               });
+            },
+            cancelPoll: () => {
+              clearInterval(app.poll);
+              console.log(`no longer watching for new messages, bye!`)
             }
           };
           $('#form_chat').on('submit', e => {
@@ -102,6 +110,10 @@
           $('#get_chats').on('click', e => {
             e.preventDefault();
             app.getMsgs();
+          });
+          $('#stop_polling').on('click', e => {
+            e.preventDefault();
+            app.cancelPoll();
           });
           app.init('001');
         });

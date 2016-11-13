@@ -9,8 +9,8 @@
     "dev-server": "node devServer.js",
     "build-server": "tsc --pretty",
     "build-client": "webpack --config webpack.config.js",
-    "watch-server": "tsc --pretty -w & npm run test",
-    "watch-client": "webpack --config webpack.config.js --watch & npm run test",
+    "watch-server": "tsc --pretty -w",
+    "watch-client": "webpack --config webpack.config.js --watch",
     "test": "karma start",
     "lint-ts": "eslint --parser typescript-eslint-parser src/**/*.ts"
   },

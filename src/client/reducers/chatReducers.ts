@@ -20,10 +20,15 @@ export interface ChatState {
 
 const INITIAL_STATE: ChatState = { messages: [] };
 
-export const addChat = (state: ChatState = INITIAL_STATE, action: Action) => {
+export const chatReducer = (state: ChatState = INITIAL_STATE, action: Action): ChatState => {
   switch (action.type) {
     case ADD_CHAT:
       return Object.assign(state, { messages: [...state.messages, action.payload] });
+    case CLEAR_CHATS:
+      return Object.assign(state, { messages: [] });
+    case CHATS_AFTER:
+      const recents = state.messages.filter(msg => msg.date > action.payload);
+      return Object.assign(state, { messages: [...recents] });
     default:
       return state;
   }

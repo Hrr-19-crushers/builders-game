@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Builder Game</title>
+        <!--<link rel="stylesheet" type="text/css" href="/styles">-->
+    </head>
+    <body>
+			<header>
+				<div class="center">
+					<h1>Builder Game</h1>
+				</div>
+			</header>
+			<div class="main">
+				
+				<div class="sector sector-search">
+					<div class="center">
+						
+						<ul id="feed">
+              <script type="text/template" class="template">
+                <li class="message" data-id="<%- message.msgId %>">
+                  <span><%- message.text %></span>
+                </li>
+              </script>
+            </ul>
+            
+            <form id="form_chat">
+              <input id="input_message" type="text" placeholder="write your message!" autofocus />
+              <button id="input_submit" type="submit">Send</button>
+						</form>
+
+            <button id="get_chats">Get All Chats!</button>
+
+            <button id="stop_polling">Cancel Polling for New Messages (to save your internet)</button>
+
+					</div>
+				</div> 
+
+			</div>
+        
+			<!--<script src="/scripts"></script>-->
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+      <script>
+        $(() => {
+          const app = {
+            init: userId => {
+              app.api = '/api/chat';
+              app.userId = userId;
+              _.templateSettings.variable = 'message'; 
+              app.template = _.template($('script.template').html());
+              app.getMsgs();
+              app.poll = setInterval(() => { app.getMsgs(); console.log('checked for new messages'); }, 2000);
+            },
+            clearInput: () => {
+              $('#input_message').val('');
+            },
+            clearFeed: () => {
+              $('#feed').html('');
+            },
+            renderFeed: arr => {
+              _.each(arr, function(elem) {
+                $('#feed').prepend(app.template(JSON.parse(elem)));
+              });
+            },
+            sendMsg: message => {
+              const data = {
+                userId: app.userId,
+                text: message
+              };
+              $.ajax({
+                url: app.api,
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify(data),
+                success: message => {
+                  app.clearInput();
+                  app.getMsgs();
+                  console.log(`Message sent successfully`);
+                },
+                error: err => {
+                  console.error(`Error sending message, ${err}`);
+                }
+              });
+            },
+            getMsgs: () => {
+              $.ajax({
+                url: app.api,
+                type: 'GET',
+                success: messages => {
+                  app.clearFeed();
+                  app.renderFeed(messages);
+                  console.log(`Messages fetched successfully`);
+                },
+                error: err => {
+                  console.error(`Error fetching messages, ${err}`);
+                }
+              });
+            },
+            cancelPoll: () => {
+              clearInterval(app.poll);
+              console.log(`no longer watching for new messages, bye!`)
+            }
+          };
+          $('#form_chat').on('submit', e => {
+            e.preventDefault();
+            const message = $('#input_message').val();
+            if (message) app.sendMsg(message);
+          });
+          $('#get_chats').on('click', e => {
+            e.preventDefault();
+            app.getMsgs();
+          });
+          $('#stop_polling').on('click', e => {
+            e.preventDefault();
+            app.cancelPoll();
+          });
+          app.init('001');
+        });
+      </script>
+    </body>
+</html>

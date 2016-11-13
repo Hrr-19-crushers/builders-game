@@ -124,6 +124,7 @@
                   console.log(`Cache cleared successfully`);
                 },
                 error: err => {
+                  app.clearFeed();
                   console.error(`Error clearing cache`, err);
                 }
               });

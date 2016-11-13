@@ -45,6 +45,7 @@ app.post('/api/chat', (req, res) => {
     userId: req.body.userId,
     text: req.body.text
   };
+  console.log(message);
   cache.lpush('messages', JSON.stringify(message), err => {
     err ? res.status(500).send(`Error saving message to cache, ${err}`) : res.status(201).send(message);
   });

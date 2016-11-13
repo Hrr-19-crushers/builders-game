@@ -13,11 +13,7 @@ socket.on('new player joined', () => {
 });
 
 socket.on('userMessage', (data) => {
-    // an event handler for 'someEvent'
-    socket.on('serverResponse', (data) => {
-        console.log(data);
-        // emits an event,'response', along with a some data
-        socket.emit('response', data);
-    });
+    console.log(data);
 });
+
 export default socket;

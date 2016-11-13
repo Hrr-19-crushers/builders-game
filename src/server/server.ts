@@ -17,6 +17,7 @@ io.on('connection', (socket) => {
     io.emit('new player joined');
     // when a the server recieves a message from the client execute callback
     socket.on('newMessage', (data) => {
+        console.log(data)
         // sends an event 'userMessage' and the data form the callback to all clients
         io.emit('userMessage', data);
     });

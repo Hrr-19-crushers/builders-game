@@ -3,9 +3,8 @@ import { render } from 'react-dom';
 
 import HelloWorld from './components/App';
 import AnotherComp from './components/AnotherComponent';
-import sio from './utils/socket_io';
+// import sio from './utils/socket_io';
 import Chat from './components/Chat';
-const forty: number = 42;
 
 // using require to import npm module without type declarations
 const { AppContainer } = require('react-hot-loader');

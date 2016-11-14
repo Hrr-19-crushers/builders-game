@@ -5,7 +5,7 @@ import {
   Message,
   ChatState,
   chatReducer
-} from '../../src/client/reducers/chatReducers';
+} from '../../src/client/reducers/chatReducer';
 
 // action types
 import {

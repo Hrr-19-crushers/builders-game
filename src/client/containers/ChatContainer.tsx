@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Chat from '../components/Chat';
+import Input from '../components/Input';
 import { addChatAction } from '../actions/chatActions';
 
 const mapStateToProps = (state) => {
@@ -21,4 +21,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Chat);
+)(Input);

@@ -12,25 +12,33 @@ export interface Message {
   name: String;
   text: String;
   type?: String;
-  date: Date;
+ // date: Date;
 }
 
 export interface ChatState {
   messages: Message[];
 }
 
-const INITIAL_STATE: ChatState = { messages: [] };
+const INITIAL_STATE: ChatState = {
+  messages: [
+    {
+      name:'user1', 
+      text:'test message',
+      type:'',
+     // date: Date.now()
+    }
+  ] 
+};
 
 export const chatReducer = (state: ChatState = INITIAL_STATE, action: Action): ChatState => {
   switch (action.type) {
     case ADD_CHAT:
-      console.log(Object.assign(state, { messages: [...state.messages, action.payload] }));
-      return Object.assign(state, { messages: [...state.messages, action.payload] });
+      return Object.assign({}, state, { messages: [...state.messages, action.payload] });
     case CLEAR_CHATS:
       return Object.assign(state, { messages: [] });
-    case CHATS_AFTER:
-      const recents = state.messages.filter(msg => msg.date > action.payload);
-      return Object.assign(state, { messages: [...recents] });
+    // case CHATS_AFTER:
+    //   const recents = state.messages.filter(msg => msg.date > action.payload);
+    //   return Object.assign(state, { messages: [...recents] });
     default:
       return state;
   }

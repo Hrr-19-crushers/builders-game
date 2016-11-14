@@ -1,4 +1,4 @@
-exports.prompts = {
+exports.phrases = {
   // b/p vote
   borp: { // these are really bad, need more thought
     b: /b/im,
@@ -11,7 +11,7 @@ exports.prompts = {
     bp: /bp/im
   },
   // container members
-  cotainer: {
+  container: {
     aaron: /aaron/im,
     alex: /alex/im,
     andrew: /andrew/im,

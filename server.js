@@ -33,6 +33,7 @@ app.post('/api/chat', (req, res) => {
   const message = {
     msgId: Math.random() * 10000000000000000,
     userId: req.body.userId,
+    timeStamp: new Date().getTime(),
     text: req.body.text
   };
   storage.lpush('messages', JSON.stringify(message), err => {

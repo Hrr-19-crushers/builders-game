@@ -1,5 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 
-const App = () => (<div>Hello i am an App</div>);
+import ChatContainer from '../containers/ChatContainer';
+
+const App = () => (
+  <div>
+    <ChatContainer />
+  </div>
+);
 
 export default App;

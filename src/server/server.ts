@@ -3,12 +3,14 @@ import * as socket_io from 'socket.io';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import {sendMessage} from './utils/helpers';
-// test comment to see something
+
 const app = express();
 const server = app.listen(3000, () => console.log('connected listening on port 3000'));
 const io = socket_io.listen(server);
 
-app.use(express.static(path.join(__dirname, '../client')));
+// temporary index file path while working on the server
+app.use(express.static(path.join(__dirname, '../../tempIndex')));
+// app.use(express.static(path.join(__dirname, '../client'))); use this for the build
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));
@@ -21,11 +23,11 @@ io.on('connection', (socket) => {
     io.emit('new player joined');
     // when a the server recieves a message from the client execute callback
     socket.on('newMessage', (data) => {
-        console.log(data)
+        sendMessage(data.userName, data.message);
         // call a method that sends an ajax request to the redis server.
 
         // sends an event 'userMessage' and the data form the callback to all clients
-        io.emit('userMessage', data);
+        io.emit('userMessage', data.message);
     });
     // when a client disconnects
     socket.on('disconnect', () => {

@@ -31,8 +31,8 @@ export default class Chat extends React.Component<any, any> {
                         });
                         this.setState({ input: '' });
                     } }
-                    >Send</button>;
-        </div >
+                    >Send</button>
+            </div >
         );
     }
-};
+};;

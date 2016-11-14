@@ -12,7 +12,7 @@ export interface Message {
   name: String;
   text: String;
   type?: String;
- // date: Date;
+  // date: Date;
 }
 
 export interface ChatState {
@@ -22,12 +22,12 @@ export interface ChatState {
 const INITIAL_STATE: ChatState = {
   messages: [
     {
-      name:'user1', 
-      text:'test message',
-      type:'',
-     // date: Date.now()
+      name: 'user1',
+      text: 'test message',
+      type: '',
+      // date: Date.now()
     }
-  ] 
+  ]
 };
 
 export const chatReducer = (state: ChatState = INITIAL_STATE, action: Action): ChatState => {
@@ -35,10 +35,10 @@ export const chatReducer = (state: ChatState = INITIAL_STATE, action: Action): C
     case ADD_CHAT:
       return Object.assign({}, state, { messages: [...state.messages, action.payload] });
     case CLEAR_CHATS:
-      return Object.assign(state, { messages: [] });
-    // case CHATS_AFTER:
-    //   const recents = state.messages.filter(msg => msg.date > action.payload);
-    //   return Object.assign(state, { messages: [...recents] });
+      return Object.assign({}, state, { messages: [] });
+    case CHATS_AFTER:
+      const recents = state.messages.filter(msg => msg.date > action.payload);
+      return Object.assign({}, state, { messages: [...recents] });
     default:
       return state;
   }

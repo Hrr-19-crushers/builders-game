@@ -1,6 +1,6 @@
 // Karma configuration
 // Generated on Sat Nov 12 2016 16:28:06 GMT-0500 (EST)
-var webpackConfig = require("./webpack.config");
+var webpackConfig = require("./webpack.test.config");
 
 module.exports = function (config) {
   config.set({
@@ -11,13 +11,12 @@ module.exports = function (config) {
       // polyfill so using Object.assign doesn't break tests
       './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
       "test/**/*.ts",
-      "test/**/*.ts"
+      "test/**/*.tsx"
     ],
     exclude: [],
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      //"test/**/*.ts": ["webpack"],
       "test/**/*.ts": ["webpack"]
     },
     webpack: {

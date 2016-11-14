@@ -3,7 +3,7 @@ const path = require('path');
 const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
-  // devtool: 'eval',
+  devtool: 'eval',
   // This will be our app's entry point (webpack will look for it in the 'src' directory due to the modulesDirectory setting below). Feel free to change as desired.
   entry: [
     'react-hot-loader/patch',
@@ -19,7 +19,7 @@ module.exports = {
   },
   resolve: {
     // Look for modules in .ts(x) files first, then .js(x)
-    extensions: ['', /*'.ts',*/ '.tsx', '.js', '.jsx'],
+    extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
     // Add 'src' to our modulesDirectories, as all our app code will live in there, so Webpack should look in there for modules
     modulesDirectories: ['src', 'node_modules'],
   },

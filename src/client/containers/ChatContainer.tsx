@@ -5,13 +5,16 @@ import { addChatAction } from '../actions/chatActions';
 
 const mapStateToProps = (state) => {
     return {
-        messages: state.chatReducers
+        messages: state.chatReducer.messages
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addChat: (message) => dispatch(addChatAction(message))
+        addChat: (message) => {
+            console.log(addChatAction(message));
+            dispatch(addChatAction(message));
+        }
     };
 };
 

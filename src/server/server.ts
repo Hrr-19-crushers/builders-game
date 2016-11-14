@@ -34,14 +34,14 @@ io.on('connection', (socket) => {
     io.emit('new player joined');
     // server listening for newMessages
     socket.on('newMessage', (data) => {
-        // sends message to redis server
+        // deletes data from redis server
       if (data.message === '#delete'){
         deleteMessages();
-      }
+      }  // gets data from redis server
       else if (data.message === '#get'){
         getMessages();
       }
-       else{
+       else { // posts data to redis server
          sendMessage(data.userName, data.message);
        }
         // sends an event 'userMessage' and the data to all clients listening for userMessage;

@@ -5,16 +5,16 @@ import Chat from '../components/Chat';
 const mapStateToProps = (state, ownProps) => {
   return {
     prop: state.prop
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     dispatch1: () => {
-      dispatch(actionCreator)
+      dispatch(actionCreator);
     }
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,

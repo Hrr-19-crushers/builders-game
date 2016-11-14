@@ -1,4 +1,5 @@
 /// <reference path="../../../type-declarations/Object.d.ts" />
+import * as Redux from 'redux';
 import {
   ADD_CHAT,
   CLEAR_CHATS,

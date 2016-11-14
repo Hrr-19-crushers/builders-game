@@ -4,7 +4,7 @@ import {
   CHATS_AFTER
 } from './actionTypes';
 
-import { Message } from '../reducers/chatReducers';
+import { Message } from '../reducers/chatReducer';
 
 import { Action } from './actionInterface';
 

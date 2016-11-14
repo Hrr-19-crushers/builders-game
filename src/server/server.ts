@@ -19,22 +19,18 @@ app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' })
 // connects client to server socket 
 io.on('connection', (socket) => {
     console.log('a new player connected');
-    // sends a message to all clients A new player has joined
+    // sends a message to all clients listening for new player joined
     io.emit('new player joined');
-    // when a the server recieves a message from the client execute callback
+    // server listening for newMessages
     socket.on('newMessage', (data) => {
+        // sends message to redis server
         sendMessage(data.userName, data.message);
-        // call a method that sends an ajax request to the redis server.
 
-        // sends an event 'userMessage' and the data form the callback to all clients
+        // sends an event 'userMessage' and the data to all clients listening for userMessage;
         io.emit('userMessage', data.message);
     });
-    // when a client disconnects
+    // when a client disconnects console.logs userdisconneccted
     socket.on('disconnect', () => {
-        // sends a message to all clients
         console.log('user disconnected');
-        io.emit('user d/c');
     });
 });
-
-// server.listen(3000, ;

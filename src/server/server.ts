@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as socket_io from 'socket.io';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
-import {sendMessage, getMessages, deleteMessages} from './utils/helpers';
+import { sendMessage, getMessages, deleteMessages } from './utils/helpers';
 
 const app = express();
 const server = app.listen(3000, () => console.log('connected listening on port 3000'));
@@ -16,10 +16,10 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));
 
 app.post('/', (req, res) => {
-  res.sendStatus(201);
+    res.sendStatus(201);
 });
 
-app.put('/', (req,res) => {
+app.put('/', (req, res) => {
     res.sendStatus(201);
 });
 
@@ -35,15 +35,15 @@ io.on('connection', (socket) => {
     // server listening for newMessages
     socket.on('newMessage', (data) => {
         // deletes data from redis server
-      if (data.message === '#delete'){
-        deleteMessages();
-      }  // gets data from redis server
-      else if (data.message === '#get'){
-        getMessages();
-      }
-       else { // posts data to redis server
-         sendMessage(data.userName, data.message);
-       }
+        if (data.message === '#delete') {
+            deleteMessages();
+        }  // gets data from redis server
+        else if (data.message === '#get') {
+            getMessages();
+        }
+        else { // posts data to redis server
+            sendMessage(data.userName, data.message);
+        }
         // sends an event 'userMessage' and the data to all clients listening for userMessage;
         io.emit('userMessage', data.message);
     });

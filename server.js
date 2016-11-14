@@ -5,6 +5,7 @@ const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
 const storage = require('./engine/storage.js');
+const engine = require('./engine/engine.js'); // TODO resolve wonky namespacing
 
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------
@@ -56,3 +57,5 @@ app.delete('/api/chat', (req, res) => {
 app.listen(port, () => {
   console.log('Web server listening on port', port);
 });
+
+const game = new engine.Game();

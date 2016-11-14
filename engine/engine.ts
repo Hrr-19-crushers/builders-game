@@ -15,50 +15,89 @@ interface PromptInit {
 class Prompt {
   promptId: number;
   promptType: string;
-  // phrases: object;
+  promptPhrases: any; // TODO learn how to do this correctly
+  promptResponseStorageLocation: string;
+  
   constructor(promptInit: PromptInit) {
     this.promptId = promptInit.promptId;
     this.promptType = promptInit.promptType;
-    this.loadPhrases();
+    this.promptPhrases = phrases[this.promptType];
+    this.promptResponseStorageLocation = `PROMPT${this.promptId}`;
   }
-  loadPhrases() {
-    // load the phrases for this type of prompt from phrases.js
+  
+  emitPromptToClients() {
+    // send out prompt details to client
   }
+  
   storeResponses() {
-    // create new memory space in storage to collect responses
+    // route a copy of all chats to temp storage
   }
-  // send out prompt via socket to all players
-  // route a copy of all chats to temp storage
-  // count down time during vote, broadcast to players
-  // once voting closes, count up responses using phrases and formulate outcome
+  
+  tallyVotes() {
+    // after certain period of time has passed
+    // count up responses using phrases
+  }
+  
+  // formulate move / course of action
   saveMove() {
     // save move in state by prompt id
     storage.lpush('moves', {}, err => {
     });
   }
+  
   // push move to headless board if necessary
   // broadcast outcome to clients
+  // delete prompt storage
+}
+
+// will need to conver this to a mongoose model most likely
+class Player {
+  playerId: string;
+  playerName: string;
+
+  constructor(playerId: string) {
+    this.playerId = playerId;
+    // this.playerName = 
+  }
+
 }
 
 class Game {
+  // going to need to set up persistent storage for this one; or maybe modal?
+  players: Player[];
   promptTypes: string[];
+  
   constructor() {
     // create state for current game in memory
     // create memory space for all moves that have taken place in the game
     // populate available prompt types
     this.promptTypes = Object.keys(phrases);
-    // at some interval, create a new prompt
-      // crate move number for this prompt
-      const moveNumber = storage.exists('moves') === 1 ? storage.llen('moves') + 1 : 1;
-      // choose a random prompt type from the available prompts
-      const promptType = this.promptTypes[Math.floor(Math.random() + this.promptTypes.length)];
-      // construct the prompt init object
-      const promptInit: PromptInit = {
-        promptId: moveNumber,
-        promptType: promptType
-      };
-      // create a new prompt and let the fun begin
-      let prompt = new Prompt(promptInit);
+  }
+
+  addNewPlayer(player: Player) {
+    this.players.push(player);
+  }
+  
+  startGame() {
+    storage.lpush('messages', 'WELCOME TO BUILDER GAME. STARTING NEW GAME, WOO!');
+  }
+  
+  // at some interval, initiate a new move
+  
+  // init a new prompt
+  
+  newPrompt() {
+    // generate move number for this prompt
+    const moveNumber = storage.exists('moves') === 1 ? storage.llen('moves') + 1 : 1;
+    // choose a random prompt type from the available prompts
+    const promptType = this.promptTypes[Math.floor(Math.random() + this.promptTypes.length)];
+    // construct the prompt init object
+    const promptInit: PromptInit = {
+      promptId: moveNumber,
+      promptType: promptType
+    };
+    // create a new prompt and let the fun begin
+    let prompt = new Prompt(promptInit);
   }
 }
 

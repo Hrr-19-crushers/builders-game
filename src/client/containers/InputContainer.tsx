@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 import Input from '../components/Input';
 import { addChatAction } from '../actions/chatActions';
 
-const mapStateToProps = (state) => {
-    return {
-        messages: state.chatReducer.messages
-    };
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         addChat: (message) => {
@@ -18,6 +12,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(Input);

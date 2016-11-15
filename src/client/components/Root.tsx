@@ -1,10 +1,16 @@
 import * as React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './App';
+import Profile from './Profile';
+import Dashboard from './Dashboard';
 
 export default () => (
-  <Router history={browserHistory}>
-    <Route path='/' component={App} />
-  </Router>
+    <div>
+        <Router history={browserHistory}>
+            <Route path='/' component={App} />
+            <Route path='/profile' component={Profile} />
+            <Route path='/dashboard' component={Dashboard} />
+        </Router>
+    </div>
 );

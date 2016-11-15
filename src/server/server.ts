@@ -12,7 +12,7 @@ const io = socket_io.listen(server);
 app.use(express.static(path.join(__dirname, '../../')));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));
+app.get('/*', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));
 
 app.post('/', (req, res) => {
     res.sendStatus(201);

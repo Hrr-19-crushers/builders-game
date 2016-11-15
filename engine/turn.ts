@@ -21,7 +21,7 @@ export class Turn {
   }
   
   turnTallyVotes() {
-    // after certain period of time has passed
+    // fetch responses
     // count up responses using phrases
   }
   

@@ -1,4 +1,7 @@
 const storage = require('./storage.js');
+// message storage in 'messages'
+// temp turn storage in 'turnX'
+// turn action storage in 'actions'
 const phrases = require('./phrases.js');
 
 import { Location } from './interfaces';
@@ -20,7 +23,7 @@ export class Game {
     this.gameCharacter = new Character(null, null, {x:0, y:0} as Location, null); // init properly later on
     this.gameTurnActive = false;
     this.gameTurnNum = 0;
-    this.gameTurnId = 'TURN0';
+    this.gameTurnId = 'turn0';
     this.gameTurnTypes = Object.keys(phrases);
     storage.lpush('messages', 'WELCOME TO BUILDER GAME. STARTING A NEW GAME, HOW EXCITING!');
   }
@@ -37,13 +40,16 @@ export class Game {
   gameNewTurn() {
     // generate new turn number
     this.gameTurnNum++;
-    this.gameTurnId = `TURN${this.gameTurnNum}`;
+    this.gameTurnId = `turn${this.gameTurnNum}`;
     this.gameTurnActive = true;
     // choose a random turn type from the available prompts; can manually control this later when we have an actual game flow designed
     const turnType = this.gameTurnTypes[Math.floor(Math.random() + this.gameTurnTypes.length)];
     // create a new turn instance and let the fun begin
     this.gameTurnInstance = new Turn(this.gameTurnId, turnType);
-    // this.gameTurnActive = false;
+    // after some period of time:
+      // this.gameTurnActive = false;
+      // this.gameTurnInstance.turnTallyVotes();
+      // storage.lpush('actions', ???);
   }
   
   gameTurnSpacing() {

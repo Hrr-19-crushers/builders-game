@@ -1,13 +1,51 @@
-.messages {
-  background-color: #E0E0E0;
+.App {}
+
+.NavBar {}
+
+
+/* CHAT STYLING */
+
+.chatBox {
+  position: relative;
+  background-color: #ECEFF1;
   height: 80vh;
-  width: 30vw;
-  padding-top: 2vh;
+  width: 30%;
+  float: right;
 }
 
-.chat {
-  background-color: #ECEFF1;
+.game {
+  width: 60%;
 }
+
+.gameScreen {
+  margin: 0 auto;
+  width: 700px;
+  height: 500px;
+  background: url('http://indiegames.com/OKHLOS%20gif.gif')
+}
+
+.messages {
+  padding-top: 12%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.menu {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 50px;
+  background: rgba(82, 179, 217, 0.9);
+  z-index: 100;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.chat {}
 
 .selfChat: {
   background-color: 'blue'

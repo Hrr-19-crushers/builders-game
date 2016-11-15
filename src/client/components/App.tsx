@@ -5,9 +5,9 @@ import Game from './Game';
 import Navbar from './NavBar';
 
 export default () => (
-    <div>
+    <div className='App'>
         <Navbar />
-        <Game />
         <Chat />
+        <Game />
     </div>
 );

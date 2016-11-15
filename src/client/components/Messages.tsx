@@ -11,5 +11,5 @@ export default ({messages, user}) => {
       </li>
     ));
 
-  return (<ul>{items}</ul>);
+  return (<ul className='messages'>{items}</ul>);
 };

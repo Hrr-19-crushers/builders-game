@@ -7,7 +7,6 @@
 
 .chatBox {
   position: relative;
-  background-color: #ECEFF1;
   height: 80vh;
   width: 30%;
   float: right;
@@ -24,10 +23,34 @@
   background: url('http://indiegames.com/OKHLOS%20gif.gif')
 }
 
+.messages,
+.inputForm {
+  background-color: #ECEFF1;
+}
+
 .messages {
   padding-top: 12%;
   height: 100%;
   overflow: scroll;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.messages ul {
+  list-style-type: none;
+}
+
+.inputForm {
+  margin-top: 0;
+  width: 100%;
+}
+
+.inputForm input {
+  width: 80%;
+}
+
+.inputForm .submitButton {
+  width: 18%;
 }
 
 .menu {
@@ -39,16 +62,20 @@
   height: 50px;
   background: rgba(82, 179, 217, 0.9);
   z-index: 100;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
-.chat {}
+.chat {
+  margin-top: 5px;
+  border-top-left-radius: 0px;
+  box-shadow: -1px 2px 0px #D4D4D4;
+}
 
-.selfChat: {
-  background-color: 'blue'
+.selfChat {
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: 'blue';
+  border-bottom-right-radius: 0px;
+  box-shadow: 1px 2px 0px #D4D4D4;
 }
 
 .messages .chatName {}

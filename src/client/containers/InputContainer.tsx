@@ -5,7 +5,7 @@ import { addChatAction } from '../actions/chatActions';
 
 const mapStateToProps = (state) => {
     return {
-        messages: state.chatReducer.messages
+        user: state.userState
     };
 };
 

@@ -1,24 +1,15 @@
 import * as React from 'react';
+import * as moment from 'moment';
 
-const test = ({messages}) => {
-  console.log('line 4 of Message', messages);
-  const items = messages.map(message =>
+export default ({messages, user}) => {
+  const items = messages.map(m =>
     (
-      <li key={message.text}>
-        {message.name} <span> </span>
-        {message.text} <span> </span>
-        {message.type} <span> </span>
-        {message.date} <span> </span>
+      <li key={m.date} className={user === m.user ? 'selfChat' : 'chat'}>
+        <span className='chatName'>{m.user}: </span>
+        <span className='chatText'>{m.text}  </span>
+        <span className='chatDate'>{moment(JSON.parse(m.date)).fromNow()}</span>
       </li>
     ));
 
-
-  return (
-    <ul>
-      {items}
-    </ul>
-
-  );
+  return (<ul className='messages'>{items}</ul>);
 };
-
-export default test;

@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-import ChatContainer from '../containers/ChatContainer';
-import MessagesContainer from '../containers/MessagesContainer';
-const App = () => (
-  <div>
-    <MessagesContainer />
-    <ChatContainer />
-  </div>
-);
+import Chat from './Chat';
+import Game from './Game';
+import Navbar from './NavBar';
 
-export default App;
+export default () => (
+    <div>
+        <Navbar />
+        <Game />
+        <Chat />
+    </div>
+);

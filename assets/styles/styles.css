@@ -1,0 +1,20 @@
+.messages {
+  background-color: #E0E0E0;
+  height: 80vh;
+  width: 30vw;
+  padding-top: 2vh;
+}
+
+.chat {
+  background-color: #ECEFF1;
+}
+
+.selfChat: {
+  background-color: 'blue'
+}
+
+.messages .chatName {}
+
+.messages .chatText {}
+
+.messages .chatDate {}

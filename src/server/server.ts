@@ -9,8 +9,7 @@ const server = app.listen(3000, () => console.log('connected listening on port 3
 const io = socket_io.listen(server);
 
 // temporary index file path while working on the server
-// app.use(express.static(path.join(__dirname, '../../tempIndex')));
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../../')));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));

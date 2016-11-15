@@ -1,26 +1,28 @@
-/// <reference path="../../../node_modules/phaser-shim/phaser-shim.comments.d.ts" />
- 
-import {Game, State} from 'phaser-shim';
+/// <reference path="../typings/browser.d.ts"/>
+/// <reference path="../lib/phaser.d.ts"/>
+import * as Phaser from 'phaser'
 
-class Boot extends State {
-  constructor() {
-    super();
-  }
+import {BootState} from './states/boot.ts'
+import {SplashState} from './states/splash.ts'
+import {GameState} from './states/game.ts'
 
-  init() {
-    this.stage.backgroundColor = '#EDEEC9'
-  }
-}
+class Game extends Phaser.Game {
+  constructor () {
+    let width = document.documentElement.clientWidth > 768 
+      ? 768 
+      : document.documentElement.clientWidth;
+    let height = document.documentElement.clientHeight > 1024 
+      ? 1024 
+      : document.documentElement.clientHeight;
 
-class BuilderGame extends Game {
-  constructor() {
-    super(800, 600, Phaser.AUTO, 'game');
-    this.state.add('Boot', Boot, false);
+    super(width, height, Phaser.AUTO, 'content', null);
+
+    this.state.add('Boot', BootState, false);
+    this.state.add('Splash', SplashState, false);
+    this.state.add('Game', GameState, false);
 
     this.state.start('Boot');
   }
 }
 
-window.onload = () => {
-  const game = new BuilderGame();
-}
+new Game();

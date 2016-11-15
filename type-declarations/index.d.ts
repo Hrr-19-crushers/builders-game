@@ -1,1 +1,1 @@
-/// <reference path="globals/phaser/index.d.ts" />
+/// <reference path="game-main/index.d.ts">

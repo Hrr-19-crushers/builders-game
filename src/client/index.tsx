@@ -8,9 +8,6 @@ import store from './store';
 // using require to import npm module without type declarations
 const { AppContainer } = require('react-hot-loader');
 
-// global.PIXI = 
-require('phaser/dist/pixi'); 
-
 // Tell Typescript that there is a global variable called module - see below
 declare var module: { hot: any };
 

@@ -1,7 +1,7 @@
 import * as React from 'react'; // this is the babel way
 import { render } from 'react-dom';
 
-import App from './components/App';
+import Root from './components/Root';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -17,7 +17,7 @@ const rootEl = document.getElementById('root');
 render(
     <AppContainer>
         <Provider store={store}>
-            <App />
+            <Root />
         </Provider>
     </AppContainer>,
     rootEl
@@ -25,13 +25,13 @@ render(
 
 // Handle hot reloading requests from Webpack
 if (module.hot) {
-    module.hot.accept('./components/App', () => {
+    module.hot.accept('./components/Root', () => {
         // If we receive a HMR request for our App container, then reload it using require (we can't do this dynamically with import)
-        const NextApp = require('./components/App').default;
+        const NextApp = require('./components/Root').default;
         // And render it into the root element again
         render(
             <AppContainer>
-                <App />
+                <Root />
             </AppContainer>,
             rootEl
         );

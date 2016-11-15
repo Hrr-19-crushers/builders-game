@@ -34,7 +34,6 @@
     }],
     "comma-style": [2, "last"],
     "no-unused-vars": "warn",
-    "jsx-quotes": 1,
     "react/display-name": 1,
     "react/forbid-prop-types": 1,
     "react/jsx-boolean-value": 1,

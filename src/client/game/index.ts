@@ -1,13 +1,27 @@
-/*eslint-disable func-style */
-import * as Phaser from 'phaser';
+/// <reference path="../../../type-declarations/index.d.ts"/>
+import * as Phaser from 'phaser'
 
-const game = new Phaser.Game(
-  800, 600, 'island', Phaser.AUTO, 
-  {preload, create, update}
-);
+import {BootState} from './states/boot.ts'
+import {SplashState} from './states/splash.ts'
+import {GameState} from './states/game.ts'
 
-function preload() {};
+class Game extends Phaser.Game {
+  constructor () {
+    let width = document.documentElement.clientWidth > 768 
+      ? 768 
+      : document.documentElement.clientWidth;
+    let height = document.documentElement.clientHeight > 1024 
+      ? 1024 
+      : document.documentElement.clientHeight;
 
-function create() {};
+    super(width, height, Phaser.AUTO, 'content', null);
 
-function update() {};
+    this.state.add('Boot', BootState, false);
+    this.state.add('Splash', SplashState, false);
+    this.state.add('Game', GameState, false);
+
+    this.state.start('Boot');
+  }
+}
+
+new Game();

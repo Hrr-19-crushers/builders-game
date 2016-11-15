@@ -5,7 +5,7 @@ const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
 const storage = require('./engine/storage.js');
-const engine = require('./engine/engine.js'); // TODO resolve wonky namespacing
+const engine = require('./engine/game.js'); // TODO resolve wonky namespacing
 
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------

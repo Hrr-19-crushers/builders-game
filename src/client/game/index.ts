@@ -1,9 +1,9 @@
 /// <reference path="../../../type-declarations/index.d.ts" />
-import * as Phaser from 'phaser'
+import * as Phaser from 'phaser';
 
-import {BootState} from './states/boot.ts'
-import {SplashState} from './states/splash.ts'
-import {GameState} from './states/game.ts'
+import {BootState} from './states/boot';
+import {SplashState} from './states/splash';
+import {GameState} from './states/game';
 
 class Game extends Phaser.Game {
   constructor () {
@@ -21,7 +21,10 @@ class Game extends Phaser.Game {
     this.state.add('Game', GameState, false);
 
     this.state.start('Boot');
+    console.log('Game starting!');
   }
 }
 
-new Game();
+export const runGame = () => {
+  new Game();
+}

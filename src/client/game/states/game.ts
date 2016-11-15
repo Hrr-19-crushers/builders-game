@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import {setResponsiveWidth} from '../utils.ts';
+import {setResponsiveWidth} from '../utils';
 
 class Entity extends Phaser.Sprite {
   target: Phaser.Point;

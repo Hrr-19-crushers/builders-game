@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser'
-import {centerGameObjects} from '../utils.ts'
+import {centerGameObjects} from '../utils'
 
 export class SplashState extends Phaser.State {
   loaderBg: Phaser.Sprite

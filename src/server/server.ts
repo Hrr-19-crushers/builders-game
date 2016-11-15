@@ -35,17 +35,18 @@ io.on('connection', (socket) => {
     // server listening for newMessages
     socket.on('newMessage', (data) => {
         // deletes data from redis server
-        if (data.message === '#delete') {
+        if (data.payload.text === '#delete') {
             deleteMessages();
         }  // gets data from redis server
         else if (data.message === '#get') {
             getMessages();
         }
         else { // posts data to redis server
-            sendMessage(data.userName, data.message);
+            console.log(data);
+            sendMessage(data.payload);
         }
         // sends an event 'userMessage' and the data to all clients listening for userMessage;
-        io.emit('userMessage', data.message);
+        socket.broadcast.emit('userMessage', data.message);
     });
     // when a client disconnects console.logs userdisconneccted
     socket.on('disconnect', () => {

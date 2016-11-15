@@ -82,6 +82,7 @@
     "moment": "^2.16.0",
     "path": "^0.12.7",
     "phaser": "^2.6.2",
+    "phaser-shim": "^2.4.8",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0",

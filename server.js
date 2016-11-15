@@ -5,7 +5,7 @@ const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
 const storage = require('./engine/storage.js');
-const engine = require('./engine/game.js'); // TODO resolve wonky namespacing
+const engine = require('./engine/engine.js'); // TODO resolve wonky namespacing
 
 // --------------- New Game Instance -----------------
 // ---------------------------------------------------
@@ -36,12 +36,7 @@ app.get('/api/chat', (req, res) => {
 });
 
 app.post('/api/chat', (req, res) => {
-  const message = {
-    msgId: Math.random() * 10000000000000000,
-    userId: req.body.userId,
-    timeStamp: new Date().getTime(),
-    text: req.body.text
-  };
+  const message = new engine.Message(req.body.userId, req.body.text);
   game.gameStoreVote(message.userId, message.text);
   storage.lpush('messages', JSON.stringify(message), err => {
     err ? res.status(500).send(`Error saving message to storage`, err) : res.status(201).send(message);

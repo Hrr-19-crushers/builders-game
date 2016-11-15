@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { onClick } from '../utils/socket_io';
 export default class Chat extends React.Component<any, any> {
     constructor(props) {
         super(props);
@@ -23,7 +22,6 @@ export default class Chat extends React.Component<any, any> {
                     />
                 <button
                     onClick={() => {
-                        console.log('input', this.state.input);
                         this.props.addChat({
                             text: this.state.input,
                             user: 'David',

@@ -12,7 +12,7 @@ export interface Message {
   name: String;
   text: String;
   type?: String;
-  // date: Date;
+  date: Date;
 }
 
 export interface ChatState {
@@ -20,14 +20,7 @@ export interface ChatState {
 }
 
 const INITIAL_STATE: ChatState = {
-  messages: [
-    {
-      name: 'user1',
-      text: 'test message',
-      type: '',
-      // date: Date.now()
-    }
-  ]
+  messages: []
 };
 
 export const chatReducer = (state: ChatState = INITIAL_STATE, action: Action): ChatState => {

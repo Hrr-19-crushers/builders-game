@@ -12,7 +12,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addChat: (message) => {
-            console.log(addChatAction(message));
             dispatch(addChatAction(message));
         }
     };

@@ -7,6 +7,11 @@ const path = require('path');
 const storage = require('./engine/storage.js');
 const engine = require('./engine/game.js'); // TODO resolve wonky namespacing
 
+// --------------- New Game Instance -----------------
+// ---------------------------------------------------
+
+const game = new engine.Game();
+
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------
 
@@ -37,6 +42,7 @@ app.post('/api/chat', (req, res) => {
     timeStamp: new Date().getTime(),
     text: req.body.text
   };
+  game.gameStoreVote(message.userId, message.text);
   storage.lpush('messages', JSON.stringify(message), err => {
     err ? res.status(500).send(`Error saving message to storage`, err) : res.status(201).send(message);
   });
@@ -57,5 +63,3 @@ app.delete('/api/chat', (req, res) => {
 app.listen(port, () => {
   console.log('Web server listening on port', port);
 });
-
-const game = new engine.Game();

@@ -13,6 +13,6 @@ export class Character {
     this.charHealth = charHealth;
   }
 
-  move(location: Location) {
+  charMove(location: Location) {
   }
 }

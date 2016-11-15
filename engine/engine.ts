@@ -1,6 +1,3 @@
-const storage = require('./storage.js');
-const phrases = require('./phrases.js');
-
 // ------------------- Interfaces -------------------
 // --------------------------------------------------
 
@@ -9,10 +6,25 @@ interface Location {
   y: number;
 }
 
+// ------------------ Chat System -------------------
+// --------------------------------------------------
+// --------------------------------------------------
+
+const env = require('dotenv').config();
+const redis = require('redis');
+const redisConnect = process.env.REDIS_URL || 'redis://localhost:6379';
+
+const storage = redis.createClient(redisConnect); // TODO need to connect via dyno and not via http
+storage.clearStoragePw = process.env.CHAT_DELETE;
+storage.on('connect', err => {
+  if (err) console.log(`Error connecting to storage`, err);
+  else console.log(`Successfully connected to storage`);
+});
+
 // -------------------- Message ---------------------
 // --------------------------------------------------
 
-export class Message {
+class Message {
   msgId: number;
   userId: string;
   timeStamp: number;
@@ -24,6 +36,14 @@ export class Message {
     this.timeStamp = new Date().getTime();
     this.text = text;
   }
+
+}
+
+// --------------------------------------------------
+
+export class Chat {
+  
+
 }
 
 // ------------------- Character --------------------
@@ -101,6 +121,8 @@ class Turn {
 
 // --------------------- Game -----------------------
 // --------------------------------------------------
+
+const phrases = require('./phrases.js');
 
 export class Game {
   // going to need to set up persistent storage for this one; or maybe modal?

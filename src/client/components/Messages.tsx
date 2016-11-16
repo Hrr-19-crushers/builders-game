@@ -7,7 +7,7 @@ export default ({messages, user}) => {
       <li key={m.date} className={user === m.user ? 'selfChat' : 'chat'}>
         <span className='chatName'>{m.user}: </span>
         <span className='chatText'>{m.text}  </span>
-        <span className='chatDate'>{moment(JSON.parse(m.date)).fromNow()}</span>
+        <span className='chatDate'>{ m.date ? moment(JSON.parse(m.date)).fromNow() : new Date() }</span>
       </li>
     ));
   console.log(items);

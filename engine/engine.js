@@ -4,20 +4,21 @@ const redis = require('redis');
 const redisConnect = process.env.REDIS_URL || 'redis://localhost:6379';
 const storage = redis.createClient(redisConnect);
 storage.clearStoragePw = process.env.CHAT_DELETE;
-storage.on('connect', err => {
+storage.on('connect', (err) => {
     if (err)
         console.log(`Error connecting to storage`, err);
     else
         console.log(`Successfully connected to storage`);
 });
 class Message {
-    constructor(userId, text) {
+    constructor(userId = 10000000000000000, userName = 'Guest', text) {
         this.msgId = Math.random() * 10000000000000000;
         this.userId = userId;
         this.timeStamp = new Date().getTime();
         this.text = text;
     }
 }
+exports.Message = Message;
 class Chat {
 }
 exports.Chat = Chat;
@@ -36,6 +37,7 @@ class Player {
         this.playerName = playerName;
     }
 }
+exports.Player = Player;
 class Turn {
     constructor(turnId, turnType) {
         this.turnId = turnId;
@@ -60,7 +62,7 @@ class Turn {
     turnSave() {
     }
     turnDelResponses() {
-        storage.del(turnId, err => {
+        storage.del(this.turnId, (err) => {
             if (err)
                 console.log(`Error deleting responses for ${this.turnId}`);
         });
@@ -75,9 +77,18 @@ class Game {
         this.gameTurnId = 'turn0';
         this.gameTurnTypes = Object.keys(phrases);
     }
-    gameAddNewPlayer(playerName) {
+    gameAddNewPlayer(playerName = 'Anonymous') {
         const player = new Player();
-        this.gamePlayers.push(player);
+        storage.lpush('players', JSON.stringify(player), (err) => {
+            if (err)
+                console.log(`Error adding new player to storage`, err);
+            else {
+                console.log('${player.playerName} has entered the game!');
+                return player.playerName;
+            }
+        });
+    }
+    gameDeletePlayer() {
     }
     gameStoreVote(userId = '001', vote) {
         if (this.gameTurnActive)

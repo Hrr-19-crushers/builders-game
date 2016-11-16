@@ -4,7 +4,7 @@ const redisConnect = process.env.REDIS_URL || 'redis://localhost:6379';
 
 const storage = redis.createClient(redisConnect); // TODO need to connect via dyno and not via http
 storage.clearStoragePw = process.env.CHAT_DELETE;
-storage.on('connect', err => {
+storage.on('connect', (err: any) => {
   if (err) console.log(`Error connecting to storage`, err);
   else console.log(`Successfully connected to storage`);
 });
@@ -20,13 +20,13 @@ interface Location {
 // -------------------- Message ---------------------
 // --------------------------------------------------
 
-class Message {
+export class Message {
   msgId: number;
-  userId: string;
+  userId: number;
   timeStamp: number;
   text: string;
 
-  constructor(userId: string, text: string) {
+  constructor(userId: number = 10000000000000000, userName: string = 'Guest', text: string) {
     this.msgId = Math.random() * 10000000000000000;
     this.userId = userId;
     this.timeStamp = new Date().getTime();
@@ -64,12 +64,12 @@ class Character {
 // --------------------- Player ---------------------
 // --------------------------------------------------
 
-class Player {
-  playerId: string;
+export class Player {
+  // playerId: string;
   playerName: string;
 
   constructor(playerName: string = 'Anonymous') {
-    // this.playerId = playerId; // TODO implement player id stuff
+    // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName;
   }
 
@@ -99,14 +99,14 @@ class Turn {
   }
   
   turnFetchResponses() {
-    storage.lrange(this.turnId, 0, -1, (err, data) => {
+    storage.lrange(this.turnId, 0, -1, (err: any, data: any) => { // TODO this needs interface/typing
       if (err) console.log(`Error retrieving ${this.turnId} responses from storage`, err);
       else this.turnResponses = data;
     });
   }
 
   turnTallyVotes() {
-    // count up responses using phrases
+    // count up responses using phrases?
   }
   
   // formulate move / course of action
@@ -120,7 +120,7 @@ class Turn {
   // broadcast outcome to clients
   
   turnDelResponses() {
-    storage.del(this.turnId, err => {
+    storage.del(this.turnId, (err: any) => {
       if (err) console.log(`Error deleting responses for ${this.turnId}`)
     });
   }
@@ -135,7 +135,6 @@ const phrases = require('./phrases.js');
 export class Game {
   // going to need to set up persistent storage for this one; or maybe modal?
   gameCharacter: Character;
-  gamePlayers: Player[];
   gameTurnActive: boolean;
   gameTurnNum: number;
   gameTurnId: string;
@@ -148,12 +147,21 @@ export class Game {
     this.gameTurnNum = 0;
     this.gameTurnId = 'turn0';
     this.gameTurnTypes = Object.keys(phrases);
-    // storage.lpush('messages', 'WELCOME TO BUILDER GAME. STARTING A NEW GAME, HOW EXCITING!');
   }
 
-  gameAddNewPlayer(playerName: string) {
+  gameAddNewPlayer(playerName: string = 'Anonymous') {
     const player = new Player()
-    this.gamePlayers.push(player); // TODO push to data store, maybe
+    storage.lpush('players', JSON.stringify(player), (err: any) => {
+      if (err) console.log(`Error adding new player to storage`, err);
+      else {
+        console.log('${player.playerName} has entered the game!');
+        return player.playerName;
+      }
+    });
+  }
+
+  gameDeletePlayer() {
+    // TODO
   }
 
   gameStoreVote(userId: string = '001', vote: string) {

@@ -70,7 +70,7 @@ io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('newMessage', data => {
     const message = new engine.Message(null, data.payload.user, data.payload.text);
-    storage.lpush('messages', JSON.stringify(message), err => {
+    storage.lpush('messages', JSON.stringify(message), err => { // TODO eventually turn this into a Message method
       if (err) console.log(`Error saving message to storage`, err);
     });
     socket.broadcast.emit('userMessage', data.message);

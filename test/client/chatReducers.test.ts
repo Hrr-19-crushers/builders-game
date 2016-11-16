@@ -7,13 +7,6 @@ import {
   chatReducer
 } from '../../src/client/reducers/chatReducer';
 
-// action types
-import {
-  ADD_CHAT,
-  CLEAR_CHATS,
-  CHATS_AFTER
-} from '../../src/client/actions/actionTypes';
-
 // action creators
 import {
   addChatAction,

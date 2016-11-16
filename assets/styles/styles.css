@@ -77,6 +77,7 @@ canvas {
 }
 
 .chat {
+  clear: both;
   margin-top: 5px;
   border-top-left-radius: 0px;
   box-shadow: -1px 2px 0px #D4D4D4;
@@ -90,8 +91,15 @@ canvas {
   box-shadow: 1px 2px 0px #D4D4D4;
 }
 
-.messages .chatName {}
+.messages .chatName {
+  font-weight: 700;
+  color: cadetblue;
+}
 
 .messages .chatText {}
 
-.messages .chatDate {}
+.messages .chatDate {
+  font-style: italic;
+  float: right;
+  margin-right: 1vw;
+}

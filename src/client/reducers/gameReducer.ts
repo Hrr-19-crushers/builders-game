@@ -1,11 +1,11 @@
 /// <reference path="../../../type-declarations/Object.d.ts" />
-import Action from '../actions/actionInterface';
+import { Action } from '../actions/actionInterface';
 
 import { NEXT_TURN, VOTE } from '../actions/actionTypes';
 
 export interface Choice {
   name: String;
-  count: Number;
+  count: number;
 }
 
 export interface Turn {
@@ -49,7 +49,7 @@ export const gameState = (state: GameState = INITIAL_STATE, action: Action) => {
         ...state.turn.votes
           .filter(choice => choice.name !== action.payload),
         {
-          name: action.choice,
+          name: action.payload,
           count: state.turn.votes
             .filter(choice => choice.name === action.payload)[0].count + 1
         }

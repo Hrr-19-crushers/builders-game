@@ -1,5 +1,6 @@
 import * as io from 'socket.io-client';
 
+import {Action} from '../actions/actionInterface';
 import store from '../store';
 import { addChatAction } from '../actions/chatActions';
 import {
@@ -38,11 +39,6 @@ socket.on('vote', (choice: String) => {
     store.dispatch(voteAction(choice));
 });
 
-interface TurnPayload {
-    prompt: String;
-    choices: String[];
-}
-
-socket.on('nextTurn', (turn: TurnPayload) => {
-    store.dispatch(nextTurnAction(turn));
+socket.on('nextTurn', (prompt: String, choices: String[]) => {
+    store.dispatch(nextTurnAction(prompt, choices));
 });

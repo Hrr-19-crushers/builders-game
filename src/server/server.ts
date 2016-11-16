@@ -18,32 +18,38 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));
-app.post('/', (req, res) => {
-    res.sendStatus(201);
+app.post('/game/prompt', (req, res) => {
+  io.sockets.emit('prompt', req.body);
+  res.sendStatus(201);
 });
-app.put('/', (req, res) => {
-    res.sendStatus(201);
+
+app.post('/vote/result', (req, res) => {
+
+  res.sendStatus(201);
 });
+
 app.delete('/', (req, res) => {
-    res.sendStatus(201);
+  res.sendStatus(201);
 });
 
 // connects client to server socket 
 io.on('connection', (socket) => {
   localStore.playerCount++;
 
-  socket.on('newPlayer', (playerName, cb) => {
+// __________________________ new player event ________________________________________
+  socket.on('newPlayer', (playerName, fn) => {
     if (!localStore.players[playerName]) {
       // addes player name to the socket object as playerName prop.
       socket['playerName'] = playerName;
       localStore.players[playerName] = playerName;
-      cb(true);
+      fn(true);
     } else {
-      cb(false);
+      fn(false);
     }
   });
-
+// ________________________ messageing event ___________________________________________
   socket.on('newMessage', (data) => {
+
     // deletes data from redis server
     if (data.payload.text === '#delete') {
       deleteMessages();
@@ -52,12 +58,14 @@ io.on('connection', (socket) => {
       getMessages( (data) => console.log(data));
     }
     else { // posts data to redis server
-      sendMessage(data.payload, data => console.log('line 40 of server.ts', data));
+      sendMessage(data.payload, data => console.log('line 56 of server.ts', data));
     }
         // sends an event 'userMessage' and the data to all clients listening for userMessage;
     socket.broadcast.emit('userMessage', data.message);
   });
-    // when a client disconnects console.logs userdisconneccted
+
+
+    // ______________ disconnect event _________________________//
     socket.on('disconnect', (player) => {
       localStore.playerCount--;
       localStore.players[socket['playerName']] = undefined;

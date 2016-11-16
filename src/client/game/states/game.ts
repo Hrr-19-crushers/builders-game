@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import {setResponsiveWidth} from '../utils';
+import { setResponsiveWidth } from '../utils';
 
 class Entity extends Phaser.Sprite {
   target: Phaser.Point;
@@ -22,9 +22,9 @@ export class GameState extends Phaser.State {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     const banner = this.add.text(
-      this.game.world.centerX, 
-      this.game.height - 30, 
-      'Phaser + ES6 + Webpack', 
+      this.game.world.centerX,
+      this.game.height - 30,
+      'Phaser + ES6 + Webpack',
       {}
     );
     banner.font = 'Nunito';
@@ -54,7 +54,7 @@ export class GameState extends Phaser.State {
   update() {
     if (this.mushrooms.length) {
       this.game.physics.arcade.moveToObject(
-        this.mario, this.mushrooms[0],
+        this.mario, this.mushrooms[this.mushrooms.length - 1],
         500, 500
       );
     }

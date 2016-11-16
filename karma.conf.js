@@ -10,7 +10,8 @@ module.exports = function (config) {
     files: [
       // polyfill so using Object.assign doesn't break tests
       './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
-      "test/**/*.ts"
+      "test/**/*.ts",
+      'test/**/*.tsx'
     ],
     exclude: [],
     // preprocess matching files before serving them to the browser

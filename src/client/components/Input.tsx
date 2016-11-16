@@ -13,7 +13,7 @@ export default class Chat extends React.Component<any, any> {
 
   public render() {
     return (
-      <form
+      <form className='inputForm'
         onSubmit={e => {
           e.preventDefault();
           this.props.addChat({
@@ -23,11 +23,11 @@ export default class Chat extends React.Component<any, any> {
           });
           this.setState({ input: '' });
         } }>
-        <input id='input'
+        <input
           value={this.state.input}
           onChange={e => this._onChange(e)}
           />
-        <input type='submit' />
+        <input className='submitButton' type='submit' />
       </form>
     );
   }

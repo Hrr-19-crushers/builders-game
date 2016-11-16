@@ -1,6 +1,15 @@
 "use strict";
-const storage = require('./storage.js');
-const phrases = require('./phrases.js');
+const env = require('dotenv').config();
+const redis = require('redis');
+const redisConnect = process.env.REDIS_URL || 'redis://localhost:6379';
+const storage = redis.createClient(redisConnect);
+storage.clearStoragePw = process.env.CHAT_DELETE;
+storage.on('connect', err => {
+    if (err)
+        console.log(`Error connecting to storage`, err);
+    else
+        console.log(`Successfully connected to storage`);
+});
 class Message {
     constructor(userId, text) {
         this.msgId = Math.random() * 10000000000000000;
@@ -9,7 +18,9 @@ class Message {
         this.text = text;
     }
 }
-exports.Message = Message;
+class Chat {
+}
+exports.Chat = Chat;
 class Character {
     constructor(charId = 1, charName = 'Jimmy', charLocation, charHealth = 100) {
         this.charId = charId;
@@ -36,11 +47,26 @@ class Turn {
     turnStoreVotes(vote) {
         storage.lpush(this.turnId, vote);
     }
+    turnFetchResponses() {
+        storage.lrange(this.turnId, 0, -1, (err, data) => {
+            if (err)
+                console.log(`Error retrieving ${this.turnId} responses from storage`, err);
+            else
+                this.turnResponses = data;
+        });
+    }
     turnTallyVotes() {
     }
     turnSave() {
     }
+    turnDelResponses() {
+        storage.del(turnId, err => {
+            if (err)
+                console.log(`Error deleting responses for ${this.turnId}`);
+        });
+    }
 }
+const phrases = require('./phrases.js');
 class Game {
     constructor() {
         this.gameCharacter = new Character(null, null, { x: 0, y: 0 }, null);

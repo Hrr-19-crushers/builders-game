@@ -1,15 +1,3 @@
-// ------------------- Interfaces -------------------
-// --------------------------------------------------
-
-interface Location {
-  x: number;
-  y: number;
-}
-
-// ------------------ Chat System -------------------
-// --------------------------------------------------
-// --------------------------------------------------
-
 const env = require('dotenv').config();
 const redis = require('redis');
 const redisConnect = process.env.REDIS_URL || 'redis://localhost:6379';
@@ -20,6 +8,14 @@ storage.on('connect', err => {
   if (err) console.log(`Error connecting to storage`, err);
   else console.log(`Successfully connected to storage`);
 });
+
+// ------------------- Interfaces -------------------
+// --------------------------------------------------
+
+interface Location {
+  x: number;
+  y: number;
+}
 
 // -------------------- Message ---------------------
 // --------------------------------------------------
@@ -39,11 +35,10 @@ class Message {
 
 }
 
+// --------------------- Chat -----------------------
 // --------------------------------------------------
 
 export class Chat {
-  
-
 }
 
 // ------------------- Character --------------------
@@ -87,6 +82,7 @@ class Turn {
   turnId: string;
   turnType: string;
   turnPhrases: any; // TODO learn how to do this correctly
+  turnResponses: string[];
   
   constructor(turnId: string, turnType: string) {
     this.turnId = turnId;
@@ -102,8 +98,14 @@ class Turn {
     storage.lpush(this.turnId, vote);
   }
   
+  turnFetchResponses() {
+    storage.lrange(this.turnId, 0, -1, (err, data) => {
+      if (err) console.log(`Error retrieving ${this.turnId} responses from storage`, err);
+      else this.turnResponses = data;
+    });
+  }
+
   turnTallyVotes() {
-    // fetch responses
     // count up responses using phrases
   }
   
@@ -116,7 +118,13 @@ class Turn {
   
   // push move to headless board if necessary
   // broadcast outcome to clients
-  // delete prompt storage
+  
+  turnDelResponses() {
+    storage.del(this.turnId, err => {
+      if (err) console.log(`Error deleting responses for ${this.turnId}`)
+    });
+  }
+
 }
 
 // --------------------- Game -----------------------

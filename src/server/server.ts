@@ -18,6 +18,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));
+
 app.post('/game/prompt', (req, res) => {
   io.sockets.emit('prompt', req.body);
   res.sendStatus(201);
@@ -65,10 +66,13 @@ io.on('connection', (socket) => {
   });
 
 
-    // ______________ disconnect event _________________________//
-    socket.on('disconnect', (player) => {
+    // ______________ disconnect event _________________________
+    socket.on('disconnect', () => {
+      const playerName = socket['playerName'] || 'anonymos player' ;
+      socket.emit('playerLeft', playerName + 'has left the game'  );
       localStore.playerCount--;
-      localStore.players[socket['playerName']] = undefined;
-      console.log('user disconnected');
+      if (socket['playerName'] !== undefined){
+        localStore.players[socket['playerName']] = undefined;
+      }
     });
 });

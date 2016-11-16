@@ -11,6 +11,6 @@ export default class Game extends React.Component<any, any> {
   }
 
   render() {
-    return (<div id='game'></div>);
+    return (<div id='game' />);
   }
 }

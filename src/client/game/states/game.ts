@@ -67,8 +67,8 @@ export class GameState extends Phaser.State {
       y: this.game.input.y,
       asset: 'mushroom'
     }));
-    this.game.add.existing(
-      this.mushrooms[this.mushrooms.length - 1]
-    );
+    const shroom = this.mushrooms[this.mushrooms.length - 1];
+    this.game.add.existing(shroom);
+    this.game.physics.enable(shroom, Phaser.Physics.ARCADE);
   }
 }

@@ -14,7 +14,7 @@ const localStore = {
   voteObj: {},
 };
 
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../../')));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));

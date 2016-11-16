@@ -53,7 +53,8 @@ export class GameState extends Phaser.State {
   update() {
     if (this.mushrooms.length) {
       this.game.physics.arcade.moveToObject(
-        this.mario, this.mushrooms[this.mushrooms.length - 1],
+        this.mario, 
+        this.mushrooms[this.mushrooms.length - 1],
         500, 500
       );
     }

@@ -1,9 +1,8 @@
+/// <reference path="../../../../type-declarations/index.d.ts" />
 import * as Phaser from 'phaser';
 import { setResponsiveWidth } from '../utils';
 
 class Entity extends Phaser.Sprite {
-  target: Phaser.Point;
-
   constructor({game, x, y, asset}) {
     super(game, x, y, asset);
   }
@@ -40,7 +39,7 @@ export class GameState extends Phaser.State {
     });
     this.mario.scale.setTo(0.05);
     this.game.physics.enable(this.mario, Phaser.Physics.ARCADE);
-
+    this.game.physics.arcade.collide(this.mario);
 
     this.game.add.existing(this.mario);
   }
@@ -61,6 +60,7 @@ export class GameState extends Phaser.State {
   }
 
   addEntity() {
+    const game = this.game;
     this.mushrooms.push(new Entity({
       game: this.game,
       x: this.game.input.x,
@@ -68,7 +68,8 @@ export class GameState extends Phaser.State {
       asset: 'mushroom'
     }));
     const shroom = this.mushrooms[this.mushrooms.length - 1];
-    this.game.add.existing(shroom);
-    this.game.physics.enable(shroom, Phaser.Physics.ARCADE);
+    game.add.existing(shroom);
+    game.physics.enable(shroom, Phaser.Physics.ARCADE);
+    game.physics.arcade.collide(shroom);
   }
 }

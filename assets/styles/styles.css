@@ -2,25 +2,19 @@
 
 .NavBar {}
 
+canvas {
+  margin: 0 auto;
+}
+
 
 /* CHAT STYLING */
 
 .chatBox {
   position: relative;
-  height: 80vh;
+  margin-right: 5%;
+  height: 81vh;
   width: 30%;
   float: right;
-}
-
-.game {
-  width: 60%;
-}
-
-.gameScreen {
-  margin: 0 auto;
-  width: 700px;
-  height: 500px;
-  background: url('http://indiegames.com/OKHLOS%20gif.gif')
 }
 
 .messages,

@@ -6,12 +6,19 @@ import { addChatAction } from '../actions/chatActions';
 // connect to server socket
 const socket = io();
 
-socket.on('new player joined', () => {
+socket.on('newPlayer', () => {
     console.log('a new player joined');
 });
 
 socket.on('userMessage', (message) => {
     store.dispatch(addChatAction(message));
+});
+
+socket.on('prompt', (data) => {
+    console.log(data);
+    if (data.question) {
+      alert(data.question);
+    };
 });
 
 export const updateMessages = message => {

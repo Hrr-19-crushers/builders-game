@@ -66,9 +66,9 @@ class Player {
   // playerId: string;
   playerName: string;
 
-  constructor(playerName: string = 'Guest') {
+  constructor(playerName: string) {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
-    this.playerName = playerName;
+    this.playerName = playerName || 'Guest';
   }
 
 }

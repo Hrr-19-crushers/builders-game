@@ -36,9 +36,9 @@ class Character {
 // --------------------- Player ---------------------
 // --------------------------------------------------
 class Player {
-    constructor(playerName = 'Guest') {
+    constructor(playerName) {
         // this.playerId = this.msgId = Math.random() * 10000000000000000;
-        this.playerName = playerName;
+        this.playerName = playerName || 'Guest';
     }
 }
 // --------------------- Turn -----------------------

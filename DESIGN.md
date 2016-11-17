@@ -2,7 +2,7 @@
 #### An internal document for determining the shape of play.
 
 ## Premise
-Some poor soul (herby referred to as a survivor) has washed ashore on a desert island! With nothing but nature's bounty, they must eek out a living until help arrives. Unfortunately for our survivor, their decisions are left up to democracy!
+Some poor soul (herby referred to as a survivor) has washed ashore on a desert island! With nothing but nature's bounty, they must eek out a living until help arrives. Unfortunately for our survivor, their decisions are left up to democracy.
 
 Players vote via a chat system on our survivor's next action, all while exposure, hunger and the natural dangers of the island take their toll. 
 
@@ -115,6 +115,8 @@ interface PromptResults {
   votes: [PromptVotes]
 }
 ```
+
+## World State Storage
 
 ### World state events (!?)
 Could include:

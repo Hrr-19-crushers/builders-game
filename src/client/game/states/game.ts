@@ -11,7 +11,7 @@ class Entity extends Phaser.Sprite {
 export class GameState extends Phaser.State {
   mario: Phaser.Sprite;
   targets: Phaser.Group;
-  storeState: Object;
+  storeState: any;
 
   init() {
     this.targets = this.game.add.group();
@@ -68,9 +68,22 @@ export class GameState extends Phaser.State {
     this.game.physics.arcade.collide(
       this.mario, 
       this.targets,
-      (mario, mush) => mush.kill(),
+      (mario, target) => target.kill(),
       null, this
     );
+
+    const outcome = this.storeState.outcome;
+    if (outcome) {
+      if (outcome === 'mushroom'){
+        this.game.physics.arcade.moveToObject(
+          this.mario, this.targets.getAt(0)
+        );
+      } else {
+        this.game.physics.arcade.moveToObject(
+          this.mario, this.targets.getAt(1)
+        );
+      }
+    }
 
     /*
     if (this.targets.countLiving() > 0) {

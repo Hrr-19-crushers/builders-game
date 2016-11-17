@@ -69,8 +69,8 @@ io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('newMessage', data => {
     console.log(data);
-    game.gameNewMessage(data.payload.user, data.payload.text);
-    socket.broadcast.emit('userMessage', data.payload.text);
+    game.gameNewMessage(data.user, data.text);
+    socket.broadcast.emit('userMessage', data);
   });
 
   socket.on('disconnect', () => {

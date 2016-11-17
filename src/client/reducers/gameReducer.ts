@@ -23,7 +23,7 @@ export interface GameState {
 const INITIAL_STATE: GameState = {
   turnNumber: 0,
   turn: {
-    expiration: Date.now() + 60000,
+    expiration: new Date(),
     prompt: 'We need 3 b\'s in the chat to start the game',
     votes: [
       {

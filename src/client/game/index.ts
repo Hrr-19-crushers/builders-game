@@ -1,4 +1,3 @@
-/// <reference path="../../../type-declarations/index.d.ts"/>
 import * as Phaser from 'phaser';
 
 import { BootState } from './states/boot';

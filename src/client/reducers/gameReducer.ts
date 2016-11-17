@@ -9,6 +9,7 @@ export interface Choice {
 }
 
 export interface Turn {
+  expiration: Date;
   prompt: String;
   votes: Choice[];
 }
@@ -22,6 +23,7 @@ export interface GameState {
 const INITIAL_STATE: GameState = {
   turnNumber: 0,
   turn: {
+    expiration: Date.now() + 60000,
     prompt: 'We need 3 b\'s in the chat to start the game',
     votes: [
       {

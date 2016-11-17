@@ -5,6 +5,7 @@ import TurnDisplay from '../components/TurnDisplay';
 
 const mapStateToProps = state => ({
   turnNum: state.gameState.turnNumber,
+  expiration: state.gameState.turn.expiration,
   prompt: state.gameState.turn.prompt,
   votes: state.gameState.turn.votes
 });

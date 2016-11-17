@@ -10,6 +10,7 @@ storage.on('connect', (err) => {
     else
         console.log(`Successfully connected to storage`);
 });
+const phrases = require('./phrases.js');
 class Message {
     constructor(userId = 10000000000000000, userName = 'Guest', text) {
         this.msgId = Math.random() * 10000000000000000;
@@ -18,10 +19,6 @@ class Message {
         this.text = text;
     }
 }
-exports.Message = Message;
-class Chat {
-}
-exports.Chat = Chat;
 class Character {
     constructor(charId = 1, charName = 'Jimmy', charLocation, charHealth = 100) {
         this.charId = charId;
@@ -33,11 +30,10 @@ class Character {
     }
 }
 class Player {
-    constructor(playerName = 'Anonymous') {
+    constructor(playerName = 'Guest') {
         this.playerName = playerName;
     }
 }
-exports.Player = Player;
 class Turn {
     constructor(turnId, turnType) {
         this.turnId = turnId;
@@ -45,9 +41,6 @@ class Turn {
         this.turnPhrases = phrases[this.turnType];
     }
     turnEmitPromptToClients() {
-    }
-    turnStoreVotes(vote) {
-        storage.lpush(this.turnId, vote);
     }
     turnFetchResponses() {
         storage.lrange(this.turnId, 0, -1, (err, data) => {
@@ -68,7 +61,6 @@ class Turn {
         });
     }
 }
-const phrases = require('./phrases.js');
 class Game {
     constructor() {
         this.gameCharacter = new Character(null, null, { x: 0, y: 0 }, null);
@@ -77,8 +69,8 @@ class Game {
         this.gameTurnId = 'turn0';
         this.gameTurnTypes = Object.keys(phrases);
     }
-    gameAddNewPlayer(playerName = 'Anonymous') {
-        const player = new Player();
+    gameAddNewPlayer(playerName = 'Guest') {
+        const player = new Player(playerName);
         storage.lpush('players', JSON.stringify(player), (err) => {
             if (err)
                 console.log(`Error adding new player to storage`, err);
@@ -90,9 +82,14 @@ class Game {
     }
     gameDeletePlayer() {
     }
-    gameStoreVote(userId = '001', vote) {
+    gameNewMessage(userName, messageText) {
+        const message = new Message(null, userName, messageText);
+        storage.lpush('messages', JSON.stringify(message), (err) => {
+            if (err)
+                console.log(`Error saving message to storage`, err);
+        });
         if (this.gameTurnActive)
-            this.gameTurnInstance.turnStoreVotes(vote);
+            storage.lpush(this.gameTurnId, message.text);
     }
     gameNewTurn() {
         this.gameTurnNum++;
@@ -102,7 +99,6 @@ class Game {
         this.gameTurnInstance = new Turn(this.gameTurnId, turnType);
     }
     gameTurnSpacing() {
-        setInterval(this.gameNewTurn, 45000);
     }
 }
 exports.Game = Game;

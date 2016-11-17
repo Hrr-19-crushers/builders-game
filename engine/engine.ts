@@ -9,6 +9,8 @@ storage.on('connect', (err: any) => {
   else console.log(`Successfully connected to storage`);
 });
 
+const phrases = require('./phrases.js');
+
 // ------------------- Interfaces -------------------
 // --------------------------------------------------
 
@@ -20,7 +22,7 @@ interface Location {
 // -------------------- Message ---------------------
 // --------------------------------------------------
 
-export class Message {
+class Message {
   msgId: number;
   userId: number;
   timeStamp: number;
@@ -33,12 +35,6 @@ export class Message {
     this.text = text;
   }
 
-}
-
-// --------------------- Chat -----------------------
-// --------------------------------------------------
-
-export class Chat {
 }
 
 // ------------------- Character --------------------
@@ -64,11 +60,11 @@ class Character {
 // --------------------- Player ---------------------
 // --------------------------------------------------
 
-export class Player {
+class Player {
   // playerId: string;
   playerName: string;
 
-  constructor(playerName: string = 'Anonymous') {
+  constructor(playerName: string = 'Guest') {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName;
   }
@@ -92,10 +88,6 @@ class Turn {
   
   turnEmitPromptToClients() {
     // send out prompt details to client
-  }
-  
-  turnStoreVotes(vote: string) {
-    storage.lpush(this.turnId, vote);
   }
   
   turnFetchResponses() {
@@ -130,8 +122,6 @@ class Turn {
 // --------------------- Game -----------------------
 // --------------------------------------------------
 
-const phrases = require('./phrases.js');
-
 export class Game {
   // going to need to set up persistent storage for this one; or maybe modal?
   gameCharacter: Character;
@@ -149,8 +139,8 @@ export class Game {
     this.gameTurnTypes = Object.keys(phrases);
   }
 
-  gameAddNewPlayer(playerName: string = 'Anonymous') {
-    const player = new Player()
+  gameAddNewPlayer(playerName: string = 'Guest') {
+    const player = new Player(playerName);
     storage.lpush('players', JSON.stringify(player), (err: any) => {
       if (err) console.log(`Error adding new player to storage`, err);
       else {
@@ -164,14 +154,22 @@ export class Game {
     // TODO
   }
 
-  gameStoreVote(userId: string = '001', vote: string) {
-    if (this.gameTurnActive) this.gameTurnInstance.turnStoreVotes(vote);
+  gameNewMessage(userName: string, messageText: string) {
+    const message = new Message(null, userName, messageText);
+    // save message in main chat storage
+    storage.lpush('messages', JSON.stringify(message), (err: any) => {
+      if (err) console.log(`Error saving message to storage`, err);
+    });
+    // if a turn is currently active, also store text in turn response storage
+    if (this.gameTurnActive) storage.lpush(this.gameTurnId, message.text);
   }
 
   gameNewTurn() {
     // generate new turn number
     this.gameTurnNum++;
+    // generate new turn id based on number
     this.gameTurnId = `turn${this.gameTurnNum}`;
+    // set turn state on
     this.gameTurnActive = true;
     // choose a random turn type from the available prompts; can manually control this later when we have an actual game flow designed
     const turnType = this.gameTurnTypes[Math.floor(Math.random() + this.gameTurnTypes.length)];
@@ -185,7 +183,7 @@ export class Game {
   
   gameTurnSpacing() {
     // at some interval, after the last turn completes or after the game starts, initiate a new turn
-    setInterval(this.gameNewTurn, 45000);
+    // setInterval(this.gameNewTurn, 45000);
   }
   
 }

@@ -88,7 +88,8 @@ class Game {
         this.gameTurnId = 'turn0';
         // this.gameTurnTypes = Object.keys(phrases);
     }
-    gameAddNewPlayer(playerName = 'Guest') {
+    gameAddNewPlayer(playerName) {
+        playerName = playerName || 'Guest';
         const player = new Player(playerName);
         storage.lpush('players', JSON.stringify(player), (err) => {
             if (err)

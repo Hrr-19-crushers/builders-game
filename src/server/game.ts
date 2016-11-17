@@ -66,7 +66,7 @@ class Player {
   // playerId: string;
   playerName: string;
 
-  constructor(playerName: string) {
+  constructor(playerName?: string) {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName || 'Guest';
   }
@@ -141,7 +141,8 @@ export class Game {
     // this.gameTurnTypes = Object.keys(phrases);
   }
 
-  gameAddNewPlayer(playerName: string = 'Guest') {
+  gameAddNewPlayer(playerName?: string) {
+    playerName = playerName || 'Guest';
     const player = new Player(playerName);
     storage.lpush('players', JSON.stringify(player), (err: any) => {
       if (err) console.log(`Error adding new player to storage`, err);

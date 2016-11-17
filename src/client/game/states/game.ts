@@ -1,12 +1,9 @@
+/// <reference path="../../../../type-declarations/index.d.ts" />
+
 import * as Phaser from 'phaser';
+
 import { setResponsiveWidth } from '../utils';
 import { getGameState } from '../../store';
-
-class Entity extends Phaser.Sprite {
-  constructor({game, x, y, asset}) {
-    super(game, x, y, asset);
-  }
-}
 
 export class GameState extends Phaser.State {
   mario: Phaser.Sprite;
@@ -62,7 +59,6 @@ export class GameState extends Phaser.State {
   }
 
   update() {
-
     this.storeState = getGameState();
 
     this.game.physics.arcade.collide(
@@ -97,19 +93,6 @@ export class GameState extends Phaser.State {
   }
 
   addEntity() {
-    /*
-    const game = this.game;
-    this.targets.push(new Entity({
-      game: this.game,
-      x: this.game.input.x,
-      y: this.game.input.y,
-      asset: 'mushroom'
-    }));
-    const shroom = this.targets[this.targets.length - 1];
-    game.add.existing(shroom);
-    game.physics.enable(shroom, Phaser.Physics.ARCADE);
-    game.physics.arcade.collide(shroom);
-    */
     // this.targets.create(
     //   this.game.input.x,
     //   this.game.input.y,

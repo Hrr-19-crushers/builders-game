@@ -30,7 +30,7 @@ socket.on('prompt', (data) => {
     };
 });
 
-export const updateMessages = message => {
+export const chat2Server = message => {
     socket.emit('newMessage', message);
 };
 

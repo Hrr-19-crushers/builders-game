@@ -24,10 +24,14 @@ const INITIAL_STATE: GameState = {
   turnNumber: 0,
   turn: {
     expiration: new Date(),
-    prompt: 'We need 3 b\'s in the chat to start the game',
+    prompt: 'Grab yerself a crab or a mushroom!?',
     votes: [
       {
-        name: 'b',
+        name: 'mushroom',
+        count: 0
+      },
+      {
+        name: 'crab',
         count: 0
       }
     ]

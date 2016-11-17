@@ -5,7 +5,6 @@ class TurnDisplay extends React.Component <any, any> {
   constructor(props) {
     super(props);
     this.state = {
-      counting: true,
       time: 0
     };
   }
@@ -14,9 +13,7 @@ class TurnDisplay extends React.Component <any, any> {
     this.setState({time});
     // FIXME: this doesn't seem to be counting down
     console.log('setting new state', time, this.state.counting);
-    if (this.state.counting) {
-      setTimeout(this._countDown, 500);
-    }
+    this.setState({timeout: setTimeout(this._countDown, 500)});
   }
 
   componentDidMount() {
@@ -24,7 +21,7 @@ class TurnDisplay extends React.Component <any, any> {
   }
 
   componentWillUnmount() {
-    this.setState({counting: false});
+    clearTimeout(this.state.timeout);
   };
 
   render() {

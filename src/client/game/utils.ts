@@ -1,4 +1,3 @@
-/// <reference path="../../../type-declarations/index.d.ts" />
 export const centerGameObjects = (objects) => {
   objects.forEach(function (object) {
     object.anchor.setTo(0.5);

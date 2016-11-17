@@ -1,78 +1,59 @@
-// import * as express from 'express';
-// import * as socket_io from 'socket.io';
-// import * as path from 'path';
-// import * as bodyParser from 'body-parser';
-// import { sendMessage, getMessages, deleteMessages } from './utils/helpers';
+const env = require('dotenv').config();
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const port = process.env.PORT || 1337;
+const bodyParser = require('body-parser');
+const path = require('path');
 
-// const app = express();
-// const server = app.listen(3000, () => console.log('connected listening on port 3000'));
-// const io = socket_io.listen(server);
+import { Game } from './game');
 
-// const localStore = {
-//   players: {},
-//   playerCount: 0,
-//   voteObj: {},
-// };
+// --------------- New Game Instance -----------------
+// ---------------------------------------------------
 
-// app.use(express.static(path.join(__dirname, '../../')));
-// app.use(bodyParser.json());
+const game = new Game();
 
-// app.get('/', (req, res) => res.sendFile('index.html', { root: 'build/client/' }));
+// ------------------ Middlewares --------------------
+// ---------------------------------------------------
 
-// app.post('/game/prompt', (req, res) => {
-//   io.sockets.emit('prompt', req.body);
-//   res.sendStatus(201);
-// });
+app.use(express.static(path.join(__dirname, '../../')));
 
-// app.post('/vote/result', (req, res) => {
+app.use(bodyParser.json());
 
-//   res.sendStatus(201);
-// });
+// ------------- Static Asset Routes -----------------
+// ---------------------------------------------------
 
-// app.delete('/', (req, res) => {
-//   res.sendStatus(201);
-// });
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname + '/index.html'));
+});
 
-// // connects client to server socket 
-// io.on('connection', (socket) => {
-//   localStore.playerCount++;
+// ----------------- Socket Stuff --------------------
+// ---------------------------------------------------
 
-// // __________________________ new player event ________________________________________
-//   socket.on('newPlayer', (playerName, fn) => {
-//     if (!localStore.players[playerName]) {
-//       // addes player name to the socket object as playerName prop.
-//       socket['playerName'] = playerName;
-//       localStore.players[playerName] = playerName;
-//       fn(true);
-//     } else {
-//       fn(false);
-//     }
-//   });
-// // ________________________ messageing event ___________________________________________
-//   socket.on('newMessage', (data) => {
+io.on('connection', socket => { // TODO try to move this to engine
 
-//     // deletes data from redis server
-//     if (data.payload.text === '#delete') {
-//       deleteMessages();
-//     }  // gets data from redis server
-//     else if (data.payload.text === '#get') {
-//       getMessages( (data) => console.log(data));
-//     }
-//     else { // posts data to redis server
-//       sendMessage(data.payload, data => console.log('line 56 of server.ts', data));
-//     }
-//         // sends an event 'userMessage' and the data to all clients listening for userMessage;
-//     socket.broadcast.emit('userMessage', data.message);
-//   });
+  socket.on('newPlayer', playerName => {
+    const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed up
+    // socket['playerName'] = player.playerName;
+  });
 
+  socket.on('newMessage', data => {
+    game.gameNewMessage(data.user, data.text, () => {
+      socket.broadcast.emit('userMessage', data.text);
+    });
+  });
 
-//     // ______________ disconnect event _________________________
-//     socket.on('disconnect', () => {
-//       const playerName = socket['playerName'] || 'anonymos player' ;
-//       socket.emit('playerLeft', playerName + 'has left the game'  );
-//       localStore.playerCount--;
-//       if (socket['playerName'] !== undefined){
-//         localStore.players[socket['playerName']] = undefined;
-//       }
-//     });
-// });
+  socket.on('disconnect', () => {
+    // const playerName = socket['playerName'] || 'anonymous player';
+    // game.gameDeletePlayer(); // TODO nothing behind this yet
+    socket.broadcast.emit('playerLeft', `Guest has left the game`);
+  });
+
+});
+
+// ---------------------------------------------------
+
+http.listen(port, () => {
+  console.log('Web server listening on port', port);
+});

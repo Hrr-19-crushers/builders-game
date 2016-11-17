@@ -1,6 +1,6 @@
 import * as io from 'socket.io-client';
 
-import {Action} from '../actions/actionInterface';
+import { Action } from '../actions/actionInterface';
 import store from '../store';
 import { addChatAction } from '../actions/chatActions';
 import {
@@ -26,11 +26,11 @@ socket.on('userMessage', message => {
 socket.on('prompt', (data) => {
     console.log(data);
     if (data.question) {
-      alert(data.question);
+        alert(data.question);
     };
 });
 
-export const updateMessages = message => {
+export const chat2Server = message => {
     socket.emit('newMessage', message);
 };
 
@@ -39,6 +39,6 @@ socket.on('vote', (choice: String) => {
     store.dispatch(voteAction(choice));
 });
 
-socket.on('nextTurn', (prompt: String, choices: String[]) => {
+socket.on('nextTurn', ({prompt, choices}) => {
     store.dispatch(nextTurnAction(prompt, choices));
 });

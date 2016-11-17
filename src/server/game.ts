@@ -25,12 +25,14 @@ interface Location {
 class Message {
   msgId: number;
   userId: number;
+  userName: string;
   timeStamp: number;
   text: string;
 
-  constructor(userId: number = 10000000000000000, userName: string = 'Guest', text: string) {
+  constructor(userId?: number, userName?: string, text: string) {
     this.msgId = Math.random() * 10000000000000000;
-    this.userId = userId;
+    this.userId = userId || 10000000000000000;
+    this.userName = userName || 'Guest';
     this.timeStamp = new Date().getTime();
     this.text = text;
   }
@@ -46,11 +48,11 @@ class Character {
   charLocation: Location;
   charHealth: number;
 
-  constructor(charId: number = 1, charName: string = 'Jimmy', charLocation: Location, charHealth: number = 100) {
-    this.charId = charId;
-    this.charName = charName;
+  constructor(charId?: number, charName?: string, charLocation: Location, charHealth?: number) {
+    this.charId = charId || 1;
+    this.charName = charName || 'Dan';
     this.charLocation = charLocation;
-    this.charHealth = charHealth;
+    this.charHealth = charHealth || 100;
   }
 
   charMove(location: Location) {

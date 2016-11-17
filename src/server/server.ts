@@ -17,7 +17,6 @@ const game = new Game();
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------
 
-
 app.use(express.static(path.join(__dirname, '../../')));
 
 app.use(bodyParser.json());

@@ -1,8 +1,5 @@
 node_modules
 .vs_code
-build/**/*.js
-build/**/*.json
-build/**/*.map
 .DS_Store
 *.log
 yarn.lock

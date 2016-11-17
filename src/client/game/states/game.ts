@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 import { setResponsiveWidth } from '../utils';
-import { getGameState } from '../../store';
+import {getGameState} from '../../store';
 
 class Entity extends Phaser.Sprite {
   constructor({game, x, y, asset}) {
@@ -12,6 +12,7 @@ export class GameState extends Phaser.State {
   mario: Phaser.Sprite;
   targets: Phaser.Group;
   storeState: Object;
+  mushrooms: Phaser.Group;
 
   init() {
     this.targets = this.game.add.group();
@@ -64,7 +65,6 @@ export class GameState extends Phaser.State {
   update() {
 
     this.storeState = getGameState();
-
     this.game.physics.arcade.collide(
       this.mario, 
       this.targets,
@@ -73,7 +73,7 @@ export class GameState extends Phaser.State {
     );
 
     /*
-    if (this.targets.countLiving() > 0) {
+    if (this.mushrooms.countLiving() > 0) {
       this.game.physics.arcade.moveToObject(
         this.mario,
         this.targets.getFirstAlive(false),

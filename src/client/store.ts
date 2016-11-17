@@ -11,10 +11,10 @@ const store = createStore(
   rootReducer,
   applyMiddleware(socketMiddleware)
 );
-export default store;
-
 
 export const getGameState = () => {
   const state = store.getState() as StoreState;
   return state.gameState;
 };
+
+export default store;

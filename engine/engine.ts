@@ -104,7 +104,7 @@ class Turn {
   // formulate move / course of action
   turnSave() {
     // save move in state by prompt id
-    // storage.lpush('moves', {}, err => {
+    // storage.lpush('moves', {}, (err: any) => {
     // });
   }
   
@@ -151,17 +151,22 @@ export class Game {
   }
 
   gameDeletePlayer() {
-    // TODO
+    // TODO eventually
   }
 
-  gameNewMessage(userName: string, messageText: string) {
-    const message = new Message(null, userName, messageText);
+  gameParseBasicActions(text: string) {
+    // maybe todo for MVP if necessary
+  }
+
+  gameNewMessage(userName: string, messageText: string, cb?: any) {
+    const message = new Message(null, userName, messageText.toLowerCase());
     // save message in main chat storage
     storage.lpush('messages', JSON.stringify(message), (err: any) => {
       if (err) console.log(`Error saving message to storage`, err);
     });
     // if a turn is currently active, also store text in turn response storage
     if (this.gameTurnActive) storage.lpush(this.gameTurnId, message.text);
+    if (cb) cb();
   }
 
   gameNewTurn() {

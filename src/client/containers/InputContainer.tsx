@@ -11,11 +11,12 @@ const mapStateToProps = (state) => {
     };
 };
 
+// TODO: decide if this should be on server side?
 const parseChat = (message: Message, dispatch) => {
     if (message.text.indexOf('#') > -1) {
-        const action = message.text.match(/\#\S+/gi);
-        console.log(action);
-        // const target = message.replace(/\#\S+/gi, '').replace();
+        const actions = message.text.match(/\#\S+/gi);
+        console.log(actions);
+        const targets = message.text.replace(/\#\S+/gi, '');
     }
     return dispatch(addChatAction(message));
 };

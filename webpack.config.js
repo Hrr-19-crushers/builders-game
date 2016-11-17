@@ -7,8 +7,9 @@ module.exports = {
   // This will be our app's entry point (webpack will look for it in the 'src' directory due to the modulesDirectory setting below). Feel free to change as desired.
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://localhost:3001',
     'webpack/hot/only-dev-server',
+    // 'webpack/hot/dev-server' //reloads browser upon errors
     'client/index.tsx'
   ],
   // Output the bundled JS to dist/app.js
@@ -32,10 +33,11 @@ module.exports = {
     loaders: [
       // .ts(x) files should first pass through the Typescript loader, and then through babel
       {
+        //match both ts and tsx
         test: /\.tsx?$/,
         include: path.join(__dirname, 'src'),
         loaders: ['babel', 'ts-loader']
-      },
+      }
     ]
   },
   plugins: [

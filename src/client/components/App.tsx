@@ -1,5 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 
-const App = () => (<div>Hello i am an App</div>);
+import Chat from './Chat';
+import Game from './Game';
+import Navbar from './NavBar';
 
-export default App;
+export default () => (
+    <div className='App'>
+        <Navbar />
+        <Chat />
+        <Game />
+    </div>
+);

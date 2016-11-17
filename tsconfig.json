@@ -7,13 +7,13 @@
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": false,
         "outDir": "build/server",
-        "jsx": "preserve"
+        "jsx": "react"
     },
     "exclude": [
         "node_modules"
     ],
     "include": [
         "src/server/**/*",
-        "type-declarations/*"
+        "type-declarations/**/*"
     ]
 }

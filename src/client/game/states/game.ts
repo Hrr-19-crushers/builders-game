@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser';
 import { setResponsiveWidth } from '../utils';
+import { getGameState } from '../../store';
 
 class Entity extends Phaser.Sprite {
   constructor({game, x, y, asset}) {
@@ -9,12 +10,14 @@ class Entity extends Phaser.Sprite {
 
 export class GameState extends Phaser.State {
   mario: Phaser.Sprite;
-  mushrooms: Phaser.Group;
+  targets: Phaser.Group;
+  storeState: Object;
 
   init() {
-    this.mushrooms = this.game.add.group();
-    this.mushrooms.enableBody = true;
+    this.targets = this.game.add.group();
+    this.targets.enableBody = true;
     this.game.input.onDown.add(this.addEntity.bind(this));
+    this.storeState = getGameState();
   }
 
   create() {
@@ -39,6 +42,17 @@ export class GameState extends Phaser.State {
     this.mario.scale.setTo(0.05);
     this.game.physics.arcade.enable(this.mario);
     
+    this.targets.create(
+      this.game.world.centerX + 80,
+      this.game.world.centerY - 80,
+      'mushroom'
+    );
+
+    this.targets.create(
+      this.game.world.centerX + 80,
+      this.game.world.centerY + 80,
+      'crab'
+    );
   }
 
   render() {
@@ -49,40 +63,44 @@ export class GameState extends Phaser.State {
 
   update() {
 
+    this.storeState = getGameState();
+
     this.game.physics.arcade.collide(
       this.mario, 
-      this.mushrooms,
+      this.targets,
       (mario, mush) => mush.kill(),
       null, this
     );
 
-    if (this.mushrooms.countLiving() > 0) {
+    /*
+    if (this.targets.countLiving() > 0) {
       this.game.physics.arcade.moveToObject(
         this.mario,
-        this.mushrooms.getFirstAlive(false),
+        this.targets.getFirstAlive(false),
         500, 0
       );
     }
+    */
   }
 
   addEntity() {
     /*
     const game = this.game;
-    this.mushrooms.push(new Entity({
+    this.targets.push(new Entity({
       game: this.game,
       x: this.game.input.x,
       y: this.game.input.y,
       asset: 'mushroom'
     }));
-    const shroom = this.mushrooms[this.mushrooms.length - 1];
+    const shroom = this.targets[this.targets.length - 1];
     game.add.existing(shroom);
     game.physics.enable(shroom, Phaser.Physics.ARCADE);
     game.physics.arcade.collide(shroom);
     */
-    this.mushrooms.create(
-      this.game.input.x,
-      this.game.input.y,
-      'mushroom'
-    );
+    // this.targets.create(
+    //   this.game.input.x,
+    //   this.game.input.y,
+    //   'mushroom'
+    // );
   }
 }

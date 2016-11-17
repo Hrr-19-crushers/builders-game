@@ -11,7 +11,6 @@ import {
 // connect to server socket
 const socket = io();
 
-
 // TODO: broadcast message with user's name
 socket.on('newPlayer', () => {
     console.log('a new player joined');

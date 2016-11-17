@@ -7,7 +7,7 @@ new WebpackDevServer(webpack(config), {
   hot: true,
   historyApiFallback: true,
   proxy: {
-    '*': 'http://localhost:3000' //allows webpack dev server to proxy the real server
+    '*': 'http://localhost:1337' //allows webpack dev server to proxy the real server
   }
 }).listen(3001, 'localhost', function (err, result) {
   if (err) {

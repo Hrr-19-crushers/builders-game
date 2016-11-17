@@ -1,4 +1,4 @@
-exports.phrases = {
+export phrases = {
   // b/p vote
   borp: { // these are really bad, need more thought
     b: /b/im,

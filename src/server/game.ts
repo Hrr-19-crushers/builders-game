@@ -9,7 +9,7 @@ storage.on('connect', (err: any) => {
   else console.log(`Successfully connected to storage`);
 });
 
-const phrases = require('./phrases.js');
+// import { phrases } from './phrases';
 
 // ------------------- Interfaces -------------------
 // --------------------------------------------------
@@ -83,7 +83,7 @@ class Turn {
   constructor(turnId: string, turnType: string) {
     this.turnId = turnId;
     this.turnType = turnType;
-    this.turnPhrases = phrases[this.turnType] as any;
+    // this.turnPhrases = phrases[this.turnType] as any;
   }
   
   turnEmitPromptToClients() {
@@ -136,7 +136,7 @@ export class Game {
     this.gameTurnActive = false;
     this.gameTurnNum = 0;
     this.gameTurnId = 'turn0';
-    this.gameTurnTypes = Object.keys(phrases);
+    // this.gameTurnTypes = Object.keys(phrases);
   }
 
   gameAddNewPlayer(playerName: string = 'Guest') {

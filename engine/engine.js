@@ -82,14 +82,18 @@ class Game {
     }
     gameDeletePlayer() {
     }
-    gameNewMessage(userName, messageText) {
-        const message = new Message(null, userName, messageText);
+    gameParseBasicActions(text) {
+    }
+    gameNewMessage(userName, messageText, cb) {
+        const message = new Message(null, userName, messageText.toLowerCase());
         storage.lpush('messages', JSON.stringify(message), (err) => {
             if (err)
                 console.log(`Error saving message to storage`, err);
         });
         if (this.gameTurnActive)
             storage.lpush(this.gameTurnId, message.text);
+        if (cb)
+            cb();
     }
     gameNewTurn() {
         this.gameTurnNum++;

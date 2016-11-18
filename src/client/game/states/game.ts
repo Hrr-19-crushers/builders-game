@@ -1,9 +1,60 @@
-/// <reference path="../../../../type-declarations/index.d.ts" />
-
 import * as Phaser from 'phaser';
 
 import { setResponsiveWidth } from '../utils';
 import { getGameState } from '../../store';
+
+const newNodeID = (() => {
+  let id = 0;
+
+  return () => id++;
+})();
+
+enum SurvivorActions {
+  MOVE_TO,
+  GRAB,
+  ATTACK,
+  RETREAT,
+  CONSUME,
+  HIDE
+};
+
+enum AIStates {
+  PATROL,
+  PACE,
+  CHASE
+};
+
+enum EntityTypes {
+  SURVIVOR,
+  INANIMATE,
+  WILDLIFE 
+};
+
+
+interface NodeParams {
+  x: number;
+  y: number;
+}
+
+class GraphNode extends Phaser.Point {
+  id: number;
+  neighbors: [GraphNode];
+  
+  constructor({x, y}: NodeParams) { 
+    super(x, y); 
+  }
+
+  addNeighbor(node: GraphNode) {
+    return this.neighbors.push(node);
+  }
+
+  removeNeighborAtIndex(index: number) {
+    return this.neighbors.splice(index, 1);
+  }
+
+  isNeighbor(foreignNode: GraphNode) {}
+};
+
 
 export class GameState extends Phaser.State {
   mario: Phaser.Sprite;

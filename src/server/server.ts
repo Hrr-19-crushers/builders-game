@@ -44,9 +44,10 @@ io.on('connection', socket => { // TODO try to move this to engine
     });
   });
 
-  socket.on('direction', data => {
-    game.gameCharacter.charMove(data, (location: Location) => {
-      socket.emit('move', location);
+  socket.on('direction', direction => {
+    game.gameMoveCharacter(direction, (location: Location) => {
+      // ok not to check for location value, cb won't get called if char can't move
+      socket.emit('move', location); 
     });
   });
 

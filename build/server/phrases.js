@@ -1,4 +1,5 @@
-phrases = {
+"use strict";
+exports.phrases = {
     // b/p vote
     borp: {
         b: /b/im,

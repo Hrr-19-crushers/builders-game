@@ -7,9 +7,12 @@ import { chat2Server } from '../utils/socket_io';
 
 const mapStateToProps = (state) => {
     return {
-        user: state.userState
+        user: state.userState.name
     };
 };
+
+let votes = [0, 0];
+export const getVotes = () => votes;
 
 // TODO: decide if this should be on server side?
 const parseChat = (message: Message, dispatch) => {

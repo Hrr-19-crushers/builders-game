@@ -6,7 +6,12 @@ import {
     GameState
 } from '../reducers/gameReducer';
 
-import { NEXT_TURN, VOTE } from './actionTypes';
+import {
+    NEXT_TURN,
+    VOTE,
+    OUTCOME,
+    MOVE
+} from './actionTypes';
 
 export const nextTurnAction = (prompt: String, choices: String[]): Action => {
     return {
@@ -18,3 +23,11 @@ export const nextTurnAction = (prompt: String, choices: String[]): Action => {
 export const voteAction = (choice: String): Action => {
     return { type: VOTE, payload: choice };
 };
+
+export const outcomeAction = (choice: String): Action => {
+    return { type: OUTCOME, payload: choice };
+}
+
+export const moveAction = (direction: String): Action => {
+    return {type: MOVE, payload: direction};
+}

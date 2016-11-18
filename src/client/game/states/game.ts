@@ -15,7 +15,6 @@ class Survivor extends Phaser.Sprite {
 
   update() {
     super.update();
-
   }
 }
 
@@ -41,8 +40,7 @@ export class GameState extends Phaser.State {
     const banner = this.add.text(
       this.game.world.centerX,
       this.game.height - 30,
-      'Phaser + ES6 + Webpack',
-      {}
+      'Phaser + ES6 + Webpack', {}
     );
     banner.font = 'Nunito';
     banner.fontSize = 40;

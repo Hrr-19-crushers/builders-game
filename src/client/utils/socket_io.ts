@@ -5,7 +5,8 @@ import store from '../store';
 import { addChatAction } from '../actions/chatActions';
 import {
     nextTurnAction,
-    voteAction
+    voteAction,
+    outcomeAction
 } from '../actions/gameActions';
 
 // connect to server socket
@@ -40,4 +41,8 @@ socket.on('vote', (choice: String) => {
 
 socket.on('nextTurn', ({prompt, choices}) => {
     store.dispatch(nextTurnAction(prompt, choices));
+});
+
+socket.on('outcome', (choice) => {
+    store.dispatch(outcomeAction(choice));
 });

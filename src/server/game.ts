@@ -15,49 +15,6 @@ import { Layout } from './map';
 // ------------------- Interfaces -------------------
 // --------------------------------------------------
 
-// class Turn {
-//   turnId: string;
-//   turnType: string;
-//   turnPhrases: any; // TODO learn how to do this correctly
-//   turnResponses: string[];
-
-//   constructor(turnId: string, turnType: string) {
-//     this.turnId = turnId;
-//     this.turnType = turnType;
-//     // this.turnPhrases = phrases[this.turnType] as any;
-//   }
-
-//   turnEmitPromptToClients() {
-//     // send out prompt details to client
-//   }
-
-//   turnFetchResponses() {
-//     storage.lrange(this.turnId, 0, -1, (err: any, data: any) => { // TODO this needs interface/typing
-//       if (err) console.log(`Error retrieving ${this.turnId} responses from storage`, err);
-//       else this.turnResponses = data;
-//     });
-//   }
-
-//   turnTallyVotes() {
-//     // count up responses using phrases?
-//   }
-
-//   // formulate move / course of action
-//   turnSave() {
-//     // save move in state by prompt id
-//     // storage.lpush('moves', {}, (err: any) => {
-//     // });
-//   }
-
-//   // push move to headless board if necessary
-//   // broadcast outcome to clients
-
-//   turnDelResponses() {
-//     storage.del(this.turnId, (err: any) => {
-//       if (err) console.log(`Error deleting responses for ${this.turnId}`)
-//     });
-//   }
-
 interface Location {
   x: number;
   y: number;
@@ -73,7 +30,7 @@ class Message {
   timeStamp: number;
   text: string;
 
-  constructor(userId?: number, userName?: string, text: string) {
+  constructor(text: string, userId?: number, userName?: string) {
     this.msgId = Math.random() * 10000000000000000;
     this.userId = userId || 10000000000000000;
     this.userName = userName || 'Guest';
@@ -87,19 +44,46 @@ class Message {
 // --------------------------------------------------
 
 class Character {
+  charLocation: Location;
   charId: number;
   charName: string;
-  charLocation: Location;
   charHealth: number;
 
-  constructor(charId?: number, charName?: string, charLocation: Location, charHealth?: number) {
+  constructor(charLocation: Location, charId?: number, charName?: string, charHealth?: number) {
     this.charId = charId || 1;
     this.charName = charName || 'Dan';
     this.charLocation = charLocation;
     this.charHealth = charHealth || 100;
   }
 
-  charMove(location: Location) {
+  charMove(direction: string, cb?: any): void {
+    const {x, y} = this.charLocation;
+    switch (direction) {
+      case 'up':
+        if (Layout[x][y - 1] !== undefined && Layout[x][y - 1].passable) {
+          this.charLocation.y = y - 1;
+          if (cb) cb(this.charLocation);
+        }
+        break;
+      case 'right':
+        if (Layout[x + 1][y] !== undefined && Layout[x + 1][y].passable) {
+          this.charLocation.x = x + 1;
+          if (cb) cb(this.charLocation);
+        }
+        break;
+      case 'down':
+        if (Layout[x][y + 1] !== undefined && Layout[x][y + 1].passable) {
+          this.charLocation.y = y + 1;
+          if (cb) cb(this.charLocation);
+        }
+        break;
+      case 'left':
+        if (Layout[x - 1][y] !== undefined && Layout[x - 1][y].passable) {
+          this.charLocation.x = x - 1;
+          if (cb) cb(this.charLocation);
+        }
+        break;
+    }
   }
 }
 
@@ -117,15 +101,15 @@ class Player {
 
 }
 
-
-// // --------------------- Turn -----------------------
-// // --------------------------------------------------
+// --------------------- Turn -----------------------
+// --------------------------------------------------
 
 // class Turn {
 //   turnId: string;
 //   turnType: string;
 //   turnPhrases: any; // TODO learn how to do this correctly
 //   turnResponses: string[];
+
 //   constructor(turnId: string, turnType: string) {
 //     this.turnId = turnId;
 //     this.turnType = turnType;
@@ -165,8 +149,8 @@ class Player {
 
 // }
 
-// // --------------------- Game -----------------------
-// // --------------------------------------------------
+// --------------------- Game -----------------------
+// --------------------------------------------------
 
 export class Game {
   // going to need to set up persistent storage for this one; or maybe modal?
@@ -182,10 +166,6 @@ export class Game {
     // this.gameTurnActive = false;
     // this.gameTurnNum = 0;
     // this.gameTurnId = 'turn0';
-    this.gameCharacter = new Character({ x: 0, y: 0 } as Location, null, null, null); // init properly later on
-    this.gameTurnActive = false;
-    this.gameTurnNum = 0;
-    this.gameTurnId = 'turn0';
     // this.gameTurnTypes = Object.keys(phrases);
   }
 
@@ -240,6 +220,6 @@ export class Game {
   gameTurnSpacing() {
     // at some interval, after the last turn completes or after the game starts, initiate a new turn
     // setInterval(this.gameNewTurn, 45000);
-
   }
+
 }

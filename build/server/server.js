@@ -32,6 +32,11 @@ io.on('connection', socket => {
             socket.broadcast.emit('userMessage', data);
         });
     });
+    socket.on('direction', data => {
+        game.gameCharacter.charMove(data, (location) => {
+            socket.emit('move', location);
+        });
+    });
     socket.on('disconnect', () => {
         // const playerName = socket['playerName'] || 'anonymous player';
         // game.gameDeletePlayer(); // TODO nothing behind this yet

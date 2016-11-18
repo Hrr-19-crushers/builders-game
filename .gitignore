@@ -9,6 +9,7 @@ yarn.lock
 
 # Comment these out for deploy
 build
+build
 build/**/*
 build/**/*.js
 build/client/bundle.js

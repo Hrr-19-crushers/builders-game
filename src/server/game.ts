@@ -66,6 +66,7 @@ class Character {
         }
         break;
       case 'right':
+        //FIXME:  suggest changing the 'off the board check' to x+1 <= Layout[0].length to not cause an error
         if (Layout[x + 1][y] !== undefined && Layout[x + 1][y].passable) {
           this.charLocation.x = x + 1;
           if (cb) cb(this.charLocation);

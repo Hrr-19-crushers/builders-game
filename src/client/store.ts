@@ -13,7 +13,6 @@ const store = createStore(
 );
 export default store;
 
-
 export const getGameState = () => {
   const state = store.getState() as StoreState;
   return state.gameState;

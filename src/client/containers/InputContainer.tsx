@@ -27,11 +27,6 @@ const parseChat = (message: Message, dispatch) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addChat: (message) => {
-            if (message.text === 'mushroom') {
-                votes[0]++;
-            } else if (message.text === 'crab') {
-                votes[1]++;
-            }
             chat2Server(message);
             parseChat(message, dispatch);
         }

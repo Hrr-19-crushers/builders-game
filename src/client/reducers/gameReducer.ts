@@ -1,7 +1,7 @@
 /// <reference path="../../../type-declarations/Object.d.ts" />
 import { Action } from '../actions/actionInterface';
 
-import { NEXT_TURN, VOTE } from '../actions/actionTypes';
+import { NEXT_TURN, VOTE, OUTCOME } from '../actions/actionTypes';
 
 export interface Choice {
   name: String;
@@ -16,11 +16,12 @@ export interface Turn {
 
 export interface GameState {
   turnNumber: Number;
+  outcome?: String;
   turn: Turn;
   locations?: Array<any>;
 }
 
-const INITIAL_STATE: GameState = {
+export const INITIAL_STATE: GameState = {
   turnNumber: 0,
   turn: {
     expiration: new Date(),
@@ -64,6 +65,8 @@ export const gameState = (state: GameState = INITIAL_STATE, action: Action) => {
         .reverse();
       const newTurn = Object.assign(state.turn, { votes: voteChoice });
       return Object.assign({}, state, newTurn);
+    case OUTCOME: 
+      return Object.assign({}, state, {outcome: action.payload});
     default:
       return state;
   }

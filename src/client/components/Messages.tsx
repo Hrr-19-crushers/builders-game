@@ -10,6 +10,5 @@ export default ({messages, user}) => {
         <span className='chatDate'>{ m.date ? moment(JSON.parse(m.date)).fromNow() : new Date() }</span>
       </li>
     ));
-  console.log(items);
   return (<div className='messages'><ul>{items}</ul></div>);
 };

@@ -1,4 +1,4 @@
 export default store => next => action => {
-  // updateMessages(action);
+  console.log('in socket middleware');
   return next(action);
 };

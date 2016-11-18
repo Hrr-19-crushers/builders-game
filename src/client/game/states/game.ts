@@ -1,9 +1,21 @@
 import * as Phaser from 'phaser';
-import { setResponsiveWidth } from '../utils';
-import { getGameState } from '../../store';
+import {
+  setResponsiveWidth
+} from '../utils';
+import {
+  getGameState
+} from '../../store';
+import {
+  getVotes
+} from '../../containers/InputContainer';
 
 class Entity extends Phaser.Sprite {
-  constructor({game, x, y, asset}) {
+  constructor({
+    game,
+    x,
+    y,
+    asset
+  }) {
     super(game, x, y, asset);
   }
 }
@@ -12,6 +24,7 @@ export class GameState extends Phaser.State {
   mario: Phaser.Sprite;
   targets: Phaser.Group;
   storeState: Object;
+  mushrooms: Phaser.Group;
 
   init() {
     this.targets = this.game.add.group();
@@ -26,8 +39,7 @@ export class GameState extends Phaser.State {
     const banner = this.add.text(
       this.game.world.centerX,
       this.game.height - 30,
-      'Phaser + ES6 + Webpack',
-      {}
+      'Phaser + ES6 + Webpack', {}
     );
     banner.font = 'Nunito';
     banner.fontSize = 40;
@@ -41,7 +53,7 @@ export class GameState extends Phaser.State {
     );
     this.mario.scale.setTo(0.05);
     this.game.physics.arcade.enable(this.mario);
-    
+
     this.targets.create(
       this.game.world.centerX + 80,
       this.game.world.centerY - 80,
@@ -62,24 +74,36 @@ export class GameState extends Phaser.State {
   }
 
   update() {
-
     this.storeState = getGameState();
-
     this.game.physics.arcade.collide(
-      this.mario, 
+      this.mario,
       this.targets,
       (mario, mush) => mush.kill(),
       null, this
     );
+    // const outcome = this.storeState.outcome;
+    if (getVotes()[0] >= 3) {
+      this.game.physics.arcade.moveToObject(
+        this.mario,
+        this.targets.getAt(0),
+        500, 0
+      );
+    } else if (getVotes()[1] >= 3) {
+      this.game.physics.arcade.moveToObject(
+        this.mario,
+        this.targets.getAt(1),
+        500, 0
+      );
+    }
 
     /*
-    if (this.targets.countLiving() > 0) {
+    if (this.mushrooms.countLiving() > 0) {
       this.game.physics.arcade.moveToObject(
         this.mario,
         this.targets.getFirstAlive(false),
         500, 0
       );
-    }
+    
     */
   }
 

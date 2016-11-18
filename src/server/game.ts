@@ -58,7 +58,7 @@ class Character {
 
   charMove(direction: string, cb?: any): void {
     const {x, y} = this.charLocation;
-    switch(direction) {
+    switch (direction) {
       case 'up':
         if (Layout[x][y - 1] !== undefined && Layout[x][y - 1].passable) {
           this.charLocation.y = y - 1;
@@ -109,17 +109,17 @@ class Player {
 //   turnType: string;
 //   turnPhrases: any; // TODO learn how to do this correctly
 //   turnResponses: string[];
-  
+
 //   constructor(turnId: string, turnType: string) {
 //     this.turnId = turnId;
 //     this.turnType = turnType;
 //     // this.turnPhrases = phrases[this.turnType] as any;
 //   }
-  
+
 //   turnEmitPromptToClients() {
 //     // send out prompt details to client
 //   }
-  
+
 //   turnFetchResponses() {
 //     storage.lrange(this.turnId, 0, -1, (err: any, data: any) => { // TODO this needs interface/typing
 //       if (err) console.log(`Error retrieving ${this.turnId} responses from storage`, err);
@@ -130,17 +130,17 @@ class Player {
 //   turnTallyVotes() {
 //     // count up responses using phrases?
 //   }
-  
+
 //   // formulate move / course of action
 //   turnSave() {
 //     // save move in state by prompt id
 //     // storage.lpush('moves', {}, (err: any) => {
 //     // });
 //   }
-  
+
 //   // push move to headless board if necessary
 //   // broadcast outcome to clients
-  
+
 //   turnDelResponses() {
 //     storage.del(this.turnId, (err: any) => {
 //       if (err) console.log(`Error deleting responses for ${this.turnId}`)
@@ -160,9 +160,9 @@ export class Game {
   // gameTurnId: string;
   // gameTurnTypes: string[];
   // gameTurnInstance: Turn;
-  
+
   constructor() {
-    this.gameCharacter = new Character({x:0, y:4} as Location, null, null, null); // init properly later on
+    this.gameCharacter = new Character({ x: 0, y: 4 } as Location, null, null, null); // init properly later on
     // this.gameTurnActive = false;
     // this.gameTurnNum = 0;
     // this.gameTurnId = 'turn0';
@@ -216,10 +216,10 @@ export class Game {
   //     // this.gameTurnInstance.turnTallyVotes();
   //     // storage.lpush('actions', ???);
   // }
-  
+
   gameTurnSpacing() {
     // at some interval, after the last turn completes or after the game starts, initiate a new turn
     // setInterval(this.gameNewTurn, 45000);
   }
-  
+
 }

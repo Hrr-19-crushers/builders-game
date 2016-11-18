@@ -6,3 +6,6 @@ yarn.lock
 .env
 .vscode
 *.rdb
+build
+build/**/*
+build/**/*.js

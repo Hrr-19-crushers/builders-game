@@ -7,7 +7,7 @@ const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
 
-import { Game } from './game');
+import { Game } from './game';
 
 // --------------- New Game Instance -----------------
 // ---------------------------------------------------
@@ -40,7 +40,7 @@ io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('newMessage', data => {
     game.gameNewMessage(data.user, data.text, () => {
-      socket.broadcast.emit('userMessage', data.text);
+      socket.broadcast.emit('userMessage', data);
     });
   });
 

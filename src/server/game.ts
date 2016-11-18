@@ -29,7 +29,7 @@ class Message {
   timeStamp: number;
   text: string;
 
-  constructor(userId?: number, userName?: string, text: string) {
+  constructor(text: string, userId?: number, userName?: string) {
     this.msgId = Math.random() * 10000000000000000;
     this.userId = userId || 10000000000000000;
     this.userName = userName || 'Guest';
@@ -48,7 +48,7 @@ class Character {
   charLocation: Location;
   charHealth: number;
 
-  constructor(charId?: number, charName?: string, charLocation: Location, charHealth?: number) {
+  constructor( charLocation: Location, charId?: number, charName?: string, charHealth?: number) {
     this.charId = charId || 1;
     this.charName = charName || 'Dan';
     this.charLocation = charLocation;
@@ -134,7 +134,7 @@ export class Game {
   gameTurnInstance: Turn;
   
   constructor() {
-    this.gameCharacter = new Character(null, null, {x:0, y:0} as Location, null); // init properly later on
+    this.gameCharacter = new Character({x:0, y:0} as Location, null, null, null); // init properly later on
     this.gameTurnActive = false;
     this.gameTurnNum = 0;
     this.gameTurnId = 'turn0';
@@ -162,7 +162,7 @@ export class Game {
   }
 
   gameNewMessage(userName: string, messageText: string, cb?: any) {
-    const message = new Message(null, userName, messageText.toLowerCase());
+    const message = new Message(messageText.toLowerCase(), null, userName);
     // save message in main chat storage
     storage.lpush('messages', JSON.stringify(message), (err: any) => {
       if (err) console.log(`Error saving message to storage`, err);

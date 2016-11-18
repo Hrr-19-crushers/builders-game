@@ -7,5 +7,9 @@ yarn.lock
 .vscode
 *.rdb
 
+build
 build/**/*
+build/**/*.js
 build/client/bundle.js
+
+process.yml

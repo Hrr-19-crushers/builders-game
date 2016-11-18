@@ -11,3 +11,4 @@ export const CHANGE_USER: String = 'CHANGE_USER';
 /*GAME-ACTIONS*/
 export const NEXT_TURN: String = 'NEXT_TURN';
 export const VOTE: String = 'VOTE';
+export const OUTCOME: String = 'OUTCOME';

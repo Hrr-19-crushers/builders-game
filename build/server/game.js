@@ -13,7 +13,7 @@ storage.on('connect', (err) => {
 // -------------------- Message ---------------------
 // --------------------------------------------------
 class Message {
-    constructor(userId, userName, text) {
+    constructor(text, userId, userName) {
         this.msgId = Math.random() * 10000000000000000;
         this.userId = userId || 10000000000000000;
         this.userName = userName || 'Guest';
@@ -24,7 +24,7 @@ class Message {
 // ------------------- Character --------------------
 // --------------------------------------------------
 class Character {
-    constructor(charId, charName, charLocation, charHealth) {
+    constructor(charLocation, charId, charName, charHealth) {
         this.charId = charId || 1;
         this.charName = charName || 'Dan';
         this.charLocation = charLocation;
@@ -82,7 +82,7 @@ class Turn {
 // --------------------------------------------------
 class Game {
     constructor() {
-        this.gameCharacter = new Character(null, null, { x: 0, y: 0 }, null); // init properly later on
+        this.gameCharacter = new Character({ x: 0, y: 0 }, null, null, null); // init properly later on
         this.gameTurnActive = false;
         this.gameTurnNum = 0;
         this.gameTurnId = 'turn0';
@@ -107,7 +107,7 @@ class Game {
         // maybe todo for MVP if necessary
     }
     gameNewMessage(userName, messageText, cb) {
-        const message = new Message(null, userName, messageText.toLowerCase());
+        const message = new Message(messageText.toLowerCase(), null, userName);
         // save message in main chat storage
         storage.lpush('messages', JSON.stringify(message), (err) => {
             if (err)

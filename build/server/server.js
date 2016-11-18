@@ -8,7 +8,6 @@ const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
 const game_1 = require('./game');
-;
 // --------------- New Game Instance -----------------
 // ---------------------------------------------------
 const game = new game_1.Game();
@@ -30,7 +29,7 @@ io.on('connection', socket => {
     });
     socket.on('newMessage', data => {
         game.gameNewMessage(data.user, data.text, () => {
-            socket.broadcast.emit('userMessage', data.text);
+            socket.broadcast.emit('userMessage', data);
         });
     });
     socket.on('disconnect', () => {

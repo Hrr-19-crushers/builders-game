@@ -1,4 +1,4 @@
-export phrases = {
+export const phrases = {
   // b/p vote
   borp: { // these are really bad, need more thought
     b: /b/im,

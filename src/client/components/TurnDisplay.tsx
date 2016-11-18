@@ -1,23 +1,24 @@
 import * as React from 'react';
 
-class TurnDisplay extends React.Component <any, any> {
+class TurnDisplay extends React.Component<any, any> {
 
   constructor(props) {
     super(props);
+    console.log('turn display props', props);
     this.state = {
       time: 0
     };
   }
   private _countDown() {
     const time: Number = Math.floor((this.props.expiration - Date.now()) / 1000);
-    this.setState({time});
+    this.setState({ time });
     // FIXME: this doesn't seem to be counting down
     console.log('setting new state', time, this.state.counting);
-    this.setState({timeout: setTimeout(this._countDown, 500)});
+    this.setState({ timeout: setTimeout(this._countDown, 500) });
   }
 
   componentDidMount() {
-    this._countDown();
+    //this._countDown();
   }
 
   componentWillUnmount() {
@@ -28,9 +29,9 @@ class TurnDisplay extends React.Component <any, any> {
     return (
       <div className='turnDisplay'>
         <p>Turn #{this.props.turnNum} <span>Time Left: {this.state.time}</span></p>
-        <p>{ this.props.prompt }</p>
+        <p>{this.props.prompt}</p>
         {this.props.votes.map(choice => (
-          <div><span className='choice'>{choice.name}</span><span className='count'> {choice.count}</span></div>))
+          <div id={choice.name}><span className='choice'>{choice.name}</span><span className='count'> {choice.count}</span></div>))
         }
       </div>
     );

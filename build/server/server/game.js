@@ -22,6 +22,12 @@ class Message {
         this.timeStamp = new Date().getTime();
         this.text = text;
     }
+    messageSaveToStorage() {
+        storage.lpush('messages', JSON.stringify(this.text), (err) => {
+            if (err)
+                console.log(`Error saving message to storage`, err);
+        });
+    }
 }
 // ------------------- Character --------------------
 // --------------------------------------------------
@@ -126,11 +132,7 @@ class Game {
     }
     gameNewMessage(userName, messageText, cb) {
         const message = new Message(messageText.toLowerCase(), null, userName);
-        // save message in main chat storage
-        storage.lpush('messages', JSON.stringify(message), (err) => {
-            if (err)
-                console.log(`Error saving message to storage`, err);
-        });
+        message.messageSaveToStorage(); // save message in main chat storage
         // if a turn is currently active, also store text in turn response storage
         // if (this.gameTurnActive) storage.lpush(this.gameTurnId, message.text);
         if (cb)

@@ -17,11 +17,11 @@ import { Board } from './board';
 // --------------------------------------------------
 
 class Message {
-  msgId: number;
-  userId: number;
-  userName: string;
-  timeStamp: number;
-  text: string;
+  private msgId: number;
+  private userId: number;
+  private userName: string;
+  private timeStamp: number;
+  private text: string;
 
   constructor(text: string, userId?: number, userName?: string) {
     this.msgId = Math.random() * 10000000000000000;
@@ -29,6 +29,12 @@ class Message {
     this.userName = userName || 'Guest';
     this.timeStamp = new Date().getTime();
     this.text = text;
+  }
+
+  messageSaveToStorage() {
+    storage.lpush('messages', JSON.stringify(this.text), (err: any) => {
+      if (err) console.log(`Error saving message to storage`, err);
+    });
   }
 
 }
@@ -168,10 +174,7 @@ export class Game {
 
   gameNewMessage(userName: string, messageText: string, cb?: any): void {
     const message = new Message(messageText.toLowerCase(), null, userName);
-    // save message in main chat storage
-    storage.lpush('messages', JSON.stringify(message), (err: any) => {
-      if (err) console.log(`Error saving message to storage`, err);
-    });
+    message.messageSaveToStorage(); // save message in main chat storage
     // if a turn is currently active, also store text in turn response storage
     // if (this.gameTurnActive) storage.lpush(this.gameTurnId, message.text);
     if (cb) cb();

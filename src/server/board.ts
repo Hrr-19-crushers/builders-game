@@ -19,6 +19,7 @@ export class Board {
     const {x, y} = currentLocation;
     const layout = this.mapLayout;
     let can = false;
+    // don't let Nick S see this, he hates switch statements
     switch(direction) {
       case 'up':
         if (layout[x][y - 1] !== undefined && layout[x][y - 1].passable) can = true;

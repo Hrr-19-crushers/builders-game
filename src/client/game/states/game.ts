@@ -42,6 +42,7 @@ class GraphNode extends Phaser.Point {
   
   constructor({x, y}: NodeParams) { 
     super(x, y); 
+    this.id = newNodeID();
   }
 
   addNeighbor(node: GraphNode) {

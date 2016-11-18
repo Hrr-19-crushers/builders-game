@@ -65,8 +65,8 @@ export const gameState = (state: GameState = INITIAL_STATE, action: Action) => {
         .reverse();
       const newTurn = Object.assign(state.turn, { votes: voteChoice });
       return Object.assign({}, state, newTurn);
-    case OUTCOME: 
-      return Object.assign({}, state, {outcome: action.payload});
+    case OUTCOME:
+      return Object.assign({}, state, { outcome: action.payload });
     default:
       return state;
   }

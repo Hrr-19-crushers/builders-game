@@ -21,7 +21,7 @@ export interface GameState {
   locations?: Array<any>;
 }
 
-const INITIAL_STATE: GameState = {
+export const INITIAL_STATE: GameState = {
   turnNumber: 0,
   turn: {
     expiration: new Date(),

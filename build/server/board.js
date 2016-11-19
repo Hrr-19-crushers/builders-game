@@ -9,7 +9,10 @@ class Board {
         };
     }
     boardCharCanMoveDirection(direction, currentLocation) {
-        const { x, y } = currentLocation;
+        // heroku appears to not like destructuring yet
+        // const {x, y} = currentLocation;
+        const x = currentLocation.x;
+        const y = currentLocation.y;
         const layout = this.boardLayout;
         let can = false;
         // don't let Nick S see this, he hates switch statements

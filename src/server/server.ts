@@ -30,6 +30,15 @@ app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname + '/index.html'));
 });
 
+app.get('/gamestate', (req, res) => {
+  const gameState = game.gameGetGameState();
+  res.status(200).json(JSON.stringify(gameState.gameLayout));
+});
+
+app.get('/maptester', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname + '/../../maptester.html'));
+});
+
 // ----------------- Socket Stuff --------------------
 // ---------------------------------------------------
 

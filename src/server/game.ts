@@ -165,7 +165,7 @@ export class Game {
 
   //========= Game Methods =========
   
-  gameGetGameState(cb: any): any {
+  gameGetGameState(cb?: any): any {
     return {
       gameLayout: this.gameLayout,
       gameBoard: this.gameBoard,

@@ -8,18 +8,18 @@ describe('a game board', () => {
   const board = new Board(testLayout);
   let layout;
 
-  it('should have a boardGetLayout method', () => {
-    board.should.have.property('boardGetLayout');
+  it('should have a boardGetBoardState method', () => {
+    board.should.have.property('boardGetBoardState');
   });
 
   it('should have a default layout of dimensions 5 x 5', () => {
-    layout = board.boardGetLayout();
+    layout = board.boardGetBoardState().boardLayout;
     layout.should.have.length(5);
     layout[0].should.have.length(5);
   });
   
   it('should initialize with a default layout', () => {
-    board.boardGetLayout().should.be.a('array');
+    board.boardGetBoardState().boardLayout.should.be.a('array');
   });
 
   it('should have a boardCharCanMoveDirection method', () => {

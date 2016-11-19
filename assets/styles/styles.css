@@ -110,3 +110,30 @@ canvas {
   float: right;
   margin-right: 1vw;
 }
+
+/* map tester page */
+
+ul.board {
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+ul.board li {
+  float: left;
+  width: 20%;
+  height: 20%;
+}
+
+ul.board li.type1 {
+  background: rgb(230, 230, 230);
+}
+
+ul.board li.type3 {
+  background: rgb(25, 25, 25);
+}
+
+ul.board li.type6 {
+  background: blue;
+}

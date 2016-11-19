@@ -5,16 +5,30 @@ import { setResponsiveWidth } from '../utils';
 import { getGameState } from '../../store';
 
 class Survivor extends Phaser.Sprite {
+  gridPosition: Phaser.Point;
+  moving: boolean;
+
   constructor({game, x, y}) {
     super(game, x, y, 'mario');
-  }
-
-  processKeys(key: KeyboardEvent) {
-    
+    this.moving = true;
+    this.gridPosition = new Phaser.Point(this.x, this.y);
   }
 
   update() {
-    super.update();
+    this.move({x: 1, y: 0});
+  }
+
+  move({x, y}) {
+    this.gridPosition.x += x;
+    this.gridPosition.y += y;
+    this.game.add.tween(this).to({
+        x: this.gridPosition.x, 
+        y: this.gridPosition.y
+      }, 
+      250, 
+      Phaser.Easing.Quadratic.InOut, 
+      true
+    );
   }
 }
 
@@ -55,8 +69,7 @@ export class GameState extends Phaser.State {
     this.game.add.existing(this.survivor);
     this.survivor.scale.setTo(0.05);
 
-    this.game.input.keyboard.onDownCallback = 
-      this.survivor.processKeys.bind(this);
+    
   }
 
   render() {

@@ -1,27 +1,28 @@
 /// <reference path="../../../type-declarations/Object.d.ts" />
-import { Action } from '../actions/actionInterface';
+import {Action} from '../actions/actionInterface';
 
-import { NEXT_TURN, VOTE, OUTCOME } from '../actions/actionTypes';
+import {NEXT_TURN, VOTE, OUTCOME} from '../actions/actionTypes';
 
 export interface Choice {
-  name: String;
-  count: number;
+  name : String;
+  count : number;
 }
 
 export interface Turn {
-  expiration: Date;
-  prompt: String;
-  votes: Choice[];
+  prompt : String;
+  votes?: Choice[];
+  choices?: String[];
+  expiration?: Date;
 }
 
 export interface GameState {
-  turnNumber: Number;
+  turnNumber : Number;
+  turn : Turn;
   outcome?: String;
-  turn: Turn;
-  locations?: Array<any>;
+  locations?: Array < any >;
 }
 
-export const INITIAL_STATE: GameState = {
+export const INITIAL_STATE : GameState = {
   turnNumber: 0,
   turn: {
     expiration: new Date(),
@@ -30,8 +31,7 @@ export const INITIAL_STATE: GameState = {
       {
         name: 'mushroom',
         count: 0
-      },
-      {
+      }, {
         name: 'crab',
         count: 0
       }
@@ -39,34 +39,38 @@ export const INITIAL_STATE: GameState = {
   }
 };
 
-export const gameState = (state: GameState = INITIAL_STATE, action: Action) => {
+export const gameState = (state : GameState = INITIAL_STATE, action : Action) => {
   switch (action.type) {
     case NEXT_TURN:
       const votes = action
         .payload
         .choices
-        .map(choice => ({ name: choice, count: 0 }));
+        .map(choice => ({name: choice, count: 0}));
       const turn = {
         prompt: action.payload.prompt,
         votes
       };
-      return Object.assign({}, state, { turn });
+      return Object.assign({}, state, {turn});
     case VOTE:
       const voteChoice = [
-        ...state.turn.votes
-          .filter(choice => choice.name !== action.payload),
-        {
-          name: action.payload,
-          count: state.turn.votes
-            .filter(choice => choice.name === action.payload)[0].count + 1
-        }
-      ]
+        ...state
+          .turn
+          .votes
+          .filter(choice => choice.name !== action.payload), {
+            name: action.payload,
+            count: state
+              .turn
+              .votes
+              .filter(choice => choice.name === action.payload)[0]
+            .count + 1
+          }
+        ]
         .sort(choice => choice.count)
         .reverse();
-      const newTurn = Object.assign(state.turn, { votes: voteChoice });
+      const newTurn = Object.assign(state.turn, {votes: voteChoice});
       return Object.assign({}, state, newTurn);
     case OUTCOME:
-      return Object.assign({}, state, { outcome: action.payload });
+      return Object.assign({}, state, {outcome: action.payload});
     default:
       return state;
   }

@@ -85,7 +85,6 @@
     "webpack-notifier": "^1.4.1"
   },
   "dependencies": {
-    "@types/utils-merge": "0.0.28",
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
@@ -103,7 +102,6 @@
     "socket.io": "^1.5.1",
     "socket.io-client": "^1.5.1",
     "socket.io-parser": "^2.3.1",
-    "utils-merge": "^1.0.0",
     "webfontloader": "^1.6.26",
     "xmlhttprequest-ssl": "^1.5.3"
   }

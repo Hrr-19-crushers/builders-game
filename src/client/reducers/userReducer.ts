@@ -2,6 +2,7 @@
 import {
   CHANGE_USER
 } from '../actions/actionTypes';
+
 import { Action } from '../actions/actionInterface';
 
 export interface UserState {

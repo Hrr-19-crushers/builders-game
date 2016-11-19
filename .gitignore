@@ -9,9 +9,9 @@ yarn.lock
 
 # Comment these out for deploy
 build
-build/**/*
 build/**/*.js
-build/client/bundle.js
+build/**/*.js.map
+build/**/*
 # end
 
 process.yml

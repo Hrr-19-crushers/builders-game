@@ -4,10 +4,10 @@ import Chat from './Chat';
 import Game from './Game';
 import Navbar from './NavBar';
 
-export default () => (
-    <div className='App'>
-        <Navbar />
-        <Chat />
-        <Game />
-    </div>
+export default() => (
+  <div className='App'>
+    <Navbar/>
+    <Chat/>
+    <Game/>
+  </div>
 );

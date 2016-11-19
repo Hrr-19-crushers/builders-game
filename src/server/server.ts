@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('newPlayer', playerName => {
-    const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed up
+    const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed u p
     // socket['playerName'] = player.playerName;
   });
 
@@ -49,7 +49,7 @@ io.on('connection', socket => { // TODO try to move this to engine
   socket.on('direction', direction => {
     game.gameMoveCharacter(direction, (location: Location) => {
       // ok not to check for location value, cb won't get called if char can't move
-      socket.emit('move', location); 
+      socket.emit('move', location);
     });
   });
 
@@ -58,7 +58,6 @@ io.on('connection', socket => { // TODO try to move this to engine
     // game.gameDeletePlayer(); // TODO nothing behind this yet
     socket.broadcast.emit('playerLeft', `Guest has left the game`);
   });
-
 });
 
 // ---------------------------------------------------

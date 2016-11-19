@@ -148,7 +148,7 @@ export class Game {
   constructor(layout?: Tile[][]) {
     this.gameLayout = layout || testLayout;
     this.gameBoard = new Board(this.gameLayout);
-    this.gameCharacter = new Character(this.gameBoard, {x:0, y:4} as Location, null, null, null); // init properly later on
+    this.gameCharacter = new Character(this.gameBoard, { x: 0, y: 4 } as Location, null, null, null); // init properly later on
     // this.gameTurnActive = false;
     // this.gameTurnNum = 0;
     // this.gameTurnId = 'turn0';

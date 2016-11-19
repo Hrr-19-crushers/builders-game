@@ -21,6 +21,13 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname + '/index.html'));
 });
+app.get('/gamestate', (req, res) => {
+    const gameState = game.gameGetGameState();
+    res.status(200).json(JSON.stringify(gameState.gameLayout));
+});
+app.get('/maptester', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname + '/../../maptester.html'));
+});
 // ----------------- Socket Stuff --------------------
 // ---------------------------------------------------
 io.on('connection', socket => {
@@ -33,10 +40,20 @@ io.on('connection', socket => {
             socket.broadcast.emit('userMessage', data);
         });
     });
+    socket.on('gameState', () => {
+        game.gameGetGameState((data) => {
+            socket.emit('gameState', data);
+        });
+    });
+    socket.on('charState', () => {
+        game.gameGetCharState((data) => {
+            socket.emit('charState', data);
+        });
+    });
     socket.on('direction', direction => {
-        game.gameMoveCharacter(direction, (location) => {
+        game.gameMoveChar(direction, (data) => {
             // ok not to check for location value, cb won't get called if char can't move
-            socket.emit('move', location);
+            socket.emit('move', data);
         });
     });
     socket.on('disconnect', () => {

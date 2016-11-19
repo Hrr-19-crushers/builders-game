@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Map Tester | Builder App</title>
+      <link rel="stylesheet" type="text/css" href="assets/styles/styles.css"></link>
+    </head>
+    <body>
+			<header>
+				<div class="center">
+					<h1>Map Tester | Builder Game</h1>
+				</div>
+			</header>
+			<div class="main">
+				
+				<div class="sector sector-search">
+					<div class="center">
+						
+						<ul id="board" class="board">
+              <script type="text/template" class="template">
+                <li class="type<%- tile.type %>">
+                  &nbsp;
+                </li>
+              </script>
+            </ul>
+
+					</div>
+				</div> 
+
+			</div>
+        
+			<!--<script src="/scripts"></script>-->
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+      <script>
+        $(() => {
+          const app = {
+            init: userId => {
+              app.api = '/gamestate';
+              _.templateSettings.variable = 'tile'; 
+              app.template = _.template($('script.template').html());
+              app.getLayout();
+            },
+            renderBoard: layout => {
+              _.each(layout, row => {
+                console.log(`row`, row);
+                _.each(row, tile => {
+                  console.log(`tile`, tile);
+                  $('#board').prepend(app.template(tile));
+                });
+              });
+            },
+            getLayout: () => {
+              $.ajax({
+                url: app.api,
+                type: 'GET',
+                success: layout => {
+                  console.log(`Board fetched successfully`, layout);
+                  app.renderBoard(JSON.parse(layout));
+                },
+                error: err => {
+                  console.error(`Error fetching board, ${err.toString()}`);
+                }
+              });
+            }
+          };
+          app.init();
+        });
+      </script>
+    </body>
+</html>

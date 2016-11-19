@@ -8,8 +8,10 @@ export class Board {
     this.boardLayout = layout;
   }
 
-  boardGetLayout(): Tile[][] {
-    return this.boardLayout;
+  boardGetBoardState(): any {
+    return {
+      boardLayout: this.boardLayout
+    };
   }
 
   boardCharCanMoveDirection(direction: string, currentLocation: Location): boolean {

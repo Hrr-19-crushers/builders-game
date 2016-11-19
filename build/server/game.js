@@ -33,19 +33,22 @@ class Message {
 // ------------------- Character --------------------
 // --------------------------------------------------
 class Character {
-    constructor(charBoard, charLocation, charId, charName, charHealth) {
-        this.charBoard = charBoard;
+    constructor(charId, charName, charLocation, charHealth) {
         this.charId = charId || 1;
         this.charName = charName || 'Dan';
         this.charLocation = charLocation;
         this.charHealth = charHealth || 100;
     }
-    charMove(direction, cb) {
-        if (this.charBoard.boardCharCanMoveDirection(direction, this.charLocation)) {
-            this.charLocation = this.charBoard.boardGetNewCharLocation(direction, this.charLocation);
-            if (cb)
-                cb(this.charLocation);
-        }
+    charGetCharState() {
+        return {
+            charId: this.charId,
+            charName: this.charName,
+            charLocation: this.charLocation,
+            charHealth: this.charHealth,
+        };
+    }
+    charSetCharLocation(newLocation) {
+        this.charLocation = newLocation;
     }
 }
 // --------------------- Player ---------------------
@@ -108,11 +111,22 @@ class Game {
     constructor(layout) {
         this.gameLayout = layout || layouts_1.testLayout;
         this.gameBoard = new board_1.Board(this.gameLayout);
-        this.gameCharacter = new Character(this.gameBoard, { x: 0, y: 4 }, null, null, null); // init properly later on
+        const randomNewCharId = Math.random() * 10000000000000000;
+        const defaultCharName = 'Guest';
+        // TODO init new character properly later if there are more than 1
+        this.gameCharacter = new Character(randomNewCharId, defaultCharName, { x: 0, y: 4 });
         // this.gameTurnActive = false;
         // this.gameTurnNum = 0;
         // this.gameTurnId = 'turn0';
         // this.gameTurnTypes = Object.keys(phrases);
+    }
+    //========= Game Methods =========
+    gameGetGameState(cb) {
+        return {
+            gameLayout: this.gameLayout,
+            gameBoard: this.gameBoard,
+            gameCharacter: this.gameCharacter
+        };
     }
     gameAddNewPlayer(playerName) {
         playerName = playerName || 'Guest';
@@ -126,6 +140,20 @@ class Game {
         });
         return player.playerGetName();
     }
+    //====== Character Methods ========
+    gameGetCharState(cb) {
+        if (cb)
+            cb(this.gameCharacter.charGetCharState());
+    }
+    gameMoveChar(direction, cb) {
+        const character = this.gameCharacter.charGetCharState();
+        if (this.gameBoard.boardCharCanMoveDirection(direction, character.charLocation)) {
+            character.charSetCharLocation = this.gameBoard.boardGetNewCharLocation(direction, character.charLocation);
+            if (cb)
+                cb(this.gameCharacter.charGetCharState());
+        }
+    }
+    //======== Player Methods =========
     gameDeletePlayer() {
         // TODO eventually
     }
@@ -139,30 +167,6 @@ class Game {
         // if (this.gameTurnActive) storage.lpush(this.gameTurnId, message.text);
         if (cb)
             cb();
-    }
-    gameMoveCharacter(direction, cb) {
-        // passing down the cb like this feels React-ish but dirty?
-        this.gameCharacter.charMove(direction, cb);
-    }
-    // gameNewTurn() {
-    //   // generate new turn number
-    //   this.gameTurnNum++;
-    //   // generate new turn id based on number
-    //   this.gameTurnId = `turn${this.gameTurnNum}`;
-    //   // set turn state on
-    //   this.gameTurnActive = true;
-    //   // choose a random turn type from the available prompts; can manually control this later when we have an actual game flow designed
-    //   const turnType = this.gameTurnTypes[Math.floor(Math.random() + this.gameTurnTypes.length)];
-    //   // create a new turn instance and let the fun begin
-    //   this.gameTurnInstance = new Turn(this.gameTurnId, turnType);
-    //   // after some period of time:
-    //     // this.gameTurnActive = false;
-    //     // this.gameTurnInstance.turnTallyVotes();
-    //     // storage.lpush('actions', ???);
-    // }
-    gameTurnSpacing() {
-        // at some interval, after the last turn completes or after the game starts, initiate a new turn
-        // setInterval(this.gameNewTurn, 45000);
     }
 }
 exports.Game = Game;

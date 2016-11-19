@@ -1,9 +1,39 @@
-import { Tile } from './interfaces';
+import { TileType, Tile } from './interfaces';
 
 export const testLayout: Tile[][] = [
-  [{passable: false}, {passable: false}, {passable: true}, {passable: true}, {passable: true}],
-  [{passable: false}, {passable: true}, {passable: true}, {passable: false}, {passable: true}],
-  [{passable: true}, {passable: true}, {passable: true}, {passable: true}, {passable: true}],
-  [{passable: true}, {passable: false}, {passable: true}, {passable: true}, {passable: false}],
-  [{passable: true}, {passable: true}, {passable: true}, {passable: false}, {passable: false}]
+  [
+    {passable: false, type: TileType.rock},
+    {passable: false, type: TileType.rock},
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt}
+  ],
+  [
+    {passable: false, type: TileType.rock},
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt},
+    {passable: false, type: TileType.water},
+    {passable: true, type: TileType.dirt}
+  ],
+  [
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt}
+  ],
+  [
+    {passable: true, type: TileType.dirt},
+    {passable: false, type: TileType.water},
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt},
+    {passable: false, type: TileType.rock}
+  ],
+  [
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt},
+    {passable: true, type: TileType.dirt},
+    {passable: false, type: TileType.rock},
+    {passable: false, type: TileType.rock}
+  ]
 ];

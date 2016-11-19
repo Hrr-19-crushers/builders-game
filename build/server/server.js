@@ -7,10 +7,11 @@ const io = require('socket.io')(http);
 const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
+const layouts_1 = require('./layouts');
 const game_1 = require('./game');
 // --------------- New Game Instance -----------------
 // ---------------------------------------------------
-const game = new game_1.Game();
+const game = new game_1.Game(layouts_1.testLayout);
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------
 app.use(express.static(path.join(__dirname, '../../')));
@@ -32,8 +33,9 @@ io.on('connection', socket => {
             socket.broadcast.emit('userMessage', data);
         });
     });
-    socket.on('direction', data => {
-        game.gameCharacter.charMove(data, (location) => {
+    socket.on('direction', direction => {
+        game.gameMoveCharacter(direction, (location) => {
+            // ok not to check for location value, cb won't get called if char can't move
             socket.emit('move', location);
         });
     });

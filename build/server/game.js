@@ -10,7 +10,9 @@ storage.on('connect', (err) => {
     else
         console.log(`Successfully connected to storage`);
 });
-const map_1 = require('./map');
+const layouts_1 = require('./layouts');
+const board_1 = require('./board');
+// import { phrases } from './phrases';
 // -------------------- Message ---------------------
 // --------------------------------------------------
 class Message {
@@ -21,47 +23,28 @@ class Message {
         this.timeStamp = new Date().getTime();
         this.text = text;
     }
+    messageSaveToStorage() {
+        storage.lpush('messages', JSON.stringify(this.text), (err) => {
+            if (err)
+                console.log(`Error saving message to storage`, err);
+        });
+    }
 }
 // ------------------- Character --------------------
 // --------------------------------------------------
 class Character {
-    constructor(charLocation, charId, charName, charHealth) {
+    constructor(charBoard, charLocation, charId, charName, charHealth) {
+        this.charBoard = charBoard;
         this.charId = charId || 1;
         this.charName = charName || 'Dan';
         this.charLocation = charLocation;
         this.charHealth = charHealth || 100;
     }
     charMove(direction, cb) {
-        const { x, y } = this.charLocation;
-        switch (direction) {
-            case 'up':
-                if (map_1.Layout[x][y - 1] !== undefined && map_1.Layout[x][y - 1].passable) {
-                    this.charLocation.y = y - 1;
-                    if (cb)
-                        cb(this.charLocation);
-                }
-                break;
-            case 'right':
-                if (map_1.Layout[x + 1][y] !== undefined && map_1.Layout[x + 1][y].passable) {
-                    this.charLocation.x = x + 1;
-                    if (cb)
-                        cb(this.charLocation);
-                }
-                break;
-            case 'down':
-                if (map_1.Layout[x][y + 1] !== undefined && map_1.Layout[x][y + 1].passable) {
-                    this.charLocation.y = y + 1;
-                    if (cb)
-                        cb(this.charLocation);
-                }
-                break;
-            case 'left':
-                if (map_1.Layout[x - 1][y] !== undefined && map_1.Layout[x - 1][y].passable) {
-                    this.charLocation.x = x - 1;
-                    if (cb)
-                        cb(this.charLocation);
-                }
-                break;
+        if (this.charBoard.boardCharCanMoveDirection(direction, this.charLocation)) {
+            this.charLocation = this.charBoard.boardGetNewCharLocation(direction, this.charLocation);
+            if (cb)
+                cb(this.charLocation);
         }
     }
 }
@@ -71,6 +54,9 @@ class Player {
     constructor(playerName) {
         // this.playerId = this.msgId = Math.random() * 10000000000000000;
         this.playerName = playerName || 'Guest';
+    }
+    playerGetName() {
+        return this.playerName;
     }
 }
 // --------------------- Turn -----------------------
@@ -119,8 +105,10 @@ class Game {
     // gameTurnId: string;
     // gameTurnTypes: string[];
     // gameTurnInstance: Turn;
-    constructor() {
-        this.gameCharacter = new Character({ x: 0, y: 4 }, null, null, null); // init properly later on
+    constructor(layout) {
+        this.gameLayout = layout || layouts_1.testLayout;
+        this.gameBoard = new board_1.Board(this.gameLayout);
+        this.gameCharacter = new Character(this.gameBoard, { x: 0, y: 4 }, null, null, null); // init properly later on
         // this.gameTurnActive = false;
         // this.gameTurnNum = 0;
         // this.gameTurnId = 'turn0';
@@ -136,7 +124,7 @@ class Game {
                 console.log('${player.playerName} has entered the game!');
             }
         });
-        return player.playerName;
+        return player.playerGetName();
     }
     gameDeletePlayer() {
         // TODO eventually
@@ -146,15 +134,15 @@ class Game {
     }
     gameNewMessage(userName, messageText, cb) {
         const message = new Message(messageText.toLowerCase(), null, userName);
-        // save message in main chat storage
-        storage.lpush('messages', JSON.stringify(message), (err) => {
-            if (err)
-                console.log(`Error saving message to storage`, err);
-        });
+        message.messageSaveToStorage(); // save message in main chat storage
         // if a turn is currently active, also store text in turn response storage
         // if (this.gameTurnActive) storage.lpush(this.gameTurnId, message.text);
         if (cb)
             cb();
+    }
+    gameMoveCharacter(direction, cb) {
+        // passing down the cb like this feels React-ish but dirty?
+        this.gameCharacter.charMove(direction, cb);
     }
     // gameNewTurn() {
     //   // generate new turn number

@@ -9,7 +9,8 @@ storage.on('connect', (err: any) => {
   else console.log(`Successfully connected to storage`);
 });
 
-import { Location } from '../interfaces';
+import { Location, Tile } from './interfaces';
+import { testLayout } from './layouts';
 import { Board } from './board';
 // import { phrases } from './phrases';
 
@@ -135,6 +136,7 @@ class Player {
 // --------------------------------------------------
 
 export class Game {
+  private gameLayout: Tile[][];
   private gameBoard: Board;
   private gameCharacter: Character;
   // gameTurnActive: boolean;
@@ -143,8 +145,9 @@ export class Game {
   // gameTurnTypes: string[];
   // gameTurnInstance: Turn;
 
-  constructor() {
-    this.gameBoard = new Board();
+  constructor(layout?: Tile[][]) {
+    this.gameLayout = layout || testLayout;
+    this.gameBoard = new Board(this.gameLayout);
     this.gameCharacter = new Character(this.gameBoard, {x:0, y:4} as Location, null, null, null); // init properly later on
     // this.gameTurnActive = false;
     // this.gameTurnNum = 0;

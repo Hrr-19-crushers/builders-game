@@ -1,37 +1,34 @@
-import { Location, Terrain } from '../interfaces';
-
-const testLayout: Terrain[][] = [
-  [{passable: false}, {passable: false}, {passable: true}, {passable: true}, {passable: true}],
-  [{passable: false}, {passable: true}, {passable: true}, {passable: false}, {passable: true}],
-  [{passable: true}, {passable: true}, {passable: true}, {passable: true}, {passable: true}],
-  [{passable: true}, {passable: false}, {passable: true}, {passable: true}, {passable: false}],
-  [{passable: true}, {passable: true}, {passable: true}, {passable: false}, {passable: false}]
-];
+import { Location, Tile } from './interfaces';
+import { testLayout } from './layouts';
 
 export class Board {
-  private mapLayout: Terrain[][];
+  private boardLayout: Tile[][];
 
-  constructor() {
-    this.mapLayout = testLayout;
+  constructor(layout: Tile[][]) {
+    this.boardLayout = layout;
+  }
+
+  boardGetLayout(): Tile[][] {
+    return this.boardLayout;
   }
 
   boardCharCanMoveDirection(direction: string, currentLocation: Location): boolean {
     const {x, y} = currentLocation;
-    const layout = this.mapLayout;
+    const layout = this.boardLayout;
     let can = false;
     // don't let Nick S see this, he hates switch statements
     switch(direction) {
       case 'up':
-        if (layout[x][y - 1] !== undefined && layout[x][y - 1].passable) can = true;
+        if ((y - 1 in layout) && (layout[y - 1][x].passable)) can = true;
         break;
       case 'right':
-        if (layout[x + 1][y] !== undefined && layout[x + 1][y].passable) can = true;
+        if ((x + 1 in layout[y]) && (layout[y][x + 1].passable)) can = true;
         break;
       case 'down':
-        if (layout[x][y + 1] !== undefined && layout[x][y + 1].passable) can = true;
+        if ((y + 1 in layout) && (layout[y + 1][x].passable)) can = true;
         break;
       case 'left':
-        if (layout[x - 1][y] !== undefined && layout[x - 1][y].passable) can = true;
+        if ((x - 1 in layout[y]) && (layout[y][x - 1].passable)) can = true;
         break;
     }
     return can;
@@ -41,20 +38,18 @@ export class Board {
   boardGetNewCharLocation(direction: string, currentLocation: Location): Location {
     // there's probably a better way to destructure currentLocation here
     let newLocation: Location;
-    newLocation.x = currentLocation.x;
-    newLocation.y = currentLocation.y;
     switch(direction) {
       case 'up':
-        newLocation.y--;
+        newLocation = { x: currentLocation.x, y: currentLocation.y - 1 };
         break;
       case 'right':
-        newLocation.x++
+        newLocation = { x: currentLocation.x + 1, y: currentLocation.y };
         break;
       case 'down':
-        newLocation.y++;
+        newLocation = { x: currentLocation.x, y: currentLocation.y + 1 };
         break;
       case 'left':
-        newLocation.x--;
+        newLocation = { x: currentLocation.x - 1, y: currentLocation.y };
         break;
     }
     return newLocation;

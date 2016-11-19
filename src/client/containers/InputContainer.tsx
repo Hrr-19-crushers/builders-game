@@ -1,39 +1,16 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { Message } from '../reducers/chatReducer';
+import {Message} from '../reducers/chatReducer';
 import Input from '../components/Input';
-import { addChatAction } from '../actions/chatActions';
-import { chat2Server } from '../utils/socket_io';
+import {addChatAction} from '../actions/chatActions';
+import {chat2Server} from '../utils/socket_io';
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.userState.name
-  };
-};
+const mapStateToProps = (state) => ({user: state.userState.name});
 
-let votes = [0, 0];
-export const getVotes = () => votes;
-
-// TODO: decide if this should be on server side?
-const parseChat = (message: Message, dispatch) => {
-  if (message.text.indexOf('#') > -1) {
-    const actions = message.text.match(/\#\S+/gi);
-    console.log(actions);
-    const targets = message.text.replace(/\#\S+/gi, '');
+const mapDispatchToProps = (dispatch) => ({
+  addChat: (message) => {
+    chat2Server(message);
   }
-  return dispatch(addChatAction(message));
-};
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addChat: (message) => {
-      chat2Server(message);
-      parseChat(message, dispatch);
-    }
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Input);
+export default connect(mapStateToProps, mapDispatchToProps)(Input);

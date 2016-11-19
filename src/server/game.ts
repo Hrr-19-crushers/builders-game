@@ -9,26 +9,19 @@ storage.on('connect', (err: any) => {
   else console.log(`Successfully connected to storage`);
 });
 
-import { Layout } from './map';
+import { Location } from '../interfaces';
+import { Board } from './board';
 // import { phrases } from './phrases';
-
-// ------------------- Interfaces -------------------
-// --------------------------------------------------
-
-interface Location {
-  x: number;
-  y: number;
-}
 
 // -------------------- Message ---------------------
 // --------------------------------------------------
 
 class Message {
-  msgId: number;
-  userId: number;
-  userName: string;
-  timeStamp: number;
-  text: string;
+  private msgId: number;
+  private userId: number;
+  private userName: string;
+  private timeStamp: number;
+  private text: string;
 
   constructor(text: string, userId?: number, userName?: string) {
     this.msgId = Math.random() * 10000000000000000;
@@ -38,18 +31,26 @@ class Message {
     this.text = text;
   }
 
+  messageSaveToStorage() {
+    storage.lpush('messages', JSON.stringify(this.text), (err: any) => {
+      if (err) console.log(`Error saving message to storage`, err);
+    });
+  }
+
 }
 
 // ------------------- Character --------------------
 // --------------------------------------------------
 
 class Character {
-  charLocation: Location;
-  charId: number;
-  charName: string;
-  charHealth: number;
+  private charBoard: Board;
+  private charLocation: Location;
+  private charId: number;
+  private charName: string;
+  private charHealth: number;
 
-  constructor(charLocation: Location, charId?: number, charName?: string, charHealth?: number) {
+  constructor(charBoard: Board, charLocation: Location, charId?: number, charName?: string, charHealth?: number) {
+    this.charBoard = charBoard;
     this.charId = charId || 1;
     this.charName = charName || 'Dan';
     this.charLocation = charLocation;
@@ -57,32 +58,9 @@ class Character {
   }
 
   charMove(direction: string, cb?: any): void {
-    const {x, y} = this.charLocation;
-    switch (direction) {
-      case 'up':
-        if (Layout[x][y - 1] !== undefined && Layout[x][y - 1].passable) {
-          this.charLocation.y = y - 1;
-          if (cb) cb(this.charLocation);
-        }
-        break;
-      case 'right':
-        if (Layout[x + 1][y] !== undefined && Layout[x + 1][y].passable) {
-          this.charLocation.x = x + 1;
-          if (cb) cb(this.charLocation);
-        }
-        break;
-      case 'down':
-        if (Layout[x][y + 1] !== undefined && Layout[x][y + 1].passable) {
-          this.charLocation.y = y + 1;
-          if (cb) cb(this.charLocation);
-        }
-        break;
-      case 'left':
-        if (Layout[x - 1][y] !== undefined && Layout[x - 1][y].passable) {
-          this.charLocation.x = x - 1;
-          if (cb) cb(this.charLocation);
-        }
-        break;
+    if (this.charBoard.boardCharCanMoveDirection(direction, this.charLocation)) {
+      this.charLocation = this.charBoard.boardGetNewCharLocation(direction, this.charLocation);
+      if (cb) cb(this.charLocation);
     }
   }
 }
@@ -91,12 +69,16 @@ class Character {
 // --------------------------------------------------
 
 class Player {
-  // playerId: string;
-  playerName: string;
+  // private playerId: string;
+  private playerName: string;
 
   constructor(playerName?: string) {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName || 'Guest';
+  }
+
+  playerGetName(): string {
+    return this.playerName;
   }
 
 }
@@ -153,8 +135,8 @@ class Player {
 // --------------------------------------------------
 
 export class Game {
-  // going to need to set up persistent storage for this one; or maybe modal?
-  gameCharacter: Character;
+  private gameBoard: Board;
+  private gameCharacter: Character;
   // gameTurnActive: boolean;
   // gameTurnNum: number;
   // gameTurnId: string;
@@ -162,7 +144,8 @@ export class Game {
   // gameTurnInstance: Turn;
 
   constructor() {
-    this.gameCharacter = new Character({ x: 0, y: 4 } as Location, null, null, null); // init properly later on
+    this.gameBoard = new Board();
+    this.gameCharacter = new Character(this.gameBoard, {x:0, y:4} as Location, null, null, null); // init properly later on
     // this.gameTurnActive = false;
     // this.gameTurnNum = 0;
     // this.gameTurnId = 'turn0';
@@ -178,7 +161,7 @@ export class Game {
         console.log('${player.playerName} has entered the game!');
       }
     });
-    return player.playerName;
+    return player.playerGetName();
   }
 
   gameDeletePlayer() {
@@ -191,13 +174,15 @@ export class Game {
 
   gameNewMessage(userName: string, messageText: string, cb?: any): void {
     const message = new Message(messageText.toLowerCase(), null, userName);
-    // save message in main chat storage
-    storage.lpush('messages', JSON.stringify(message), (err: any) => {
-      if (err) console.log(`Error saving message to storage`, err);
-    });
+    message.messageSaveToStorage(); // save message in main chat storage
     // if a turn is currently active, also store text in turn response storage
     // if (this.gameTurnActive) storage.lpush(this.gameTurnId, message.text);
     if (cb) cb();
+  }
+
+  gameMoveCharacter(direction: string, cb?: any): any {
+    // passing down the cb like this feels React-ish but dirty?
+    this.gameCharacter.charMove(direction, cb);
   }
 
   // gameNewTurn() {

@@ -5,12 +5,12 @@ export interface Location {
   y: number;
 }
 
-enum TileType {
-  cliff, dirt, grass, rock, sand, tree
+export enum TileType {
+  cliff, dirt, grass, rock, sand, tree, water
 }
 
 export interface Tile {
   passable: boolean,
-  scenario?: any
+  scenario?: any,
   type?: TileType,
 }

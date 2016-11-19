@@ -44,26 +44,31 @@ class Message {
 // --------------------------------------------------
 
 class Character {
-  private charBoard: Board;
-  private charLocation: Location;
   private charId: number;
   private charName: string;
+  private charLocation: Location;
   private charHealth: number;
 
-  constructor(charBoard: Board, charLocation: Location, charId?: number, charName?: string, charHealth?: number) {
-    this.charBoard = charBoard;
+  constructor(charId: number, charName: string, charLocation: Location, charHealth?: number) {
     this.charId = charId || 1;
     this.charName = charName || 'Dan';
     this.charLocation = charLocation;
     this.charHealth = charHealth || 100;
   }
 
-  charMove(direction: string, cb?: any): void {
-    if (this.charBoard.boardCharCanMoveDirection(direction, this.charLocation)) {
-      this.charLocation = this.charBoard.boardGetNewCharLocation(direction, this.charLocation);
-      if (cb) cb(this.charLocation);
-    }
+  charGetCharState(): any {
+    return {
+      charId: this.charId,
+      charName: this.charName,
+      charLocation: this.charLocation,
+      charHealth: this.charHealth,
+    };
   }
+
+  charSetCharLocation(newLocation: Location) {
+    this.charLocation = newLocation;
+  }
+
 }
 
 // --------------------- Player ---------------------
@@ -148,11 +153,24 @@ export class Game {
   constructor(layout?: Tile[][]) {
     this.gameLayout = layout || testLayout;
     this.gameBoard = new Board(this.gameLayout);
-    this.gameCharacter = new Character(this.gameBoard, {x:0, y:4} as Location, null, null, null); // init properly later on
+    const randomNewCharId = Math.random() * 10000000000000000;
+    const defaultCharName = 'Guest';
+    // TODO init new character properly later if there are more than 1
+    this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x:0, y:4} as Location);
     // this.gameTurnActive = false;
     // this.gameTurnNum = 0;
     // this.gameTurnId = 'turn0';
     // this.gameTurnTypes = Object.keys(phrases);
+  }
+
+  //========= Game Methods =========
+  
+  gameGetGameState(cb: any): any {
+    return {
+      gameLayout: this.gameLayout,
+      gameBoard: this.gameBoard,
+      gameCharacter: this.gameCharacter
+    };
   }
 
   gameAddNewPlayer(playerName?: string): string {
@@ -166,6 +184,22 @@ export class Game {
     });
     return player.playerGetName();
   }
+
+  //====== Character Methods ========
+
+  gameGetCharState(cb: any) {
+    if (cb) cb(this.gameCharacter.charGetCharState());
+  }
+  
+  gameMoveChar(direction: string, cb?: any): void {
+    const character = this.gameCharacter.charGetCharState();
+    if (this.gameBoard.boardCharCanMoveDirection(direction, character.charLocation)) {
+      character.charSetCharLocation = this.gameBoard.boardGetNewCharLocation(direction, character.charLocation);
+      if (cb) cb(this.gameCharacter.charGetCharState());
+    }
+  }
+  
+  //======== Player Methods =========
 
   gameDeletePlayer() {
     // TODO eventually
@@ -183,10 +217,7 @@ export class Game {
     if (cb) cb();
   }
 
-  gameMoveCharacter(direction: string, cb?: any): any {
-    // passing down the cb like this feels React-ish but dirty?
-    this.gameCharacter.charMove(direction, cb);
-  }
+  //======== Turn Methods =========
 
   // gameNewTurn() {
   //   // generate new turn number
@@ -205,9 +236,9 @@ export class Game {
   //     // storage.lpush('actions', ???);
   // }
 
-  gameTurnSpacing() {
-    // at some interval, after the last turn completes or after the game starts, initiate a new turn
-    // setInterval(this.gameNewTurn, 45000);
-  }
+  // gameTurnSpacing() {
+  //   // at some interval, after the last turn completes or after the game starts, initiate a new turn
+  //   // setInterval(this.gameNewTurn, 45000);
+  // }
 
 }

@@ -33,10 +33,20 @@ io.on('connection', socket => {
             socket.broadcast.emit('userMessage', data);
         });
     });
+    socket.on('gameState', () => {
+        game.gameGetGameState((data) => {
+            socket.emit('gameState', data);
+        });
+    });
+    socket.on('charState', () => {
+        game.gameGetCharState((data) => {
+            socket.emit('charState', data);
+        });
+    });
     socket.on('direction', direction => {
-        game.gameMoveCharacter(direction, (location) => {
+        game.gameMoveChar(direction, (data) => {
             // ok not to check for location value, cb won't get called if char can't move
-            socket.emit('move', location);
+            socket.emit('move', data);
         });
     });
     socket.on('disconnect', () => {

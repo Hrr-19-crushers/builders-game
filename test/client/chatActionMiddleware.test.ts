@@ -20,8 +20,8 @@ describe('chat middleware', () => {
     middleware = chatMiddleware(store)(next);
   });
 
-it('will pass through chats with no action operator (i.e. \\)', () => {
-  const chat = addChatAction({name: 'jon', text: 'hello world', date: new Date()});
+  it('will pass through chats with no action operator (i.e. \\)', () => {
+    const chat = addChatAction({name: 'jon', text: 'hello world', date: new Date()});
     expect(middleware(chat)).to.equal('next called');
     expect(store.actions.length).to.equal(0);
   });
@@ -34,5 +34,7 @@ it('will pass through chats with no action operator (i.e. \\)', () => {
     expect(store.actions[0].payload).to.equal('raj');
   });
 
-  it('will allow users to send a direction')
+  it('will allow users to send a direction', () => {
+  });
+
 })

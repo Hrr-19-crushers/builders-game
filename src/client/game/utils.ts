@@ -17,3 +17,11 @@ export const setResponsiveWidth = (sprite, percent, parent) => {
   sprite.width = parent.width / (100 / percent);
   sprite.height = sprite.texture.height - (sprite.texture.height * percentWidth / 100);
 };
+
+const IDGenerator = (init = 0) => {
+  let id = init;
+
+  return () => id++;
+};
+
+export const newID = IDGenerator(0);

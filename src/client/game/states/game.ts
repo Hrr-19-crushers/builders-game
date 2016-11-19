@@ -1,36 +1,37 @@
+/// <reference path="../../../../type-declarations/index.d.ts" />
 import * as Phaser from 'phaser';
-import {
-  setResponsiveWidth
-} from '../utils';
-import {
-  getGameState
-} from '../../store';
-import {
-  getVotes
-} from '../../containers/InputContainer';
 
-class Entity extends Phaser.Sprite {
-  constructor({
-    game,
-    x,
-    y,
-    asset
-  }) {
-    super(game, x, y, asset);
+import { setResponsiveWidth } from '../utils';
+import { getGameState } from '../../store';
+
+class Survivor extends Phaser.Sprite {
+  constructor({game, x, y}) {
+    super(game, x, y, 'mario');
+  }
+
+  processKeys(key: KeyboardEvent) {
+    
+  }
+
+  update() {
+    super.update();
   }
 }
 
 export class GameState extends Phaser.State {
-  mario: Phaser.Sprite;
-  targets: Phaser.Group;
-  storeState: Object;
-  mushrooms: Phaser.Group;
+  survivor: Survivor;
+  upstreamState: any;
+  keys: Phaser.CursorKeys;
+  keyboard: Phaser.Keyboard;
 
   init() {
-    this.targets = this.game.add.group();
-    this.targets.enableBody = true;
-    this.game.input.onDown.add(this.addEntity.bind(this));
-    this.storeState = getGameState();
+    this.upstreamState = getGameState();
+
+    this.keyboard = this.game.input.keyboard;
+    this.keyboard.addKey(Phaser.KeyCode.DOWN);
+    this.keyboard.addKey(Phaser.KeyCode.UP);
+    this.keyboard.addKey(Phaser.KeyCode.LEFT);
+    this.keyboard.addKey(Phaser.KeyCode.RIGHT);
   }
 
   create() {
@@ -46,25 +47,16 @@ export class GameState extends Phaser.State {
     banner.fill = '#77BFA3';
     banner.anchor.setTo(0.5);
 
-    this.mario = this.game.add.sprite(
-      this.game.world.centerX,
-      this.game.world.centerY,
-      'mario'
-    );
-    this.mario.scale.setTo(0.05);
-    this.game.physics.arcade.enable(this.mario);
+    this.survivor = new Survivor({
+      game: this.game,
+      x: this.game.world.centerX,
+      y: this.game.world.centerY
+    });
+    this.game.add.existing(this.survivor);
+    this.survivor.scale.setTo(0.05);
 
-    this.targets.create(
-      this.game.world.centerX + 80,
-      this.game.world.centerY - 80,
-      'mushroom'
-    );
-
-    this.targets.create(
-      this.game.world.centerX + 80,
-      this.game.world.centerY + 80,
-      'crab'
-    );
+    this.game.input.keyboard.onDownCallback = 
+      this.survivor.processKeys.bind(this);
   }
 
   render() {
@@ -74,57 +66,11 @@ export class GameState extends Phaser.State {
   }
 
   update() {
-    this.storeState = getGameState();
-    this.game.physics.arcade.collide(
-      this.mario,
-      this.targets,
-      (mario, mush) => mush.kill(),
-      null, this
-    );
-    // const outcome = this.storeState.outcome;
-    if (getVotes()[0] >= 3) {
-      this.game.physics.arcade.moveToObject(
-        this.mario,
-        this.targets.getAt(0),
-        500, 0
-      );
-    } else if (getVotes()[1] >= 3) {
-      this.game.physics.arcade.moveToObject(
-        this.mario,
-        this.targets.getAt(1),
-        500, 0
-      );
+    this.upstreamState = getGameState();
+
+    const outcome = this.upstreamState.outcome;
+    if (outcome) {
+      
     }
-
-    /*
-    if (this.mushrooms.countLiving() > 0) {
-      this.game.physics.arcade.moveToObject(
-        this.mario,
-        this.targets.getFirstAlive(false),
-        500, 0
-      );
-    
-    */
-  }
-
-  addEntity() {
-    /*
-    const game = this.game;
-    this.targets.push(new Entity({
-      game: this.game,
-      x: this.game.input.x,
-      y: this.game.input.y,
-      asset: 'mushroom'
-    }));
-    const shroom = this.targets[this.targets.length - 1];
-    game.add.existing(shroom);
-    game.physics.enable(shroom, Phaser.Physics.ARCADE);
-    game.physics.arcade.collide(shroom);
-    */
-    // this.targets.create(
-    //   this.game.input.x,
-    //   this.game.input.y,
-    //   'mushroom'
-    // );
   }
 }

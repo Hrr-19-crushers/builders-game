@@ -91,14 +91,16 @@ canvas {
 }
 
 .selfChat {
-  justify-content: flex-end;
-  align-items: flex-end;
-  background-color: 'blue';
+  font-weight: 700;
   border-bottom-right-radius: 0px;
   box-shadow: 1px 2px 0px #D4D4D4;
 }
 
-.messages .chatName {
+.selfChat .chatName {
+  color: rebeccapurple;
+}
+
+.chat .chatName {
   font-weight: 700;
   color: cadetblue;
 }

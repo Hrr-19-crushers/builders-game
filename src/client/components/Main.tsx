@@ -5,7 +5,7 @@ import Chat from './Chat';
 
 export default() => (
   <div className='Main'>
-    <Game/>
     <Chat/>
+    <Game/>
   </div>
 );

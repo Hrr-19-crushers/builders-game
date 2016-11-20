@@ -13,7 +13,7 @@ any > {
 
     render() {
         return (
-            <div id='game'></div>
+            <div className='game' id='game'></div>
         );
     }
 }

@@ -18,6 +18,10 @@ body {
   margin-top: 5vh;
 }
 
+.game {
+  width: 70%;
+}
+
 canvas {
   margin: 0 auto;
 }
@@ -28,8 +32,8 @@ canvas {
 .chatBox {
   position: relative;
   margin-right: 5vw;
-  margin-top: 5vh;
-  height: 70vh;
+  /*margin-top: 5vh;*/
+  height: 62vh;
   width: 30%;
   float: right;
 }
@@ -112,6 +116,7 @@ canvas {
   float: right;
   margin-right: 1vw;
 }
+
 
 /* map tester page */
 

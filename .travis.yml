@@ -2,6 +2,4 @@ language: node_js
 node_js:
   - '6.7'
   - '6.9'
-script:
-  npm test;
-  npm run lint-ts;
+script: npm test && npm run lint-ts

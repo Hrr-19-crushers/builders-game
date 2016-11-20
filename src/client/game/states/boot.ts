@@ -28,8 +28,10 @@ export class BootState extends Phaser.State {
     );
     text.anchor.setTo(0.5, 0.5);
 
-    this.load.image('loaderBg', './assets/images/loader-bg.png');
-    this.load.image('loaderBar', './assets/images/loader-bar.png');
+    this.game.load.image('loaderBg', 
+      './assets/images/loader-bg.png');
+    this.game.load.image('loaderBar', 
+      './assets/images/loader-bar.png');
   }
 
   render () {

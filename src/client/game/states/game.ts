@@ -4,21 +4,50 @@ import * as Phaser from 'phaser';
 import { setResponsiveWidth } from '../utils';
 import { getGameState } from '../../store';
 
+const enum TILE {
+  WIDTH = 16,
+  HEIGHT = 16
+}
+
+interface Coordinate {
+  x: number; 
+  y: number;
+}
+
 class Survivor extends Phaser.Sprite {
   gridPosition: Phaser.Point;
   moving: boolean;
+  keys: Phaser.CursorKeys;
 
   constructor({game, x, y}) {
-    super(game, x, y, 'mario');
+    super(game, x, y, 'link');
+    this.keys = this.game.input.keyboard.createCursorKeys();
     this.moving = true;
     this.gridPosition = new Phaser.Point(this.x, this.y);
   }
 
-  update() {
-    this.move({x: 1, y: 0});
+  create() {
+    this.animations.add('spin');
+    this.animations.play('spin');
   }
 
-  move({x, y}) {
+  update() {
+    const {
+      up, down, left, right
+    } = this.keys;
+
+    if (up.justDown) { 
+      this.move({x: 0, y: -TILE.HEIGHT});
+    } else if (left.justDown) {
+      this.move({x: -TILE.WIDTH, y: 0});
+    } else if (right.justDown) {
+      this.move({x: TILE.WIDTH, y: 0});
+    } else if (down.justDown) {
+      this.move({x: 0, y: TILE.HEIGHT});
+    }  
+  }
+
+  move({x, y}: Coordinate) {
     this.gridPosition.x += x;
     this.gridPosition.y += y;
     this.game.add.tween(this).to({
@@ -26,30 +55,31 @@ class Survivor extends Phaser.Sprite {
         y: this.gridPosition.y
       }, 
       250, 
-      Phaser.Easing.Quadratic.InOut, 
+      Phaser.Easing.Quadratic.Out, 
       true
     );
   }
 }
 
 export class GameState extends Phaser.State {
+  upstreamState: any; // Todo: get this a type
+
   survivor: Survivor;
-  upstreamState: any;
+  
   keys: Phaser.CursorKeys;
-  keyboard: Phaser.Keyboard;
+  tilemap: Phaser.Tilemap;
+  layer: Phaser.TilemapLayer;
 
-  init() {
+  init () {
+    // Get initial upstream state
     this.upstreamState = getGameState();
-
-    this.keyboard = this.game.input.keyboard;
-    this.keyboard.addKey(Phaser.KeyCode.DOWN);
-    this.keyboard.addKey(Phaser.KeyCode.UP);
-    this.keyboard.addKey(Phaser.KeyCode.LEFT);
-    this.keyboard.addKey(Phaser.KeyCode.RIGHT);
+    // Init map
   }
 
-  create() {
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+  create () {
+    this.game.physics.startSystem(
+      Phaser.Physics.ARCADE
+    );
 
     const banner = this.add.text(
       this.game.world.centerX,
@@ -61,29 +91,35 @@ export class GameState extends Phaser.State {
     banner.fill = '#77BFA3';
     banner.anchor.setTo(0.5);
 
+    this.tilemap = this.game.add.tilemap(
+      'zeldamap', TILE.WIDTH, TILE.HEIGHT);
+    this.tilemap.addTilesetImage('zeldatiles');
+    this.layer = this.tilemap.createLayer(0); 
+    // this.tilemap.setCollision();
+
+    this.layer.resizeWorld();
+
     this.survivor = new Survivor({
       game: this.game,
       x: this.game.world.centerX,
       y: this.game.world.centerY
     });
     this.game.add.existing(this.survivor);
-    this.survivor.scale.setTo(0.05);
-
-    
+    this.survivor.scale.setTo(0.05);    
   }
 
-  render() {
+  render () {
     if (window['__DEV__']) {
-      // this.game.debug.spriteInfo(this.mario, 32, 32);
+
     }
   }
 
-  update() {
+  update () {
     this.upstreamState = getGameState();
 
     const outcome = this.upstreamState.outcome;
     if (outcome) {
-      
+      /* do stuff! */  
     }
-  }
+  };
 }

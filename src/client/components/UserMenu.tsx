@@ -3,7 +3,7 @@ import * as React from 'react';
 export default ({user}) => {
   console.log(user);
   return (<div className='menu'>
-    {user || 'Guest'}
+    {user || `What\s your name? Type '\\name [your name]' to set it`}
   </div>
   )
 }

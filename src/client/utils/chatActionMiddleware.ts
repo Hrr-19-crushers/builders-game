@@ -5,21 +5,21 @@ import {
 import {
   moveAction
 } from '../actions/gameActions';
+import { direction2Server } from './socket_io';
 
 export default store => next => action => {
-    console.log('middleware', store, action.payload.text)
-    if (action.type === ADD_CHAT && action.payload.text[0] === '\\') {
+  if (action.type === ADD_CHAT && action.payload.text[0] === '\\') {
     const verb = action.payload.text
       .match(/\\\S+/gi)[0].slice(1);
     //FIXME: make parsing target less brittle
-   const target = action.payload.text.split(' ')[1]
+    const target = action.payload.text.split(' ')[1]
 
     // POSSIBLE USER ACTIONS FROM COMMAND LINE
     if (verb === 'name') {
       store.dispatch(changeUserAction(target));
     }
-    if (['up', 'down', 'left', 'right'].indexOf(action) > -1) {
-      store.dispatch(moveAction(verb));
+    if (['up', 'down', 'left', 'right'].indexOf(verb) > -1) {
+      direction2Server(verb);
     }
   }
   return next(action);

@@ -1,13 +1,9 @@
 import * as React from 'react';
 
-import Chat from './Chat';
-import Game from './Game';
-import Navbar from './NavBar';
+import NavBar from './NavBar';
 
-export default () => (
-    <div className='App'>
-        <Navbar />
-        <Chat />
-        <Game />
-    </div>
+export default({children}) => (
+  <div className='App'>
+    <NavBar/> {children}
+  </div>
 );

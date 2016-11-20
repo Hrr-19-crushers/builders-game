@@ -16,7 +16,6 @@ const INITIAL_STATE: UserState = {
 export const userState = (state: UserState = INITIAL_STATE, action: Action): UserState => {
   switch (action.type) {
     case CHANGE_USER:
-      console.log(Object.assign({}, state, { user: action.payload }))
       return Object.assign({}, state, { name: action.payload });
     default:
       return state;

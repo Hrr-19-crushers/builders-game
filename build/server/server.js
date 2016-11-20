@@ -32,7 +32,7 @@ app.get('/maptester', (req, res) => {
 // ---------------------------------------------------
 io.on('connection', socket => {
     socket.on('newPlayer', playerName => {
-        const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed up
+        const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed u p
         // socket['playerName'] = player.playerName;
     });
     socket.on('newMessage', data => {

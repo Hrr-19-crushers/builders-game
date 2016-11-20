@@ -12,7 +12,44 @@ const enum TILE {
 interface Coordinate {
   x: number; 
   y: number;
-}
+};
+
+enum EventType { MOVE_TO, SCENE };
+
+interface Event {
+  type: EventType;
+  callback: Function;
+};
+
+class EventQueue {
+  private _queue: Event[];
+
+  constructor(
+    public game: Phaser.Game, 
+    public survivor: Survivor,
+    public entities?: any[]
+  ) {}
+
+  push(e: Event) { return this._queue.push(e); }
+  pop() { return this._queue.pop(); }
+
+  resolve() {
+    let results = [];
+    while (this._queue.length) { 
+      results.push(
+        this.pop().callback(
+          this.game, this.survivor, this.entities
+        )
+      ); 
+    }
+    return results;
+  }
+
+  // In case of emergency
+  flush() {
+    while (this._queue.length > 0) { this.pop(); }
+  }
+ }
 
 class Survivor extends Phaser.Sprite {
   gridPosition: Phaser.Point;
@@ -69,6 +106,7 @@ export class GameState extends Phaser.State {
   keys: Phaser.CursorKeys;
   tilemap: Phaser.Tilemap;
   layer: Phaser.TilemapLayer;
+  events: EventQueue;
 
   init () {
     // Get initial upstream state
@@ -109,9 +147,7 @@ export class GameState extends Phaser.State {
   }
 
   render () {
-    if (window['__DEV__']) {
-
-    }
+    if (window['__DEV__']) {}
   }
 
   update () {

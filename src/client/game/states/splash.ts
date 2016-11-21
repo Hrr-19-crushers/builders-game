@@ -39,6 +39,10 @@ export class SplashState extends Phaser.State {
     this.load.image('crab', 
       'assets/sprites/crab.png');
 
+    // this.load.image('link',
+    //   'assets/sprites/link-single.png');
+
+    // Todo: why ain't link a-showin'????
     this.load.spritesheet('link',
       'assets/sprites/link.png',
       16, 16, 8, 0, 16);

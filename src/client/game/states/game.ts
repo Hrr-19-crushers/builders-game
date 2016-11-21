@@ -55,20 +55,15 @@ class Survivor extends Phaser.Sprite {
   gridPosition: Phaser.Point;
   moving: boolean;
   keys: Phaser.CursorKeys;
-  upstreamState: any;
 
-  constructor({game, x, y}, upstream) {
+  constructor({game, x, y}) {
     super(game, x, y, 'link');
     this.keys = this.game.input.keyboard.createCursorKeys();
     this.moving = true;
     this.gridPosition = new Phaser.Point(this.x, this.y);
-    this.upstreamState = upstream;
   }
 
-  create() {
-    // this.animations.add('spin');
-    // this.animations.play('spin', 30, true);
-  }
+  create() {}
 
   update() {
     const {
@@ -86,7 +81,15 @@ class Survivor extends Phaser.Sprite {
     // }  
   }
 
+  moveWithoutTween({x, y}: Coordinate) {
+    this.gridPosition.x = x * TILE.WIDTH;
+    this.gridPosition.y = y * TILE.HEIGHT;
+    this.x = x * TILE.WIDTH;
+    this.y = y * TILE.WIDTH;
+  }
+
   move({x, y}: Coordinate) {
+    console.log(this);
     this.gridPosition.x = x * TILE.WIDTH;
     this.gridPosition.y = y * TILE.HEIGHT;
     this.game.add.tween(this).to({
@@ -122,11 +125,13 @@ export class GameState extends Phaser.State {
 
   init () {
     // Get initial upstream state
-    this.pollForState();
+    
     // Init map
   }
 
   create () {
+    this.pollForState();
+
     this.game.physics.startSystem(
       Phaser.Physics.ARCADE
     );
@@ -151,21 +156,22 @@ export class GameState extends Phaser.State {
 
     this.survivor = new Survivor({
       game: this.game,
-      x: this.game.world.centerX,
-      y: this.game.world.centerY
-    }, this.upstreamState);
+      x: this.upstreamState.charState.charLocation.x,
+      y: this.upstreamState.charState.charLocation.y
+    });
     
-    this.game.add.existing(this.survivor);    
+    this.game.add.existing(this.survivor);
   }
 
   render () {
-    if (window['__DEV__']) {}
+
   }
 
   update () {
     this.pollForState();
-    const loc = this.upstreamState.charState.charLocation;
-    console.log('upstream: ', loc);
-    this.survivor.move({x: loc[0], y: loc[1]});
+
+    const charState = this.upstreamState.charState;
+
+    this.survivor.move(charState.charLocation);
   };
 }

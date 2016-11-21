@@ -29,9 +29,8 @@ export interface CharState {
 
 export interface GameState {
   charState: CharState;
-  turn : Turn;
+  turn?: Turn;
   outcome?: String;
-  locations?: Array < any >;
 }
 
 export const INITIAL_STATE : GameState = {
@@ -42,19 +41,6 @@ export const INITIAL_STATE : GameState = {
      y: 4 
     },
     charName: 'Link'
-  },
-  turn: {
-    expiration: new Date(),
-    prompt: 'Grab yerself a crab or a mushroom!?',
-    votes: [
-      {
-        name: 'mushroom',
-        count: 0
-      }, {
-        name: 'crab',
-        count: 0
-      }
-    ]
   }
 };
 

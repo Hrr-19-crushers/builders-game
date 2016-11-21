@@ -9,12 +9,10 @@ const enum TILE {
   HEIGHT = 16
 }
 
-interface Coordinate {
+interface Location {
   x: number; 
   y: number;
 };
-
-enum EventType { MOVE_TO, SCENE };
 
 // interface Event {
 //   type: EventType;
@@ -56,11 +54,16 @@ class Survivor extends Phaser.Sprite {
   moving: boolean;
   keys: Phaser.CursorKeys;
 
-  constructor({game, x, y}) {
-    super(game, x, y, 'link');
+  constructor(game: Phaser.Game, {x, y}: Location) {
+    super(
+      game, 
+      x * TILE.WIDTH, 
+      y * TILE.HEIGHT,
+      'link'
+    );
     this.keys = this.game.input.keyboard.createCursorKeys();
     this.moving = true;
-    this.gridPosition = new Phaser.Point(this.x, this.y);
+    this.gridPosition = new Phaser.Point(x, y);
   }
 
   create() {}
@@ -81,15 +84,14 @@ class Survivor extends Phaser.Sprite {
     // }  
   }
 
-  moveWithoutTween({x, y}: Coordinate) {
+  moveWithoutTween({x, y}: Location) {
     this.gridPosition.x = x * TILE.WIDTH;
     this.gridPosition.y = y * TILE.HEIGHT;
     this.x = x * TILE.WIDTH;
     this.y = y * TILE.WIDTH;
   }
 
-  move({x, y}: Coordinate) {
-    console.log(this);
+  move({x, y}: Location) {
     this.gridPosition.x = x * TILE.WIDTH;
     this.gridPosition.y = y * TILE.HEIGHT;
     this.game.add.tween(this).to({
@@ -102,7 +104,7 @@ class Survivor extends Phaser.Sprite {
     );
   }
 
-  getLocation(): Coordinate {
+  getLocation(): Location {
     return {
       x: this.gridPosition.x,
       y: this.gridPosition.y,
@@ -154,12 +156,11 @@ export class GameState extends Phaser.State {
 
     this.layer.resizeWorld();
 
-    this.survivor = new Survivor({
-      game: this.game,
-      x: this.upstreamState.charState.charLocation.x,
-      y: this.upstreamState.charState.charLocation.y
-    });
-    
+    this.survivor = new Survivor(
+      this.game,
+      this.upstreamState.charState.charLocation
+    );
+
     this.game.add.existing(this.survivor);
   }
 

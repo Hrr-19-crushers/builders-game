@@ -15,9 +15,9 @@ export default store => next => action => {
     //FIXME: make parsing target less brittle
     const target = action.payload.text.split(' ')[1]
 
-    // get Turn values from store
+    // If there is a current turn, get choice values from store
     const choices = store.getState().gameState.turn.votes.map(vote => vote.name);
-    console.log('voting choices', choices);
+    
     // POSSIBLE USER ACTIONS FROM COMMAND LINE
     if (verb === 'name') {
       store.dispatch(changeUserAction(target));

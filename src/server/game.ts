@@ -157,7 +157,7 @@ export class Game {
       .gameCharacter
       .charGetCharState();
     if (this.gameBoard.boardCharCanMoveDirection(direction, character.charLocation)) {
-      character.charSetCharLocation = this
+      this.gameCharacter.charSetCharLocation(this
         .gameBoard
         .boardGetNewCharLocation(direction, character.charLocation);
       if (cb) 

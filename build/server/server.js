@@ -19,14 +19,20 @@ app.use(bodyParser.json());
 // ------------- Static Asset Routes -----------------
 // ---------------------------------------------------
 app.get('/', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname + '/index.html'));
+    res
+        .status(200)
+        .sendFile(path.join(__dirname + '/index.html'));
 });
 app.get('/gamestate', (req, res) => {
     const gameState = game.gameGetGameState();
-    res.status(200).json(JSON.stringify(gameState.gameLayout));
+    res
+        .status(200)
+        .json(JSON.stringify(gameState.gameLayout));
 });
 app.get('/maptester', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname + '/../../maptester.html'));
+    res
+        .status(200)
+        .sendFile(path.join(__dirname + '/../../maptester.html'));
 });
 // ----------------- Socket Stuff --------------------
 // ---------------------------------------------------
@@ -51,9 +57,13 @@ io.on('connection', socket => {
         });
     });
     socket.on('direction', direction => {
+        // ok not to check for location value, cb won't get called if char can't move
+        console.log('socket heard this');
         game.gameMoveChar(direction, (data) => {
-            // ok not to check for location value, cb won't get called if char can't move
-            socket.emit('move', data);
+            socket.emit('move', data.gameCharacter);
+            // if there is a new turn, emit it as well
+            if (data.gameTurnActive)
+                socket.emit('nextTurn', data.gameCurrentTurn);
         });
     });
     socket.on('disconnect', () => {
@@ -64,6 +74,6 @@ io.on('connection', socket => {
 });
 // ---------------------------------------------------
 http.listen(port, () => {
-    console.log('Web server listening on port', port);
+    console.log('This updated Web server listening on port', port);
 });
 //# sourceMappingURL=server.js.map

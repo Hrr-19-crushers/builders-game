@@ -147,10 +147,12 @@ export class Game {
   gameMoveChar(direction : string, cb?: any) : void {
     // get the current state of the character
     const charState : CharacterState = this.gameCharacter.charGetCharState();
+    console.log('charState', charState)
     // check to see if the character is allowed to move this direction
     if (this.gameBoard.boardCharCanMoveDirection(direction, charState.charLocation)) {
       // if they are allowed, set character location to new location
       const newLocation : Location = this.gameBoard.boardGetNewCharLocation(direction, charState.charLocation);
+      console.log(newLocation);
       this.gameCharacter.charSetCharLocation(newLocation);
       // check to see if the new location contains a turn
       const isNewTurn : boolean = this.gameBoard.boardCheckForTurnInTile(newLocation);

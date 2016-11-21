@@ -14,7 +14,6 @@ any > {
   }
 
   render() {
-    console.log(this.props.user);
     const items = this
       .props
       .messages

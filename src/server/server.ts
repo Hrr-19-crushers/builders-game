@@ -75,6 +75,7 @@ io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('direction', direction => {
     // ok not to check for location value, cb won't get called if char can't move
+    console.log('socket heard this');
     game.gameMoveChar(direction, (data : GameState) => {
       socket.emit('move', data.gameCharacter);
       // if there is a new turn, emit it as well
@@ -92,5 +93,5 @@ io.on('connection', socket => { // TODO try to move this to engine
 // ---------------------------------------------------
 
 http.listen(port, () => {
-  console.log('Web server listening on port', port);
+  console.log('This updated Web server listening on port', port);
 });

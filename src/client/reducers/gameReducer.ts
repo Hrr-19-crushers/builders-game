@@ -85,7 +85,7 @@ export const gameState = (state : GameState = INITIAL_STATE, action : Action) =>
     case OUTCOME:
       return Object.assign({}, state, {outcome: action.payload});
     case UPDATE_CHAR:
-      console.log('updated char state', Object.assign({}, state, {charState: action.payload}));
+      console.log('updated char state', Object.assign({}, state, {charState: action.payload}).charState.charLocation);
       return Object.assign({}, state, {charState: action.payload});
     default:
       return state;

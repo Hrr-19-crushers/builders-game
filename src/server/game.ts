@@ -120,8 +120,7 @@ export class Game {
     this.gameCharacter = new Character(randomNewCharId, defaultCharName, {
       x: 0,
       y: 4
-    }
-    as Location);
+    } as Location);
 
     // this.gameTurnActive = false; this.gameTurnNum = 0; this.gameTurnId = 'turn0';
     // this.gameTurnTypes = Object.keys(phrases);
@@ -158,7 +157,7 @@ export class Game {
       .gameCharacter
       .charGetCharState();
     if (this.gameBoard.boardCharCanMoveDirection(direction, character.charLocation)) {
-      character.charSetCharLocation = this
+      this.gameCharacter.charSetCharLocation(this
         .gameBoard
         .boardGetNewCharLocation(direction, character.charLocation);
       if (cb) 

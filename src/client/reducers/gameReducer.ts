@@ -29,7 +29,6 @@ export interface CharState {
 
 export interface GameState {
   charState: CharState;
-  turnNumber : number;
   turn : Turn;
   outcome?: String;
   locations?: Array < any >;
@@ -44,7 +43,6 @@ export const INITIAL_STATE : GameState = {
     },
     charName: 'Link'
   },
-  turnNumber: 0,
   turn: {
     expiration: new Date(),
     prompt: 'Grab yerself a crab or a mushroom!?',

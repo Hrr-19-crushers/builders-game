@@ -36,7 +36,6 @@ export const chat2Server = message => {
 }
 
 export const direction2Server = direction => {
-  console.log(direction);
   socket.emit('direction', direction);
 }
 
@@ -50,8 +49,8 @@ socket.on('vote', (choice: String) => {
   store.dispatch(voteAction(choice));
 });
 
-socket.on('nextTurn', ({prompt, choices}) => {
-  store.dispatch(nextTurnAction(prompt, choices));
+socket.on('nextTurn', (turn) => {
+  store.dispatch(nextTurnAction(turn));
 });
 
 socket.on('outcome', (choice) => {

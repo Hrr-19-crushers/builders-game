@@ -1,6 +1,6 @@
 import { Location, Tile, BoardState } from './interfaces';
 import { Turn } from '../client/reducers/gameReducer';
-import { turns } from '../gameTurns';
+import { turns } from './gameTurns';
 import { testLayout } from './layouts';
 
 export class Board {

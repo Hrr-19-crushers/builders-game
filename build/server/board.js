@@ -39,6 +39,7 @@ class Board {
     // some duplication of code here and prob not necessary, but fine sep of concerns for now
     boardGetNewCharLocation(direction, currentLocation) {
         // there's probably a better way to destructure currentLocation here
+        // don't call this with a location unless you've already checked it's valid with boardCharCanMoveDirection
         let newLocation;
         switch (direction) {
             case 'up':
@@ -55,6 +56,14 @@ class Board {
                 break;
         }
         return newLocation;
+    }
+    boardCheckForTurnInTile(location) {
+        return ('turn' in this.boardLayout[location.y][location.x]);
+    }
+    boardGetTurnInformation(location) {
+        // always check boardCheckForTurnInTile first to make sure there is a turn present
+        if (this.boardCheckForTurnInTile(location))
+            return this.boardLayout[location.y][location.x].turn;
     }
 }
 exports.Board = Board;

@@ -1,5 +1,5 @@
 import { TileType, Tile } from './interfaces';
-import { turns } from '../gameTurns';
+import { turns } from './gameTurns';
 
 export const testLayout: Tile[][] = [
   [

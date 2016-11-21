@@ -10,9 +10,22 @@ import {
   updateCharAction
 } from '../actions/gameActions';
 
-// connect to server socket
 const socket = io();
 
+/*OUTGOING TO SERVER */
+export const chat2Server = message => {
+  socket.emit('newMessage', message);
+}
+
+export const direction2Server = direction => {
+  socket.emit('direction', direction);
+}
+
+export const vote2Server = (choice: string) => {
+  socket.emit('vote', string);
+} 
+
+/* INCOMING FROM SERVER */
 // TODO: broadcast message with user's name
 socket.on('newPlayer', () => {
   console.log('a new player joined');
@@ -31,15 +44,7 @@ socket.on('prompt', (data) => {
   };
 });
 
-export const chat2Server = message => {
-  socket.emit('newMessage', message);
-}
-
-export const direction2Server = direction => {
-  socket.emit('direction', direction);
-}
-
-/*GAME*/
+/*INCOMING FROM SERVER - GAME*/
 socket.on('move', charState => {
   console.log('move', charState);
   store.dispatch(updateCharAction(charState));

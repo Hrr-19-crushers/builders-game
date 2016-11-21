@@ -1,7 +1,7 @@
 import {ADD_CHAT} from '../actions/actionTypes';
 import {changeUserAction} from '../actions/userActions';
 import {moveAction, voteAction} from '../actions/gameActions';
-import {direction2Server} from './socket_io';
+import {direction2Server, vote2Server} from './socket_io';
 
 export default store => next => action => {
   if (action.type === ADD_CHAT && action.payload.text[0] === '\\') {
@@ -30,6 +30,8 @@ export default store => next => action => {
       direction2Server(verb);
     }
     if (choices.indexOf(verb) > -1) {
+      // send to server
+      vote2Server(verb);
       store.dispatch(voteAction(verb));
     }
   }

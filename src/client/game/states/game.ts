@@ -65,7 +65,7 @@ class Survivor extends Phaser.Sprite {
 
   create() {
     this.animations.add('spin');
-    this.animations.play('spin');
+    this.animations.play('spin', 30, true);
   }
 
   update() {
@@ -73,15 +73,15 @@ class Survivor extends Phaser.Sprite {
       up, down, left, right
     } = this.keys;
 
-    if (up.justDown) { 
-      this.move({x: 0, y: -TILE.HEIGHT});
-    } else if (left.justDown) {
-      this.move({x: -TILE.WIDTH, y: 0});
-    } else if (right.justDown) {
-      this.move({x: TILE.WIDTH, y: 0});
-    } else if (down.justDown) {
-      this.move({x: 0, y: TILE.HEIGHT});
-    }  
+    // if (up.justDown) { 
+    //   this.move({x: 0, y: -TILE.HEIGHT});
+    // } else if (left.justDown) {
+    //   this.move({x: -TILE.WIDTH, y: 0});
+    // } else if (right.justDown) {
+    //   this.move({x: TILE.WIDTH, y: 0});
+    // } else if (down.justDown) {
+    //   this.move({x: 0, y: TILE.HEIGHT});
+    // }  
   }
 
   move({x, y}: Coordinate) {
@@ -152,10 +152,9 @@ export class GameState extends Phaser.State {
 
   update () {
     this.upstreamState = getGameState();
-
-    const outcome = this.upstreamState.outcome;
-    if (outcome) {
-      /* do stuff! */  
-    }
+    
+    this.survivor.move(
+      this.upstreamState.charLocation
+    );
   };
 }

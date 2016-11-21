@@ -15,10 +15,15 @@ export interface Turn {
   expiration?: Date;
 }
 
+export interface Location {
+  x: number;
+  y: number;
+}
+
 export interface CharState {
   charHealth: number;
   charId?: number;
-  charLocation: number[];
+  charLocation: Location;
   charName: string;
 }
 
@@ -33,7 +38,10 @@ export interface GameState {
 export const INITIAL_STATE : GameState = {
   charState: {
     charHealth: 100,
-    charLocation: [0,0],
+    charLocation: {
+     x: 0,
+     y: 0 
+    },
     charName: 'Link'
   },
   turnNumber: 0,

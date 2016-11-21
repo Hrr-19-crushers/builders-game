@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import {Choice, Turn, GameState, gameState, INITIAL_STATE} from '../../src/client/reducers/gameReducer';
 
 // action creators
-import {nextTurnAction, voteAction} from '../../src/client/actions/gameActions';
+import {nextTurnAction, voteAction, updateCharAction} from '../../src/client/actions/gameActions';
 
 describe('game reducer', () => {
   let state: GameState;
@@ -23,5 +23,16 @@ describe('game reducer', () => {
     const nextState = gameState(state, nextTurnAction(prompt, choices));
     expect(nextState.turn.prompt).to.equal('It is the next turn.  Will you run or hide?');
     expect(nextState.turn.votes[0].name).to.equal('run');
+  });
+
+  it('can update character state', () => {
+    const nextCharState = {
+      charHealth: 80,
+      charLocation: [1,0],
+      charName: 'Link'
+    };
+    const nextState = gameState(INITIAL_STATE, updateCharAction(nextCharState));
+    expect(nextState.charState.charHealth).to.equal(80);
+    expect(nextState.charState.charLocation).to.eql([1,0]);
   });
 });

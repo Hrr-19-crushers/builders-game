@@ -95,10 +95,9 @@ export class Game {
   private gameLayout : Tile[][];
   private gameBoard : Board;
   private gameCharacter : Character;
-  private gameTurnActive: boolean;
-  // gameTurnNum: number;
-  // gameTurnId: string;
-  private gameCurrentTurn: Turn;
+  private gameTurnActive : boolean;
+  private gameCurrentTurn : Turn;
+  private gameTurns : Turn[]; // not included in interface currently
 
   constructor(layout?: Tile[][]) {
     this.gameLayout = layout || testLayout;
@@ -107,9 +106,7 @@ export class Game {
     const defaultCharName = 'Guest';
     // TODO init new character properly later if there are more than 1
     this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 0, y: 4} as Location);
-    // this.gameTurnActive = false;
-    // this.gameTurnNum = 0;
-    // this.gameTurnId = 'turn0';
+    this.gameTurnActive = false;
   }
 
   //========= Game Methods =========
@@ -155,16 +152,7 @@ export class Game {
       console.log(newLocation);
       this.gameCharacter.charSetCharLocation(newLocation);
       // check to see if the new location contains a turn
-      const isNewTurn : boolean = this.gameBoard.boardCheckForTurnInTile(newLocation);
-      // if there is a new turn, retrieve the new turn and update the game state
-      if (isNewTurn) {
-        const newTurn : Turn = this.gameBoard.boardGetTurnInformation(newLocation);
-        this.gameCurrentTurn = newTurn;
-        this.gameTurnActive = true;
-      }
-      // call the emitter cb when done to broadcast change in game state
-      const gameState : GameState = this.gameGetGameState();
-      if (cb) cb(gameState);
+      this.gameNewTurn(newLocation, cb);
     }
   }
 
@@ -174,40 +162,30 @@ export class Game {
     // TODO eventually
   }
 
-  gameParseBasicActions(text : string) {
-    // maybe todo for MVP if necessary
-  }
-
-  gameNewMessage(userName : string, messageText : string, cb?: any) : void {
+  gameNewMessage(userName : string, messageText : string, cb? : any) : void {
     const message = new Message(messageText.toLowerCase(), null, userName);
     message.messageSaveToStorage(); // save message in main chat storage
-    // if a turn is currently active, also store text in turn response storage if
-    // (this.gameTurnActive) storage.lpush(this.gameTurnId, message.text);
     if (cb) cb();
   }
   
   // ======== Turn Methods =========
-  gameNewTurn() {
-    // generate new turn number
-    // this.gameTurnNum++;
-    // generate new turn id based on number
-    // this.gameTurnId = `turn${this.gameTurnNum}`;
-    // set turn state on
-    // this.gameTurnActive = true;
-    // choose a random turn type from the available prompts; can manually control this later when we have an actual game flow designed
-    // const turnType = this.gameTurnTypes[Math.floor(Math.random() + this.gameTurnTypes.length)];
-    // create a new turn instance and let the fun begin
-    // this.gameTurnInstance = new Turn(this.gameTurnId, turnType);
-    // after some period of time:
-      // this.gameTurnActive = false;
-      // this.gameTurnInstance.turnTallyVotes();
-      // storage.lpush('actions', ???);
-  }
   
-  gameTurnSpacing() {
-    // at some interval, after the last turn completes or
-    // after the game starts, initiate a new turn   // setInterval(this.gameNewTurn,
-    // 45000);
+  gameNewTurn(newLocation : Location, cb? : any) : void {
+    // determine if new location has a turn
+    const isNewTurn : boolean = this.gameBoard.boardCheckForTurnInTile(newLocation);
+    // if there is a new turn, retrieve the new turn and update the game state
+    if (isNewTurn) {
+      // get turn properties for this tile and set game state
+      const newTurn : Turn = this.gameBoard.boardGetTurnInformation(newLocation);
+      this.gameCurrentTurn = newTurn;
+      // add this turn to turn storage property
+      this.gameTurns.push(newTurn);
+      // set turn state on
+      this.gameTurnActive = true;
+    }
+    // call the emitter cb when done to broadcast change in game state
+    const gameState : GameState = this.gameGetGameState();
+    if (cb) cb(gameState);
   }
 
 }

@@ -159,7 +159,7 @@ export class Game {
     if (this.gameBoard.boardCharCanMoveDirection(direction, character.charLocation)) {
       this.gameCharacter.charSetCharLocation(this
         .gameBoard
-        .boardGetNewCharLocation(direction, character.charLocation);
+        .boardGetNewCharLocation(direction, character.charLocation));
       if (cb) 
         cb(this.gameCharacter.charGetCharState());
       }

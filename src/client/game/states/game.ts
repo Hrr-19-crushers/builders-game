@@ -16,56 +16,58 @@ interface Coordinate {
 
 enum EventType { MOVE_TO, SCENE };
 
-interface Event {
-  type: EventType;
-  callback: Function;
-};
+// interface Event {
+//   type: EventType;
+//   callback: Function;
+// };
 
-class EventQueue {
-  private _queue: Event[];
+// class EventQueue {
+//   private _queue: Event[];
 
-  constructor(
-    public game: Phaser.Game, 
-    public survivor: Survivor,
-    public entities?: any[]
-  ) {}
+//   constructor(
+//     public game: Phaser.Game, 
+//     public survivor: Survivor,
+//     public entities?: any[]
+//   ) {}
 
-  push(e: Event) { return this._queue.push(e); }
-  pop() { return this._queue.pop(); }
+//   push(e: Event) { return this._queue.push(e); }
+//   pop() { return this._queue.pop(); }
 
-  resolve() {
-    let results = [];
-    while (this._queue.length) { 
-      results.push(
-        this.pop().callback(
-          this.game, this.survivor, this.entities
-        )
-      ); 
-    }
-    return results;
-  }
+//   resolve() {
+//     let results = [];
+//     while (this._queue.length) { 
+//       results.push(
+//         this.pop().callback(
+//           this.game, this.survivor, this.entities
+//         )
+//       ); 
+//     }
+//     return results;
+//   }
 
-  // In case of emergency
-  flush() {
-    while (this._queue.length > 0) { this.pop(); }
-  }
- }
+//   // In case of emergency
+//   flush() {
+//     while (this._queue.length > 0) { this.pop(); }
+//   }
+// }
 
 class Survivor extends Phaser.Sprite {
   gridPosition: Phaser.Point;
   moving: boolean;
   keys: Phaser.CursorKeys;
+  upstreamState: any;
 
-  constructor({game, x, y}) {
+  constructor({game, x, y}, upstream) {
     super(game, x, y, 'link');
     this.keys = this.game.input.keyboard.createCursorKeys();
     this.moving = true;
     this.gridPosition = new Phaser.Point(this.x, this.y);
+    this.upstreamState = upstream;
   }
 
   create() {
-    this.animations.add('spin');
-    this.animations.play('spin', 30, true);
+    // this.animations.add('spin');
+    // this.animations.play('spin', 30, true);
   }
 
   update() {
@@ -85,8 +87,8 @@ class Survivor extends Phaser.Sprite {
   }
 
   move({x, y}: Coordinate) {
-    this.gridPosition.x += x;
-    this.gridPosition.y += y;
+    this.gridPosition.x = x * TILE.WIDTH;
+    this.gridPosition.y = y * TILE.HEIGHT;
     this.game.add.tween(this).to({
         x: this.gridPosition.x, 
         y: this.gridPosition.y
@@ -95,6 +97,13 @@ class Survivor extends Phaser.Sprite {
       Phaser.Easing.Quadratic.Out, 
       true
     );
+  }
+
+  getLocation(): Coordinate {
+    return {
+      x: this.gridPosition.x,
+      y: this.gridPosition.y,
+    };
   }
 }
 
@@ -106,11 +115,14 @@ export class GameState extends Phaser.State {
   keys: Phaser.CursorKeys;
   tilemap: Phaser.Tilemap;
   layer: Phaser.TilemapLayer;
-  events: EventQueue;
+
+  pollForState() {
+    this.upstreamState = getGameState();
+  }
 
   init () {
     // Get initial upstream state
-    this.upstreamState = getGameState();
+    this.pollForState();
     // Init map
   }
 
@@ -141,9 +153,9 @@ export class GameState extends Phaser.State {
       game: this.game,
       x: this.game.world.centerX,
       y: this.game.world.centerY
-    });
-    this.game.add.existing(this.survivor);
-    this.survivor.scale.setTo(0.05);    
+    }, this.upstreamState);
+    
+    this.game.add.existing(this.survivor);    
   }
 
   render () {
@@ -151,10 +163,9 @@ export class GameState extends Phaser.State {
   }
 
   update () {
-    this.upstreamState = getGameState();
-    
-    this.survivor.move(
-      this.upstreamState.charLocation
-    );
+    this.pollForState();
+    const loc = this.upstreamState.charState.charLocation;
+    console.log('upstream: ', loc);
+    this.survivor.move({x: loc[0], y: loc[1]});
   };
 }

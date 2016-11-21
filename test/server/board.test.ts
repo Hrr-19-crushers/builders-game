@@ -55,4 +55,21 @@ describe('a game board', () => {
     board.boardGetNewCharLocation('left', {x:3, y: 2}).should.have.property('y').equal(2);
   });
 
+  it('should have a boardCheckForTurnInTile method', () => {
+    board.should.have.property('boardCheckForTurnInTile');
+  });
+
+  it('should correctly check for a turn property for a given tile', () => {
+    board.boardCheckForTurnInTile({x:0, y:4}).should.equal(false);
+    board.boardCheckForTurnInTile({x:3, y:3}).should.equal(true);
+  });
+
+  it('should have a boardGetTurnInformation method', () => {
+    board.should.have.property('boardGetTurnInformation');
+  });
+
+  it('should correctly return a turn property for a given tile', () => {
+    board.boardGetTurnInformation({x:3, y:3}).should.have.property('choices')[0].equal('explore');
+  });
+
 });

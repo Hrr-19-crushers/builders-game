@@ -6,7 +6,8 @@ import { addChatAction } from '../actions/chatActions';
 import {
   nextTurnAction,
   voteAction,
-  outcomeAction
+  outcomeAction,
+  updateCharAction
 } from '../actions/gameActions';
 
 // connect to server socket
@@ -40,9 +41,9 @@ export const direction2Server = direction => {
 }
 
 /*GAME*/
-socket.on('move', location => {
-  console.log('move', location);
-  //TODO: do some action to get the location in the game
+socket.on('move', charState => {
+  console.log('move', charState);
+  store.dispatch(updateCharAction(charState));
 });
 
 socket.on('vote', (choice: String) => {

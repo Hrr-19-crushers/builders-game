@@ -1,20 +1,22 @@
-import { Location, Tile } from './interfaces';
+import { Location, Tile, BoardState } from './interfaces';
+import { Turn } from '../client/reducers/gameReducer';
+import { turns } from '../gameTurns';
 import { testLayout } from './layouts';
 
 export class Board {
-  private boardLayout: Tile[][];
+  private boardLayout : Tile[][];
 
-  constructor(layout: Tile[][]) {
+  constructor(layout : Tile[][]) {
     this.boardLayout = layout;
   }
 
-  boardGetBoardState(): any {
+  boardGetBoardState() : BoardState {
     return {
       boardLayout: this.boardLayout
     };
   }
 
-  boardCharCanMoveDirection(direction: string, currentLocation: Location): boolean {
+  boardCharCanMoveDirection(direction : string, currentLocation : Location) : boolean {
     // heroku appears to not like destructuring yet
     // const {x, y} = currentLocation;
     const x = currentLocation.x;
@@ -40,8 +42,9 @@ export class Board {
   }
 
   // some duplication of code here and prob not necessary, but fine sep of concerns for now
-  boardGetNewCharLocation(direction: string, currentLocation: Location): Location {
+  boardGetNewCharLocation(direction : string, currentLocation : Location) : Location {
     // there's probably a better way to destructure currentLocation here
+    // don't call this with a location unless you've already checked it's valid with boardCharCanMoveDirection
     let newLocation: Location;
     switch(direction) {
       case 'up':
@@ -59,4 +62,14 @@ export class Board {
     }
     return newLocation;
   }
+
+  boardCheckForTurnInTile(location : Location) : boolean {
+    return ('turn' in this.boardLayout[location.y][location.x]);
+  }
+
+  boardGetTurnInformation(location : Location) : Turn {
+    // always check boardCheckForTurnInTile first to make sure there is a turn present
+    if (this.boardCheckForTurnInTile(location)) return this.boardLayout[location.y][location.x].turn;
+  }
+
 }

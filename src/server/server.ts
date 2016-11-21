@@ -7,8 +7,9 @@ const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
 
-import {testLayout} from './layouts';
-import {Game} from './game';
+import { testLayout } from './layouts';
+import { CharacterState, GameState } from './interfaces';
+import { Game } from './game';
 
 // --------------- New Game Instance -----------------
 // ---------------------------------------------------
@@ -56,37 +57,35 @@ io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('newMessage', data => {
     game.gameNewMessage(data.user, data.text, () => {
-      socket
-        .broadcast
-        .emit('userMessage', data);
+      socket.broadcast.emit('userMessage', data);
     });
   });
 
   socket.on('gameState', () => {
-    game.gameGetGameState((data : any) => {
+    game.gameGetGameState((data : GameState) => {
       socket.emit('gameState', data);
     });
   });
 
   socket.on('charState', () => {
-    game.gameGetCharState((data : any) => {
+    game.gameGetCharState((data : CharacterState) => {
       socket.emit('charState', data);
     });
   });
 
   socket.on('direction', direction => {
-    game.gameMoveChar(direction, (data : any) => {
-      // ok not to check for location value, cb won't get called if char can't move
-      socket.emit('move', data);
+    // ok not to check for location value, cb won't get called if char can't move
+    game.gameMoveChar(direction, (data : GameState) => {
+      socket.emit('move', data.gameCharacter);
+      // if there is a new turn, emit it as well
+      if (data.gameTurnActive) socket.emit('nextTurn', data.gameCurrentTurn);
     });
   });
 
   socket.on('disconnect', () => {
     // const playerName = socket['playerName'] || 'anonymous player';
     // game.gameDeletePlayer(); // TODO nothing behind this yet
-    socket
-      .broadcast
-      .emit('playerLeft', `Guest has left the game`);
+    socket.broadcast.emit('playerLeft', `Guest has left the game`);
   });
 });
 

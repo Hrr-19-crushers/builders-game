@@ -1,6 +1,6 @@
-import {Turn} from './client/reducers/gameReducer';
+import { Turn } from './client/reducers/gameReducer';
 
-const turns : Turn[] = [
+export const turns : Turn[] = [
   {
     prompt: `A BURROWING CRAB! 
     Crabs are a good source of protein, but also are known to harbor some really nasty diseases.  As you know- they\'re bottom-dwellers.`,
@@ -11,7 +11,7 @@ const turns : Turn[] = [
     choices: ['attack', 'play-dead', 'retreat']
   }, {
     prompt: `A WASHED UP PIRATE! 
-    His clothes are salty and he's hobbling on a peg-leg. He might be carrying some gold.  But do you really feel like taking the chance?`,
+    His clothes are salty and he's hobbling on a peg-leg. He might be carrying some gold. But do you really feel like taking the chance?`,
     choices: ['attack', 'talk', 'retreat']
   }, {
     prompt: `A ZOOLOGIST!

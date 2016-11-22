@@ -4,7 +4,7 @@ import UserMenu from '../components/UserMenu';
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userState
+    user: state.userState.name
   };
 };
 

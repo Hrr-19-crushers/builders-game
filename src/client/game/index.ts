@@ -1,3 +1,5 @@
+/// <reference path="../../../type-declarations/index.d.ts" />
+
 import * as Phaser from 'phaser';
 
 import { BootState } from './states/boot';
@@ -13,7 +15,7 @@ class Game extends Phaser.Game {
       ? 1024
       : document.documentElement.clientHeight * .8;
 
-    super(width, height, Phaser.AUTO, 'content', null);
+    super(width, height, Phaser.AUTO, 'game', null);
 
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);

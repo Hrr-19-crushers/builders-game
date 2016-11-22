@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint", // I want to use babel-eslint for parsing!
+  "parser": "typescript-eslint-parser",
   "rules": {
     "comma-dangle": 0, // dangling commas are ok
     "indent": [2, 2, {

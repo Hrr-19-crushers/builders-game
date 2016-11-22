@@ -7,12 +7,14 @@ const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
 
+import { testLayout, zeldaLayout } from './layouts';
+import { CharacterState, GameState } from './interfaces';
 import { Game } from './game';
 
 // --------------- New Game Instance -----------------
 // ---------------------------------------------------
 
-const game = new Game();
+const game = new Game(zeldaLayout);
 
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------
@@ -25,7 +27,22 @@ app.use(bodyParser.json());
 // ---------------------------------------------------
 
 app.get('/', (req, res) => {
-  res.status(200).sendFile(path.join(__dirname + '/index.html'));
+  res
+    .status(200)
+    .sendFile(path.join(__dirname + '/index.html'));
+});
+
+app.get('/gamestate', (req, res) => {
+  const gameState = game.gameGetGameState();
+  res
+    .status(200)
+    .json(JSON.stringify(gameState.gameLayout));
+});
+
+app.get('/maptester', (req, res) => {
+  res
+    .status(200)
+    .sendFile(path.join(__dirname + '/../../maptester.html'));
 });
 
 // ----------------- Socket Stuff --------------------
@@ -34,7 +51,7 @@ app.get('/', (req, res) => {
 io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('newPlayer', playerName => {
-    const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed up
+    const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed u p
     // socket['playerName'] = player.playerName;
   });
 
@@ -44,16 +61,37 @@ io.on('connection', socket => { // TODO try to move this to engine
     });
   });
 
+  socket.on('gameState', () => {
+    game.gameGetGameState((data : GameState) => {
+      socket.emit('gameState', data);
+    });
+  });
+
+  socket.on('charState', () => {
+    game.gameGetCharState((data : CharacterState) => {
+      socket.emit('charState', data);
+    });
+  });
+
+  socket.on('direction', direction => {
+    // ok not to check for location value, cb won't get called if char can't move
+    console.log('socket heard this');
+    game.gameMoveChar(direction, (data : GameState) => {
+      socket.emit('move', data.gameCharacter);
+      // if there is a new turn, emit it as well
+      if (data.gameTurnActive) socket.emit('nextTurn', data.gameCurrentTurn);
+    });
+  });
+
   socket.on('disconnect', () => {
     // const playerName = socket['playerName'] || 'anonymous player';
     // game.gameDeletePlayer(); // TODO nothing behind this yet
     socket.broadcast.emit('playerLeft', `Guest has left the game`);
   });
-
 });
 
 // ---------------------------------------------------
 
 http.listen(port, () => {
-  console.log('Web server listening on port', port);
+  console.log('This updated Web server listening on port', port);
 });

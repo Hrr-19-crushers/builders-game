@@ -18,6 +18,10 @@ body {
   margin-top: 5vh;
 }
 
+.game {
+  width: 70%;
+}
+
 canvas {
   margin: 0 auto;
 }
@@ -28,8 +32,8 @@ canvas {
 .chatBox {
   position: relative;
   margin-right: 5vw;
-  margin-top: 5vh;
-  height: 70vh;
+  /*margin-top: 5vh;*/
+  height: 62vh;
   width: 30%;
   float: right;
 }
@@ -91,14 +95,16 @@ canvas {
 }
 
 .selfChat {
-  justify-content: flex-end;
-  align-items: flex-end;
-  background-color: 'blue';
+  font-weight: 700;
   border-bottom-right-radius: 0px;
   box-shadow: 1px 2px 0px #D4D4D4;
 }
 
-.messages .chatName {
+.selfChat .chatName {
+  color: rebeccapurple;
+}
+
+.chat .chatName {
   font-weight: 700;
   color: cadetblue;
 }
@@ -109,4 +115,32 @@ canvas {
   font-style: italic;
   float: right;
   margin-right: 1vw;
+}
+
+
+/* map tester page */
+
+ul.board {
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+ul.board li {
+  float: left;
+  width: 20%;
+  height: 20%;
+}
+
+ul.board li.type1 {
+  background: rgb(230, 230, 230);
+}
+
+ul.board li.type3 {
+  background: rgb(25, 25, 25);
+}
+
+ul.board li.type6 {
+  background: blue;
 }

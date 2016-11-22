@@ -5,7 +5,7 @@ import store from '../store';
 import { addChatAction, chatBotAction } from '../actions/chatActions';
 import {
   nextTurnAction,
-  voteAction,
+  voteAction, 
   outcomeAction,
   updateCharAction
 } from '../actions/gameActions';
@@ -26,7 +26,6 @@ export const vote2Server = (choice: string) => {
 } 
 
 export const newPlayer2Server = (name:string) => {
-  console.log(name);
   socket.emit('newPlayer', name);
 }
 
@@ -34,7 +33,7 @@ export const newPlayer2Server = (name:string) => {
 // TODO: broadcast message with user's name
 socket.on('newPlayer', name => {
   console.log('new player', name);
-  store.dispatch(chatBotAction(name + 'just joined the game!'));
+  store.dispatch(chatBotAction(name + ' just joined the game!'));
 });
 
 /*MESSAGES */

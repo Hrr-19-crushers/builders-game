@@ -27,7 +27,7 @@ export default (action, next) => {
     // POSSIBLE USER ACTIONS FROM COMMAND LINE
     if (verb === 'name') {
       store.dispatch(changeUserAction(target));
-      //newPlayer2Server(target);
+      newPlayer2Server(target);
     }
     if (['up', 'down', 'left', 'right'].indexOf(verb) > -1) {
       direction2Server(verb);

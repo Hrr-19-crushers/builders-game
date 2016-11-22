@@ -8,7 +8,7 @@ import {
 import { Action } from '../actions/actionInterface';
 
 export interface Message {
-  name: String;
+  user: String;
   text: String;
   type?: String;
   date: Date;

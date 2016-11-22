@@ -14,13 +14,12 @@ any > {
   }
 
   render() {
-    console.log(this.props.messages);
     const items = this
       .props
       .messages
       .map(m => (
         <p
-          key={m.date}
+          key={m.date + m.name}
           className={this.props.user === m.user
           ? 'selfChat'
           : 'chat'}>

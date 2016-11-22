@@ -51,16 +51,9 @@ app.get('/maptester', (req, res) => {
 io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('newPlayer', playerName => {
-    const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed u p
-    socket.broadcast.emit('userMessage', {
-      type: 'ADD_CHAT',
-      payload: {
-        name: 'BuilderBot',
-        text: `${playerName} has joined the game!`,
-        type: 'admin',
-        date: JSON.stringify(new Date())
-      }
-    });
+    //const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed updated
+    console.log(playerName);
+    socket.broadcast.emit('newPlayer', playerName);
   });
 
   socket.on('newMessage', data => {

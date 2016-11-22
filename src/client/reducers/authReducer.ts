@@ -1,3 +1,4 @@
+/// <reference path="../../../type-declarations/Object.d.ts" />
 import {
   LOCK_SUCCESS,
   LOGOUT_SUCCESS,
@@ -25,7 +26,6 @@ export const authReducer = (state: Auth = INITAL_STATE, action) => {
         profile: JSON.parse(action.profile),
       })
     case LOGOUT_SUCCESS:
-    console.log('testing if im in the reducer file')
       return Object.assign({}, state, {
         isFetching: true,
         isAuth: false,

@@ -121,7 +121,8 @@ class Game {
     }
     gameNewMessage(userName, messageText, cb) {
         const message = new Message(messageText.toLowerCase(), null, userName);
-        message.messageSaveToStorage(); // save message in main chat storage
+        // save message in main chat storage; not sure if we need this at the moment, if ever
+        // message.messageSaveToStorage();
         if (cb)
             cb();
     }

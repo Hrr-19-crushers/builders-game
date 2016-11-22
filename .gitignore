@@ -8,12 +8,4 @@ yarn.lock
 .vscode
 *.rdb
 
-# Comment these out for deploy
-build
-build/**/*
-build/**/*.js
-build/client/*.js
-build/server/*.js
-# end
-
 process.yml

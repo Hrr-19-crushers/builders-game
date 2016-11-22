@@ -6,14 +6,24 @@ export interface Location {
   y: number;
 }
 
-export enum TileType {
-  cliff, dirt, grass, rock, sand, tree, water, bush, statue, hollow
-}
+// export enum TileType {
+//   cliff, dirt, grass, rock, sand, tree, water, bush, statue, hollow
+// }
+
+// export interface Tile {
+//   passable: boolean,
+//   turn?: Turn,
+//   type?: TileType,
+// }
 
 export interface Tile {
-  passable: boolean,
-  turn?: Turn,
-  type?: TileType,
+  p: boolean, // passable
+  t: number, // tile art
+  d?: boolean, // door
+  e?: boolean, // enemy
+  f?: boolean, // fairy
+  h?: boolean, // heart
+  i?: number, // triforce piece
 }
 
 export interface CharacterState {

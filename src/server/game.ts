@@ -11,7 +11,7 @@ storage.on('connect', (err : any) => {
 
 import { Turn } from '../client/reducers/gameReducer';
 import { Location, Tile, CharacterState, GameState } from './interfaces';
-import { testLayout } from './layouts';
+// import { testLayout } from './layouts';
 import { Board } from './board';
 
 // -------------------- Message ----------------------
@@ -24,7 +24,7 @@ class Message {
   private timeStamp : number;
   private text : string;
 
-  constructor(text : string, userId?: number, userName?: string) {
+  constructor(text : string, userId? : number, userName? : string) {
     this.msgId = Math.random() * 10000000000000000;
     this.userId = userId || 10000000000000000;
     this.userName = userName || 'Guest';
@@ -100,7 +100,8 @@ export class Game {
   private gameTurns : Turn[]; // not included in interface currently
 
   constructor(layout?: Tile[][]) {
-    this.gameLayout = layout || testLayout;
+    // this.gameLayout = layout || testLayout;
+    this.gameLayout = layout;
     this.gameBoard = new Board(this.gameLayout);
     const randomNewCharId = Math.random() * 10000000000000000;
     const defaultCharName = 'Guest';
@@ -152,7 +153,9 @@ export class Game {
       console.log(newLocation);
       this.gameCharacter.charSetCharLocation(newLocation);
       // check to see if the new location contains a turn
-      this.gameNewTurn(newLocation, cb);
+      // this.gameNewTurn(newLocation, cb);
+      const gameState = this.gameGetGameState();
+      if (cb) cb(gameState);
     }
   }
 
@@ -164,28 +167,29 @@ export class Game {
 
   gameNewMessage(userName : string, messageText : string, cb? : any) : void {
     const message = new Message(messageText.toLowerCase(), null, userName);
-    message.messageSaveToStorage(); // save message in main chat storage
+    // save message in main chat storage; not sure if we need this at the moment, if ever
+    // message.messageSaveToStorage();
     if (cb) cb();
   }
   
   // ======== Turn Methods =========
   
-  gameNewTurn(newLocation : Location, cb? : any) : void {
-    // determine if new location has a turn
-    const isNewTurn : boolean = this.gameBoard.boardCheckForTurnInTile(newLocation);
-    // if there is a new turn, retrieve the new turn and update the game state
-    if (isNewTurn) {
-      // get turn properties for this tile and set game state
-      const newTurn : Turn = this.gameBoard.boardGetTurnInformation(newLocation);
-      this.gameCurrentTurn = newTurn;
-      // add this turn to turn storage property
-      this.gameTurns.push(newTurn);
-      // set turn state on
-      this.gameTurnActive = true;
-    }
-    // call the emitter cb when done to broadcast change in game state
-    const gameState : GameState = this.gameGetGameState();
-    if (cb) cb(gameState);
-  }
+  // gameNewTurn(newLocation : Location, cb? : any) : void {
+  //   // determine if new location has a turn
+  //   const isNewTurn : boolean = this.gameBoard.boardCheckForTurnInTile(newLocation);
+  //   // if there is a new turn, retrieve the new turn and update the game state
+  //   if (isNewTurn) {
+  //     // get turn properties for this tile and set game state
+  //     const newTurn : Turn = this.gameBoard.boardGetTurnInformation(newLocation);
+  //     this.gameCurrentTurn = newTurn;
+  //     // add this turn to turn storage property
+  //     this.gameTurns.push(newTurn);
+  //     // set turn state on
+  //     this.gameTurnActive = true;
+  //   }
+  //   // call the emitter cb when done to broadcast change in game state
+  //   const gameState : GameState = this.gameGetGameState();
+  //   if (cb) cb(gameState);
+  // }
 
 }

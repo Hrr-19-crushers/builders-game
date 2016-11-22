@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import * as React from 'react'
 
-export default class Logout extends Component <any,any>{
+export default class Logout extends React.Component <any,any>{
   
   render() {
     
     return (
-      <button onClick={() => this.props.onLogoutClick()}>
+      <button onClick={ () => this.props.logOut() }>
         Logout
       </button>
     )

@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 
-import UserMenu from '../components/UserMenu';
+import NavBar from '../components/NavBar';
 
 const mapStateToProps = (state) => {
-  console.log(state.authReducer.isAuth)
+  console.log(state)
   return {
-    user: state.authReducer.profile.name,
     isAuth: state.authReducer.isAuth
   };
 };
 
+
 export default connect(
     mapStateToProps
-  )(UserMenu);
+)(NavBar);

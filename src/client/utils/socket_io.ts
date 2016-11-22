@@ -8,6 +8,7 @@ import {
     voteAction
 } from '../actions/gameActions';
 
+
 // connect to server socket
 const socket = io();
 
@@ -41,3 +42,45 @@ socket.on('vote', (choice: String) => {
 socket.on('nextTurn', ({prompt, choices}) => {
     store.dispatch(nextTurnAction(prompt, choices));
 });
+
+
+
+//______________ auth0 helpers _____________________________________
+
+import {
+  lockSuccess,  
+  lockFail,
+  logoutRequest,
+  logutSuccess
+} from '../actions/authActions';
+import Auth0Lock from 'auth0-lock';
+
+export const isAuth = store.getState()['authReducer'].isAuth
+export const {dispatch} = store;
+
+
+const lock = new Auth0Lock('jYPMYlgiL8LUcwbOVQA2Oz0BlifZnPAn', 'hrr19crushers.auth0.com');
+
+export const logIn =() => {    
+    lock.show();
+}
+
+export const doAuth = () => { 
+  lock.on('authenticated', (authResult) => {     
+    lock.getProfile(authResult.idToken, (err, profile)=>{
+      console.log(profile);    
+      if (err) {return dispatch (lockFail(err))}
+      localStorage.setItem('profile', JSON.stringify(profile));
+      localStorage.setItem('id_token', authResult.idToken);
+      dispatch(lockSuccess(profile, authResult.idToken))
+    });
+  });
+}
+doAuth();
+
+export const logOut = () => {   
+  dispatch(logoutRequest())
+  localStorage.removeItem('id_token')
+  localStorage.removeItem('profile')
+  dispatch(logutSuccess())
+}

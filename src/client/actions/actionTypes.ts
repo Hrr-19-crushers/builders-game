@@ -11,3 +11,14 @@ export const CHANGE_USER: String = 'CHANGE_USER';
 /*GAME-ACTIONS*/
 export const NEXT_TURN: String = 'NEXT_TURN';
 export const VOTE: String = 'VOTE';
+
+/*Auth0*/
+/*____________________ DISPLAY THE LOCK AND LOGIN ______________________________________*/
+export const LOCK_SUCCESS = 'LOCK_SUCCESS'
+export const LOCK_FAIL = 'LOCK_FAIL'
+
+/*____________________ LOG OUT ______________________________________*/
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const LOGOUT_FAIL = 'LOGOUT_FAIL'
+

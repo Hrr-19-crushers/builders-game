@@ -19,7 +19,7 @@ export default class Chat extends React.Component<any, any> {
           e.preventDefault();
           this.props.addChat({
             text: this.state.input,
-            user: this.props.user || 'Guest',
+            user: this.props.user,
             date: JSON.stringify(new Date())
           });
           this.setState({ input: '' });

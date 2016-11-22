@@ -7,7 +7,7 @@ import { chat2Server } from '../utils/socket_io';
 
 const mapStateToProps = (state) => {
     return {
-        user: state.userState
+        user: state.authReducer.profile.name
     };
 };
 

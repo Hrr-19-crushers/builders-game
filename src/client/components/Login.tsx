@@ -1,12 +1,10 @@
-import React, { Component} from 'react'
+import * as React from 'react'
 
-export default class Login extends Component <any,any>{
-  
+export default class Login extends React.Component <any,any>{
   render() {
-    
     return (
       <div>
-        <button onClick={() => this.props.onLoginClick()} >
+        <button onClick={ () => this.props.logIn() } >
           Login
         </button>
       </div>

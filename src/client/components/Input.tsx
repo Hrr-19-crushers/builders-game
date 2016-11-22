@@ -50,7 +50,7 @@ any > {
           onSubmit={this
           .onSubmit
           .bind(this)}>
-          <input value={this.state.input} onChange={e => this._onChange(e)}/>
+          <input value={this.state.input} onChange={e => this._onChange(e)} autoFocus />
           <input className='submitButton' type='submit'/>
         </form>
       </div>

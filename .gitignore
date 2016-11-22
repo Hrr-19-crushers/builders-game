@@ -7,4 +7,3 @@ yarn.lock
 .vscode
 *.rdb
 
-build/**/*

@@ -59,7 +59,7 @@ export const isAuth = store.getState()['authReducer'].isAuth
 export const {dispatch} = store;
 
 
-const lock = new Auth0Lock('jYPMYlgiL8LUcwbOVQA2Oz0BlifZnPAn', 'hrr19crushers.auth0.com');
+const lock = new Auth0Lock(, );
 
 export const logIn =() => {    
     lock.show();

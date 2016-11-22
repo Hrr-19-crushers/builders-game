@@ -19,7 +19,7 @@ any > {
       .messages
       .map(m => (
         <p
-          key={m.date}
+          key={m.date + m.name}
           className={this.props.user === m.user
           ? 'selfChat'
           : 'chat'}>
@@ -29,7 +29,7 @@ any > {
           </span>
           <span className='chatDate'>{m.date
               ? moment(JSON.parse(m.date)).fromNow()
-              : new Date()}</span>
+              : moment(new Date()).fromNow()}</span>
         </p>
       ));
     return (

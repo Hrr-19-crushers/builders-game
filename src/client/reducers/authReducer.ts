@@ -13,7 +13,7 @@ export interface Auth {
 const INITAL_STATE: Auth = {
   isFetching: false,
   isAuth: localStorage.getItem('id_token')? true : false,
-  profile: localStorage.getItem(('profile'))? JSON.parse(localStorage.profile) : {name:'Guest'}
+  profile: {name:'Guest'}
 };
 
 export const authReducer = (state: Auth = INITAL_STATE, action) => {

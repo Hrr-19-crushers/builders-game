@@ -1,4 +1,5 @@
 import * as React from 'react';
+import HealthbarContainer from '../containers/HealthbarContainer';
 
 class TurnDisplay extends React.Component<any, any> {
   constructor(props) {
@@ -36,6 +37,7 @@ class TurnDisplay extends React.Component<any, any> {
       return(
         <div className='turnDisplay'>
           <p>Open world play! Type in '\up', '\down', '\left', or '\right' to move</p>
+          <HealthbarContainer />
         </div>
       );
     }

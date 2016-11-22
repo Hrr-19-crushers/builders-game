@@ -1,5 +1,4 @@
 node_modules
-build
 .vs_code
 .DS_Store
 *.log

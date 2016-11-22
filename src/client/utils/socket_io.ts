@@ -2,7 +2,7 @@ import * as io from 'socket.io-client';
 
 import { Action } from '../actions/actionInterface';
 import store from '../store';
-import { addChatAction } from '../actions/chatActions';
+import { addChatAction, chatBotAction } from '../actions/chatActions';
 import {
   nextTurnAction,
   voteAction,
@@ -22,13 +22,19 @@ export const direction2Server = direction => {
 }
 
 export const vote2Server = (choice: string) => {
-  socket.emit('vote', string);
+  socket.emit('vote', choice);
 } 
+
+export const newPlayer2Server = (name:string) => {
+  console.log(name);
+  socket.emit('newPlayer', name);
+}
 
 /* INCOMING FROM SERVER */
 // TODO: broadcast message with user's name
-socket.on('newPlayer', () => {
-  console.log('a new player joined');
+socket.on('newPlayer', name => {
+  console.log('new player', name);
+  store.dispatch(chatBotAction(name + 'just joined the game!'));
 });
 
 /*MESSAGES */
@@ -37,16 +43,8 @@ socket.on('userMessage', message => {
   store.dispatch(addChatAction(message));
 });
 
-socket.on('prompt', (data) => {
-  console.log(data);
-  if (data.question) {
-    alert(data.question);
-  };
-});
-
 /*INCOMING FROM SERVER - GAME*/
 socket.on('move', charState => {
-  console.log('move', charState);
   store.dispatch(updateCharAction(charState));
 });
 

@@ -52,7 +52,15 @@ io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('newPlayer', playerName => {
     const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed u p
-    // socket['playerName'] = player.playerName;
+    socket.broadcast.emit('userMessage', {
+      type: 'ADD_CHAT',
+      payload: {
+        name: 'BuilderBot',
+        text: `${playerName} has joined the game!`,
+        type: 'admin',
+        date: JSON.stringify(new Date())
+      }
+    });
   });
 
   socket.on('newMessage', data => {
@@ -75,7 +83,6 @@ io.on('connection', socket => { // TODO try to move this to engine
 
   socket.on('direction', direction => {
     // ok not to check for location value, cb won't get called if char can't move
-    console.log('socket heard this');
     game.gameMoveChar(direction, (data : GameState) => {
       socket.emit('move', data.gameCharacter);
       // if there is a new turn, emit it as well

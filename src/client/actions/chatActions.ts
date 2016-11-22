@@ -19,3 +19,13 @@ export const chatsAfterAction = (date: Date): Action => ({
   type: CHATS_AFTER,
   payload: date
 });
+
+export const chatBotAction = (text: string): Action => ({
+  type: ADD_CHAT,
+  payload: {
+    name: 'BuilderBot',
+    text: text,
+    type: 'admin',
+    date: new Date()
+  }
+});

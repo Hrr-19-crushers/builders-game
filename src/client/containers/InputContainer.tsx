@@ -4,6 +4,7 @@ import { Message } from '../reducers/chatReducer';
 import Input from '../components/Input';
 import { addChatAction } from '../actions/chatActions';
 import { chat2Server } from '../utils/socket_io';
+import chatActionMiddleWare from '../utils/AddChatMiddleware';
 
 const mapStateToProps = (state) => {
   return {
@@ -28,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addChat: (message) => {
       chat2Server(message);
-      parseChat(message, dispatch);
+      chatActionMiddleWare(addChatAction(message), dispatch);
     }
   };
 };

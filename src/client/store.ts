@@ -1,7 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/rootReducer';
-//import socketMiddleware from './utils/serverActionMiddleware';
-import chatMiddleware from './utils/chatActionMiddleware';
 import {GameState} from './reducers/gameReducer';
 
 interface StoreState {

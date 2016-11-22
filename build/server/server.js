@@ -11,7 +11,7 @@ const layouts_1 = require('./layouts');
 const game_1 = require('./game');
 // --------------- New Game Instance -----------------
 // ---------------------------------------------------
-const game = new game_1.Game(layouts_1.testLayout);
+const game = new game_1.Game(layouts_1.zeldaLayout);
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------
 app.use(express.static(path.join(__dirname, '../../')));

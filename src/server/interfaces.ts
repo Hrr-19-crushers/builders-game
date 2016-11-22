@@ -7,7 +7,7 @@ export interface Location {
 }
 
 export enum TileType {
-  cliff, dirt, grass, rock, sand, tree, water
+  cliff, dirt, grass, rock, sand, tree, water, bush, statue, hollow
 }
 
 export interface Tile {

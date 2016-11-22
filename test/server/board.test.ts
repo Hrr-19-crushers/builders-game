@@ -69,7 +69,8 @@ describe('a game board', () => {
   });
 
   it('should correctly return a turn property for a given tile', () => {
-    board.boardGetTurnInformation({x:3, y:3}).should.have.property('choices')[0].equal('explore');
+    console.log(board.boardGetTurnInformation({x:3, y:3}).choices[0] === 'explore');
+    board.boardGetTurnInformation({x:3, y:3}).choices[0].should.equal('explore');
   });
 
 });

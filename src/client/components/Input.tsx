@@ -42,7 +42,6 @@ any > {
   
   public render() {
     return (
-<<<<<<< HEAD
       <div onKeyDown={this
         .onKeyDown
         .bind(this)}>

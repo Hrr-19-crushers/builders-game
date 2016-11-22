@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-import NavBar from './NavBar';
+import NavBar from '../containers/NavContainer';
 
 export default({children}) => (
   <div className='App'>

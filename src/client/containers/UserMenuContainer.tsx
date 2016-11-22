@@ -6,7 +6,6 @@ const mapStateToProps = (state) => {
   console.log(state.authReducer.isAuth)
   return {
     user: state.userState.name,
-    isAuth: state.authReducer.isAuth
   };
 };
 

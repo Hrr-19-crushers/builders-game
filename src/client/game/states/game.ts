@@ -138,16 +138,6 @@ export class GameState extends Phaser.State {
       Phaser.Physics.ARCADE
     );
 
-    const banner = this.add.text(
-      this.game.world.centerX,
-      this.game.height - 30,
-      'Phaser + ES6 + Webpack', {}
-    );
-    banner.font = 'Nunito';
-    banner.fontSize = 40;
-    banner.fill = '#77BFA3';
-    banner.anchor.setTo(0.5);
-
     this.tilemap = this.game.add.tilemap(
       'zeldamap', TILE.WIDTH, TILE.HEIGHT);
     this.tilemap.addTilesetImage('zeldatiles');

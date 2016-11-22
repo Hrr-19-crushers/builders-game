@@ -3,27 +3,27 @@ import { Tile } from './interfaces';
 export const overworld : Tile[][] = [
   // 0
   [
+    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:134},{p:false,t:99},{p:false,t:99},{p:true,t:133},{p:true,t:9},{p:true,t:9},
+    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:9},{p:true,t:9},
     {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
+    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:26},{p:true,t:9},{p:false,t:26},{p:true,t:9},{p:false,t:26},
+    {p:true,t:9},{p:false,t:26},{p:true,t:9},{p:false,t:26},{p:true,t:9},{p:false,t:26},{p:true,t:9},{p:false,t:26},{p:true,t:9},{p:false,t:26},
   ],
   // 1
   [
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
+    {p:false,t:44},{p:false,t:44},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:99},{p:false,t:99},{p:true,t:9},{p:true,t:9},{p:true,t:9},
+    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:44},{p:false,t:44},{p:false,t:44},{p:false,t:44},{p:true,t:9},
+    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:26},{p:true,t:9},{p:false,t:26},{p:false,t:26},
     {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
     {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
   ],
   // 2
   [
+    {p:false,t:62},{p:false,t:62},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:99},{p:false,t:99},{p:true,t:9},{p:true,t:9},{p:true,t:9},
+    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:62},{p:false,t:62},{p:false,t:62},{p:false,t:62},{p:true,t:9},
     {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
-    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},
+    {p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:62},
+    {p:true,t:9},{p:false,t:62},{p:true,t:9},{p:true,t:9},{p:true,t:9},{p:false,t:62},{p:true,t:9},{p:false,t:62},{p:false,t:62},{p:true,t:9},
   ],
   // 3
   [

@@ -6,6 +6,9 @@ yarn.lock
 .env
 .vscode
 *.rdb
-
 process.yml
+<<<<<<< 46e17808fad7e7165bbc14c66230e790499a3c17
 
+=======
+build
+>>>>>>> feat (server): add three rows of map to get something to mitch's engine for testing, change board.ts to accept new tile interface parameter

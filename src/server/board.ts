@@ -26,16 +26,16 @@ export class Board {
     // don't let Nick S see this, he hates switch statements
     switch(direction) {
       case 'up':
-        if ((y - 1 in layout) && (layout[y - 1][x].passable)) can = true;
+        if ((y - 1 in layout) && (layout[y - 1][x].p)) can = true;
         break;
       case 'right':
-        if ((x + 1 in layout[y]) && (layout[y][x + 1].passable)) can = true;
+        if ((x + 1 in layout[y]) && (layout[y][x + 1].p)) can = true;
         break;
       case 'down':
-        if ((y + 1 in layout) && (layout[y + 1][x].passable)) can = true;
+        if ((y + 1 in layout) && (layout[y + 1][x].p)) can = true;
         break;
       case 'left':
-        if ((x - 1 in layout[y]) && (layout[y][x - 1].passable)) can = true;
+        if ((x - 1 in layout[y]) && (layout[y][x - 1].p)) can = true;
         break;
     }
     return can;

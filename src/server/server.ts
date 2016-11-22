@@ -7,14 +7,14 @@ const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const path = require('path');
 
-import { testLayout, zeldaLayout } from './layouts';
+import { overworld } from './layouts';
 import { CharacterState, GameState } from './interfaces';
 import { Game } from './game';
 
 // --------------- New Game Instance -----------------
 // ---------------------------------------------------
 
-const game = new Game(zeldaLayout);
+const game = new Game(overworld);
 
 // ------------------ Middlewares --------------------
 // ---------------------------------------------------

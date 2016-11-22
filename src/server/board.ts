@@ -1,7 +1,7 @@
 import { Location, Tile, BoardState } from './interfaces';
-import { Turn } from '../client/reducers/gameReducer';
-import { turns } from './gameTurns';
-import { testLayout } from './layouts';
+// import { Turn } from '../client/reducers/gameReducer';
+// import { turns } from './gameTurns';
+// import { testLayout } from './layouts';
 
 export class Board {
   private boardLayout : Tile[][];
@@ -26,16 +26,16 @@ export class Board {
     // don't let Nick S see this, he hates switch statements
     switch(direction) {
       case 'up':
-        if ((y - 1 in layout) && (layout[y - 1][x].passable)) can = true;
+        if ((y - 1 in layout) && (layout[y - 1][x].p)) can = true;
         break;
       case 'right':
-        if ((x + 1 in layout[y]) && (layout[y][x + 1].passable)) can = true;
+        if ((x + 1 in layout[y]) && (layout[y][x + 1].p)) can = true;
         break;
       case 'down':
-        if ((y + 1 in layout) && (layout[y + 1][x].passable)) can = true;
+        if ((y + 1 in layout) && (layout[y + 1][x].p)) can = true;
         break;
       case 'left':
-        if ((x - 1 in layout[y]) && (layout[y][x - 1].passable)) can = true;
+        if ((x - 1 in layout[y]) && (layout[y][x - 1].p)) can = true;
         break;
     }
     return can;
@@ -63,13 +63,13 @@ export class Board {
     return newLocation;
   }
 
-  boardCheckForTurnInTile(location : Location) : boolean {
-    return ('turn' in this.boardLayout[location.y][location.x]);
-  }
+  // boardCheckForTurnInTile(location : Location) : boolean {
+  //   return ('turn' in this.boardLayout[location.y][location.x]);
+  // }
 
-  boardGetTurnInformation(location : Location) : Turn {
-    // always check boardCheckForTurnInTile first to make sure there is a turn present
-    if (this.boardCheckForTurnInTile(location)) return this.boardLayout[location.y][location.x].turn;
-  }
+  // boardGetTurnInformation(location : Location) : Turn {
+  //   // always check boardCheckForTurnInTile first to make sure there is a turn present
+  //   if (this.boardCheckForTurnInTile(location)) return this.boardLayout[location.y][location.x].turn;
+  // }
 
 }

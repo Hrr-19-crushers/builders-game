@@ -2,10 +2,9 @@ import * as React from 'react';
 import {Link} from 'react-router';
 import Login from './Login';
 import Logout from './Logout';
-import {logIn, logOut} from '../utils/socket_io';
 import UserBadgeContainer from '../containers/UserBadgeContainer';
 
-export default({isAuth}) => (
+export default() => (
 
   <nav className='nav'>
     <div className='navContent'>
@@ -14,7 +13,6 @@ export default({isAuth}) => (
       <Link className='navLink' activeClassName='active' to='/profile'>Profile</Link>
       <Link className='navLink' activeClassName='active' to='/dashboard'>Dashboard</Link>
       <UserBadgeContainer />
-      {isAuth ? <Login logIn ={logIn} /> : <Logout logOut={logOut} />}
     </div>
 
     <a href="https://github.com/Hrr-19-crushers/builders-game"><img

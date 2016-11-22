@@ -198,7 +198,7 @@ ul.board li.type6 {
 
 .userBadge {
   position: absolute;
-  right: 0;
+  right: 10vw;
 }
 
 .userBadgeProfile {

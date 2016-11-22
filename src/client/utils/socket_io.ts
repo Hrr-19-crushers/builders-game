@@ -2,36 +2,20 @@ import * as io from 'socket.io-client';
 
 import { Action } from '../actions/actionInterface';
 import store from '../store';
-import { addChatAction } from '../actions/chatActions';
+import { addChatAction, chatBotAction } from '../actions/chatActions';
 import {
   nextTurnAction,
-  voteAction,
+  voteAction, 
   outcomeAction,
   updateCharAction
 } from '../actions/gameActions';
 
 
 // connect to server socket
+
 const socket = io();
 
-// TODO: broadcast message with user's name
-socket.on('newPlayer', () => {
-  console.log('a new player joined');
-});
-
-/*MESSAGES */
-// when client receives message from server update the store
-socket.on('userMessage', message => {
-  store.dispatch(addChatAction(message));
-});
-
-socket.on('prompt', (data) => {
-  console.log(data);
-  if (data.question) {
-    alert(data.question);
-  };
-});
-
+/*OUTGOING TO SERVER */
 export const chat2Server = message => {
   socket.emit('newMessage', message);
 }
@@ -40,9 +24,29 @@ export const direction2Server = direction => {
   socket.emit('direction', direction);
 }
 
-/*GAME*/
+export const vote2Server = (choice: string) => {
+  socket.emit('vote', choice);
+} 
+
+export const newPlayer2Server = (name:string) => {
+  socket.emit('newPlayer', name);
+}
+
+/* INCOMING FROM SERVER */
+// TODO: broadcast message with user's name
+socket.on('newPlayer', name => {
+  console.log('new player', name);
+  store.dispatch(chatBotAction(name + ' just joined the game!'));
+});
+
+/*MESSAGES */
+// when client receives message from server update the store
+socket.on('userMessage', message => {
+  store.dispatch(addChatAction(message));
+});
+
+/*INCOMING FROM SERVER - GAME*/
 socket.on('move', charState => {
-  console.log('move', charState);
   store.dispatch(updateCharAction(charState));
 });
 

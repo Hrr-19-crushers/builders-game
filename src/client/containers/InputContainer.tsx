@@ -7,6 +7,7 @@ import { chat2Server } from '../utils/socket_io';
 import chatActionMiddleWare from '../utils/AddChatMiddleware';
 
 const mapStateToProps = (state) => {
+
   return {
     user: state.userState.name
   };

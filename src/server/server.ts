@@ -48,19 +48,25 @@ app.get('/maptester', (req, res) => {
 // ----------------- Socket Stuff --------------------
 // ---------------------------------------------------
 
-io.on('connection', socket => { // TODO try to move this to engine
+io.on('connection', socket => {
+  socket.emit('clients', io.engine.clientsCount);
+  socket.emit('gameState', game.gameGetGameState());
 
+  // PLAYERS
   socket.on('newPlayer', playerName => {
     //const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed updated
+    console.log(io.engine.clientsCount);
     socket.broadcast.emit('newPlayer', playerName);
   });
 
+  // MESSAGES
   socket.on('newMessage', data => {
     game.gameNewMessage(data.user, data.text, () => {
       socket.broadcast.emit('userMessage', data);
     });
   });
 
+  // GAME
   socket.on('gameState', () => {
     const gameState = game.gameGetGameState();
     socket.emit('gameState', gameState);
@@ -81,9 +87,15 @@ io.on('connection', socket => { // TODO try to move this to engine
     });
   });
 
+  // STATS
+  socket.on('authPlayer', profile => {
+
+  });
+
   socket.on('disconnect', () => {
     // const playerName = socket['playerName'] || 'anonymous player';
     // game.gameDeletePlayer(); // TODO nothing behind this yet
+    // TODO: update stats on game
     socket.broadcast.emit('playerLeft', `Guest has left the game`);
   });
 });

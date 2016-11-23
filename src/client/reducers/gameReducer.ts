@@ -1,7 +1,7 @@
 /// <reference path="../../../type-declarations/Object.d.ts" />
 import {Action} from '../actions/actionInterface';
 
-import {NEXT_TURN, VOTE, OUTCOME, UPDATE_CHAR} from '../actions/actionTypes';
+import {NEXT_TURN, VOTE, OUTCOME, UPDATE_CHAR, UPDATE_BOARD} from '../actions/actionTypes';
 
 export interface Choice {
   name : string;
@@ -20,6 +20,11 @@ export interface Location {
   y: number;
 }
 
+export interface BoardSquare {
+  p: boolean;
+  t: number;
+}
+
 export interface CharState {
   charHealth: number;
   charId?: number;
@@ -29,6 +34,7 @@ export interface CharState {
 
 export interface GameState {
   charState: CharState;
+  gameBoard?: BoardSquare[];
   turn?: Turn;
   outcome?: String;
 }
@@ -77,8 +83,9 @@ export const gameState = (state : GameState = INITIAL_STATE, action : Action) =>
     case OUTCOME:
       return Object.assign({}, state, {outcome: action.payload});
     case UPDATE_CHAR:
-      console.log('updated char state', Object.assign({}, state, {charState: action.payload}).charState.charLocation);
       return Object.assign({}, state, {charState: action.payload});
+    case UPDATE_BOARD:
+      return Object.assign({}, state, {gameBoard: action.payload});
     default:
       return state;
   }

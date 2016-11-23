@@ -1,3 +1,19 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+
 /*TODO get reset CSS*/
 
 body {
@@ -180,7 +196,9 @@ ul.board li.type6 {
 
 .userBadge,
 .navLink,
-.navTitle {
+.navTitle,
+.userBadgeProfile,
+.userNickname {
   display: inline-block;
 }
 
@@ -197,7 +215,11 @@ ul.board li.type6 {
 
 .userBadge {
   position: absolute;
-  right: 10vw;
+  right: 2vw;
+  border: 2px solid green;
+  border-radius: 5px;
+  width: 25vw;
+  height: 90%;
 }
 
 .userBadgeProfile,
@@ -207,10 +229,11 @@ ul.board li.type6 {
 }
 
 .userBadgeProfile {
+  margin-top: 1vh;
+  margin-right: 1.5vw;
   height: 7vh;
   width: 7vh;
   border-radius: 7vh;
-  margin-left: 1.5vh;
 }
 
 .userNickname {
@@ -228,4 +251,313 @@ ul.board li.type6 {
   border: 0;
   height: 15vh;
   width: 15vh;
+}
+
+
+/* USER BADGES */
+
+#boulder-badge,
+#cascade-badge,
+#thunder-badge,
+#rainbow-badge,
+#soul-badge,
+#marsh-badge,
+#volcano-badge,
+#earth-badge {
+  display: table-cell;
+  vertical-align: bottom;
+  text-align: center;
+  width: 240px;
+  height: 240px;
+  padding: 20px;
+}
+
+#boulder-badge .badge,
+#cascade-badge .badge,
+#thunder-badge .badge,
+#rainbow-badge .badge,
+#soul-badge .badge,
+#marsh-badge .badge,
+#volcano-badge .badge,
+#earth-badge .badge {
+  display: inline-block;
+}
+
+#boulder-badge h1,
+#cascade-badge h1,
+#thunder-badge h1,
+#rainbow-badge h1,
+#soul-badge h1,
+#marsh-badge h1,
+#volcano-badge h1,
+#earth-badge h1 {
+  font-family: Lato, sans-serif;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: white;
+  margin-top: 30px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+#boulder-badge {
+  background: #2d3e50;
+}
+
+#boulder-badge .badge {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+
+#boulder-badge .badge .part,
+#boulder-badge .badge .part:before,
+#boulder-badge .badge .part:after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+#boulder-badge .badge .part {
+  -webkit-transform-origin: center center 0;
+  -moz-transform-origin: center center 0;
+  -ms-transform-origin: center center 0;
+  -o-transform-origin: center center 0;
+  transform-origin: center center 0;
+  top: 0;
+  left: 50%;
+  margin-left: -38px;
+  border-width: 90px 38px 90px 38px;
+}
+
+#boulder-badge .badge .part:before {
+  -webkit-transform: rotate(0.01deg);
+  -moz-transform: rotate(0.01deg);
+  -ms-transform: rotate(0.01deg);
+  -o-transform: rotate(0.01deg);
+  transform: rotate(0.01deg);
+  /* Jagged edge fix */
+  content: " ";
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -26px;
+  border-width: 60px 26px 60px 26px;
+  z-index: 10;
+}
+
+#boulder-badge .badge .part:after {
+  -webkit-transform: rotate(0.01deg);
+  -moz-transform: rotate(0.01deg);
+  -ms-transform: rotate(0.01deg);
+  -o-transform: rotate(0.01deg);
+  transform: rotate(0.01deg);
+  content: " ";
+  top: 50%;
+  left: 50%;
+  margin-top: -39px;
+  margin-left: -17px;
+  border-width: 39px 17px 39px 17px;
+  z-index: 20;
+}
+
+#boulder-badge .badge .part-1 {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  border-top-color: #9f9d9e;
+  border-bottom-color: #646263;
+  z-index: 50;
+}
+
+#boulder-badge .badge .part-1:before {
+  border-top-color: #878586;
+  border-bottom-color: #595556;
+}
+
+#boulder-badge .badge .part-1:after {
+  border-top-color: #8d8d8d;
+  border-bottom-color: #7f7f7f;
+}
+
+#boulder-badge .badge .part-2 {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border-top-color: #858182;
+  border-bottom-color: #898788;
+  z-index: 40;
+}
+
+#boulder-badge .badge .part-2:before {
+  border-top-color: #706e6f;
+  border-bottom-color: #777576;
+}
+
+#boulder-badge .badge .part-2:after {
+  border-top-color: #8d8d8d;
+  border-bottom-color: #8d8d8d;
+}
+
+#boulder-badge .badge .part-3 {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  border-top-color: #676364;
+  border-bottom-color: #979596;
+  z-index: 30;
+}
+
+#boulder-badge .badge .part-3:before {
+  border-top-color: #595556;
+  border-bottom-color: #838182;
+}
+
+#boulder-badge .badge .part-3:after {
+  border-top-color: #7f7f7f;
+  border-bottom-color: #8d8d8d;
+}
+
+#boulder-badge .badge .part-4 {
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+  border-top-color: #615d5e;
+  border-bottom-color: #a5a3a4;
+  z-index: 20;
+}
+
+#boulder-badge .badge .part-4:before {
+  border-top-color: #535152;
+  border-bottom-color: #878586;
+}
+
+#boulder-badge .badge .part-4:after {
+  border-top-color: #7f7f7f;
+  border-bottom-color: #8d8d8d;
+}
+
+#boulder-badge .badge .part-shade {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  margin-top: 13px;
+  margin-left: -6px;
+  border-left-width: 0;
+  border-top-color: #767475;
+  border-bottom-color: #7b797a;
+  z-index: 100;
+}
+
+#boulder-badge .badge .part-shade:before {
+  margin-left: 0;
+  border-left-width: 0;
+  border-top-color: #656364;
+  border-bottom-color: #6b696a;
+}
+
+#boulder-badge .badge .part-shade:after {
+  margin-left: 0;
+  border-left-width: 0;
+  border-top-color: #7f7f7f;
+  border-bottom-color: #7f7f7f;
+}
+
+#cascade-badge {
+  background: #474749;
+}
+
+#cascade-badge .badge {
+  position: relative;
+  width: 145px;
+  height: 200px;
+}
+
+#cascade-badge .badge .part {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+#cascade-badge .badge .part-1,
+#cascade-badge .badge .part-2,
+#cascade-badge .badge .part-3,
+#cascade-badge .badge .part-4 {
+  left: 50%;
+}
+
+#cascade-badge .badge .part-5,
+#cascade-badge .badge .part-6,
+#cascade-badge .badge .part-7,
+#cascade-badge .badge .part-8 {
+  right: 50%;
+}
+
+#cascade-badge .badge .part-1 {
+  border-width: 60px 0 40px 37px;
+  border-left-color: #39a8d5;
+}
+
+#cascade-badge .badge .part-2 {
+  -webkit-transform: rotate(13deg);
+  -moz-transform: rotate(13deg);
+  -ms-transform: rotate(13deg);
+  -o-transform: rotate(13deg);
+  transform: rotate(13deg);
+  top: 61px;
+  margin-left: 4px;
+  border-width: 0 48px 48px 27px;
+  border-bottom-color: #25a2d2;
+}
+
+#cascade-badge .badge .part-3 {
+  -webkit-transform: rotate(13deg);
+  -moz-transform: rotate(13deg);
+  -ms-transform: rotate(13deg);
+  -o-transform: rotate(13deg);
+  transform: rotate(13deg);
+  top: 107px;
+  margin-left: -9px;
+  border-width: 63px 7px 0 69px;
+  border-top-color: #0d9bcd;
+}
+
+#cascade-badge .badge .part-4 {
+  top: 100px;
+  border-width: 75px 0 24px 52px;
+  border-left-color: #0697c9;
+}
+
+#cascade-badge .badge .part-5 {
+  top: 100px;
+  border-width: 75px 52px 24px 0;
+  border-right-color: #25a2d2;
+}
+
+#cascade-badge .badge .part-6 {
+  -webkit-transform: rotate(-13deg);
+  -moz-transform: rotate(-13deg);
+  -ms-transform: rotate(-13deg);
+  -o-transform: rotate(-13deg);
+  transform: rotate(-13deg);
+  top: 107px;
+  margin-right: -9px;
+  border-width: 63px 69px 0 7px;
+  border-top-color: #45acd9;
 }

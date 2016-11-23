@@ -141,9 +141,14 @@ export class Game {
 
   //====== Character Methods ========
 
-  gameGetCharState(cb : any) {
+  gameGetCharState(cb? : any) : CharacterState {
     const charState : CharacterState = this.gameCharacter.charGetCharState();
     if (cb) cb(charState);
+    return charState;
+  }
+
+  gameSetCharInitialPosition(location : Location) : void {
+    this.gameCharacter.charSetCharLocation(location);
   }
   
   gameMoveChar(direction : string, cb? : any) : void {

@@ -173,15 +173,13 @@ ul.board li.type6 {
 
 .nav .navContent {
   position: relative;
-  top: 5vh;
+  top: 3vh;
   width: 85vw;
   margin: 0 auto;
 }
 
 .userBadge,
 .navLink,
-.userNickname,
-.userBadgeProfile,
 .navTitle {
   display: inline-block;
 }
@@ -189,10 +187,11 @@ ul.board li.type6 {
 .navTitle {
   font-family: 'Trebuchet MS';
   font-weight: 700;
+  margin-top: 2vh;
 }
 
 .navLink {
-  margin-top: 2vh;
+  margin-top: 5vh;
   margin-left: 0.5vw;
 }
 
@@ -201,15 +200,25 @@ ul.board li.type6 {
   right: 10vw;
 }
 
+.userBadgeProfile,
+.userNickname,
+.login {
+  margin: 0 auto;
+}
+
 .userBadgeProfile {
-  height: 8vh;
-  width: 8vh;
-  border-radius: 10vh;
+  height: 7vh;
+  width: 7vh;
+  border-radius: 7vh;
+  margin-left: 1.5vh;
 }
 
 .userNickname {
-  position: relative;
-  top: 0vh;
+  margin: 0;
+}
+
+.login {
+  display: block;
 }
 
 .github {

@@ -7,7 +7,8 @@ import {
   nextTurnAction,
   voteAction, 
   outcomeAction,
-  updateCharAction
+  updateCharAction,
+  updateBoardAction
 } from '../actions/gameActions';
 
 const socket = io();
@@ -34,7 +35,6 @@ export const authPlayer2Server = profile => {
 }
 
 /* INCOMING FROM SERVER */
-
 // stats
 socket.on('clients', num => {
   console.log('stats', num); // TODO: update stats on server
@@ -50,6 +50,11 @@ socket.on('userMessage', message => {
 });
 
 // game
+socket.on('gameState', gameState => {
+  console.log('gameState', gameState);
+  store.dispatch(updateBoardAction(gameState.gameLayout));
+});
+
 socket.on('move', charState => {
   store.dispatch(updateCharAction(charState));
 });

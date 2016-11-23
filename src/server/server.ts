@@ -50,6 +50,7 @@ app.get('/maptester', (req, res) => {
 
 io.on('connection', socket => {
   socket.emit('clients', io.engine.clientsCount);
+  socket.emit('gameState', game.gameGetGameState());
 
   // PLAYERS
   socket.on('newPlayer', playerName => {

@@ -76,8 +76,8 @@ export const overworld : Tile[][] = [
   // 9
   [
     {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 96}, {p: false, t: 96}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, 
-    {p: false, t: 2}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 2}, 
-    {p: false, t: 2}, {p: false, t: 2}, {p: false, t: 2}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, 
+    {p: false, t: 66}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 66}, 
+    {p: false, t: 66}, {p: false, t: 66}, {p: false, t: 66}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, 
     {p: true, t: 9}, {p: false, t: 61}, {p: false, t: 63}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 8}, {p: true, t: 9}, {p: false, t: 8}, {p: true, t: 9}, {p: true, t: 9}, 
     {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 8}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 61}, {p: false, t: 63}, {p: true, t: 9}, 
   ],
@@ -229,38 +229,18 @@ export const overworld : Tile[][] = [
 
 export const testLayout:  Tile[][] = [
   [
-    {p:  false,  t:  2}, 
-    {p:  false,  t:  2}, 
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}
+    {p: false, t: 66}, {p: false, t: 66}, {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}
   ],
   [
-    {p:  false,  t:  2}, 
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}, 
-    {p:  false,  t:  2}, 
-    {p:  true,  t:  3}
+    {p: false, t: 66}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 99}, {p: true, t: 9}
   ],
   [
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}
+    {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9, e: true}, {p: true, t: 9}, {p: true, t: 9}
   ],
   [
-    {p:  true,  t:  3}, 
-    {p:  false,  t:  2}, 
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}, 
-    {p:  false,  t:  2}
+    {p: true, t: 9}, {p: false, t: 99}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 66}
   ],
   [
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}, 
-    {p:  true,  t:  3}, 
-    {p:  false,  t:  2}, 
-    {p:  false,  t:  2}
+    {p: true, t: 9}, {p: true, t: 9}, {p: true, t: 9}, {p: false, t: 66}, {p: false, t: 66}
   ]
 ];

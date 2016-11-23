@@ -11,7 +11,7 @@ storage.on('connect', (err : any) => {
 
 import { Turn } from '../client/reducers/gameReducer';
 import { Location, Tile, CharacterState, GameState } from './interfaces';
-// import { testLayout } from './layouts';
+import { testLayout } from './layouts';
 import { Board } from './board';
 
 // -------------------- Message ----------------------
@@ -104,8 +104,7 @@ export class Game {
   private gameTurns : Turn[]; // not included in interface currently
 
   constructor(layout? : Tile[][]) {
-    // this.gameLayout = layout || testLayout;
-    this.gameLayout = layout;
+    this.gameLayout = layout || testLayout;
     this.gameBoard = new Board(this.gameLayout);
     const randomNewCharId = Math.random() * 10000000000000000;
     const defaultCharName = 'Guest';

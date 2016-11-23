@@ -6,7 +6,7 @@ import { getGameState } from '../../store';
 // Extracts the types of the game board and adjoins them as a CSV
 const processGameBoard = board =>
   board.map(row => 
-    row.map(cell => cell.t - 1).join(",")
+    row.map(cell => cell.t).join(",")
   ).join("\n"); 
 
 export class SplashState extends Phaser.State {

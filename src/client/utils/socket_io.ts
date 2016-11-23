@@ -10,7 +10,6 @@ import {
   updateCharAction
 } from '../actions/gameActions';
 
-// connect to server socket
 const socket = io();
 
 /*OUTGOING TO SERVER */
@@ -30,17 +29,27 @@ export const newPlayer2Server = (name:string) => {
   socket.emit('newPlayer', name);
 }
 
+export const authPlayer2Server = profile => {
+  socket.emit('authPlayer', profile);
+}
+
 /* INCOMING FROM SERVER */
+
+// stats
+socket.on('clients', num => {
+  console.log('stats', num); // TODO: update stats on server
+});
+
+// messages
 socket.on('newPlayer', name => {
   store.dispatch(chatBotAction(name + ' just joined the game!'));
 });
 
-/*MESSAGES */
 socket.on('userMessage', message => {
   store.dispatch(addChatAction(message));
 });
 
-/*GAME*/
+// game
 socket.on('move', charState => {
   store.dispatch(updateCharAction(charState));
 });
@@ -56,6 +65,4 @@ socket.on('nextTurn', (turn) => {
 socket.on('outcome', (choice) => {
   store.dispatch(outcomeAction(choice));
 });
-
-//______________ auth0 helpers _____________________________________
 

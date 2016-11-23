@@ -13,14 +13,15 @@ export default() => (
       <li>React</li>
       <li>Redux</li>
       <li>Phaser</li>
-      <li>Express/li>
+      <li>Express</li>
       <li>Redis</li>
       <li>Auth0</li>
       <li>TypeScript</li>
       <li>Webpack</li>
     </ul>
-    <p>The open source code can be found on <a href='https://github.com/Hrr-19-crushers/builders-game'>GitHub</a>
+    <p>The open source code can be found on
+      <a href='https://github.com/Hrr-19-crushers/builders-game'>GitHub</a>
+    </p>
     <h2>The Team</h2>
-
   </div>
 );

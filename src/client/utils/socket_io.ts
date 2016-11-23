@@ -77,7 +77,6 @@ import Auth0Lock from 'auth0-lock';
 export const isAuth = store.getState()['authReducer'].isAuth
 export const {dispatch} = store;
 
-
 const lock = new Auth0Lock('jYPMYlgiL8LUcwbOVQA2Oz0BlifZnPAn', 'hrr19crushers.auth0.com');
 
 export const logIn =() => {    

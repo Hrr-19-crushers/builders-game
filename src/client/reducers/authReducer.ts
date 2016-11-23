@@ -23,7 +23,7 @@ export const authReducer = (state: Auth = INITAL_STATE, action) => {
       return Object.assign({}, state, {
         isFetching: false,
         isAuth: true,
-        profile: JSON.parse(action.profile),
+        profile: action.profile,
       })
     case LOGOUT_SUCCESS:
       return Object.assign({}, state, {

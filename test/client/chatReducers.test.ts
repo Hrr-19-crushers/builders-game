@@ -20,13 +20,13 @@ describe('chat reducer functions', () => {
   };
   let Chats: Message[] = [
     {
-      name: 'Silas',
+      user: 'Silas',
       text: 'message',
       type: 'chat',
       date: new Date('January 1, 2016')
     },
     {
-      name: 'Tom',
+      user: 'Tom',
       text: 'new message',
       type: 'chat',
       date: new Date('March 1, 2016')
@@ -54,6 +54,6 @@ describe('chat reducer functions', () => {
     state = chatReducer(state, addChatAction(Chats[1]));
     const nextState = chatReducer(state, chatsAfterAction(new Date('Febuary 1, 2016')));
     expect(nextState.messages.length).to.equal(1);
-    expect(nextState.messages[0].name).to.equal('Tom');
+    expect(nextState.messages[0].user).to.equal('Tom');
   });
 });

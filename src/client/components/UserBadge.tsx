@@ -4,8 +4,11 @@ import LoginContainer from '../containers/LoginContainer';
 
 export default ({profile}) => (
   <div className="userBadge">
-    <img className="userBadgeProfile" src={profile.picture}></img>
-    <p className="userNickname">{profile.nickname}</p>
+    <img 
+      className="userBadgeProfile" 
+      src={profile.nickname ? profile.picture : '../../assets/sprites/mario.png'}>
+    </img>
+    <p className="userNickname">{profile.nickname ? profile.nickname: 'Guest'}</p>
     <LoginContainer />
   </div>
 );

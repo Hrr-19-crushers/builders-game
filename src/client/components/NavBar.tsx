@@ -1,11 +1,9 @@
 import * as React from 'react';
 import {Link} from 'react-router';
 import Login from './Login';
-import Logout from './Logout';
 import UserBadgeContainer from '../containers/UserBadgeContainer';
 
 export default() => (
-
   <nav className='nav'>
     <div className='navContent'>
       <h1 className='navTitle'>BUILDERS</h1>

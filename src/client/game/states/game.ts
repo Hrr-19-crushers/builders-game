@@ -7,7 +7,7 @@ import { getGameState } from '../../store';
 const enum TILE {
   WIDTH = 16,
   HEIGHT = 16
-}
+};
 
 interface Location {
   x: number; 
@@ -61,20 +61,19 @@ export class GameState extends Phaser.State {
   tilemap: Phaser.Tilemap;
   layer: Phaser.TilemapLayer;
 
-  pollForState() {
-    return getGameState();
-  }
-
   create () {
-    const {charState} = this.pollForState();
+    const {charState} = getGameState();
 
     this.game.physics.startSystem(
       Phaser.Physics.ARCADE
     );
 
-    this.tilemap = this.game.add.tilemap(
-      'zeldamap', TILE.WIDTH, TILE.HEIGHT);
-    this.tilemap.addTilesetImage('zeldatiles');
+    this.tilemap = this.game.add.tilemap('zeldamap', TILE.WIDTH, TILE.HEIGHT);
+    this.tilemap.addTilesetImage(
+      'zeldatiles', 'zeldatiles',
+      TILE.WIDTH, TILE.HEIGHT,
+      1, 1
+    );
     this.layer = this.tilemap.createLayer(0); 
     // this.tilemap.setCollision();
 
@@ -91,7 +90,7 @@ export class GameState extends Phaser.State {
     this.game.time.events.loop(
       Phaser.Timer.SECOND,
       () => {
-        let {charState} = this.pollForState();
+        let {charState} = getGameState();
         this.link.move(charState.charLocation);
       }
     );

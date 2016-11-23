@@ -106,17 +106,18 @@ export class Game {
     const randomNewCharId = Math.random() * 10000000000000000;
     const defaultCharName = 'Guest';
     // TODO init new character properly later if there are more than 1
-    this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 4, y: 4} as Location);
+    this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 8, y: 4} as Location);
     this.gameTurnActive = false;
   }
 
   //========= Game Methods =========
 
-  gameGetGameState(cb? : any) : any {
+  gameGetGameState() : GameState {
+    const characterState = this.gameCharacter.charGetCharState();
     return {
       gameLayout: this.gameLayout,
       gameBoard: this.gameBoard,
-      gameCharacter: this.gameCharacter,
+      gameCharacter: characterState,
       gameTurnActive: this.gameTurnActive,
       gameCurrentTurn: this.gameCurrentTurn
     };

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import NavBar from '../containers/NavContainer';
+import NavBar from '../components/NavBar';
 
 export default({children}) => (
   <div className='App'>
-    <NavBar/> {children}
+    <NavBar/> 
+    {children}
   </div>
 );

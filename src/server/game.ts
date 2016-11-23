@@ -112,11 +112,12 @@ export class Game {
 
   //========= Game Methods =========
 
-  gameGetGameState(cb? : any) : any {
+  gameGetGameState() : GameState {
+    const characterState = this.gameCharacter.charGetCharState();
     return {
       gameLayout: this.gameLayout,
       gameBoard: this.gameBoard,
-      gameCharacter: this.gameCharacter,
+      gameCharacter: characterState,
       gameTurnActive: this.gameTurnActive,
       gameCurrentTurn: this.gameCurrentTurn
     };

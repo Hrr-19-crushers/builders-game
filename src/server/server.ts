@@ -78,8 +78,9 @@ io.on('connection', socket => { // TODO try to move this to engine
     // ok not to check for location value, cb won't get called if char can't move
     game.gameMoveChar(direction, (data : GameState) => {
       socket.emit('move', data.gameCharacter);
+      console.log('moved char', data.gameCharacter);
       // if there is a new turn, emit it as well
-      if (data.gameTurnActive) socket.emit('nextTurn', data.gameCurrentTurn);
+      // if (data.gameTurnActive) socket.emit('nextTurn', data.gameCurrentTurn);
     });
   });
 

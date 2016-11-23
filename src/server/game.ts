@@ -77,7 +77,7 @@ class Player {
   // private playerId: string;
   private playerName : string;
 
-  constructor(playerName?: string) {
+  constructor(playerName? : string) {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName || 'Guest';
   }
@@ -99,20 +99,20 @@ export class Game {
   private gameCurrentTurn : Turn;
   private gameTurns : Turn[]; // not included in interface currently
 
-  constructor(layout?: Tile[][]) {
+  constructor(layout? : Tile[][]) {
     // this.gameLayout = layout || testLayout;
     this.gameLayout = layout;
     this.gameBoard = new Board(this.gameLayout);
     const randomNewCharId = Math.random() * 10000000000000000;
     const defaultCharName = 'Guest';
     // TODO init new character properly later if there are more than 1
-    this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 0, y: 4} as Location);
+    this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 4, y: 4} as Location);
     this.gameTurnActive = false;
   }
 
   //========= Game Methods =========
 
-  gameGetGameState(cb?: any) : any {
+  gameGetGameState(cb? : any) : any {
     return {
       gameLayout: this.gameLayout,
       gameBoard: this.gameBoard,
@@ -122,7 +122,7 @@ export class Game {
     };
   }
 
-  gameAddNewPlayer(playerName?: string) : string {
+  gameAddNewPlayer(playerName? : string) : string {
     playerName = playerName || 'Guest';
     const player = new Player(playerName);
     storage.lpush('players', JSON.stringify(player), (err : any) => {
@@ -142,15 +142,13 @@ export class Game {
     if (cb) cb(charState);
   }
   
-  gameMoveChar(direction : string, cb?: any) : void {
+  gameMoveChar(direction : string, cb? : any) : void {
     // get the current state of the character
     const charState : CharacterState = this.gameCharacter.charGetCharState();
-    console.log('charState', charState)
     // check to see if the character is allowed to move this direction
     if (this.gameBoard.boardCharCanMoveDirection(direction, charState.charLocation)) {
       // if they are allowed, set character location to new location
       const newLocation : Location = this.gameBoard.boardGetNewCharLocation(direction, charState.charLocation);
-      console.log(newLocation);
       this.gameCharacter.charSetCharLocation(newLocation);
       // check to see if the new location contains a turn
       // this.gameNewTurn(newLocation, cb);

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { addChatAction } from '../../src/client/actions/chatActions';
-import chatMiddleware from '../../src/client/utils/chatActionMiddleware';
+import chatMiddleware from '../../src/client/utils/AddChatMiddleware';
 import { CHANGE_USER } from '../../src/client/actions/actionTypes';
 
 describe('chat middleware', () => {

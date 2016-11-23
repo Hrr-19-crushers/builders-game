@@ -11,7 +11,7 @@ storage.on('connect', (err : any) => {
 
 import { Turn } from '../client/reducers/gameReducer';
 import { Location, Tile, CharacterState, GameState } from './interfaces';
-// import { testLayout } from './layouts';
+import { testLayout } from './layouts';
 import { Board } from './board';
 
 // -------------------- Message ----------------------
@@ -68,6 +68,10 @@ class Character {
   charSetCharLocation(newLocation : Location) {
     this.charLocation = newLocation;
   }
+
+  charSetHealth(healthChange : number) {
+    this.charHealth += healthChange;
+  }
 }
 
 // --------------------- Player ---------------------
@@ -100,8 +104,7 @@ export class Game {
   private gameTurns : Turn[]; // not included in interface currently
 
   constructor(layout? : Tile[][]) {
-    // this.gameLayout = layout || testLayout;
-    this.gameLayout = layout;
+    this.gameLayout = layout || testLayout;
     this.gameBoard = new Board(this.gameLayout);
     const randomNewCharId = Math.random() * 10000000000000000;
     const defaultCharName = 'Guest';
@@ -127,9 +130,9 @@ export class Game {
     playerName = playerName || 'Guest';
     const player = new Player(playerName);
     storage.lpush('players', JSON.stringify(player), (err : any) => {
-      if (err) 
+      if (err) {
         console.log(`Error adding new player to storage`, err);
-      else {
+      } else {
         console.log('${player.playerName} has entered the game!');
       }
     });
@@ -138,22 +141,31 @@ export class Game {
 
   //====== Character Methods ========
 
-  gameGetCharState(cb : any) {
+  gameGetCharState(cb? : any) : CharacterState {
     const charState : CharacterState = this.gameCharacter.charGetCharState();
     if (cb) cb(charState);
+    return charState;
+  }
+
+  gameSetCharInitialPosition(location : Location) : void {
+    this.gameCharacter.charSetCharLocation(location);
   }
   
   gameMoveChar(direction : string, cb? : any) : void {
     // get the current state of the character
-    const charState : CharacterState = this.gameCharacter.charGetCharState();
+    let charState : CharacterState = this.gameCharacter.charGetCharState();
     // check to see if the character is allowed to move this direction
-    if (this.gameBoard.boardCharCanMoveDirection(direction, charState.charLocation)) {
-      // if they are allowed, set character location to new location
+    const canMove : boolean = this.gameBoard.boardCharCanMoveDirection(direction, charState.charLocation);
+    if (canMove) {
+      // if they are allowed: set character location to new location
       const newLocation : Location = this.gameBoard.boardGetNewCharLocation(direction, charState.charLocation);
       this.gameCharacter.charSetCharLocation(newLocation);
-      // check to see if the new location contains a turn
-      // this.gameNewTurn(newLocation, cb);
-      const gameState = this.gameGetGameState();
+      // check to see if enemy exists in new location and remove health if so
+      charState = this.gameCharacter.charGetCharState();
+      const isEnemyInTile : boolean = this.gameBoard.boardIsEnemyInTile(charState.charLocation);
+      if (isEnemyInTile) this.gameCharacter.charSetHealth(-10);
+      // call the sever cb with the new char/game states
+      let gameState : GameState = this.gameGetGameState();
       if (cb) cb(gameState);
     }
   }

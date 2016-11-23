@@ -27,17 +27,17 @@ describe('a game board', () => {
   });
 
   it('should not allow movement outside the board', () => {
-    board.boardCharCanMoveDirection('up', {x:4, y:0}).should.equal(false);
-    board.boardCharCanMoveDirection('right', {x:4, y:4}).should.equal(false);
-    board.boardCharCanMoveDirection('down', {x:0, y:4}).should.equal(false);
-    board.boardCharCanMoveDirection('left', {x:0, y:0}).should.equal(false);
+    board.boardCharCanMoveDirection('up', {x: 4, y: 0}).should.equal(false);
+    board.boardCharCanMoveDirection('right', {x: 4, y: 4}).should.equal(false);
+    board.boardCharCanMoveDirection('down', {x: 0, y: 4}).should.equal(false);
+    board.boardCharCanMoveDirection('left', {x: 0, y: 0}).should.equal(false);
   });
 
   it('should not allow movement into impassible tiles', () => {
-    board.boardCharCanMoveDirection('up', {x:1, y:4}).should.equal(false);
-    board.boardCharCanMoveDirection('right', {x:2, y:4}).should.equal(false);
-    board.boardCharCanMoveDirection('down', {x:3, y:0}).should.equal(false);
-    board.boardCharCanMoveDirection('left', {x:1, y:1}).should.equal(false);
+    board.boardCharCanMoveDirection('up', {x: 1, y: 4}).should.equal(false);
+    board.boardCharCanMoveDirection('right', {x: 2, y: 4}).should.equal(false);
+    board.boardCharCanMoveDirection('down', {x: 3, y: 0}).should.equal(false);
+    board.boardCharCanMoveDirection('left', {x: 1, y: 1}).should.equal(false);
   });
 
   it('should have a boardGetNewCharLocation method', () => {
@@ -45,14 +45,14 @@ describe('a game board', () => {
   });
 
   it('should allow movement into passable tiles', () => {
-    board.boardGetNewCharLocation('up', {x:0, y: 4}).should.have.property('x').equal(0);
-    board.boardGetNewCharLocation('up', {x:0, y: 4}).should.have.property('y').equal(3);
-    board.boardGetNewCharLocation('right', {x:2, y: 3}).should.have.property('x').equal(3);
-    board.boardGetNewCharLocation('right', {x:2, y: 3}).should.have.property('y').equal(3);
-    board.boardGetNewCharLocation('down', {x:4, y: 0}).should.have.property('x').equal(4);
-    board.boardGetNewCharLocation('down', {x:4, y: 0}).should.have.property('y').equal(1);
-    board.boardGetNewCharLocation('left', {x:3, y: 2}).should.have.property('x').equal(2);
-    board.boardGetNewCharLocation('left', {x:3, y: 2}).should.have.property('y').equal(2);
+    board.boardGetNewCharLocation('up', {x: 0, y:  4}).should.have.property('x').equal(0);
+    board.boardGetNewCharLocation('up', {x: 0, y:  4}).should.have.property('y').equal(3);
+    board.boardGetNewCharLocation('right', {x: 2, y:  3}).should.have.property('x').equal(3);
+    board.boardGetNewCharLocation('right', {x: 2, y:  3}).should.have.property('y').equal(3);
+    board.boardGetNewCharLocation('down', {x: 4, y:  0}).should.have.property('x').equal(4);
+    board.boardGetNewCharLocation('down', {x: 4, y:  0}).should.have.property('y').equal(1);
+    board.boardGetNewCharLocation('left', {x: 3, y:  2}).should.have.property('x').equal(2);
+    board.boardGetNewCharLocation('left', {x: 3, y:  2}).should.have.property('y').equal(2);
   });
 
   xit('should have a boardCheckForTurnInTile method', () => {
@@ -60,8 +60,8 @@ describe('a game board', () => {
   });
 
   xit('should correctly check for a turn property for a given tile', () => {
-    // board.boardCheckForTurnInTile({x:0, y:4}).should.equal(false);
-    // board.boardCheckForTurnInTile({x:3, y:3}).should.equal(true);
+    // board.boardCheckForTurnInTile({x: 0, y: 4}).should.equal(false);
+    // board.boardCheckForTurnInTile({x: 3, y: 3}).should.equal(true);
   });
 
   xit('should have a boardGetTurnInformation method', () => {
@@ -69,7 +69,16 @@ describe('a game board', () => {
   });
 
   xit('should correctly return a turn property for a given tile', () => {
-    // board.boardGetTurnInformation({x:3, y:3}).choices[0].should.equal('explore');
+    // board.boardGetTurnInformation({x: 3, y: 3}).choices[0].should.equal('explore');
+  });
+
+  it('should have a boardIsEnemyInTile method', () => {
+    board.should.have.property('boardIsEnemyInTile');
+  });
+
+  it('should correctly check for an enemy in a given tile', () => {
+    board.boardIsEnemyInTile({x: 2, y: 0}).should.equal(false);
+    board.boardIsEnemyInTile({x: 2, y: 2}).should.equal(true);
   });
 
 });

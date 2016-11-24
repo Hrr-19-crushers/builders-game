@@ -1,20 +1,21 @@
 // List of all actions for the client redux store
 
 /*CHATS*/
-export const ADD_CHAT: String = 'ADD_CHAT';
-export const CLEAR_CHATS: String = 'CLEAR_CHATS';
-export const CHATS_AFTER: String = 'CHATS_AFTER'; // used to truncate chats after a certain time
+export const ADD_CHAT: string = 'ADD_CHAT';
+export const CLEAR_CHATS: string = 'CLEAR_CHATS';
+export const CHATS_AFTER: string = 'CHATS_AFTER'; // used to truncate chats after a certain time
 
 /*USERS*/
-export const CHANGE_USER: String = 'CHANGE_USER';
+export const CHANGE_USER: string = 'CHANGE_USER';
 
 /*GAME-ACTIONS*/
-export const NEXT_TURN: String = 'NEXT_TURN';
-export const VOTE: String = 'VOTE';
+export const UPDATE_BOARD: string = 'UPDATE_BOARD';
+export const NEXT_TURN: string = 'NEXT_TURN';
+export const VOTE: string = 'VOTE';
 
-export const OUTCOME: String = 'OUTCOME';
-export const MOVE: String = 'MOVE';
-export const UPDATE_CHAR: String = 'UPDATE_CHAR';
+export const OUTCOME: string = 'OUTCOME';
+export const MOVE: string = 'MOVE';
+export const UPDATE_CHAR: string = 'UPDATE_CHAR';
 
 /*Auth0*/
 /*____________________ DISPLAY THE LOCK AND LOGIN ______________________________________*/

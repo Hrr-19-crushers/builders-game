@@ -24,18 +24,26 @@ export class Board {
     const layout = this.boardLayout;
     let can = false;
     // don't let Nick S see this, he hates switch statements
-    switch(direction) {
+    switch (direction) {
       case 'up':
-        if ((y - 1 in layout) && (layout[y - 1][x].p)) can = true;
+        if ((y - 1 in layout) && (layout[y - 1][x].p)) {
+          can = true;
+        }
         break;
       case 'right':
-        if ((x + 1 in layout[y]) && (layout[y][x + 1].p)) can = true;
+        if ((x + 1 in layout[y]) && (layout[y][x + 1].p)) {
+          can = true;
+        }
         break;
       case 'down':
-        if ((y + 1 in layout) && (layout[y + 1][x].p)) can = true;
+        if ((y + 1 in layout) && (layout[y + 1][x].p)) {
+          can = true;
+        }
         break;
       case 'left':
-        if ((x - 1 in layout[y]) && (layout[y][x - 1].p)) can = true;
+        if ((x - 1 in layout[y]) && (layout[y][x - 1].p)) {
+          can = true;
+        }
         break;
     }
     return can;
@@ -46,7 +54,7 @@ export class Board {
     // there's probably a better way to destructure currentLocation here
     // don't call this with a location unless you've already checked it's valid with boardCharCanMoveDirection
     let newLocation: Location;
-    switch(direction) {
+    switch (direction) {
       case 'up':
         newLocation = { x: currentLocation.x, y: currentLocation.y - 1 };
         break;
@@ -61,6 +69,11 @@ export class Board {
         break;
     }
     return newLocation;
+  }
+
+  boardIsEnemyInTile(location : Location) : boolean {
+    const tile = this.boardLayout[location.y][location.x];
+    return ('e' in tile && tile.e);
   }
 
   // boardCheckForTurnInTile(location : Location) : boolean {

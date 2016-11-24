@@ -48,24 +48,28 @@ app.get('/maptester', (req, res) => {
 // ----------------- Socket Stuff --------------------
 // ---------------------------------------------------
 
-io.on('connection', socket => { // TODO try to move this to engine
+io.on('connection', socket => {
+  socket.emit('clients', io.engine.clientsCount);
+  socket.emit('gameState', game.gameGetGameState());
 
+  // PLAYERS
   socket.on('newPlayer', playerName => {
     //const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed updated
-    console.log(playerName);
+    console.log(io.engine.clientsCount);
     socket.broadcast.emit('newPlayer', playerName);
   });
 
+  // MESSAGES
   socket.on('newMessage', data => {
     game.gameNewMessage(data.user, data.text, () => {
       socket.broadcast.emit('userMessage', data);
     });
   });
 
+  // GAME
   socket.on('gameState', () => {
-    game.gameGetGameState((data : GameState) => {
-      socket.emit('gameState', data);
-    });
+    const gameState = game.gameGetGameState();
+    socket.emit('gameState', gameState);
   });
 
   socket.on('charState', () => {
@@ -78,15 +82,20 @@ io.on('connection', socket => { // TODO try to move this to engine
     // ok not to check for location value, cb won't get called if char can't move
     game.gameMoveChar(direction, (data : GameState) => {
       socket.emit('move', data.gameCharacter);
-      console.log('moved char', data.gameCharacter);
       // if there is a new turn, emit it as well
       // if (data.gameTurnActive) socket.emit('nextTurn', data.gameCurrentTurn);
     });
   });
 
+  // STATS
+  socket.on('authPlayer', profile => {
+
+  });
+
   socket.on('disconnect', () => {
     // const playerName = socket['playerName'] || 'anonymous player';
     // game.gameDeletePlayer(); // TODO nothing behind this yet
+    // TODO: update stats on game
     socket.broadcast.emit('playerLeft', `Guest has left the game`);
   });
 });

@@ -163,67 +163,67 @@ export const overworld : Tile[][] = [
   ],
   // 20
   [
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 61}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 97}, {p: false, t: 97}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 60}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 62}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 62},
   ],
   // 21
   [
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 61}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 97}, {p: false, t: 97}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: false, t: 60}, {p: false, t: 61}, {p: false, t: 62}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: false, t: 60}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 62}, {p: true, t: 8},
   ],
   // 22
   [
+    {p: false, t: 61}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: false, t: 97}, {p: false, t: 97}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
     {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}
   ],
   // 23
   [
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 61}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 97}, {p: false, t: 97}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: false, t: 42}, {p: false, t: 43}, {p: false, t: 44}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 44}, {p: true, t: 8}
   ],
   // 24
   [
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 61}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 97}, {p: false, t: 97}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 7}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 42}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 44}
   ],
   // 25
   [
+    {p: false, t: 61}, {p: false, t: 44}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 97}, {p: false, t: 97}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
     {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
     {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}
   ],
   // 26
   [
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 44}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 42}, {p: false, t: 43}, {p: false, t: 43},
+    {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43},
+    {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43},
+    {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43},
+    {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 43}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}, {p: false, t: 61}
   ],
   // 27
   [
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
-    {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, 
+    {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 97}, {p: true, t: 97}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61},
+    {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61},
+    {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61},
+    {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61},
+    {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}, {p: true, t: 61}
   ]
 ];
 

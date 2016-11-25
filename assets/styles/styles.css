@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Neucha|Sigmar+One');
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -13,11 +14,11 @@
   box-sizing: content-box;
 }
 
-
-/*TODO get reset CSS*/
-
 body {
   margin: 0;
+  background-color: #F1E7CD;
+  font-family: 'Neucha', cursive;
+  ;
 }
 
 #game {
@@ -201,7 +202,7 @@ ul.board li.type6 {
 .nav .navContent {
   position: relative;
   top: 3vh;
-  width: 85vw;
+  width: 88vw;
   margin: 0 auto;
 }
 
@@ -216,21 +217,36 @@ ul.board li.type6 {
 }
 
 .navTitle {
-  font-family: 'Trebuchet MS';
-  font-weight: 700;
+  font-family: 'Sigmar One', cursive;
+  font-size: 5vh;
   margin-top: 2vh;
+  margin: 0;
+}
+
+.top {
+  position: absolute;
+  top: 1.3vh;
+  margin: 0;
+  font-size: 2vh;
+}
+
+.bottom {
+  position: absolute;
+  top: 7vh;
+  left: 9.5vw;
+  margin: 0;
+  font-size: 2vh;
 }
 
 .navLink {
+  color: darkgreen;
   text-transform: capitalize;
-  text-decoration: none;
   margin-top: 5vh;
   margin-left: 0.5vw;
-  color: green;
   font-weight: 600;
 }
 
-.navLink:active {
+.navLink:hover {
   color: slategray;
 }
 

@@ -109,7 +109,7 @@ export class Game {
     const randomNewCharId = Math.random() * 10000000000000000;
     const defaultCharName = 'Guest';
     // TODO init new character properly later if there are more than 1
-    this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 8, y: 4} as Location);
+    this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 0, y: 0} as Location);
     this.gameTurnActive = false;
   }
 

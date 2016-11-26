@@ -3,7 +3,7 @@ import {changeUserAction} from '../actions/userActions';
 import {moveAction, voteAction} from '../actions/gameActions';
 import {direction2Server, vote2Server, newPlayer2Server} from './socket_io';
 import store, {getGameState} from '../store';
-import {botSup, botHelp, botStats, botNotFound} from './chatBot';
+import {botSup, botStats, botNotFound, botAdvise} from './chatBot';
 
 export default (action, next) => {
   if (action.type === ADD_CHAT && action.payload.text[0] === '\\') {
@@ -38,7 +38,7 @@ export default (action, next) => {
       return botStats();
     }
     if (verb === 'help') {
-      return botHelp();
+      return botAdvise();
     }
     return botNotFound(verb);
   }

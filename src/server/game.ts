@@ -80,14 +80,20 @@ class Character {
 class Player {
   // private playerId: string;
   private playerName : string;
+  private playerSocketId: string;
 
-  constructor(playerName? : string) {
+  constructor(playerName? : string, playerSocketId?: any ) {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName || 'Guest';
+    this.playerSocketId = playerSocketId;
   }
 
   playerGetName() : string {
     return this.playerName;
+  }
+
+  playerGetSocketId() : any {
+    return this.playerSocketId
   }
 
 }
@@ -126,16 +132,18 @@ export class Game {
     };
   }
 
-  gameAddNewPlayer(playerName? : string) : string {
+  gameAddNewPlayer(playerName? : string, playerSocketId? : string) : string {
     playerName = playerName || 'Guest';
-    const player = new Player(playerName);
-    storage.lpush('players', JSON.stringify(player), (err : any) => {
+    playerSocketId = playerSocketId;
+    const player = new Player(playerName, playerSocketId);
+    storage.hmset('players', playerName, playerSocketId, (err : any) => {
       if (err) {
         console.log(`Error adding new player to storage`, err);
       } else {
         console.log('${player.playerName} has entered the game!');
       }
     });
+    console.log('line 147 of game.ts player object',player)
     return player.playerGetName();
   }
 

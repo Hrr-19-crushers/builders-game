@@ -63,11 +63,11 @@ socket.on('vote', (choice: String) => {
   store.dispatch(voteAction(choice));
 });
 
-socket.on('nextTurn', (turn) => {
-  store.dispatch(nextTurnAction(turn));
-});
+// socket.on('nextTurn', (turn) => {
+//   store.dispatch(nextTurnAction(turn));
+// });
 
-socket.on('outcome', (choice) => {
-  store.dispatch(outcomeAction(choice));
-});
+// socket.on('outcome', (choice) => {
+//   store.dispatch(outcomeAction(choice));
+// });
 

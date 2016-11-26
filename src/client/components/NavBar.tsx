@@ -6,13 +6,16 @@ import UserBadgeContainer from '../containers/UserBadgeContainer';
 
 export default() => (
   <nav className='nav'>
+
     <div className='navContent'>
-      <h1 className='navTitle'>BUILDERS</h1>
-      <Link className='navLink' activeClassName='active' to='/'>Home</Link>
-      <Link className='navLink' activeClassName='active' to='/profile'>Profile</Link>
-      <Link className='navLink' activeClassName='active' to='/dashboard'>Dashboard</Link>
-      <UserBadgeContainer />
-    </div>
+      <p className='top'>we play</p>
+      <h1 className='navTitle'>PERILOUS</h1>
+      <p className='bottom'>adventure for all</p>
+        <Link className='navLink' activeClassName='active' to='/'>Home</Link>
+        <Link className='navLink' activeClassName='active' to='/about'>About</Link>
+        <Link className='navLink' activeClassName='active' to='/dashboard'>Dashboard</Link>
+        <UserBadgeContainer/>
+      </div>
 
     <a href="https://github.com/Hrr-19-crushers/builders-game"><img
       className="github"
@@ -20,5 +23,5 @@ export default() => (
       alt="Fork me on GitHub"
       data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"/>
     </a>
-  </nav>
-);
+    </nav>
+)

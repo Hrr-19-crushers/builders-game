@@ -8,7 +8,7 @@ export default({profile}) => (
       className="userBadgeProfile"
       src={profile.nickname
       ? profile.picture
-      : '../../assets/sprites/mario.png'}></img>
+      : '../../assets/sprites/rogue.png'}></img>
     <div className='userHeader'>
       <p className='userNickname'>{profile.nickname
           ? profile.nickname
@@ -18,10 +18,9 @@ export default({profile}) => (
           : 'Cannon Fodder'}</p>
     </div>
     <div className='userBadges'>
-      <div className={profile.nickname ? 'loggedInBadge' : 'badge'}></div>
-      <div className={profile.nickname ? 'loggedInBadge' : 'badge'}></div>
-      <div className={profile.nickname ? 'loggedInBadge' : 'badge'}></div>
+      <div className={profile.nickname ? 'loginBadge badge1 badge' : 'badge1 badge'}>Badge1</div>
+      <div className={profile.nickname ? 'loginBadge badge2 badge' : 'badge2 badge'}>Badge2</div>
+      <LoginContainer/>
     </div>
-    <LoginContainer/>
   </div>
 );

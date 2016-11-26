@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Neucha|Sigmar+One');
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -13,11 +14,11 @@
   box-sizing: content-box;
 }
 
-
-/*TODO get reset CSS*/
-
 body {
   margin: 0;
+  background-color: #F1E7CD;
+  font-family: 'Neucha', cursive;
+  ;
 }
 
 #game {
@@ -201,7 +202,7 @@ ul.board li.type6 {
 .nav .navContent {
   position: relative;
   top: 3vh;
-  width: 85vw;
+  width: 88vw;
   margin: 0 auto;
 }
 
@@ -209,39 +210,54 @@ ul.board li.type6 {
 .navLink,
 .navTitle,
 .userBadgeProfile,
-.userNickname,
 .userHeader,
 .userBadges {
   display: inline-block;
 }
 
 .navTitle {
-  font-family: 'Trebuchet MS';
-  font-weight: 700;
+  font-family: 'Sigmar One', cursive;
+  font-size: 5vh;
   margin-top: 2vh;
+  margin: 0;
+}
+
+.top {
+  position: absolute;
+  top: 1.3vh;
+  margin: 0;
+  font-size: 2vh;
+}
+
+.bottom {
+  position: absolute;
+  top: 7vh;
+  left: 9.5vw;
+  margin: 0;
+  font-size: 2vh;
 }
 
 .navLink {
+  color: darkgreen;
   text-transform: capitalize;
-  text-decoration: none;
   margin-top: 5vh;
   margin-left: 0.5vw;
-  color: green;
   font-weight: 600;
 }
 
-.navLink:active {
+.navLink:hover {
   color: slategray;
 }
 
 .userBadge {
   position: absolute;
   right: 2vw;
-  border: 10px solid green;
-  background-color: slategray;
-  border-radius: 15px;
-  width: 25vw;
+  width: 23vw;
   height: 10vh;
+  border: 5px solid green;
+  background-color: #C0BA96;
+  border-radius: 15px;
+  padding-bottom: 1vh;
 }
 
 .userBadgeProfile,
@@ -251,31 +267,56 @@ ul.board li.type6 {
 }
 
 .userBadgeProfile {
-  margin-top: 0.5vh;
-  margin-left: 0.5vh;
+  margin-top: 1.2vh;
+  margin-left: 1.2vh;
   height: 6vh;
   width: 6vh;
-  border: 2px solid ghostwhite;
+  border: 3px solid ghostwhite;
   background-color: #000;
   border-radius: 8vh;
 }
 
 .userHeader {
   margin-left: 1vw;
+  margin-bottom: 3vh;
 }
 
 .userNickname {
   margin: 0 auto;
-  color: white;
+  color: darkgreen;
 }
 
 .login {
-  display: block;
-  width: 5vw;
+  /*display: block;*/
+  position: absolute;
+  width: 4.5vw;
   height: 3vh;
-  border-radius: 5px;
+  right: -0.2vw;
+  bottom: 6vh;
+  border-radius: 0px 15px 5px 0px;
   background-color: green;
   color: white;
+  border-style: hidden;
+}
+
+.badge {
+  position: absolute;
+  bottom: 2vh;
+  width: 5vh;
+  height: 5vh;
+  border-width: 2px;
+  border-color: lightslategray;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: 1.5vh;
+}
+
+.badge1 {
+  left: 12vw;
+}
+
+.badge2 {
+  left: 15vw;
 }
 
 .github {

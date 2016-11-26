@@ -12,7 +12,6 @@ export default (action, next) => {
       .text
       .match(/\\\S+/gi)[0]
       .slice(1);
-    //FIXME: make parsing target less brittle
     const target = action
       .payload
       .text

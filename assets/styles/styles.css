@@ -22,15 +22,63 @@ body {
 }
 
 #game {
-  margin-top: 5vh;
+  margin-top: 2vh;
 }
 
 .game {
-  width: 70%;
+  width: 90%;
 }
 
 canvas {
   margin: 0 auto;
+  border-radius: 15px;
+}
+
+
+/* GAME DISPLAY */
+
+.gameDisplay {
+  width: 50%;
+  height: 8vh;
+  margin-top: 2vh;
+  margin-left: 5%;
+  padding-top: 1vh;
+  border: 5px solid green;
+  background-color: #C0BA96;
+  border-radius: 15px;
+  padding-bottom: 1vh;
+  text-align: center;
+}
+
+
+/*HEALTH BAR*/
+
+.healthBar {
+  margin: 0 auto;
+  width: 90%;
+  border: 5px solid black;
+  border-radius: 10px;
+}
+
+.health {
+  display: inline-block;
+  border-radius: 5px;
+  height: 20px;
+  font-size: 10pt;
+  vertical-align: top;
+  text-align: center;
+  color: snow;
+  padding-top: 0.5vh;
+}
+
+.healthLost {
+  background-color: red;
+  transition: width 1s ease-in-out;
+}
+
+.healthLeft {
+  background-color: green;
+  transition: width 1s ease-in-out;
 }
 
 
@@ -38,10 +86,18 @@ canvas {
 
 .chatBox {
   position: relative;
+  margin-top: -7.5vh;
   margin-right: 5vw;
-  height: 62vh;
-  width: 30%;
+  height: 61vh;
+  width: 35%;
   float: right;
+}
+
+.menu,
+.turnDisplay,
+.inputForm {
+  text-align: center;
+  box-shadow: 1px 3px 0px lightslategray;
 }
 
 .menu {
@@ -51,24 +107,27 @@ canvas {
   right: 0px;
   width: 100%;
   height: 50px;
+  border-radius: 15px 15px 0px 0px;
+  padding-top: 1.5vh;
   background: darkslategray;
   z-index: 100;
-  box-shadow: 1px 2px 0px #D4D4D4;
 }
 
 .menuName {
   margin: 0 auto;
   color: white;
   text-align: center;
+  font-size: 2.5vh;
 }
 
 .turnDisplay {
-  display: inline-block;
   margin-top: 7vh;
   width: 100%;
-  background: rgba(2, 9, 1, 0.7);
+  height: 5vh;
+  background: rgba(2, 9, 1, 0.9);
+  opacity: 0.5;
   z-index: 99;
-  box-shadow: 0px 3px 0px lightslategray;
+  box-shadow: 2px 3px 0px darkslategray;
   color: white;
 }
 
@@ -79,7 +138,7 @@ canvas {
 
 .messages {
   padding-top: 2%;
-  height: 90%;
+  height: 100%;
   overflow: scroll;
   margin-bottom: 0px;
   padding-bottom: 0px;
@@ -92,23 +151,38 @@ canvas {
 
 .inputForm {
   margin-top: 0;
+  height: 4vh;
   width: 100%;
+  border-radius: 0px 0px 15px 15px;
+  background-color: darkslategray;
+  margin-top: 1vh;
+  padding-top: 1vh;
 }
 
 .inputForm input {
-  width: 80%;
+  margin-left: 1vw;
+  width: 75%;
+  background-color: lightgoldenrodyellow;
+  font-family: 'Neucha', cursive;
+  font-size: 1.8vh;
 }
 
 .inputForm .submitButton {
-  width: 18%;
+  width: 5vw;
+  margin-left: 0.5vw;
+  border-radius: 0px 0px 8px 0px;
+  background-color: royalblue;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .chat,
 .selfChat {
   clear: both;
-  margin-top: 5px;
-  border-top-left-radius: 0px;
+  margin-top: 10px;
   box-shadow: -1px 2px 0px #D4D4D4;
+  font-size: 1.8vh;
 }
 
 .selfChat {
@@ -129,7 +203,7 @@ canvas {
 .messages .chatDate {
   font-style: italic;
   float: right;
-  margin-right: 1vw;
+  margin-right: 0.5vw;
 }
 
 
@@ -158,31 +232,6 @@ ul.board li.type3 {
 
 ul.board li.type6 {
   background: blue;
-}
-
-
-/*HEALTH BAR*/
-
-.health {
-  display: inline-block;
-  width: 90%;
-  height: 20px;
-  font-size: 10pt;
-  vertical-align: top;
-  text-align: center;
-  border-radius: 10px;
-  border-color: darkslategray;
-  border-width: 5px;
-}
-
-.healthLost {
-  background-color: red;
-  transition: width 1s ease-in-out;
-}
-
-.healthLeft {
-  background-color: green;
-  transition: width 1s ease-in-out;
 }
 
 

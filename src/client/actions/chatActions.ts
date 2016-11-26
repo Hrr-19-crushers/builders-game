@@ -23,7 +23,7 @@ export const chatsAfterAction = (date: Date): Action => ({
 export const chatBotAction = (text: string): Action => ({
   type: ADD_CHAT,
   payload: {
-    user: '🤖',
+    user: '👹',
     text: text,
     type: 'admin',
     date: JSON.stringify(new Date())

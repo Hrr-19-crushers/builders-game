@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Dpad from './Dpad';
 
 export default class Chat extends React.Component < any,
 any > {
@@ -42,11 +43,13 @@ any > {
   
   public render() {
     return (
-      <div onKeyDown={this
+      <div
+        className='inputForm' 
+        onKeyDown={this
         .onKeyDown
         .bind(this)}>
+        <Dpad />
         <form
-          className='inputForm'
           onSubmit={this
           .onSubmit
           .bind(this)}>

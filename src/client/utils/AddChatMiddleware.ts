@@ -4,7 +4,6 @@ import {moveAction, voteAction} from '../actions/gameActions';
 import {direction2Server, vote2Server, newPlayer2Server} from './socket_io';
 import store, {getGameState} from '../store';
 
-// TODO: move this middleware out of redux store into only the parseChat
 export default (action, next) => {
   if (action.type === ADD_CHAT && action.payload.text[0] === '\\') {
     const verb = action

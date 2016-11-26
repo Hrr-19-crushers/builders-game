@@ -19,7 +19,7 @@ const advisements = [
 export const botWelcome = () => {
   const greeting = grumblings[Math.floor(Math.random() * grumblings.length)];
   botMessage(greeting);
-  const text = `Welcome to Perilous! Your incantations control our hero. Type '\\' followed by a command to play. For example '\\up' will move him up...`;
+  const text = `Erm...welcome to Perilous! Your incantations control our hero. Type '\\' followed by a command to play. For example '\\up' will move him up...`;
   botMessage(text);
   const text2 = `You can set your name by typing '\\name' followed by your name...`
   botMessage(text2);

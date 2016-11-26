@@ -46,7 +46,7 @@ socket.on('clients', num => {
 
 // messages
 socket.on('newPlayer', name => {
-  store.dispatch(chatBotAction(name + ' just joined the game!'));
+  store.dispatch(chatBotAction(name + ' has just joined our party!'));
 });
 
 socket.on('userMessage', message => {

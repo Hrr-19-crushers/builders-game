@@ -25,7 +25,9 @@ export default (action, next) => {
       : [];
       
     // POSSIBLE USER ACTIONS FROM COMMAND LINE
-    if (verb === 'name') {
+    //actions only accessable to logged in users
+    
+    if (verb === 'name' && store.getState()['authReducer'].isAuth) {
       store.dispatch(changeUserAction(target));
       newPlayer2Server(target);
     }

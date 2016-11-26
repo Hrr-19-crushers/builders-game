@@ -18,10 +18,9 @@ export default({profile}) => (
           : 'Cannon Fodder'}</p>
     </div>
     <div className='userBadges'>
-      <div className={profile.nickname ? 'loggedInBadge' : 'badge'}></div>
-      <div className={profile.nickname ? 'loggedInBadge' : 'badge'}></div>
-      <div className={profile.nickname ? 'loggedInBadge' : 'badge'}></div>
-          <LoginContainer/>
+      <div className={profile.nickname ? 'loginBadge badge1 badge' : 'badge1 badge'}>Badge1</div>
+      <div className={profile.nickname ? 'loginBadge badge2 badge' : 'badge2 badge'}>Badge2</div>
+      <LoginContainer/>
     </div>
   </div>
 );

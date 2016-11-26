@@ -232,8 +232,7 @@ ul.board li.type6 {
 .bottom {
   position: absolute;
   top: 7vh;
-  left: 9.5vw;
-  margin: 0;
+  left: 9vw;
   font-size: 2vh;
 }
 
@@ -277,8 +276,9 @@ ul.board li.type6 {
 }
 
 .userHeader {
-  margin-left: 1vw;
-  margin-bottom: 3vh;
+  position: absolute;
+  top: 1.85vh;
+  left: 4vw;
 }
 
 .userNickname {

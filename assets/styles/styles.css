@@ -210,7 +210,6 @@ ul.board li.type6 {
 .navLink,
 .navTitle,
 .userBadgeProfile,
-.userNickname,
 .userHeader,
 .userBadges {
   display: inline-block;
@@ -253,11 +252,12 @@ ul.board li.type6 {
 .userBadge {
   position: absolute;
   right: 2vw;
-  border: 10px solid green;
-  background-color: slategray;
-  border-radius: 15px;
   width: 25vw;
   height: 10vh;
+  border: 5px solid green;
+  background-color: #C0BA96;
+  border-radius: 15px;
+  padding-bottom: 1vh;
 }
 
 .userBadgeProfile,
@@ -267,31 +267,36 @@ ul.board li.type6 {
 }
 
 .userBadgeProfile {
-  margin-top: 0.5vh;
-  margin-left: 0.5vh;
+  margin-top: 1.2vh;
+  margin-left: 1.2vh;
   height: 6vh;
   width: 6vh;
-  border: 2px solid ghostwhite;
+  border: 3px solid ghostwhite;
   background-color: #000;
   border-radius: 8vh;
 }
 
 .userHeader {
   margin-left: 1vw;
+  margin-bottom: 3vh;
 }
 
 .userNickname {
   margin: 0 auto;
-  color: white;
+  color: darkgreen;
 }
 
 .login {
-  display: block;
-  width: 5vw;
+  /*display: block;*/
+  position: absolute;
+  width: 4.5vw;
   height: 3vh;
-  border-radius: 5px;
+  right: -0.2vw;
+  bottom: 6vh;
+  border-radius: 0px 15px 5px 0px;
   background-color: green;
   color: white;
+  border-style: hidden;
 }
 
 .github {

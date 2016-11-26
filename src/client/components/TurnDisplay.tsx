@@ -8,12 +8,6 @@ class TurnDisplay extends React.Component<any, any> {
       time: 0
     };
   }
-  // private _countDown() {
-  //   const time: Number = Math.floor((this.props.expiration - Date.now()) / 1000);
-  //   this.setState({ time });
-  //   // FIXME: this doesn't seem to be counting down
-  //   this.setState({ timeout: setTimeout(this._countDown, 500) });
-  // }
 
   componentDidMount() {
     //this._countDown();
@@ -24,6 +18,7 @@ class TurnDisplay extends React.Component<any, any> {
   };
 
   render() {
+    // this if/else control is for displaying turn-based scenarios
     if (this.props.prompt) {
       return (
         <div className='turnDisplay'>
@@ -36,8 +31,8 @@ class TurnDisplay extends React.Component<any, any> {
     } else {
       return(
         <div className='turnDisplay'>
-          <p>Open world play! Type in '\up', '\down', '\left', or '\right' to move</p>
-          <HealthbarContainer />
+          <p>Perilous is a multiplayer adventure controlled by chat.</p>
+          <p>Open world play! Type in '\up', '\down', '\left', or '\right' to explore</p>
         </div>
       );
     }

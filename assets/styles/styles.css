@@ -251,7 +251,7 @@ ul.board li.type6 {
 .userBadge {
   position: absolute;
   right: 2vw;
-  width: 23vw;
+  width: 22vw;
   height: 10vh;
   border: 5px solid green;
   background-color: #C0BA96;
@@ -287,7 +287,6 @@ ul.board li.type6 {
 }
 
 .login {
-  /*display: block;*/
   position: absolute;
   width: 4.5vw;
   height: 3vh;
@@ -297,6 +296,11 @@ ul.board li.type6 {
   background-color: green;
   color: white;
   border-style: hidden;
+}
+
+.login:hover {
+  color: lightgray;
+  background-color: darkgreen;
 }
 
 .badge {
@@ -312,11 +316,11 @@ ul.board li.type6 {
 }
 
 .badge1 {
-  left: 12vw;
+  left: 11vw;
 }
 
 .badge2 {
-  left: 15vw;
+  left: 14vw;
 }
 
 .github {

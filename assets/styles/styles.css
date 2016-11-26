@@ -235,7 +235,7 @@ canvas {
   position: relative;
   margin-top: -7.5vh;
   margin-right: 5vw;
-  height: 62vh;
+  height: 59.5vh;
   width: 35%;
   float: right;
 }
@@ -256,7 +256,7 @@ canvas {
   height: 50px;
   border-radius: 15px 15px 0px 0px;
   padding-top: 1.5vh;
-  background: mediumpurple;
+  background: darkslategray;
   z-index: 100;
 }
 
@@ -304,7 +304,7 @@ canvas {
   bottom: 2vh;
   border: 5px solid mediumpurple;
   border-radius: 15px 15px 15px 15px;
-  background-color: dimgray;
+  background-color: lightgray;
   box-shadow: 5px 5px darkslategray
 }
 

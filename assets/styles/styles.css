@@ -87,6 +87,7 @@ canvas {
 
 .messages ul {
   list-style-type: none;
+  margin-left: 1vw;
 }
 
 .inputForm {
@@ -102,7 +103,8 @@ canvas {
   width: 18%;
 }
 
-.chat {
+.chat,
+.selfChat {
   clear: both;
   margin-top: 5px;
   border-top-left-radius: 0px;
@@ -111,8 +113,6 @@ canvas {
 
 .selfChat {
   font-weight: 700;
-  border-bottom-right-radius: 0px;
-  box-shadow: 1px 2px 0px #D4D4D4;
 }
 
 .selfChat .chatName {
@@ -220,18 +220,19 @@ ul.board li.type6 {
   font-size: 5vh;
   margin-top: 2vh;
   margin: 0;
+  text-shadow: 1px 2px darkslategray;
 }
 
 .top {
   position: absolute;
-  top: 1.3vh;
+  top: 1.1vh;
   margin: 0;
   font-size: 2vh;
 }
 
 .bottom {
   position: absolute;
-  top: 7vh;
+  top: 7.2vh;
   left: 9vw;
   font-size: 2vh;
 }

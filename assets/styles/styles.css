@@ -441,6 +441,10 @@ ul.board li.type6 {
   background: #404d4d;
 }
 
+.fakeHover {
+  background: #404d4d;
+}
+
 .up {
   left: 1em;
   top: 0;

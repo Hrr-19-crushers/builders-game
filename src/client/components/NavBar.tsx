@@ -15,7 +15,7 @@ export default() => (
         <Link className='navLink' activeClassName='active' to='/about'>About</Link>
         <Link className='navLink' activeClassName='active' to='/dashboard'>Dashboard</Link>
         <UserBadgeContainer/>
-      </div>
+    </div>
 
     <a href="https://github.com/Hrr-19-crushers/builders-game"><img
       className="github"

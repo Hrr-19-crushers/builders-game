@@ -49,6 +49,7 @@ app.get('/maptester', (req, res) => {
 // ---------------------------------------------------
 
 io.on('connection', socket => {
+  socket.emit('connection');
   socket.emit('clients', io.engine.clientsCount);
   socket.emit('gameState', game.gameGetGameState());
 

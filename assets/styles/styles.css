@@ -21,158 +21,53 @@ body {
   ;
 }
 
-#game {
-  margin-top: 5vh;
-}
 
-.game {
-  width: 70%;
+/* GAME SCREEN */
+
+#game {
+  margin-top: 2vh;
 }
 
 canvas {
   margin: 0 auto;
+  border-radius: 15px;
 }
 
 
-/* CHAT STYLING */
+/* GAME DISPLAY */
 
-.chatBox {
-  position: relative;
-  margin-right: 5vw;
-  height: 62vh;
-  width: 30%;
-  float: right;
-}
-
-.menu {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  width: 100%;
-  height: 50px;
-  background: darkslategray;
-  z-index: 100;
-  box-shadow: 1px 2px 0px #D4D4D4;
-}
-
-.menuName {
-  margin: 0 auto;
-  color: white;
+.gameDisplay {
+  width: 50%;
+  height: 8vh;
+  margin-top: 2vh;
+  margin-left: 5%;
+  padding-top: 1vh;
+  border: 5px solid green;
+  background-color: #C0BA96;
+  border-radius: 15px;
+  padding-bottom: 1vh;
   text-align: center;
-}
-
-.turnDisplay {
-  display: inline-block;
-  margin-top: 7vh;
-  width: 100%;
-  background: rgba(2, 9, 1, 0.7);
-  z-index: 99;
-  box-shadow: 0px 3px 0px lightslategray;
-  color: white;
-}
-
-.messages,
-.inputForm {
-  background-color: #ECEFF1;
-}
-
-.messages {
-  padding-top: 2%;
-  height: 90%;
-  overflow: scroll;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-}
-
-.messages ul {
-  list-style-type: none;
-}
-
-.inputForm {
-  margin-top: 0;
-  width: 100%;
-}
-
-.inputForm input {
-  width: 80%;
-}
-
-.inputForm .submitButton {
-  width: 18%;
-}
-
-.chat {
-  clear: both;
-  margin-top: 5px;
-  border-top-left-radius: 0px;
-  box-shadow: -1px 2px 0px #D4D4D4;
-}
-
-.selfChat {
-  font-weight: 700;
-  border-bottom-right-radius: 0px;
-  box-shadow: 1px 2px 0px #D4D4D4;
-}
-
-.selfChat .chatName {
-  color: rebeccapurple;
-}
-
-.chat .chatName {
-  font-weight: 700;
-  color: cadetblue;
-}
-
-.messages .chatText {}
-
-.messages .chatDate {
-  font-style: italic;
-  float: right;
-  margin-right: 1vw;
-}
-
-
-/* map tester page */
-
-ul.board {
-  width: 500px;
-  height: 500px;
-  overflow: hidden;
-  list-style-type: none;
-}
-
-ul.board li {
-  float: left;
-  width: 20%;
-  height: 20%;
-}
-
-ul.board li.type1 {
-  background: rgb(230, 230, 230);
-}
-
-ul.board li.type3 {
-  background: rgb(25, 25, 25);
-}
-
-ul.board li.type6 {
-  background: blue;
 }
 
 
 /*HEALTH BAR*/
 
+.healthBar {
+  margin: 0 auto;
+  width: 90%;
+  border: 5px solid darkslategray;
+  border-radius: 10px;
+}
+
 .health {
   display: inline-block;
-  width: 90%;
+  border-radius: 5px;
   height: 20px;
   font-size: 10pt;
   vertical-align: top;
   text-align: center;
-  border-radius: 10px;
-  border-color: darkslategray;
-  border-width: 5px;
+  color: snow;
+  padding-top: 0.5vh;
 }
 
 .healthLost {
@@ -220,20 +115,20 @@ ul.board li.type6 {
   font-size: 5vh;
   margin-top: 2vh;
   margin: 0;
+  text-shadow: 1px 2px darkslategray;
 }
 
 .top {
   position: absolute;
-  top: 1.3vh;
+  top: 1.1vh;
   margin: 0;
   font-size: 2vh;
 }
 
 .bottom {
   position: absolute;
-  top: 7vh;
-  left: 9.5vw;
-  margin: 0;
+  top: 7.2vh;
+  left: 9vw;
   font-size: 2vh;
 }
 
@@ -252,7 +147,7 @@ ul.board li.type6 {
 .userBadge {
   position: absolute;
   right: 2vw;
-  width: 23vw;
+  width: 22vw;
   height: 10vh;
   border: 5px solid green;
   background-color: #C0BA96;
@@ -271,14 +166,15 @@ ul.board li.type6 {
   margin-left: 1.2vh;
   height: 6vh;
   width: 6vh;
-  border: 3px solid ghostwhite;
+  border: 5px solid darkslategray;
   background-color: #000;
   border-radius: 8vh;
 }
 
 .userHeader {
-  margin-left: 1vw;
-  margin-bottom: 3vh;
+  position: absolute;
+  top: 1.85vh;
+  left: 4.2vw;
 }
 
 .userNickname {
@@ -287,7 +183,6 @@ ul.board li.type6 {
 }
 
 .login {
-  /*display: block;*/
   position: absolute;
   width: 4.5vw;
   height: 3vh;
@@ -297,6 +192,11 @@ ul.board li.type6 {
   background-color: green;
   color: white;
   border-style: hidden;
+}
+
+.login:hover {
+  color: lightgray;
+  background-color: darkgreen;
 }
 
 .badge {
@@ -312,11 +212,11 @@ ul.board li.type6 {
 }
 
 .badge1 {
-  left: 12vw;
+  left: 11vw;
 }
 
 .badge2 {
-  left: 15vw;
+  left: 14vw;
 }
 
 .github {
@@ -326,4 +226,158 @@ ul.board li.type6 {
   border: 0;
   height: 15vh;
   width: 15vh;
+}
+
+
+/* CHAT */
+
+.chatBox {
+  position: relative;
+  margin-top: -7.5vh;
+  margin-right: 5vw;
+  height: 61vh;
+  width: 35%;
+  float: right;
+}
+
+.menu,
+.turnDisplay,
+.inputForm {
+  text-align: center;
+  box-shadow: 1px 3px 0px lightslategray;
+}
+
+.menu {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 50px;
+  border-radius: 15px 15px 0px 0px;
+  padding-top: 1.5vh;
+  background: darkslategray;
+  z-index: 100;
+}
+
+.menuName {
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+  font-size: 2.5vh;
+}
+
+.turnDisplay {
+  margin-top: 7vh;
+  width: 100%;
+  height: 5vh;
+  background: darkgreen;
+  opacity: 0.7;
+  z-index: 99;
+  box-shadow: 2px 3px 0px darkslategray;
+  color: white;
+}
+
+.messages,
+.inputForm {
+  background-color: #ECEFF1;
+}
+
+.messages {
+  padding-top: 2%;
+  height: 100%;
+  overflow: scroll;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.messages ul {
+  list-style-type: none;
+  margin-left: 1vw;
+}
+
+.inputForm {
+  margin-top: 0;
+  height: 4vh;
+  width: 100%;
+  border-radius: 0px 0px 15px 15px;
+  background-color: darkslategray;
+  margin-top: 1vh;
+  padding-top: 1vh;
+}
+
+.inputForm input {
+  margin-left: 1vw;
+  width: 75%;
+  background-color: lightgoldenrodyellow;
+  font-family: 'Neucha', cursive;
+  font-size: 1.8vh;
+}
+
+.inputForm .submitButton {
+  width: 5vw;
+  margin-left: 0.5vw;
+  border-radius: 0px 0px 8px 0px;
+  background-color: royalblue;
+  padding-top: 0.3vh;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.chat,
+.selfChat {
+  clear: both;
+  margin-top: 10px;
+  box-shadow: -1px 2px 0px #D4D4D4;
+  font-size: 1.8vh;
+}
+
+.selfChat {
+  font-weight: 700;
+}
+
+.selfChat .chatName {
+  color: rebeccapurple;
+}
+
+.chat .chatName {
+  font-weight: 700;
+  color: cadetblue;
+}
+
+.messages .chatText {}
+
+.messages .chatDate {
+  font-style: italic;
+  float: right;
+  margin-right: 0.5vw;
+}
+
+
+/* map tester page */
+
+ul.board {
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+ul.board li {
+  float: left;
+  width: 20%;
+  height: 20%;
+}
+
+ul.board li.type1 {
+  background: rgb(230, 230, 230);
+}
+
+ul.board li.type3 {
+  background: rgb(25, 25, 25);
+}
+
+ul.board li.type6 {
+  background: blue;
 }

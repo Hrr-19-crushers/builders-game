@@ -10,6 +10,7 @@ import {
   updateCharAction,
   updateBoardAction
 } from '../actions/gameActions';
+import {botWelcome} from './chatBot';
 
 const socket = io();
 
@@ -35,6 +36,9 @@ export const authPlayer2Server = profile => {
 }
 
 /* INCOMING FROM SERVER */
+socket.on('connection', () => {
+  botWelcome();
+});
 // stats
 socket.on('clients', num => {
   console.log('stats', num); // TODO: update stats on server
@@ -42,7 +46,7 @@ socket.on('clients', num => {
 
 // messages
 socket.on('newPlayer', name => {
-  store.dispatch(chatBotAction(name + ' just joined the game!'));
+  store.dispatch(chatBotAction(name + ' has just joined our party!'));
 });
 
 socket.on('userMessage', message => {
@@ -63,11 +67,11 @@ socket.on('vote', (choice: String) => {
   store.dispatch(voteAction(choice));
 });
 
-socket.on('nextTurn', (turn) => {
-  store.dispatch(nextTurnAction(turn));
-});
+// socket.on('nextTurn', (turn) => {
+//   store.dispatch(nextTurnAction(turn));
+// });
 
-socket.on('outcome', (choice) => {
-  store.dispatch(outcomeAction(choice));
-});
+// socket.on('outcome', (choice) => {
+//   store.dispatch(outcomeAction(choice));
+// });
 

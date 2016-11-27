@@ -49,7 +49,6 @@ socket.on('connection', () => {
 
 // stats
 socket.on('clients', num => {
-  console.log('stats', num); // TODO: update stats on server
   store.dispatch(updateClientsAction(num));
 });
 

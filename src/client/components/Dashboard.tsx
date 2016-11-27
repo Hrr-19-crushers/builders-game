@@ -1,5 +1,10 @@
 import * as React from 'react';
 
-export default () => (
-  <div>Dashboard</div>
+import UserActivityContainer from '../containers/UserActivityContainer';
+
+export default() => (
+  <div>
+    Dashboard
+    <UserActivityContainer />
+  </div>
 );

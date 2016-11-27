@@ -1,6 +1,5 @@
 /// <reference path="../../../type-declarations/Object.d.ts" />
 import {Action} from '../actions/actionInterface';
-
 import {NEXT_TURN, VOTE, OUTCOME, UPDATE_CHAR, UPDATE_BOARD} from '../actions/actionTypes';
 
 export interface Choice {
@@ -50,7 +49,7 @@ export const INITIAL_STATE : GameState = {
   }
 };
 
-export const gameState = (state : GameState = INITIAL_STATE, action : Action) => {
+export const gameState = (state : GameState = INITIAL_STATE, action : Action): GameState => {
   switch (action.type) {
     case NEXT_TURN:
       const votes = action

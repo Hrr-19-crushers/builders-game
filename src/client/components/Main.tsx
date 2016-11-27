@@ -2,11 +2,11 @@ import * as React from 'react';
 
 import Game from './Game';
 import Chat from './Chat';
-import GameDisplay from './GameDisplay';
+import GameDisplayContainer from '../containers/GameDisplayContainer';
 
 export default() => (
   <div className='Main'>
-    <GameDisplay />
+    <GameDisplayContainer />
     <Chat/>
     <Game/>
   </div>

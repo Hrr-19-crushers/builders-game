@@ -39,7 +39,7 @@ canvas {
 
 .gameDisplay {
   width: 50%;
-  height: 8vh;
+  height: 9vh;
   margin-top: 2vh;
   margin-left: 5%;
   padding-top: 1vh;
@@ -48,6 +48,11 @@ canvas {
   border-radius: 15px;
   padding-bottom: 1vh;
   text-align: center;
+}
+
+.gameDisplay .users {
+  font-family: 'Sigmar One', cursive;
+  color: darkred;
 }
 
 

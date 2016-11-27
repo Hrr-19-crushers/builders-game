@@ -10,11 +10,10 @@ import {
   updateCharAction,
   updateBoardAction
 } from '../actions/gameActions';
+import {updateClientsAction} from '../actions/statsActions';
 import {botWelcome} from './chatBot';
 
 const socket = io();
-
-
 
 /*OUTGOING TO SERVER */
 export const chat2Server = message => {
@@ -43,9 +42,11 @@ export const authPlayer2Server = profile => {
 socket.on('connection', () => {
   botWelcome();
 });
+
 // stats
 socket.on('clients', num => {
   console.log('stats', num); // TODO: update stats on server
+  store.dispatch(updateClientsAction(num));
 });
 
 // messages

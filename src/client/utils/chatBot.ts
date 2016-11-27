@@ -1,7 +1,7 @@
 import {chatBotAction} from '../actions/chatActions';
 import store from '../store';
 
-const botMessage = text => store.dispatch(chatBotAction(text || '🤖 is always listening'));
+export const botMessage = text => store.dispatch(chatBotAction(text || '🤖 is always listening'));
 
 const grumblings = [
   'Hrrmmmm.  What\'s that who are you?!',

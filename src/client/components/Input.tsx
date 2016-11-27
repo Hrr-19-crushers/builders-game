@@ -72,9 +72,8 @@ any > {
         .onKeyDown
         .bind(this)}>
         <Dpad
-          move={function (dir) {
-          this._submitChat('\\' + dir)
-        }.bind(this)}/>
+          move={function (dir) {this._submitChat('\\' + dir)}.bind(this)}
+          action = {function(l) {this._submitChat('\\' + l)}.bind(this)}/>
         <form onSubmit={this
           .onSubmit
           .bind(this)}>

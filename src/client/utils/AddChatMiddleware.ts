@@ -34,9 +34,10 @@ export default (action, next) => {
           store.dispatch(chatBotAction('Sorry, that name is currently in use'))
         } else {
           store.dispatch(changeUserAction(target));
-          return botSup(target);
+          botSup(target);
         }
       });
+      return;
     }
     if (['up', 'down', 'left', 'right'].indexOf(verb) > -1) {
       direction2Server(verb);

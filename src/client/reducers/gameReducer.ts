@@ -34,6 +34,7 @@ export interface CharState {
 export interface GameState {
   charState: CharState;
   gameBoard?: BoardSquare[];
+  collected: number;
   turn?: Turn;
   outcome?: String;
 }
@@ -46,7 +47,8 @@ export const INITIAL_STATE : GameState = {
      y: 4 
     },
     charName: 'Link'
-  }
+  },
+  collected: 0
 };
 
 export const gameState = (state : GameState = INITIAL_STATE, action : Action): GameState => {

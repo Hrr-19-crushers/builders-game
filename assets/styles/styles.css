@@ -50,9 +50,18 @@ canvas {
   text-align: center;
 }
 
-.gameDisplay .users {
+.gameDisplay .users,
+.gameDisplay .collected {
   font-family: 'Sigmar One', cursive;
   color: darkred;
+}
+
+.gameDisplay .user {
+  margin-right: 7vw;
+}
+
+.gameDisplay .collect {
+  margin-left: 7vw;
 }
 
 

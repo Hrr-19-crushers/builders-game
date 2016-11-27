@@ -1,4 +1,4 @@
-//https://codepen.io/sloveland/pen/AJFaE?editors=1010
+//TODO: attribution https://codepen.io/sloveland/pen/AJFaE?editors=1010
 import * as React from 'react';
 
 export default ({move, action})=> (

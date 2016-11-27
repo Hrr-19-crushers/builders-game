@@ -1,6 +1,7 @@
 import {ADD_CHAT} from '../actions/actionTypes';
 import {changeUserAction} from '../actions/userActions';
 import {moveAction, voteAction} from '../actions/gameActions';
+import {chatBotAction} from '../actions/chatActions';
 import {direction2Server, vote2Server, newPlayer2Server} from './socket_io';
 import store, {getGameState} from '../store';
 
@@ -28,8 +29,13 @@ export default (action, next) => {
     //actions only accessable to logged in users
     
     if (verb === 'name' && store.getState()['authReducer'].isAuth) {
-      store.dispatch(changeUserAction(target));
-      newPlayer2Server(target);
+      newPlayer2Server(target, (isExists) => {
+        if (isExists) {
+          store.dispatch(chatBotAction('Sorry, that name is currently in use'))
+        } else {
+          store.dispatch(changeUserAction(target));
+        }
+      });
     }
     if (['up', 'down', 'left', 'right'].indexOf(verb) > -1) {
       direction2Server(verb);

@@ -1,6 +1,7 @@
 import {ADD_CHAT} from '../actions/actionTypes';
 import {changeUserAction} from '../actions/userActions';
 import {moveAction, voteAction} from '../actions/gameActions';
+import {chatBotAction} from '../actions/chatActions';
 import {direction2Server, vote2Server, newPlayer2Server} from './socket_io';
 import store, {getGameState} from '../store';
 import {botSup, botStats, botNotFound, botAdvise} from './chatBot';
@@ -24,10 +25,19 @@ export default (action, next) => {
       : [];
       
     // POSSIBLE USER ACTIONS FROM COMMAND LINE
-    if (verb === 'name') {
-      store.dispatch(changeUserAction(target));
-      newPlayer2Server(target);
-      return botSup(target);
+
+    //this action is only accessable to logged in users
+    
+    if (verb === 'name' && store.getState()['authReducer'].isAuth) {
+      newPlayer2Server(target, (isExists) => {
+        if (isExists) {
+          store.dispatch(chatBotAction('Sorry, that name is currently in use'))
+        } else {
+          store.dispatch(changeUserAction(target));
+          botSup(target);
+        }
+      });
+      return;
     }
     if (['up', 'down', 'left', 'right'].indexOf(verb) > -1) {
       direction2Server(verb);

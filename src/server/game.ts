@@ -80,14 +80,20 @@ class Character {
 class Player {
   // private playerId: string;
   private playerName : string;
+  private playerSocketId: string;
 
-  constructor(playerName? : string) {
+  constructor(playerName? : string, playerSocketId?: any ) {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName || 'Guest';
+    this.playerSocketId = playerSocketId;
   }
 
   playerGetName() : string {
     return this.playerName;
+  }
+
+  playerGetSocketId() : any {
+    return this.playerSocketId
   }
 
 }
@@ -126,14 +132,15 @@ export class Game {
     };
   }
 
-  gameAddNewPlayer(playerName? : string) : string {
+  gameAddNewPlayer(playerSocketId? : string, playerName? : string) : string {
     playerName = playerName || 'Guest';
-    const player = new Player(playerName);
-    storage.lpush('players', JSON.stringify(player), (err : any) => {
+    playerSocketId = playerSocketId;
+    const player = new Player(playerName, playerSocketId);
+    storage.hset('players', playerName, JSON.stringify(player), (err : any) => {
       if (err) {
         console.log(`Error adding new player to storage`, err);
       } else {
-        console.log('${player.playerName} has entered the game!');
+        console.log(`${player.playerGetName()} has entered the game!`);
       }
     });
     return player.playerGetName();
@@ -171,6 +178,27 @@ export class Game {
   }
 
   //======== Player Methods =========
+  gameCheckForExistingPlayer(playerName: string, cb?: any): void {
+    storage.HEXISTS('players', playerName, (err, existance) => { 
+      if (err) {
+        console.error(err);
+        return;
+      }
+      if (cb) {
+        cb(existance)
+      }
+    }); 
+  }
+//TODO allow players to update their name instead of just adding a new name 
+  gameUpdatePlayerName(playerName: string, socketId: string, cb?: any): void {
+    let player = JSON.parse(storage.hget('players', playerName))
+    // if the socketId === to the object socket id
+    if (socketId === player.playerSocketId ) {
+      // delete the feild in storage
+      storage.hdel('players',)
+      //call gameaddplayer with new name and socketid.
+    }
+  }
 
   gameDeletePlayer() {
     // TODO eventually

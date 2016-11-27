@@ -54,10 +54,16 @@ io.on('connection', socket => {
   socket.emit('gameState', game.gameGetGameState());
 
   // PLAYERS
-  socket.on('newPlayer', playerName => {
-    //const player = game.gameAddNewPlayer(); // TODO add back in playerName once it's passed updated
-    console.log(io.engine.clientsCount);
-    socket.broadcast.emit('newPlayer', playerName);
+  socket.on('newPlayer', (playerName, fn) => {
+    game.gameCheckForExistingPlayer(playerName, (existance) => {
+      if (existance) {
+        fn(true)
+      } else {
+        fn(false)
+        game.gameAddNewPlayer(socket.id, playerName)
+        socket.broadcast.emit('newPlayer', playerName);
+      }
+    });
   });
 
   // MESSAGES

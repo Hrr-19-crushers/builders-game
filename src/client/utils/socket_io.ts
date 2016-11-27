@@ -14,6 +14,8 @@ import {botWelcome} from './chatBot';
 
 const socket = io();
 
+
+
 /*OUTGOING TO SERVER */
 export const chat2Server = message => {
   socket.emit('newMessage', message);
@@ -27,8 +29,10 @@ export const vote2Server = (choice: string) => {
   socket.emit('vote', choice);
 } 
 
-export const newPlayer2Server = (name:string) => {
-  socket.emit('newPlayer', name);
+export const newPlayer2Server = (name:string, cb?: any) => {
+  socket.emit('newPlayer', name, (data) => {
+    cb(data);
+  });
 }
 
 export const authPlayer2Server = profile => {

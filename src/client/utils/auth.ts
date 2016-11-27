@@ -13,7 +13,6 @@ export const logIn = () => {
 }
 
 export const logOut = () => {
-  dispatch(logoutRequest())
   localStorage.removeItem('id_token')
   localStorage.removeItem('profile')
   dispatch(logutSuccess())
@@ -23,7 +22,8 @@ const doAuth = () => {
   lock.on('authenticated', (authResult) => {
     lock.getProfile(authResult.idToken, (err, profile) => {
       if (err) {
-        return dispatch(lockFail(err))
+        console.error(err);
+        return 
       }
       localStorage.setItem('profile', JSON.stringify(profile));
       localStorage.setItem('id_token', authResult.idToken);

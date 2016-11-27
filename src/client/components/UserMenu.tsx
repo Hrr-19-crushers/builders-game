@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+<<<<<<< HEAD
 const titles = [
   ' brings magic potions to the quest',
   ' wields a big sword',

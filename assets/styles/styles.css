@@ -331,6 +331,10 @@ canvas {
   text-transform: uppercase;
 }
 
+.submitButton:hover {
+  background: rebeccapurple;
+}
+
 .chat,
 .selfChat {
   clear: both;
@@ -351,8 +355,6 @@ canvas {
   font-weight: 700;
   color: cadetblue;
 }
-
-.messages .chatText {}
 
 .messages .chatDate {
   font-style: italic;

@@ -30,6 +30,7 @@ body {
 
 canvas {
   margin: 0 auto;
+  border: 5px solid darkslategray;
   border-radius: 15px;
 }
 

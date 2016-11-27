@@ -132,18 +132,17 @@ export class Game {
     };
   }
 
-  gameAddNewPlayer(playerName? : string, playerSocketId? : string) : string {
+  gameAddNewPlayer(playerSocketId? : string, playerName? : string) : string {
     playerName = playerName || 'Guest';
     playerSocketId = playerSocketId;
     const player = new Player(playerName, playerSocketId);
-    storage.hmset('players', playerName, playerSocketId, (err : any) => {
+    storage.hset('players', playerName, JSON.stringify(player), (err : any) => {
       if (err) {
         console.log(`Error adding new player to storage`, err);
       } else {
-        console.log('${player.playerName} has entered the game!');
+        console.log(`${player.playerGetName()} has entered the game!`);
       }
     });
-    console.log('line 147 of game.ts player object',player)
     return player.playerGetName();
   }
 
@@ -179,6 +178,27 @@ export class Game {
   }
 
   //======== Player Methods =========
+  gameCheckForExistingPlayer(playerName: string, cb?: any): void {
+    storage.HEXISTS('players', playerName, (err, existance) => { 
+      if (err) {
+        console.error(err);
+        return;
+      }
+      if (cb) {
+        cb(existance)
+      }
+    }); 
+  }
+//TODO allow players to update their name instead of just adding a new name 
+  gameUpdatePlayerName(playerName: string, socketId: string, cb?: any): void {
+    let player = JSON.parse(storage.hget('players', playerName))
+    // if the socketId === to the object socket id
+    if (socketId === player.playerSocketId ) {
+      // delete the feild in storage
+      storage.hdel('players',)
+      //call gameaddplayer with new name and socketid.
+    }
+  }
 
   gameDeletePlayer() {
     // TODO eventually

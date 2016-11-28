@@ -1,7 +1,7 @@
 import { Location, Tile, BoardState } from './interfaces';
 // import { Turn } from '../client/reducers/gameReducer';
 // import { turns } from './gameTurns';
-// import { testLayout } from './layouts';
+import { testLayout } from './layouts';
 
 export class Board {
   private boardLayout : Tile[][];
@@ -74,6 +74,18 @@ export class Board {
   boardIsEnemyInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('e' in tile && tile.e);
+  }
+
+  // TODO create test
+  boardIsHeartInTile(location : Location) : boolean {
+    const tile = this.boardLayout[location.y][location.x];
+    return ('h' in tile && tile.h);
+  }
+
+  // TODO create test
+  boardIsFairyInTile(location : Location) : boolean {
+    const tile = this.boardLayout[location.y][location.x];
+    return ('f' in tile && tile.f);
   }
 
   // boardCheckForTurnInTile(location : Location) : boolean {

@@ -171,6 +171,12 @@ export class Game {
       charState = this.gameCharacter.charGetCharState();
       const isEnemyInTile : boolean = this.gameBoard.boardIsEnemyInTile(charState.charLocation);
       if (isEnemyInTile) this.gameCharacter.charSetHealth(-10);
+      // check to see if heart exists in new location and add health if so
+      const isHeartInTile : boolean = this.gameBoard.boardIsHeartInTile(charState.charLocation);
+      if (isHeartInTile) this.gameCharacter.charSetHealth(50);
+      // check to see if fairy exists in new location and add health if so
+      const isFairyInTile : boolean = this.gameBoard.boardIsFairyInTile(charState.charLocation);
+      if (isFairyInTile) this.gameCharacter.charSetHealth(100);
       // call the sever cb with the new char/game states
       let gameState : GameState = this.gameGetGameState();
       if (cb) cb(gameState);

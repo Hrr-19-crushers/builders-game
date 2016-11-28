@@ -15,7 +15,9 @@ export const getRandomInt = (min, max) => {
   return min + Math.floor(Math.random() * (max - min + 1));
 };
 
-export const setResponsiveWidth = (sprite, percent, parent) => {
+export const setResponsiveWidth = (
+  sprite: Phaser.Sprite, percent: number, parent: any
+) => {
   let percentWidth = 
     (sprite.texture.width - (parent.width / (100 / percent))) 
     * 100 / sprite.texture.width;

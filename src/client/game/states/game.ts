@@ -91,6 +91,7 @@ export class GameState extends Phaser.State {
   tilemap: Phaser.Tilemap;
   layer: Phaser.TilemapLayer;
   camera: Phaser.Camera;
+  dragPoint: Phaser.Point;
 
   create () {
     const {charState} = getGameState();
@@ -121,11 +122,6 @@ export class GameState extends Phaser.State {
     //   this.link, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1
     // );
 
-    this.game.input.mouse.onMouseDown = e => {
-      this.game.camera.x = e.offsetX;
-      this.game.camera.y = e.offsetY;
-    };
-
     // Start polling for character events
     this.game.time.events.loop(
       (Phaser.Timer.SECOND / 4),
@@ -137,7 +133,18 @@ export class GameState extends Phaser.State {
   }
 
   update() {
-
+    if (this.game.input.activePointer.isDown) {
+      if (this.dragPoint) {
+        this.game.camera.x +=
+          this.dragPoint.x - this.game.input.activePointer.position.x;
+        this.game.camera.y +=
+          this.dragPoint.y - this.game.input.activePointer.position.y;
+      }
+      this.dragPoint = this.game.input.activePointer.position.clone();
+    }
+    else {
+      this.dragPoint = null;
+    }
   }
 
   render() {

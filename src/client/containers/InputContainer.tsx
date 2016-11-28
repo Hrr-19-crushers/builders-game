@@ -29,7 +29,6 @@ const parseChat = (message: Message, dispatch) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addChat: (message) => {
-      chat2Server(message);
       chatActionMiddleWare(addChatAction(message), dispatch);
     }
   };

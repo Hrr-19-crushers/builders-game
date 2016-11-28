@@ -146,27 +146,38 @@ export class Game {
   private gameCurrentTurn : Turn;
   private gameTurns : Turn[]; // not included in interface currently
 
+  private gameMoveVotes : any = {
+    top: 0,
+    right: 0,
+    down: 0,
+    left: 0
+  };
+
   constructor(layout? : Tile[][]) {
     this.gameLayout = layout || testLayout;
     this.gameBoard = new Board(this.gameLayout);
     // TODO init new character properly later if there are more than 1
     const triforce : Boolean[] = this.gameBoard.boardNewTriForceCollection();
-    this.gameCharacter = new Character(null, null, {x: 0, y: 0} as Location, 100, triforce);
+    this.gameCharacter = new Character(null, null, {x: 0, y: 0}, 100, triforce);
     this.gameTurnActive = false;
+    // // every 0.75 seconds determine which direction got the most 'votes' and move that direction
+    // setInterval(() => {
+    //   let most : number = 0, winner : string;
+    //   for (let direction in this.gameMoveVotes) {
+    //     if (this.gameMoveVotes[direction] > most) {
+    //       most = this.gameMoveVotes[direction];
+    //       winner = direction;
+    //     }
+    //   }
+    //   if (winner !== undefined) {
+    //     // TODO have to figure out a way to emit to clients with 'move' after each cycle
+    //     // TODO reroute current move emitters to only work through this control flow
+    //     this.gameMoveChar(winner);
+    //   }
+    // }, 750);
   }
 
   //========= Game Methods =========
-
-  gameGetGameState() : GameState {
-    const characterState = this.gameCharacter.charGetCharState();
-    return {
-      gameLayout: this.gameLayout,
-      gameBoard: this.gameBoard,
-      gameCharacter: characterState,
-      gameTurnActive: this.gameTurnActive,
-      gameCurrentTurn: this.gameCurrentTurn
-    };
-  }
 
   gameAddNewPlayer(playerSocketId? : string, playerName? : string) : string {
     playerName = playerName || 'Guest';
@@ -182,13 +193,28 @@ export class Game {
     return player.playerGetName();
   }
 
+  gameCountMoveVote(direction : string) {
+
+  }
+
   gameReset() {
     // reset health
     this.gameCharacter.charSetHealth(100);
     // reset tri-force
     this.gameCharacter.charResetTriForce();
     // reset location
-    this.gameCharacter.charSetHealth(100);
+    this.gameCharacter.charSetCharLocation({x: 0, y: 0})
+  }
+
+  gameGetGameState() : GameState {
+    const characterState = this.gameCharacter.charGetCharState();
+    return {
+      gameLayout: this.gameLayout,
+      gameBoard: this.gameBoard,
+      gameCharacter: characterState,
+      gameTurnActive: this.gameTurnActive,
+      gameCurrentTurn: this.gameCurrentTurn
+    };
   }
 
   //====== Character Methods ========

@@ -85,7 +85,7 @@ class Player {
   constructor(playerName? : string, playerSocketId?: any ) {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName || 'Guest';
-    this.playerSocketId = playerSocketId;
+    this.playerSocketId = playerSocketId || undefined;
   }
 
   playerGetName() : string {
@@ -189,6 +189,17 @@ export class Game {
       }
     }); 
   }
+  gameGetPlayerSocket(playerName: string, cb?: any): void {
+    storage.hget('players', playerName, (err, player) => {
+      if (err) {
+        console.error(err);
+      }
+      const playerObj = JSON.parse(player);
+      if (playerObj) {
+        cb(playerObj.playerSocketId);
+      }
+    });
+  }
 //TODO allow players to update their name instead of just adding a new name 
   gameUpdatePlayerName(playerName: string, socketId: string, cb?: any): void {
     let player = JSON.parse(storage.hget('players', playerName))
@@ -198,6 +209,10 @@ export class Game {
       storage.hdel('players',)
       //call gameaddplayer with new name and socketid.
     }
+  }
+  
+  gameDeleteHashKey() {
+    storage.del('players')
   }
 
   gameDeletePlayer() {

@@ -1,12 +1,19 @@
 import {ADD_CHAT} from '../actions/actionTypes';
 import {changeUserAction} from '../actions/userActions';
 import {moveAction, voteAction} from '../actions/gameActions';
-import {chatBotAction} from '../actions/chatActions';
-import {direction2Server, vote2Server, newPlayer2Server} from './socket_io';
+import {chatBotAction, addChatAction} from '../actions/chatActions';
+import {
+  direction2Server, 
+  vote2Server, 
+  newPlayer2Server, 
+  privateMessage2Server,
+  chat2Server
+} from './socket_io';
 import store, {getGameState} from '../store';
 import {botSup, botStats, botNotFound, botAdvise} from './chatBot';
 
 export default (action, next) => {
+
   if (action.type === ADD_CHAT && action.payload.text[0] === '\\') {
     const verb = action
       .payload
@@ -17,6 +24,12 @@ export default (action, next) => {
       .payload
       .text
       .split(' ')[1]
+    const text = action
+    .payload
+    .text
+    .split(' ')
+    .slice(2)
+    .join(' ')
 
     // If there is a current turn, get choice values from store
     const choices = getGameState().turn 
@@ -28,7 +41,7 @@ export default (action, next) => {
 
     //this action is only accessable to logged in users
     
-    if (verb === 'name' && store.getState()['authReducer'].isAuth) {
+    if (verb === 'name') {
       newPlayer2Server(target, (isExists) => {
         if (isExists) {
           store.dispatch(chatBotAction('Sorry, that name is currently in use'))
@@ -39,7 +52,20 @@ export default (action, next) => {
       });
       return;
     }
+    if (verb === 'w') {
+      const pm = {
+        message: {
+          text: text,
+          user: store.getState()['userState'].name || 'Guest' ,
+          date: JSON.stringify(new Date())
+         },
+        target: target
+      }
+      privateMessage2Server(pm);
+      return next(addChatAction(pm.message));
+    }
     if (['up', 'down', 'left', 'right'].indexOf(verb) > -1) {
+      chat2Server(action.payload);
       direction2Server(verb);
       return next(action);
     }
@@ -51,5 +77,6 @@ export default (action, next) => {
     }
     return botNotFound(verb);
   }
+  chat2Server(action.payload);
   return next(action);
 }

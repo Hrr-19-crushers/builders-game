@@ -39,6 +39,10 @@ export const authPlayer2Server = profile => {
   socket.emit('authPlayer', profile);
 }
 
+export const privateMessage2Server = (message: any) => {
+  socket.emit('privateMessage', message)
+}
+
 /* INCOMING FROM SERVER */
 socket.on('connection', () => {
   botWelcome();

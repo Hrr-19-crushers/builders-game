@@ -65,6 +65,7 @@ export default (action, next) => {
       return next(addChatAction(pm.message));
     }
     if (['up', 'down', 'left', 'right'].indexOf(verb) > -1) {
+      chat2Server(action.payload);
       direction2Server(verb);
       return next(action);
     }

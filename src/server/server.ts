@@ -73,6 +73,15 @@ io.on('connection', socket => {
     });
   });
 
+  socket.on('privateMessage', pm => {
+    game.gameGetPlayerSocket(pm.target, socketid => {
+      if (socketid) {
+        io.to(socketid).emit('userMessage', pm.message);
+      }
+    });
+  });
+
+
   // GAME
   socket.on('gameState', () => {
     const gameState = game.gameGetGameState();
@@ -100,8 +109,9 @@ io.on('connection', socket => {
   });
 
   socket.on('disconnect', () => {
-    // const playerName = socket['playerName'] || 'anonymous player';
-    // game.gameDeletePlayer(); // TODO nothing behind this yet
+    // deletes the redis players cache for testing purposes
+    game.gameDeleteHashKey()
+    
     // TODO: update stats on game
     socket.broadcast.emit('playerLeft', `Guest has left the game`);
   });

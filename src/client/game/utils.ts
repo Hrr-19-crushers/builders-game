@@ -1,3 +1,6 @@
+/// <reference path="../../../type-declarations/index.d.ts" />
+import * as Phaser from 'phaser';
+
 export const centerGameObjects = (objects) => {
   objects.forEach(function (object) {
     object.anchor.setTo(0.5);
@@ -21,10 +24,4 @@ export const setResponsiveWidth = (sprite, percent, parent) => {
     sprite.texture.height - (sprite.texture.height * percentWidth / 100);
 };
 
-const IDGenerator = (init = 0) => {
-  let id = init;
-
-  return () => id++;
-};
-
-export const newID = IDGenerator(0);
+export const polarity = n => Phaser.Math.clamp(n, -1, 1);

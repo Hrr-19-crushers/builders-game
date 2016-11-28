@@ -4,12 +4,6 @@ const recharts = require('recharts');
 
 const {BarChart, Bar, Legend, CartesianGrid, XAxis, YAxis, Tooltip} = recharts;
 
-// const data = [
-//   {name: 'jon', number: 5},
-//   {name: 'lee', number: 74},
-//   {name: 'hero', number: 20}
-// ];
-
 export default ({users}) => (
   <div>
   <BarChart width={600} height={300} data={users}

@@ -48,12 +48,55 @@ class Character {
   private charName : string;
   private charLocation : Location;
   private charHealth : number;
+  private charTriForce : Boolean[];
 
-  constructor(charId : number, charName : string, charLocation : Location, charHealth?: number) {
-    this.charId = charId || 1;
-    this.charName = charName || 'Dan';
-    this.charLocation = charLocation;
+  constructor(charId? : number, charName? : string, charLocation? : Location, charHealth? : number, charTriForce? : Boolean[]) {
+    this.charId = charId || Math.random() * 10000000000000000;
+    this.charName = charName || 'Link';
+    this.charLocation = charLocation || {x: 0, y: 0};
     this.charHealth = charHealth || 100;
+    this.charTriForce = charTriForce || [false, false, false];
+  }
+
+  charSetCharLocation(newLocation : Location) : Location {
+    this.charLocation = newLocation;
+    return this.charLocation;
+  }
+
+  charSetHealth(health : number) : number {
+    this.charHealth = health;
+    return this.charHealth;
+  }
+
+  charChangeHealth(healthChange : number) : number {
+    this.charHealth += healthChange;
+    return this.charHealth;
+  }
+
+  charGetNumTriForceCollected() : number {
+    let count = 0;
+    this.charTriForce.forEach(piece => {
+      if (piece) {
+        count++;
+      }
+    });
+    return count;
+  }
+
+  charCollectTriForce(piece : number) : number {
+    this.charTriForce[piece] = true;
+    return this.charGetNumTriForceCollected();
+  }
+
+  charGetHasWon() : boolean {
+    return this.charTriForce.length === this.charGetNumTriForceCollected();
+  }
+
+  charResetTriForce() : number {
+    this.charTriForce.forEach(piece => {
+      piece = false;
+    });
+    return this.charGetNumTriForceCollected();
   }
 
   charGetCharState() : CharacterState {
@@ -61,17 +104,11 @@ class Character {
       charId: this.charId,
       charName: this.charName,
       charLocation: this.charLocation,
-      charHealth: this.charHealth
+      charHealth: this.charHealth,
+      charTriForce: this.charTriForce
     };
   }
 
-  charSetCharLocation(newLocation : Location) {
-    this.charLocation = newLocation;
-  }
-
-  charSetHealth(healthChange : number) {
-    this.charHealth += healthChange;
-  }
 }
 
 // --------------------- Player ---------------------
@@ -108,18 +145,14 @@ export class Game {
   private gameTurnActive : boolean;
   private gameCurrentTurn : Turn;
   private gameTurns : Turn[]; // not included in interface currently
-  private gameTriForce : Boolean[];
 
   constructor(layout? : Tile[][]) {
     this.gameLayout = layout || testLayout;
     this.gameBoard = new Board(this.gameLayout);
-    const randomNewCharId = Math.random() * 10000000000000000;
-    const defaultCharName = 'Guest';
     // TODO init new character properly later if there are more than 1
-    this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 0, y: 0} as Location);
+    const triforce : Boolean[] = this.gameBoard.boardNewTriForceCollection();
+    this.gameCharacter = new Character(null, null, {x: 0, y: 0} as Location, 100, triforce);
     this.gameTurnActive = false;
-    // populate tri-force collection 
-    this.gameTriForce = [false, false, false];
   }
 
   //========= Game Methods =========
@@ -149,11 +182,13 @@ export class Game {
     return player.playerGetName();
   }
 
-  gameOver() {
+  gameReset() {
     // reset health
+    this.gameCharacter.charSetHealth(100);
     // reset tri-force
+    this.gameCharacter.charResetTriForce();
     // reset location
-    // emit dead
+    this.gameCharacter.charSetHealth(100);
   }
 
   //====== Character Methods ========
@@ -187,22 +222,29 @@ export class Game {
       loc = charState.charLocation;
       // check to see if enemy exists in new location and remove health if so
       const isEnemyInTile : boolean = board.boardIsEnemyInTile(loc);
-      if (isEnemyInTile) char.charSetHealth(-10);
+      if (isEnemyInTile) char.charChangeHealth(-10);
       // check to see if heart exists in new location and add health if so
       const isHeartInTile : boolean = board.boardIsHeartInTile(loc);
-      if (isHeartInTile) char.charSetHealth(50);
+      if (isHeartInTile) char.charChangeHealth(50);
       // check to see if fairy exists in new location and add health if so
       const isFairyInTile : boolean = board.boardIsFairyInTile(loc);
-      if (isFairyInTile) char.charSetHealth(100);
+      if (isFairyInTile) char.charChangeHealth(100);
       // check to see if tri-force exists in new location and add to collection if new
       const isTriForceInTile : boolean = board.boardIsTriForceInTile(loc);
       if (isTriForceInTile) {
         const triForcePiece : number = board.boardGetTriForceNumberFromTile(loc);
-        this.gameTriForce[triForcePiece] = true;
+        this.gameCharacter.charCollectTriForce(triForcePiece);
       }
       // call the sever cb with the new char/game states
       let gameState : GameState = this.gameGetGameState();
       if (cb) cb(gameState);
+      
+      // check to see if player is dead and invoke game over if so
+      charState = char.charGetCharState();
+      if (charState.charHealth <= 0 || char.charGetHasWon()) {
+        this.gameReset();
+      }
+      
       return gameState;
     }
   }

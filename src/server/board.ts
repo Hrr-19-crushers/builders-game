@@ -10,12 +10,8 @@ export class Board {
     this.boardLayout = layout;
   }
 
-  boardGetBoardState() : BoardState {
-    return {
-      boardLayout: this.boardLayout
-    };
-  }
-
+  // // MOVEMENT METHODS // // //
+  
   boardCharCanMoveDirection(direction : string, currentLocation : Location) : boolean {
     // heroku appears to not like destructuring yet
     // const {x, y} = currentLocation;
@@ -71,35 +67,83 @@ export class Board {
     return newLocation;
   }
 
+  // // // ENEMY METHODS // // //
+  
   boardIsEnemyInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('e' in tile && tile.e);
   }
 
-  // TODO create test
+  // TOD create tests
+  boardGetEnemyLocations() : Location[] {
+    let locations : Location[] = [];
+    this.boardLayout.forEach((row, yIdx) => {
+      row.forEach((tile, xIdx) => {
+        if ('e' in tile && tile.e) {
+          locations.push({x: xIdx, y: yIdx});
+        }
+      });
+    });
+    return locations;
+  }
+
+  // // // HEART & FAIRY METHODS // // //
+  
+  // TODO create tests
   boardIsHeartInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('h' in tile && tile.h);
   }
 
-  // TODO create test
+  // TODO create tests
   boardIsFairyInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('f' in tile && tile.f);
   }
 
-  // TODO create test
+  // // // TRI-FORCE METHODS // // //
+
+  boardCreateNewTriForceCollectionForCharacter() : any {
+    return 
+  }
+  
+  // TODO create tests
   boardIsTriForceInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('i' in tile && typeof tile.i === 'interger');
   }
 
-  // TODO create test
+  // TODO create tests
   boardGetTriForceNumberFromTile(location : Location) : number {
     const tile = this.boardLayout[location.y][location.x];
     return tile.i;
   }
 
+  // TODO create tests
+  boardGetTriForceLocations() : Location[] {
+    let locations : Location[] = [];
+    this.boardLayout.forEach((row, yIdx) => {
+      row.forEach((tile, xIdx) => {
+        if ('i' in tile && typeof tile.i === 'integer') {
+          locations.push({x: xIdx, y: yIdx});
+        }
+      });
+    });
+    return locations;
+  }
+
+  boardNewTriForceCollection() : Boolean[] {
+    const locations : Location[] = this.boardGetTriForceLocations();
+    const collection : Boolean[] = [];
+    locations.forEach(location => {
+      const piece : number = this.boardGetTriForceNumberFromTile(location);
+      collection[piece] = false;
+    });
+    return collection;
+  }
+
+  // // // // TURN METHODS // // //
+  
   // boardCheckForTurnInTile(location : Location) : boolean {
   //   return ('turn' in this.boardLayout[location.y][location.x]);
   // }
@@ -108,5 +152,14 @@ export class Board {
   //   // always check boardCheckForTurnInTile first to make sure there is a turn present
   //   if (this.boardCheckForTurnInTile(location)) return this.boardLayout[location.y][location.x].turn;
   // }
+
+  // // // BOARD STATE METHODS // // //
+  
+  // TODO create tests
+  boardGetBoardState() : BoardState {
+    return {
+      boardLayout: this.boardLayout
+    };
+  }
 
 }

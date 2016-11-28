@@ -1,11 +1,10 @@
 import * as React from 'react';
 // no typings available so importing using require as type: any
-const recharts = require('recharts');
-
-const {BarChart, Bar, Legend, CartesianGrid, XAxis, YAxis, Tooltip} = recharts;
+const {BarChart, Bar, Legend, CartesianGrid, XAxis, YAxis, Tooltip} = require('recharts');
 
 export default ({users}) => (
   <div>
+  <h2>Top Users</h2>
   <BarChart width={600} height={300} data={users}
         margin={{top: 5, right: 30, left: 20, bottom: 5}}>
     <XAxis dataKey="name"/>

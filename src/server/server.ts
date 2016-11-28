@@ -111,8 +111,9 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     // deletes the redis players cache for testing purposes
     game.gameDeleteHashKey()
-    
-    // TODO: update stats on game
+    // const playerName = socket['playerName'] || 'anonymous player';
+    // game.gameDeletePlayer(); // TODO nothing behind this yet
+    // TODO update stats on game
     socket.broadcast.emit('playerLeft', `Guest has left the game`);
   });
 });

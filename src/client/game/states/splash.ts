@@ -3,11 +3,8 @@ import * as Phaser from 'phaser';
 import { centerGameObjects } from '../utils';
 import { getGameState } from '../../store';
 
-// Extracts the types of the game board and adjoins them as a CSV
-const processGameBoard = board =>
-  board.map(row => 
-    row.map(cell => cell.t).join(",")
-  ).join("\n"); 
+const boardToCSV = board =>
+  board.map( row => row.map( tile => tile.t ).join(",") ).join("\n"); 
 
 export class SplashState extends Phaser.State {
   loaderBg: Phaser.Sprite;
@@ -35,7 +32,7 @@ export class SplashState extends Phaser.State {
       'zeldamap', 
       /* 'assets/tilemaps/zeldamap.json', */
       null,
-      processGameBoard(getGameState().gameBoard), 
+      boardToCSV(getGameState().gameBoard), 
       Phaser.Tilemap.CSV
     );
 
@@ -47,7 +44,6 @@ export class SplashState extends Phaser.State {
       'assets/sprites/link.png',
       16, 16, 8, 0, 16);
 
-
     this.load.image('zeldatiles', 'assets/tilemaps/zeldamap.png');
   }
 
@@ -55,5 +51,4 @@ export class SplashState extends Phaser.State {
     // Next state
     this.game.state.start('Game');
   }
-
 }

@@ -1,45 +1,33 @@
 /// <reference path="../../../../type-declarations/index.d.ts" />
 import * as Phaser from 'phaser';
-import * as WebFont from 'webfontloader';
 
 export class BootState extends Phaser.State {
   stage: Phaser.Stage;
   fontsReady: boolean;
 
   init () {
-    this.stage.backgroundColor = '#EDEEC9';
-    this.fontsReady = false;
-    this.fontsLoaded = this.fontsLoaded.bind(this);
+    this.stage.backgroundColor = '#111111';
   }
 
   preload () {
-    WebFont.load({
-      google: {
-        families: ['Nunito']
-      },
-      active: this.fontsLoaded
-    });
-
-    const text = this.add.text(
-      this.world.centerX, 
-      this.world.centerY, 
-      'loading fonts', 
-      { font: '16px Arial', fill: '#dddddd', align: 'center' }
-    );
-    text.anchor.setTo(0.5, 0.5);
-
     this.game.load.image('loaderBg', './assets/images/loader-bg.png');
     this.game.load.image('loaderBar', './assets/images/loader-bar.png');
+    // this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    // this.game.scale.setScreenSize();
+
+    this.game.scale.minWidth = 640;
+    this.game.scale.minHeight = 480;
+    this.game.scale.maxWidth = 640;
+    this.game.scale.maxHeight = 480;
+    this.game.scale.pageAlignHorizontally = true;
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+  }
+
+  create() {
+    this.game.stage.smoothed = false;
   }
 
   render () {
-    if (this.fontsReady) {
-      this.game.state.start('Splash');
-    }
+    this.game.state.start('Splash');
   }
-
-  fontsLoaded () {
-    this.fontsReady = true;
-  }
-
 }

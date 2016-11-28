@@ -19,7 +19,11 @@ const mapMessagesToTime = messages => {
       return Object.assign({}, memo, {[time]: total.length});
     }, {});
     return Object.keys(levels)
-      .map(time => ({time, messages: levels[time]}))
+      .map(time => ({
+        time,
+        messages: levels[time],
+        date: moment(now + parseInt(time) * 60000).fromNow()
+      }))
       .sort((a,b) => a.time < b.time ? -1 : 1);
 }
 

@@ -5,7 +5,7 @@ const {LineChart, Line, Legend, CartesianGrid, XAxis, YAxis, Tooltip} = require(
 export default ({messages}) => (
   <div>
  	  <LineChart width={300} height={100} data={messages}>
-      <XAxis dataKey='time' />
+      <XAxis dataKey='date' />
       <YAxis />
       <Line type='monotone' dataKey='messages' stroke='#8884d8' strokeWidth={2} />
     </LineChart>

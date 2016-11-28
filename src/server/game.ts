@@ -108,6 +108,7 @@ export class Game {
   private gameTurnActive : boolean;
   private gameCurrentTurn : Turn;
   private gameTurns : Turn[]; // not included in interface currently
+  private gameTriForce : Boolean[];
 
   constructor(layout? : Tile[][]) {
     this.gameLayout = layout || testLayout;
@@ -117,6 +118,8 @@ export class Game {
     // TODO init new character properly later if there are more than 1
     this.gameCharacter = new Character(randomNewCharId, defaultCharName, {x: 0, y: 0} as Location);
     this.gameTurnActive = false;
+    // populate tri-force collection 
+    this.gameTriForce = [false, false, false];
   }
 
   //========= Game Methods =========
@@ -146,6 +149,13 @@ export class Game {
     return player.playerGetName();
   }
 
+  gameOver() {
+    // reset health
+    // reset tri-force
+    // reset location
+    // emit dead
+  }
+
   //====== Character Methods ========
 
   gameGetCharState(cb? : any) : CharacterState {
@@ -158,33 +168,47 @@ export class Game {
     this.gameCharacter.charSetCharLocation(location);
   }
   
-  gameMoveChar(direction : string, cb? : any) : void {
+  gameMoveChar(direction : string, cb? : any) : GameState {
+    const board = this.gameBoard;
+    const char = this.gameCharacter;
     // get the current state of the character
-    let charState : CharacterState = this.gameCharacter.charGetCharState();
+    let charState : CharacterState = char.charGetCharState();
+    let loc = charState.charLocation;
     // check to see if the character is allowed to move this direction
-    const canMove : boolean = this.gameBoard.boardCharCanMoveDirection(direction, charState.charLocation);
+    const canMove : boolean = board.boardCharCanMoveDirection(direction, loc);
     if (canMove) {
-      // if they are allowed: set character location to new location
-      const newLocation : Location = this.gameBoard.boardGetNewCharLocation(direction, charState.charLocation);
-      this.gameCharacter.charSetCharLocation(newLocation);
+      // // // if direction is allowed: // // //
+      // set character location to new location
+      const newLocation : Location = board.boardGetNewCharLocation(direction, loc);
+      char.charSetCharLocation(newLocation);
+      // update charState varaible with new location
+      charState = char.charGetCharState();
+      // update variable with new location
+      loc = charState.charLocation;
       // check to see if enemy exists in new location and remove health if so
-      charState = this.gameCharacter.charGetCharState();
-      const isEnemyInTile : boolean = this.gameBoard.boardIsEnemyInTile(charState.charLocation);
-      if (isEnemyInTile) this.gameCharacter.charSetHealth(-10);
+      const isEnemyInTile : boolean = board.boardIsEnemyInTile(loc);
+      if (isEnemyInTile) char.charSetHealth(-10);
       // check to see if heart exists in new location and add health if so
-      const isHeartInTile : boolean = this.gameBoard.boardIsHeartInTile(charState.charLocation);
-      if (isHeartInTile) this.gameCharacter.charSetHealth(50);
+      const isHeartInTile : boolean = board.boardIsHeartInTile(loc);
+      if (isHeartInTile) char.charSetHealth(50);
       // check to see if fairy exists in new location and add health if so
-      const isFairyInTile : boolean = this.gameBoard.boardIsFairyInTile(charState.charLocation);
-      if (isFairyInTile) this.gameCharacter.charSetHealth(100);
+      const isFairyInTile : boolean = board.boardIsFairyInTile(loc);
+      if (isFairyInTile) char.charSetHealth(100);
+      // check to see if tri-force exists in new location and add to collection if new
+      const isTriForceInTile : boolean = board.boardIsTriForceInTile(loc);
+      if (isTriForceInTile) {
+        const triForcePiece : number = board.boardGetTriForceNumberFromTile(loc);
+        this.gameTriForce[triForcePiece] = true;
+      }
       // call the sever cb with the new char/game states
       let gameState : GameState = this.gameGetGameState();
       if (cb) cb(gameState);
+      return gameState;
     }
   }
 
   //======== Player Methods =========
-  gameCheckForExistingPlayer(playerName: string, cb?: any): void {
+  gameCheckForExistingPlayer(playerName : string, cb? : any) : void {
     storage.HEXISTS('players', playerName, (err, existance) => { 
       if (err) {
         console.error(err);
@@ -206,8 +230,9 @@ export class Game {
       }
     });
   }
-//TODO allow players to update their name instead of just adding a new name 
-  gameUpdatePlayerName(playerName: string, socketId: string, cb?: any): void {
+  
+  // TODO allow players to update their name instead of just adding a new name 
+  gameUpdatePlayerName(playerName : string, socketId : string, cb? : any) : void {
     let player = JSON.parse(storage.hget('players', playerName))
     // if the socketId === to the object socket id
     if (socketId === player.playerSocketId ) {

@@ -88,6 +88,18 @@ export class Board {
     return ('f' in tile && tile.f);
   }
 
+  // TODO create test
+  boardIsTriForceInTile(location : Location) : boolean {
+    const tile = this.boardLayout[location.y][location.x];
+    return ('i' in tile && typeof tile.i === 'interger');
+  }
+
+  // TODO create test
+  boardGetTriForceNumberFromTile(location : Location) : number {
+    const tile = this.boardLayout[location.y][location.x];
+    return tile.i;
+  }
+
   // boardCheckForTurnInTile(location : Location) : boolean {
   //   return ('turn' in this.boardLayout[location.y][location.x]);
   // }

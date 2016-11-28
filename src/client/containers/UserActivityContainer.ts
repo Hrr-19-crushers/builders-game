@@ -1,3 +1,4 @@
+/// <reference path="../../../type-declarations/Object.d.ts" />
 import {connect} from 'react-redux';
 
 import UserActivity from '../components/UserActivity';
@@ -6,10 +7,9 @@ const mapMessagesToUsers = messages => {
   const userNumbers = messages
     .reduce((memo, msg) => {
       if (!memo[msg.user]) {
-        memo[msg.user] = 0;
+        return Object.assign({}, memo, {[msg.user]:1});
       }
-      memo[msg.user]++;
-      return memo;
+      return Object.assign({}, memo, {[msg.user]: memo[msg.user] + 1});
     }, {});
   return Object.keys(userNumbers)
     .filter(name => name !== '👹')

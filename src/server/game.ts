@@ -55,10 +55,11 @@ class Character {
     this.charName = charName || 'Link';
     this.charLocation = charLocation || {x: 0, y: 0};
     this.charHealth = charHealth || 100;
+    // warning: set at least one tri-force piece in the layout to avoid issues with game resetting after each move
     this.charTriForce = charTriForce || [false, false, false];
   }
 
-  charSetCharLocation(newLocation : Location) : Location {
+  charSetLocation(newLocation : Location) : Location {
     this.charLocation = newLocation;
     return this.charLocation;
   }
@@ -157,8 +158,8 @@ export class Game {
     this.gameLayout = layout || testLayout;
     this.gameBoard = new Board(this.gameLayout);
     // TODO init new character properly later if there are more than 1
-    const triforce : Boolean[] = this.gameBoard.boardNewTriForceCollection();
-    this.gameCharacter = new Character(null, null, {x: 0, y: 0}, 100, triforce);
+    const triforce : Boolean[] = this.gameBoard.boardGetTriForceCollection();
+    this.gameCharacter = new Character(null, null, {x: 39, y: 52}, 100, triforce);
     this.gameTurnActive = false;
     // // every 0.75 seconds determine which direction got the most 'votes' and move that direction
     // setInterval(() => {
@@ -194,7 +195,7 @@ export class Game {
   }
 
   gameCountMoveVote(direction : string) {
-
+    // TODO
   }
 
   gameReset() {
@@ -203,7 +204,7 @@ export class Game {
     // reset tri-force
     this.gameCharacter.charResetTriForce();
     // reset location
-    this.gameCharacter.charSetCharLocation({x: 0, y: 0})
+    this.gameCharacter.charSetLocation({x: 39, y: 52});
   }
 
   gameGetGameState() : GameState {
@@ -226,7 +227,7 @@ export class Game {
   }
 
   gameSetCharInitialPosition(location : Location) : void {
-    this.gameCharacter.charSetCharLocation(location);
+    this.gameCharacter.charSetLocation(location);
   }
   
   gameMoveChar(direction : string, cb? : any) : GameState {
@@ -241,7 +242,7 @@ export class Game {
       // // // if direction is allowed: // // //
       // set character location to new location
       const newLocation : Location = board.boardGetNewCharLocation(direction, loc);
-      char.charSetCharLocation(newLocation);
+      char.charSetLocation(newLocation);
       // update charState varaible with new location
       charState = char.charGetCharState();
       // update variable with new location

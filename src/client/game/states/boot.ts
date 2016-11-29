@@ -15,16 +15,16 @@ export class BootState extends Phaser.State {
     // this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     // this.game.scale.setScreenSize();
 
-    this.game.scale.minWidth = 640;
-    this.game.scale.minHeight = 480;
-    this.game.scale.maxWidth = 640;
-    this.game.scale.maxHeight = 480;
-    this.game.scale.pageAlignHorizontally = true;
-    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    // this.game.scale.minWidth = 640;
+    // this.game.scale.minHeight = 480;
+    // this.game.scale.maxWidth = 640;
+    // this.game.scale.maxHeight = 480;
+    // this.game.scale.pageAlignHorizontally = true;
+    // this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
   }
 
   create() {
-    this.game.stage.smoothed = false;
+    // this.game.stage.smoothed = false;
   }
 
   render () {

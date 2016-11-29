@@ -18,22 +18,35 @@ class Link extends Phaser.Sprite {
   gridPosition: Phaser.Point;
 
   constructor(game: Phaser.Game, {x, y}: Location) {
-    super(game, x * TILE.WIDTH, y * TILE.HEIGHT, 'link');
+    super(game, x * TILE.WIDTH, y * TILE.HEIGHT, 'link', 0);
     this.gridPosition = new Phaser.Point(x, y);
   }
 
   preload() {
+
+  }
+
+  init() {
+    
+  }
+
+  create() {
     this.animations.add('down',  [0, 4], 10, true);
     this.animations.add('left',  [1, 5], 10, true);
     this.animations.add('up',    [2, 6], 10, true);
     this.animations.add('right', [3, 7], 10, true);
     this.animations.add('none',  [0],    10, false);
+    
   }
 
   move(loc: Location) {
-    this.animations.play(
-      this.determineDirection(loc)
-    );
+    const dir = this.determineDirection(loc);
+
+    if (dir) { 
+      this.animations.play(dir); 
+    } else {
+      this.animations.stop();
+    }
     this.travelTo(loc);
   }
 
@@ -49,7 +62,7 @@ class Link extends Phaser.Sprite {
     if (xPolarity === -1) { return  'left'; } 
     if (yPolarity ===  1) { return  'down'; } 
     if (yPolarity === -1) { return    'up'; }
-    return 'up';
+    return null;
   }
 
   travelTo({x, y}: Location) {
@@ -61,6 +74,11 @@ class Link extends Phaser.Sprite {
       }, 
       250, Phaser.Easing.Quadratic.Out, true
     );
+  }
+
+  update() {
+    this.animations.play('up');
+    console.log(this);
   }
 
   getLocation(): Location {

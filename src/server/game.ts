@@ -255,7 +255,7 @@ export class Game {
       if (isHeartInTile) char.charChangeHealth(50);
       // check to see if fairy exists in new location and add health if so
       const isFairyInTile : boolean = board.boardIsFairyInTile(loc);
-      if (isFairyInTile) char.charChangeHealth(100);
+      if (isFairyInTile) char.charSetHealth(100);
       // check to see if tri-force exists in new location and add to collection if new
       const isTriForceInTile : boolean = board.boardIsTriForceInTile(loc);
       if (isTriForceInTile) {

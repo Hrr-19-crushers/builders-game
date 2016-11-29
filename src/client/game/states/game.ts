@@ -104,13 +104,10 @@ class Enemy extends Phaser.Sprite {
   }
 }
 
-
 export class GameState extends Phaser.State {
   link: Link;
-
   tilemap: Phaser.Tilemap;
   layer: Phaser.TilemapLayer;
-
   camera: Phaser.Camera;
   dragPoint: Phaser.Point;
 

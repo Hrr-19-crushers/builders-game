@@ -24,16 +24,6 @@ body {
 
 /* GAME SCREEN */
 
-#game {
-  margin-left: 3vw;
-  margin-top: 2vh;
-}
-
-canvas {
-  border: 5px solid darkslategray;
-  border-radius: 15px;
-}
-
 
 /* GAME DISPLAY */
 
@@ -62,6 +52,22 @@ canvas {
 
 .gameDisplay .collect {
   margin-left: 7vw;
+}
+
+.gameScreen {
+  position: relative;
+}
+
+#game {
+  position: absolute;
+  margin-left: 3vw;
+  margin-top: 2vh;
+  z-index: 1;
+}
+
+canvas {
+  border: 5px solid darkslategray;
+  border-radius: 15px;
 }
 
 
@@ -257,6 +263,35 @@ canvas {
   height: 59.5vh;
   width: 35%;
   float: right;
+}
+
+.lose,
+.win {
+  position: absolute;
+  margin-top: 12.5vh;
+  margin-left: 0vw;
+  width: 35vw;
+  height: 52vh;
+  border-radius: 15px;
+  z-index: 50;
+  padding-top: 17vh;
+}
+
+.lose {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.win {
+  background-color: rgba(34, 139, 34, 0.5);
+}
+
+.endGameMessage {
+  margin: 0 auto;
+  padding: 1vw;
+  font-size: 6vh;
+  font-weight: 700;
+  color: darkslateblue;
+  text-align: center;
 }
 
 .menu,

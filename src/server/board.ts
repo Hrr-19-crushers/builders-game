@@ -124,7 +124,7 @@ export class Board {
     let locations : Location[] = [];
     this.boardLayout.forEach((row, yIdx) => {
       row.forEach((tile, xIdx) => {
-        if ('i' in tile && typeof tile.i === 'integer') {
+        if ('i' in tile && typeof tile.i === 'number') {
           locations.push({x: xIdx, y: yIdx});
         }
       });
@@ -132,7 +132,7 @@ export class Board {
     return locations;
   }
 
-  boardNewTriForceCollection() : Boolean[] {
+  boardGetTriForceCollection() : Boolean[] {
     const locations : Location[] = this.boardGetTriForceLocations();
     const collection : Boolean[] = [];
     locations.forEach(location => {

@@ -15,7 +15,7 @@ class Game extends Phaser.Game {
       ? 1024
       : document.documentElement.clientHeight * 0.675;
 
-    super(height, width, Phaser.AUTO, 'game', null, false, false);
+    super(width, height, Phaser.AUTO, 'game', null, false, false);
 
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);

@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
     date: moment(slice.date).fromNow()
   })),
   type: 'clients',
-  text: 'are playing the game'
+  text: 'players are in the game'
 });
 
 export default connect(mapStateToProps)(MessageTraffic);

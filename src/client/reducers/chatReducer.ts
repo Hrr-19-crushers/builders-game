@@ -11,7 +11,7 @@ export interface Message {
   user: String;
   text: String;
   type?: String;
-  date: Date;
+  date: String;
 }
 
 export interface ChatState {

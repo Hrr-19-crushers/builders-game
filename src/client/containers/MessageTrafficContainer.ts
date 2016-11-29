@@ -30,7 +30,7 @@ const mapMessagesToTime = messages => {
 const mapStateToProps = state => ({
   data: mapMessagesToTime(state.chatReducer.messages),
   type: 'messages',
-  text: 'message set per minute'
+  text: 'message sent per minute'
 });
 
 export default connect(mapStateToProps)(MessageTraffic);

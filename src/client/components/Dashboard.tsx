@@ -5,10 +5,10 @@ import MessageTrafficContainer from '../containers/MessageTrafficContainer';
 import ClientTrafficContainer from '../containers/ClientTrafficContainer';
 
 export default() => (
-  <div>
-    <h1>Dashboard</h1>
-    <UserActivityContainer />
-    <MessageTrafficContainer />
-    <ClientTrafficContainer />
+  <div className='dashboard'>
+    <h1 className='title'>Dashboard</h1>
+    <UserActivityContainer/>
+    <MessageTrafficContainer/>
+    <ClientTrafficContainer/>
   </div>
 );

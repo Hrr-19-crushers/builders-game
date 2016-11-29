@@ -26,8 +26,6 @@ body {
 
 #game {
   margin-top: 2vh;
-  position: relative;
-  right: 20vw;
 }
 
 canvas {
@@ -548,4 +546,22 @@ ul.board li.type6 {
   position: fixed;
   bottom: 4vh;
   right: 18vw;
+}
+
+
+/*DASHBOARD*/
+
+.dashboard {
+  text-align: center;
+}
+
+.dashboard .title {
+  margin: 0 auto;
+}
+
+.dashboard .lineGraph,
+.dashboard .barGraph {
+  display: inline-block;
+  margin-right: 5vw;
+  margin-top: 10vh;
 }

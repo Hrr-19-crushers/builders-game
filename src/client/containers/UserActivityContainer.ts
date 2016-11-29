@@ -12,7 +12,6 @@ const mapMessagesToUsers = messages => {
       return Object.assign({}, memo, {[msg.user]: memo[msg.user] + 1});
     }, {});
   return Object.keys(userNumbers)
-    .filter(name => name !== '👹')
     .map(name => ({name, messages: userNumbers[name]}))
     .sort((a, b) => a.messages <= b.messages ? 1: -1)
     .slice(0,5);

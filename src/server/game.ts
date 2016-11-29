@@ -55,6 +55,7 @@ class Character {
     this.charName = charName || 'Link';
     this.charLocation = charLocation || {x: 0, y: 0};
     this.charHealth = charHealth || 100;
+    // warning: set at least one tri-force piece in the layout to avoid issues with game resetting after each move
     this.charTriForce = charTriForce || [false, false, false];
   }
 

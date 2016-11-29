@@ -104,10 +104,13 @@ class Enemy extends Phaser.Sprite {
   }
 }
 
+
 export class GameState extends Phaser.State {
   link: Link;
+
   tilemap: Phaser.Tilemap;
   layer: Phaser.TilemapLayer;
+
   camera: Phaser.Camera;
   dragPoint: Phaser.Point;
 
@@ -135,10 +138,9 @@ export class GameState extends Phaser.State {
     this.game.add.existing(this.link);
 
     this.camera = this.game.camera;
-
-    // this.camera.follow(
-    //   this.link, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1
-    // );
+    this.camera.follow(
+      this.link, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1
+    );
 
     // Start polling for character events
     this.game.time.events.loop(
@@ -151,6 +153,16 @@ export class GameState extends Phaser.State {
   }
 
   update() {
+    this.game.input.onTap.add((mouse, doubleClick) => {
+      if (doubleClick) {
+        this.camera.follow(
+          this.link, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1
+        );
+      } else {
+        this.game.camera.unfollow()
+      }
+    });
+
     if (this.game.input.activePointer.isDown) {
       if (this.dragPoint) {
         this.game.camera.x +=

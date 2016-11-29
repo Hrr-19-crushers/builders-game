@@ -10,7 +10,7 @@ import {
   chat2Server
 } from './socket_io';
 import store, {getGameState} from '../store';
-import {botSup, botStats, botNotFound, botAdvise} from './chatBot';
+import {botSup, botStats, botNotFound, botAdvise, botMessage} from './chatBot';
 
 export default (action, next) => {
 
@@ -74,6 +74,12 @@ export default (action, next) => {
     }
     if (verb === 'help') {
       return botAdvise();
+    }
+    if (verb ==='A') {
+      return botMessage('I\'m supposed to do some action with this A')
+    }
+    if (verb ==='B') {
+      return botMessage('I\'m supposed to do some action with this B')
     }
     return botNotFound(verb);
   }

@@ -30,6 +30,7 @@ body {
 
 canvas {
   margin: 0 auto;
+  border: 5px solid darkslategray;
   border-radius: 15px;
 }
 
@@ -38,7 +39,7 @@ canvas {
 
 .gameDisplay {
   width: 50%;
-  height: 8vh;
+  height: 9vh;
   margin-top: 2vh;
   margin-left: 5%;
   padding-top: 1vh;
@@ -47,6 +48,20 @@ canvas {
   border-radius: 15px;
   padding-bottom: 1vh;
   text-align: center;
+}
+
+.gameDisplay .users,
+.gameDisplay .collected {
+  font-family: 'Sigmar One', cursive;
+  color: darkred;
+}
+
+.gameDisplay .user {
+  margin-right: 7vw;
+}
+
+.gameDisplay .collect {
+  margin-left: 7vw;
 }
 
 
@@ -116,6 +131,10 @@ canvas {
   margin-top: 2vh;
   margin: 0;
   text-shadow: 1px 2px darkslategray;
+}
+
+.navTitle:hover {
+  color: darkgreen;
 }
 
 .top {
@@ -327,6 +346,10 @@ canvas {
   text-transform: uppercase;
 }
 
+.submitButton:hover {
+  background: rebeccapurple;
+}
+
 .chat,
 .selfChat {
   clear: both;
@@ -347,8 +370,6 @@ canvas {
   font-weight: 700;
   color: cadetblue;
 }
-
-.messages .chatText {}
 
 .messages .chatDate {
   font-style: italic;
@@ -438,6 +459,10 @@ ul.board li.type6 {
 
 .d:hover,
 .d:active {
+  background: #404d4d;
+}
+
+.fakeHover {
   background: #404d4d;
 }
 

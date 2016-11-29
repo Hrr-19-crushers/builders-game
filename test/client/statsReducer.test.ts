@@ -13,5 +13,6 @@ describe('stats state', () => {
   it('can update the number of current clients', () => {
     const nextState: StatsState = statsState(INITIAL_STATE, updateClientsAction(5));
     expect(nextState.clients).to.equal(5);
+    expect(nextState.clientSlices[0].clients).to.equal(5);
   });
 });

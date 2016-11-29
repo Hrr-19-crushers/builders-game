@@ -25,6 +25,7 @@ body {
 /* GAME SCREEN */
 
 #game {
+  margin-left: 3vw;
   margin-top: 2vh;
 }
 
@@ -303,7 +304,7 @@ canvas {
 
 .messages {
   padding-top: 2%;
-  height: 90%;
+  height: 88%;
   overflow: scroll;
   margin-bottom: 0px;
   padding-bottom: 0px;
@@ -557,6 +558,7 @@ ul.board li.type6 {
 
 .dashboard .title {
   margin: 0 auto;
+  margin-top: 8vh;
 }
 
 .dashboard .lineGraph,

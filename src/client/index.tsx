@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import Root from './components/Root';
 import { Provider } from 'react-redux';
 import store from './store';
+import './stylesheets/base.scss';
 
 // using require to import npm module without type declarations
 const { AppContainer } = require('react-hot-loader');

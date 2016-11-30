@@ -10,7 +10,7 @@ const titles = [
 ];
 
 export default ({user, isAuth}) => {
-  return (<div className='menu'>
+  return (<div className='userMenu'>
     <p className='menuName'>
       { user
         ? user + titles[Math.floor(Math.random() * titles.length)]

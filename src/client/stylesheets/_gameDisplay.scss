@@ -1,0 +1,66 @@
+.gameDisplay {
+  width: 50%;
+  height: 9vh;
+  margin-top: 2vh;
+  margin-left: 5%;
+  padding-top: 1vh;
+  border: 5px solid $main-green;
+  background-color: #C0BA96;
+  border-radius: 15px;
+  padding-bottom: 1vh;
+  text-align: center;
+  .displayFonts {
+    font-family: $font-title;
+    color: $main-darkred;
+  }
+  .users {
+    @extend .displayFonts;
+  }
+  .collected {
+    @extend .displayFonts;
+  }
+  .user,
+  .collect {
+    margin-left: 7vw;
+  }
+  .healthBar {
+    margin: 0 auto;
+    width: 90%;
+    border: 5px solid darkslategray;
+    border-radius: 10px;
+  }
+  .health {
+    display: inline-block;
+    border-radius: 5px;
+    height: 20px;
+    font-size: 10pt;
+    vertical-align: top;
+    text-align: center;
+    color: snow;
+    padding-top: 0.5vh;
+  }
+  .healthLost {
+    background-color: red;
+    transition: width 1s ease-in-out;
+  }
+  .healthLeft {
+    background-color: $main-green;
+    transition: width 1s ease-in-out;
+  }
+}
+
+canvas {
+  border: 5px solid darkslategray;
+  border-radius: 15px;
+}
+
+.gameScreen {
+  position: relative;
+}
+
+#game {
+  position: absolute;
+  margin-left: 3vw;
+  margin-top: 2vh;
+  z-index: 1;
+}

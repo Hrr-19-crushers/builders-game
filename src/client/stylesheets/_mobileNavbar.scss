@@ -1,0 +1,7 @@
+@media only screen and (max-width: 320px) {
+  .nav {
+    @extend .nav;
+    background-color: $main-green;
+    background-image: none;
+  }
+}

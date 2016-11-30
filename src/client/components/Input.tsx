@@ -1,12 +1,15 @@
 import * as React from 'react';
 import Dpad from './Dpad';
+const EmojiPicker = require('emojione-picker');
+const emojione = require('emojione');
 
 export default class Chat extends React.Component < any,
 any > {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: '',
+      emojiToggle: false
     };
   }
 
@@ -64,6 +67,10 @@ any > {
     }
   }
 
+  onPressEmojiToggle() {
+    this.setState( {emojiToggle: this.state.emojiToggle ? false : true} );
+  }
+
   public render() {
     return (
       <div
@@ -73,13 +80,21 @@ any > {
         .bind(this)}>
         <Dpad
           move={function (dir) {this._submitChat('\\' + dir)}.bind(this)}
-          action = {function(l) {this._submitChat('\\' + l)}.bind(this)}/>
+          //action = {function(l) {this._submitChat('\\' + l)}.bind(this)}/>
+          action = {this.onPressEmojiToggle.bind(this)}/>
         <form onSubmit={this
           .onSubmit
           .bind(this)}>
           <input value={this.state.input} onChange={e => this._onChange(e)} autoFocus/>
           <input className='submitButton' type='submit'/>
-        </form>
+        </form> 
+        { this.state.emojiToggle ? 
+          <div className='emojiContainer'>
+            <EmojiPicker 
+              onChange={ data => {
+                const emoji = emojione.toImage(data.shortname).split(' ')[2].substring(5,7); 
+                this.setState( {input: this.state.input + " " + emoji})}}/>
+          </div> : null}
       </div>
     )
   }

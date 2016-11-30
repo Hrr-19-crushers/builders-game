@@ -1,3 +1,28 @@
+.healthBar {
+  margin: 0 auto;
+  width: 90%;
+  border: 5px solid darkslategray;
+  border-radius: 10px;
+  .health {
+    display: inline-block;
+    border-radius: 5px;
+    height: 20px;
+    font-size: 10pt;
+    vertical-align: top;
+    text-align: center;
+    color: snow;
+    padding-top: 0.5vh;
+  }
+  .healthLost {
+    background-color: red;
+    transition: width 1s ease-in-out;
+  }
+  .healthLeft {
+    background-color: green;
+    transition: width 1s ease-in-out;
+  }
+}
+
 @import url('https://fonts.googleapis.com/css?family=Neucha|Sigmar+One');
 * {
   -webkit-box-sizing: border-box;
@@ -105,7 +130,7 @@ canvas {
 /*NAVBAR*/
 
 .nav {
-  background-image: url('../images/scroll-h.png');
+  // background-image: url('../../assets/images/scroll-h.png');
   background-size: 100% 100%;
   top: 0px;
   left: 0px;

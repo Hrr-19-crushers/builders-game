@@ -37,6 +37,10 @@ module.exports = {
         test: /\.tsx?$/,
         include: path.join(__dirname, 'src'),
         loaders: ['babel', 'ts-loader']
+      }, {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract('css!sass')
       }
     ]
   },
@@ -45,5 +49,8 @@ module.exports = {
     new WebpackNotifierPlugin({
       alwaysNotify: true
     }),
+    new ExtractTextPlugin('build/style.css', {
+      allChunks: true
+    })
   ]
 };

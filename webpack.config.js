@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const WebpackNotifierPlugin = require('webpack-notifier');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
 
 module.exports = {
   devtool: 'eval',
@@ -49,8 +51,20 @@ module.exports = {
     new WebpackNotifierPlugin({
       alwaysNotify: true
     }),
-    new ExtractTextPlugin('build/style.css', {
+    new ExtractTextPlugin('style.css', {
       allChunks: true
+    }),
+    new webpackUglifyJsPlugin({
+      cacheFolder: path.resolve(__dirname, 'build/client/cached_uglify/'),
+      debug: true,
+      minimize: true,
+      sourceMap: false,
+      output: {
+        comments: false
+      },
+      compressor: {
+        warnings: false
+      }
     })
   ]
 };

@@ -56,8 +56,6 @@ class Link extends Phaser.Sprite {
       polarity(y - this.gridPosition.y),
     ];
 
-    console.log(xPolarity, yPolarity);
-
     if (xPolarity ===  1) { return 'right'; } 
     if (xPolarity === -1) { return  'left'; } 
     if (yPolarity ===  1) { return  'down'; } 
@@ -78,7 +76,6 @@ class Link extends Phaser.Sprite {
 
   update() {
     this.animations.play('up');
-    console.log(this);
   }
 
   getLocation(): Location {

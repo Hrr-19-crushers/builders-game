@@ -110,7 +110,6 @@ io.on('connection', socket => {
 
   socket.on('disconnect', () => {
     // deletes the redis players cache for testing purposes
-    game.gameDeleteHashKey()
     // const playerName = socket['playerName'] || 'anonymous player';
     // game.gameDeletePlayer(); // TODO nothing behind this yet
     // TODO update stats on game

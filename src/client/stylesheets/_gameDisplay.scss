@@ -50,6 +50,8 @@
 }
 
 canvas {
+  display: inline;
+  margin: auto;
   border: 5px solid darkslategray;
   border-radius: 15px;
 }
@@ -59,8 +61,6 @@ canvas {
 }
 
 #game {
-  position: absolute;
-  margin-left: 3vw;
+  margin: auto;
   margin-top: 2vh;
-  z-index: 1;
 }

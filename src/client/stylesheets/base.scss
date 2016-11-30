@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Neucha|Sigmar+One');
+@import 'variables';
 @import 'navbar';
+@import 'chat';
 .healthBar {
   margin: 0 auto;
   width: 90%;
@@ -19,12 +22,11 @@
     transition: width 1s ease-in-out;
   }
   .healthLeft {
-    background-color: green;
+    background-color: $main-green;
     transition: width 1s ease-in-out;
   }
 }
 
-@import url('https://fonts.googleapis.com/css?family=Neucha|Sigmar+One');
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -42,8 +44,8 @@
 
 body {
   margin: 0;
-  background-color: #F1E7CD;
-  font-family: 'Neucha', cursive;
+  background-color: $main-tan;
+  font-family: $font-main;
   ;
 }
 
@@ -59,7 +61,7 @@ body {
   margin-top: 2vh;
   margin-left: 5%;
   padding-top: 1vh;
-  border: 5px solid green;
+  border: 5px solid $main-green;
   background-color: #C0BA96;
   border-radius: 15px;
   padding-bottom: 1vh;
@@ -68,8 +70,8 @@ body {
 
 .gameDisplay .users,
 .gameDisplay .collected {
-  font-family: 'Sigmar One', cursive;
-  color: darkred;
+  font-family: $font-title;
+  color: $main-darkred;
 }
 
 .gameDisplay .user {
@@ -123,167 +125,8 @@ canvas {
 }
 
 .healthLeft {
-  background-color: green;
+  background-color: $main-green;
   transition: width 1s ease-in-out;
-}
-
-
-/* CHAT */
-
-.chatBox {
-  position: relative;
-  margin-top: -7.5vh;
-  margin-right: 5vw;
-  height: 59.5vh;
-  width: 35%;
-  float: right;
-}
-
-.lose,
-.win {
-  position: absolute;
-  margin-top: 12.5vh;
-  margin-left: 0vw;
-  width: 35vw;
-  height: 52vh;
-  border-radius: 15px;
-  z-index: 50;
-  padding-top: 17vh;
-}
-
-.lose {
-  background-color: rgba(255, 0, 0, 0.5);
-}
-
-.win {
-  background-color: rgba(34, 139, 34, 0.5);
-}
-
-.endGameMessage {
-  margin: 0 auto;
-  padding: 1vw;
-  font-size: 6vh;
-  font-weight: 700;
-  color: darkslateblue;
-  text-align: center;
-}
-
-.menu,
-.turnDisplay,
-.inputForm {
-  text-align: center;
-  box-shadow: 1px 3px 0px lightslategray;
-}
-
-.menu {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  width: 100%;
-  height: 50px;
-  border-radius: 15px 15px 0px 0px;
-  padding-top: 1.5vh;
-  background: darkslategray;
-  z-index: 100;
-}
-
-.menuName {
-  margin: 0 auto;
-  color: white;
-  text-align: center;
-  font-size: 2.5vh;
-}
-
-.turnDisplay {
-  margin-top: 7vh;
-  width: 100%;
-  height: 5vh;
-  background: darkgreen;
-  opacity: 0.7;
-  z-index: 99;
-  box-shadow: 2px 3px 0px darkslategray;
-  color: white;
-}
-
-.messages,
-.inputForm {
-  background-color: #ECEFF1;
-}
-
-.messages {
-  padding-top: 2%;
-  height: 88%;
-  overflow: scroll;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-  border-radius: 0px 0px 15px 15px;
-}
-
-.messages ul {
-  list-style-type: none;
-  margin-left: 1vw;
-}
-
-.inputForm {
-  position: fixed;
-  height: 12vh;
-  width: 35vw;
-  bottom: 2vh;
-  border: 5px solid mediumpurple;
-  border-radius: 15px 15px 15px 15px;
-  background-color: lightgray;
-  box-shadow: 5px 5px darkslategray
-}
-
-.inputForm input {
-  margin-left: 1vw;
-  width: 75%;
-  background-color: lightgoldenrodyellow;
-  font-family: 'Neucha', cursive;
-  font-size: 1.8vh;
-}
-
-.inputForm .submitButton {
-  width: 5vw;
-  margin-left: 0.5vw;
-  border-radius: 8px;
-  background-color: darkred;
-  padding-top: 0.3vh;
-  color: white;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.submitButton:hover {
-  background: rebeccapurple;
-}
-
-.chat,
-.selfChat {
-  clear: both;
-  margin-top: 10px;
-  box-shadow: -1px 2px 0px #D4D4D4;
-  font-size: 1.8vh;
-}
-
-.selfChat {
-  font-weight: 700;
-}
-
-.selfChat .chatName {
-  color: rebeccapurple;
-}
-
-.chat .chatName {
-  font-weight: 700;
-  color: cadetblue;
-}
-
-.messages .chatDate {
-  font-style: italic;
-  float: right;
-  margin-right: 0.5vw;
 }
 
 
@@ -336,17 +179,6 @@ ul.board li.type6 {
   font-size: .4em;
   position: relative;
   text-transform: uppercase;
-}
-
-.system-name {
-  color: #474881;
-  font-style: italic;
-  font-weight: bold;
-  letter-spacing: -1px;
-  text-transform: uppercase;
-  font-size: .4em;
-  padding-top: .5em;
-  padding-bottom: 2em;
 }
 
 .d-pad {
@@ -429,25 +261,25 @@ ul.board li.type6 {
 }
 
 .control {
-  background: #79215b;
+  background: $main-buttoncolor;
   width: 1.5em;
   height: 1.5em;
   border-radius: 1.5em;
   float: right;
   margin: .25em;
-  border-top: 0.05em solid #de88c1;
-  border-bottom: 0.05em solid #290b1f;
+  border-top: 0.05em solid $main-purple;
+  border-bottom: 0.05em solid $main-darkpurple;
 }
 
 .control:hover,
 .control:active {
-  background: #8d266a;
+  background: $main-midpurple;
 }
 
 .control .label,
 .controllerLabel {
   bottom: -3.7vh;
-  color: darkred;
+  color: $main-darkred;
   font-weight: 700;
   font-size: 2vh;
 }

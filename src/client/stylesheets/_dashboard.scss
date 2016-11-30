@@ -1,0 +1,13 @@
+.dashboard {
+  text-align: center;
+  .title {
+    margin: 0 auto;
+    margin-top: 8vh;
+  }
+  .lineGraph,
+  .barGraph {
+    display: inline-block;
+    margin-right: 5vw;
+    margin-top: 10vh;
+  }
+}

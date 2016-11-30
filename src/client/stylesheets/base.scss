@@ -2,6 +2,7 @@
 @import 'variables';
 @import 'navbar';
 @import 'chat';
+@import 'controller';
 .healthBar {
   margin: 0 auto;
   width: 90%;
@@ -48,9 +49,6 @@ body {
   font-family: $font-main;
   ;
 }
-
-
-/* GAME SCREEN */
 
 
 /* GAME DISPLAY */
@@ -160,135 +158,8 @@ ul.board li.type6 {
 
 /*Controller*/
 
-.button {
-  cursor: pointer;
-  box-shadow: 0 0 3px 1px #555;
-  color: #474881;
-  text-align: center;
-}
-
-.button:hover {
-  box-shadow: 0 0 5px 1px #333;
-}
-
-.button:active {
-  box-shadow: 0 0 5px 1px #333 inset;
-}
-
-.button .label {
-  font-size: .4em;
-  position: relative;
-  text-transform: uppercase;
-}
-
-.d-pad {
-  width: 3em;
-  height: 3em;
-  position: fixed;
-  right: 33vw;
-  bottom: 4vh;
-}
-
-.d {
-  width: 1em;
-  height: 1em;
-  background: #1d2323;
-  position: absolute;
-  border-top: 0.05em solid #7b9191;
-  border-bottom: 0.05em solid black;
-}
-
-.d:hover,
-.d:active {
-  background: #404d4d;
-}
-
-.fakeHover {
-  background: #404d4d;
-}
-
-.up {
-  left: 1em;
-  top: 0;
-  border-radius: .25em .25em 0 0;
-}
-
-.up .label {
-  top: -3em;
-}
-
-.right {
-  top: 1em;
-  right: 0;
-  border-radius: 0 .25em .25em 0;
-}
-
-.right .label {
-  top: -1em;
-  right: -2em;
-}
-
-.down {
-  left: 1em;
-  bottom: 0;
-  border-radius: 0 0 .25em .25em;
-}
-
-.down .label {
-  bottom: -1em;
-}
-
-.left {
-  top: 1em;
-  left: 0;
-  border-radius: .25em 0 0 .25em;
-}
-
-.left .label {
-  top: -1em;
-  left: -2em;
-}
-
 
 /*A/B button*/
-
-.control-buttons {
-  position: fixed;
-  right: 8vw;
-  bottom: 5vh;
-  background: #afb2b6;
-  border-radius: 2em;
-}
-
-.control {
-  background: $main-buttoncolor;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 1.5em;
-  float: right;
-  margin: .25em;
-  border-top: 0.05em solid $main-purple;
-  border-bottom: 0.05em solid $main-darkpurple;
-}
-
-.control:hover,
-.control:active {
-  background: $main-midpurple;
-}
-
-.control .label,
-.controllerLabel {
-  bottom: -3.7vh;
-  color: $main-darkred;
-  font-weight: 700;
-  font-size: 2vh;
-}
-
-.controllerLabel {
-  position: fixed;
-  bottom: 4vh;
-  right: 18vw;
-}
 
 
 /*DASHBOARD*/

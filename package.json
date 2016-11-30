@@ -91,7 +91,8 @@
     "typescript-eslint-parser": "^0.4.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
-    "webpack-notifier": "^1.4.1"
+    "webpack-notifier": "^1.4.1",
+    "webpack-uglify-js-plugin": "^1.1.9"
   },
   "dependencies": {
     "auth0-lock": "^10.6.1",

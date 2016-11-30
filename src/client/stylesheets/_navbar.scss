@@ -1,0 +1,129 @@
+.nav {
+  // background-image: url('../../../assets/images/scroll-h.png');
+  background-size: 100% 100%;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 18vh;
+  z-index: 100;
+  .navContent {
+    position: relative;
+    top: 3vh;
+    width: 88vw;
+    margin: 0 auto;
+  }
+  .userBadge,
+  .navLink,
+  .navTitle,
+  .userBadgeProfile,
+  .userHeader,
+  .userBadges {
+    display: inline-block;
+  }
+  .navTitle {
+    font-family: 'Sigmar One', cursive;
+    font-size: 5vh;
+    margin-top: 2vh;
+    margin: 0;
+    text-shadow: 1px 2px darkslategray;
+  }
+  .navTitle:hover {
+    color: darkgreen;
+  }
+  .top {
+    position: absolute;
+    top: 1.1vh;
+    margin: 0;
+    font-size: 2vh;
+  }
+  .bottom {
+    position: absolute;
+    top: 7.2vh;
+    left: 9vw;
+    font-size: 2vh;
+  }
+  .navLink {
+    color: darkgreen;
+    text-transform: capitalize;
+    margin-top: 5vh;
+    margin-left: 0.5vw;
+    font-weight: 600;
+  }
+  .navLink:hover {
+    color: slategray;
+  }
+  .userBadge {
+    position: absolute;
+    right: 2vw;
+    width: 22vw;
+    height: 10vh;
+    border: 5px solid green;
+    background-color: #C0BA96;
+    border-radius: 15px;
+    padding-bottom: 1vh;
+  }
+  .userBadgeProfile,
+  .userNickname,
+  .login {
+    margin: 0 auto;
+  }
+  .userBadgeProfile {
+    margin-top: 1.2vh;
+    margin-left: 1.2vh;
+    height: 6vh;
+    width: 6vh;
+    border: 5px solid darkslategray;
+    background-color: #000;
+    border-radius: 8vh;
+  }
+  .userHeader {
+    position: absolute;
+    top: 1.85vh;
+    left: 4.2vw;
+  }
+  .userNickname {
+    margin: 0 auto;
+    color: darkgreen;
+  }
+  .login {
+    position: absolute;
+    width: 4.5vw;
+    height: 3vh;
+    right: -0.2vw;
+    bottom: 6vh;
+    border-radius: 0px 15px 5px 0px;
+    background-color: green;
+    color: white;
+    border-style: hidden;
+  }
+  .login:hover {
+    color: lightgray;
+    background-color: darkgreen;
+  }
+  .badge {
+    position: absolute;
+    bottom: 2vh;
+    width: 5vh;
+    height: 5vh;
+    border-width: 2px;
+    border-color: lightslategray;
+    border-style: solid;
+    border-radius: 5px;
+    font-size: 1.5vh;
+  }
+  .badge1 {
+    left: 11vw;
+  }
+  .badge2 {
+    left: 14vw;
+  }
+  .github {
+    position: absolute;
+    top: 0.88vh;
+    right: 1.95vw;
+    border: 0;
+    height: 15vh;
+    width: 15vh;
+  }
+}

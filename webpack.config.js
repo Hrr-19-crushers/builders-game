@@ -37,6 +37,11 @@ module.exports = {
         test: /\.tsx?$/,
         include: path.join(__dirname, 'src'),
         loaders: ['babel', 'ts-loader']
+      },
+      { 
+        // added this to make the emojione work
+        test: /\.json$/, 
+        loader: "json-loader"
       }
     ]
   },

@@ -159,8 +159,7 @@ export class Game {
     this.gameBoard = new Board(this.gameLayout);
     // TODO init new character properly later if there are more than 1
     const triforce : Boolean[] = this.gameBoard.boardGetTriForceCollection();
-    // this.gameCharacter = new Character(null, null, {x: 39, y: 52}, 100, triforce);
-    this.gameCharacter = new Character(null, null, {x: 89, y: 19}, 100, triforce);
+    this.gameCharacter = new Character(null, null, {x: 39, y: 52}, 100, triforce);
     this.gameTurnActive = false;
     // // every 0.75 seconds determine which direction got the most 'votes' and move that direction
     // setInterval(() => {

@@ -11,11 +11,11 @@ class Game extends Phaser.Game {
     let width = document.documentElement.clientWidth > 768 * 1.4 // make room for chat
       ? 768
       : document.documentElement.clientWidth * 0.7;
-    let height = document.documentElement.clientHeight > 1024 * 1.1 // give navbar some room
+    let height = document.documentElement.clientHeight > 1024 * 1.48 // give navbar some room
       ? 1024
-      : document.documentElement.clientHeight * .8;
+      : document.documentElement.clientHeight * 0.675;
 
-    super(height, width, Phaser.AUTO, 'game', null, false, false);
+    super(width, height, Phaser.AUTO, 'game', null, false, false);
 
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);

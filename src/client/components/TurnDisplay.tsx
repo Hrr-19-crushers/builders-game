@@ -32,7 +32,7 @@ class TurnDisplay extends React.Component<any, any> {
       return(
         <div className='turnDisplay'>
           <p>Perilous is a multiplayer adventure controlled by chat.</p>
-          <p>Open world play! Type in '\up', '\down', '\left', or '\right' to explore</p>
+          <p>Type in '\up', '\down', '\left', or '\right' to explore</p>
         </div>
       );
     }

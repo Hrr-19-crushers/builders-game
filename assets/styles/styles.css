@@ -24,21 +24,12 @@ body {
 
 /* GAME SCREEN */
 
-#game {
-  margin-top: 2vh;
-}
-
-canvas {
-  margin: 0 auto;
-  border-radius: 15px;
-}
-
 
 /* GAME DISPLAY */
 
 .gameDisplay {
   width: 50%;
-  height: 8vh;
+  height: 9vh;
   margin-top: 2vh;
   margin-left: 5%;
   padding-top: 1vh;
@@ -47,6 +38,36 @@ canvas {
   border-radius: 15px;
   padding-bottom: 1vh;
   text-align: center;
+}
+
+.gameDisplay .users,
+.gameDisplay .collected {
+  font-family: 'Sigmar One', cursive;
+  color: darkred;
+}
+
+.gameDisplay .user {
+  margin-right: 7vw;
+}
+
+.gameDisplay .collect {
+  margin-left: 7vw;
+}
+
+.gameScreen {
+  position: relative;
+}
+
+#game {
+  position: absolute;
+  margin-left: 3vw;
+  margin-top: 2vh;
+  z-index: 1;
+}
+
+canvas {
+  border: 5px solid darkslategray;
+  border-radius: 15px;
 }
 
 
@@ -116,6 +137,10 @@ canvas {
   margin-top: 2vh;
   margin: 0;
   text-shadow: 1px 2px darkslategray;
+}
+
+.navTitle:hover {
+  color: darkgreen;
 }
 
 .top {
@@ -240,6 +265,35 @@ canvas {
   float: right;
 }
 
+.lose,
+.win {
+  position: absolute;
+  margin-top: 12.5vh;
+  margin-left: 0vw;
+  width: 35vw;
+  height: 52vh;
+  border-radius: 15px;
+  z-index: 50;
+  padding-top: 17vh;
+}
+
+.lose {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.win {
+  background-color: rgba(34, 139, 34, 0.5);
+}
+
+.endGameMessage {
+  margin: 0 auto;
+  padding: 1vw;
+  font-size: 6vh;
+  font-weight: 700;
+  color: darkslateblue;
+  text-align: center;
+}
+
 .menu,
 .turnDisplay,
 .inputForm {
@@ -285,7 +339,7 @@ canvas {
 
 .messages {
   padding-top: 2%;
-  height: 90%;
+  height: 88%;
   overflow: scroll;
   margin-bottom: 0px;
   padding-bottom: 0px;
@@ -327,6 +381,10 @@ canvas {
   text-transform: uppercase;
 }
 
+.submitButton:hover {
+  background: rebeccapurple;
+}
+
 .chat,
 .selfChat {
   clear: both;
@@ -347,8 +405,6 @@ canvas {
   font-weight: 700;
   color: cadetblue;
 }
-
-.messages .chatText {}
 
 .messages .chatDate {
   font-style: italic;
@@ -441,6 +497,10 @@ ul.board li.type6 {
   background: #404d4d;
 }
 
+.fakeHover {
+  background: #404d4d;
+}
+
 .up {
   left: 1em;
   top: 0;
@@ -522,4 +582,23 @@ ul.board li.type6 {
   position: fixed;
   bottom: 4vh;
   right: 18vw;
+}
+
+
+/*DASHBOARD*/
+
+.dashboard {
+  text-align: center;
+}
+
+.dashboard .title {
+  margin: 0 auto;
+  margin-top: 8vh;
+}
+
+.dashboard .lineGraph,
+.dashboard .barGraph {
+  display: inline-block;
+  margin-right: 5vw;
+  margin-top: 10vh;
 }

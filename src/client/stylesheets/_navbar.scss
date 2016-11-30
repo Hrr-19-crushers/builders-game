@@ -1,5 +1,6 @@
 .nav {
-  // background-image: url('../../../assets/images/scroll-h.png');
+  // HACKY: this import may not work on server
+  background-image: url('http://localhost:1337/assets/images/scroll-h.png');
   background-size: 100% 100%;
   top: 0px;
   left: 0px;

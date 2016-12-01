@@ -148,24 +148,21 @@ export class GameState extends Phaser.State {
   update() {
     this.game.input.onTap.add((mouse, doubleClick) => {
       if (doubleClick) {
-        this.camera.follow(
-          this.link, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1
-        );
+        this.camera.follow(this.link, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
       } else {
         this.game.camera.unfollow()
       }
     });
 
-    if (this.game.input.activePointer.isDown) {
+    const input = this.game.input;
+
+    if (input.activePointer.isDown) {
       if (this.dragPoint) {
-        this.game.camera.x +=
-          this.dragPoint.x - this.game.input.activePointer.position.x;
-        this.game.camera.y +=
-          this.dragPoint.y - this.game.input.activePointer.position.y;
+        this.camera.x += this.dragPoint.x - input.activePointer.position.x;
+        this.camera.y += this.dragPoint.y - input.activePointer.position.y;
       }
-      this.dragPoint = this.game.input.activePointer.position.clone();
-    }
-    else {
+      this.dragPoint = input.activePointer.position.clone();
+    } else {
       this.dragPoint = null;
     }
   }

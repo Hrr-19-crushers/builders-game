@@ -9,6 +9,8 @@ const enum TILE {
   HEIGHT = 16
 };
 
+const coordToPx = (col, row) => [col * TILE.WIDTH, row * TILE.HEIGHT];
+
 interface Location {
   x: number; 
   y: number;
@@ -22,21 +24,11 @@ class Link extends Phaser.Sprite {
     this.gridPosition = new Phaser.Point(x, y);
   }
 
-  preload() {
-
-  }
-
-  init() {
-    
-  }
-
   create() {
     this.animations.add('down',  [0, 4], 10, true);
     this.animations.add('left',  [1, 5], 10, true);
     this.animations.add('up',    [2, 6], 10, true);
     this.animations.add('right', [3, 7], 10, true);
-    this.animations.add('none',  [0],    10, false);
-    
   }
 
   move(loc: Location) {
@@ -74,42 +66,28 @@ class Link extends Phaser.Sprite {
     );
   }
 
-  update() {
-    this.animations.play('up');
-  }
-
-  getLocation(): Location {
-    return {
-      x: this.gridPosition.x,
-      y: this.gridPosition.y,
-    };
-  }
-
-  atLocation({x, y}: Location) {
-    return x === this.gridPosition.x && 
-           y === this.gridPosition.y;
-  }
+  update() {}
 }
 
 class Enemy extends Phaser.Sprite {
-  constructor(
-    game: Phaser.Game, 
-    {x, y}: Location, 
-    sprite: string = 'octorock'
-  ) {
-    super(game, x, y, sprite);
+  constructor(game: Phaser.Game, {x, y}: Location) {
+    super(game, x, y, 'octorock');
   }
 }
 
 export class GameState extends Phaser.State {
   link: Link;
+  enemies: Phaser.Group;
+  faries: Phaser.Group;
+  hearts: Phaser.Group;
+  triforce: Phaser.Group;
   tilemap: Phaser.Tilemap;
   layer: Phaser.TilemapLayer;
   camera: Phaser.Camera;
   dragPoint: Phaser.Point;
 
   create () {
-    const {charState} = getGameState();
+    const gameState = getGameState();
 
     this.game.physics.startSystem(
       Phaser.Physics.ARCADE
@@ -127,7 +105,19 @@ export class GameState extends Phaser.State {
 
     this.layer.resizeWorld();
 
-    this.link = new Link(this.game, charState.charLocation);
+    [ // Initialize entity groups
+      this.enemies, 
+      this.faries, 
+      this.hearts, 
+      this.triforce
+    ] = [
+      this.game.add.group(), 
+      this.game.add.group(), 
+      this.game.add.group(), 
+      this.game.add.group()
+    ];
+
+    this.placeEntities(gameState);
 
     this.game.add.existing(this.link);
 
@@ -138,12 +128,57 @@ export class GameState extends Phaser.State {
 
     // Start polling for character events
     this.game.time.events.loop(
-      (Phaser.Timer.SECOND / 4),
+      Phaser.Timer.SECOND,
       () => {
         let {charState} = getGameState();
         this.link.move(charState.charLocation);
       }
     );
+  }
+
+  placeEntities({charState, gameBoard}: any) {
+    this.link = new Link(this.game, charState.charLocation);
+    console.log(gameBoard);
+    gameBoard.forEach((row, rowIndex) => {
+      row.forEach((cell, columnIndex) => {
+        if (cell.d) {
+          /** Nothing yet */
+        };
+        if (cell.e !== undefined) {
+          console.log('Created enemy.');
+          this.enemies.create(
+            columnIndex * TILE.WIDTH, 
+            rowIndex * TILE.HEIGHT, 
+            'heart'
+          );
+        };
+        if (cell.f !== undefined) {
+          console.log('Created fairy.');
+          this.faries.create(
+            columnIndex * TILE.WIDTH, 
+            rowIndex * TILE.HEIGHT, 
+            'fairy'
+          );
+        };
+        if (cell.h !== undefined) {
+          console.log('Created heart.');
+          this.hearts.create(
+            columnIndex * TILE.WIDTH, 
+            rowIndex * TILE.HEIGHT, 
+            'heart'
+          );
+        };
+        if (cell.i !== undefined) {
+          console.log('Created triforce.');
+          this.triforce.create(
+            columnIndex * TILE.WIDTH, 
+            rowIndex * TILE.HEIGHT, 
+            'triforce'
+          ); 
+        };
+      })
+    });
+
   }
 
   update() {

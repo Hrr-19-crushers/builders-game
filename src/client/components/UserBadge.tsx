@@ -18,8 +18,8 @@ export default({profile}) => (
           : 'Cannon Fodder'}</p>
     </div>
     <div className='userBadges'>
-      <div className={profile.nickname ? 'loginBadge badge1 badge' : 'badge1 badge'}>Badge1</div>
-      <div className={profile.nickname ? 'loginBadge badge2 badge' : 'badge2 badge'}>Badge2</div>
+      <div className={profile.nickname ? 'loginBadge badge1 badge' : 'badge1 badge'}>{profile.nickname ? '🙉 ': 'Badge1'}</div>
+      <div className={profile.nickname ? 'loginBadge badge2 badge' : 'badge2 badge'}>{profile.nickname ? '😎': 'Badge2'}</div>
       <LoginContainer/>
     </div>
   </div>

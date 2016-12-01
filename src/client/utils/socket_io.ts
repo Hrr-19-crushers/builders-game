@@ -1,7 +1,7 @@
 import * as io from 'socket.io-client';
 
 import { Action } from '../actions/actionInterface';
-import store from '../store';
+import store, {getGameState} from '../store';
 import { addChatAction, chatBotAction } from '../actions/chatActions';
 import {
   nextTurnAction,
@@ -64,8 +64,11 @@ socket.on('userMessage', message => {
 
 // game
 socket.on('gameState', gameState => {
+  const initialLoad = !!getGameState().gameBoard;
   store.dispatch(updateBoardAction(gameState.gameLayout));
-  runGame();
+  if (!initialLoad) {
+    runGame();
+  }
 });
 
 socket.on('move', charState => {

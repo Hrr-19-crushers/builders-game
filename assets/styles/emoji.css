@@ -112,7 +112,7 @@
 }
 
 .emoji-dialog .modifiers li {
-  display: inline-block;
+  display: none;
   padding: 0 2px;
 }
 

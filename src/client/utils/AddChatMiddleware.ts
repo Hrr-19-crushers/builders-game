@@ -31,16 +31,7 @@ export default (action, next) => {
     .slice(2)
     .join(' ')
 
-    // If there is a current turn, get choice values from store
-    const choices = getGameState().turn 
-      ? getGameState().turn.votes
-        .map(vote => vote.name)
-      : [];
-      
     // POSSIBLE USER ACTIONS FROM COMMAND LINE
-
-    //this action is only accessable to logged in users
-    
     if (verb === 'name') {
       newPlayer2Server(target, (isExists) => {
         if (isExists) {
@@ -74,12 +65,6 @@ export default (action, next) => {
     }
     if (verb === 'help') {
       return botAdvise();
-    }
-    if (verb ==='A') {
-      return botMessage('I\'m supposed to do some action with this A')
-    }
-    if (verb ==='B') {
-      return botMessage('I\'m supposed to do some action with this B')
     }
     return botNotFound(verb);
   }

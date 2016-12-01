@@ -29,14 +29,12 @@ export interface CharState {
   charId?: number;
   charLocation: Location;
   charName: string;
+  charTriForce: Boolean[];
 }
 
 export interface GameState {
   charState: CharState;
   gameBoard?: BoardSquare[];
-  collected: number;
-  turn?: Turn;
-  outcome?: String;
 }
 
 export const INITIAL_STATE : GameState = {
@@ -46,43 +44,13 @@ export const INITIAL_STATE : GameState = {
      x: 39,
      y: 52 
     },
-    charName: 'Link'
-  },
-  collected: 0
+    charName: 'Link',
+    charTriForce: []
+  }
 };
 
 export const gameState = (state : GameState = INITIAL_STATE, action : Action): GameState => {
   switch (action.type) {
-    case NEXT_TURN:
-      const votes = action
-        .payload
-        .choices
-        .map(choice => ({name: choice, count: 0}));
-      const turn = {
-        prompt: action.payload.prompt,
-        votes
-      };
-      return Object.assign({}, state, {turn});
-    case VOTE:
-      const voteChoice = [
-        ...state
-          .turn
-          .votes
-          .filter(choice => choice.name !== action.payload), {
-            name: action.payload,
-            count: state
-              .turn
-              .votes
-              .filter(choice => choice.name === action.payload)[0]
-            .count + 1
-          }
-        ]
-        .sort(choice => choice.count)
-        .reverse();
-      const newTurn = Object.assign(state.turn, {votes: voteChoice});
-      return Object.assign({}, state, newTurn);
-    case OUTCOME:
-      return Object.assign({}, state, {outcome: action.payload});
     case UPDATE_CHAR:
       return Object.assign({}, state, {charState: action.payload});
     case UPDATE_BOARD:

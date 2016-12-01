@@ -91,11 +91,12 @@ any > {
           <input className='submitButton' type='submit'/>
         </form> 
         { this.state.emojiToggle ? 
-          <div className='emojiContainer'>
+          <div className='emojiContainer'
+            onMouseLeave={this.onPressEmojiToggle.bind(this)}>
             <EmojiPicker 
               onChange={ data => {
                 const emoji = emojione.toImage(data.shortname).split(' ')[2].substring(5).replace('"','')
-                this.setState( {input: this.state.input + " " + emoji})}}/>
+                this.setState( {input: this.state.input + emoji + " "})}}/>
           </div> : null}
       </div>
     )

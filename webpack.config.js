@@ -39,7 +39,10 @@ module.exports = {
         test: /\.tsx?$/,
         include: path.join(__dirname, 'src'),
         loaders: ['babel', 'ts-loader']
-      }, {
+      },{ 
+        test: /\.json$/, 
+        loader: "json-loader"
+      },{
         test: /\.scss$/,
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract('css!sass')

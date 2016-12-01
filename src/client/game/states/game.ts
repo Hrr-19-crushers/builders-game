@@ -169,6 +169,6 @@ export class GameState extends Phaser.State {
 
   render() {
     // this.game.debug.cameraInfo(this.game.camera, 32, 32);
-    this.game.debug.spriteInfo(this.link, 32, 32);
+    // this.game.debug.spriteInfo(this.link, 32, 32);
   }
 }

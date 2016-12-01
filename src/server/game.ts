@@ -230,7 +230,7 @@ export class Game {
     this.gameCharacter.charSetLocation(location);
   }
   
-  gameMoveChar(direction : string, cb? : any) : GameState {
+  gameMoveChar(direction : string, cb? : any) : CharacterState {
     const board = this.gameBoard;
     const char = this.gameCharacter;
     // get the current state of the character
@@ -263,8 +263,8 @@ export class Game {
         this.gameCharacter.charCollectTriForce(triForcePiece);
       }
       // call the sever cb with the new char/game states
-      let gameState : GameState = this.gameGetGameState();
-      if (cb) cb(gameState);
+      charState = this.gameCharacter.charGetCharState();
+      if (cb) cb(charState);
       
       // check to see if player is dead and invoke game over if so
       charState = char.charGetCharState();
@@ -272,7 +272,7 @@ export class Game {
         this.gameReset();
       }
       
-      return gameState;
+      return charState;
     }
   }
 

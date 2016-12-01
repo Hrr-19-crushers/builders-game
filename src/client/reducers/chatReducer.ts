@@ -25,7 +25,10 @@ const INITIAL_STATE: ChatState = {
 export const chatReducer = (state: ChatState = INITIAL_STATE, action: Action): ChatState => {
   switch (action.type) {
     case ADD_CHAT:
-      return Object.assign({}, state, { messages: [...state.messages, action.payload] });
+      return Object.assign({}, state, { 
+        messages: [...state.messages, action.payload]
+          .slice(state.messages.length > 200 ? state.messages.length - 200 : 0,   state.messages.length + 1) 
+      });
     case CLEAR_CHATS:
       return Object.assign({}, state, { messages: [] });
     case CHATS_AFTER:

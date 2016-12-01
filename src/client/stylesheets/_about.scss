@@ -1,11 +1,78 @@
 .about {
-  width: 90%;
-  margin-top: 5vh;
-  h2 {
+  width: 95%;
+  margin: auto;
+  margin-top: 2vh;
+  font-size: 2.5vh;
+  .indented {
+    margin-left: 8vw;
+  }
+  .doubleIndented {
+    margin-left: 10vw;
+  }
+  .centered {
     margin: auto;
   }
   .desc {
-    margin: auto;
+    @extend .doubleIndented;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
     width: 70%;
+  }
+  .gameName {
+    color: $main-green;
+  }
+  h2 {
+    @extend .indented;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+    font: $font-title;
+    font-size: 4vh;
+  }
+  ul {
+    @extend .doubleIndented;
+    font-size: 3vh;
+  }
+  li {
+    display: inline;
+    margin-right: 1vw;
+  }
+  .mate {
+    display: inline-block;
+    width: 21vw;
+    height: 50vh;
+    margin: 1vh;
+    border: 5px solid $main-buttoncolor;
+    border-radius: 15px;
+    background-color: lightgray;
+    h3 {
+      color: $main-green;
+      margin-top: 1vh;
+      margin-left: 1vw;
+      text-transform: uppercase;
+    }
+    h4 {
+      margin-left: 1vw;
+      font-style: italic;
+    }
+    span {
+      display: inline-block;
+      margin: 1vh;
+      margin-left: 1vw;
+    }
+  }
+  .mate:hover {
+    background-color: lightslategray;
+  }
+  img {
+    margin-left: 2.5vw;
+    margin-top: 2vh;
+    width: 15vw;
+    height: 15vw;
+    border: 5px solid $main-green;
+    border-radius: 15vw;
+  }
+  a {
+    text-decoration: none;
+    color: $main-buttoncolor;
   }
 }

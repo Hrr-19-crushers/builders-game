@@ -43,8 +43,8 @@ export const INITIAL_STATE : GameState = {
   charState: {
     charHealth: 100,
     charLocation: {
-     x: 0,
-     y: 4 
+     x: 39,
+     y: 52 
     },
     charName: 'Link'
   },

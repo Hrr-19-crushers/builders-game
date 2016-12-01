@@ -4,15 +4,9 @@ import * as Phaser from 'phaser';
 import { setResponsiveWidth, polarity } from '../utils';
 import { getGameState } from '../../store';
 
-const enum TILE {
-  WIDTH = 16,
-  HEIGHT = 16
-};
+const enum TILE { WIDTH = 16, HEIGHT = 16 };
 
-interface Location {
-  x: number; 
-  y: number;
-};
+interface Location { x: number, y: number };
 
 class Link extends Phaser.Sprite {
   gridPosition: Phaser.Point;
@@ -135,14 +129,13 @@ export class GameState extends Phaser.State {
 
     gameBoard.forEach((row, rowIndex) => {
       row.forEach((cell, columnIndex) => {
-        if (cell.d) { /** Nothing yet */ }
+        if (cell.d !== undefined) { /** Nothing yet */ }
         if (cell.e !== undefined) { place(columnIndex, rowIndex, 'octorock'); }
         if (cell.f !== undefined) { place(columnIndex, rowIndex, 'fairy'); }
         if (cell.h !== undefined) { place(columnIndex, rowIndex, 'heart'); }
         if (cell.i !== undefined) { place(columnIndex, rowIndex, 'triforce'); }
       })
     });
-
   }
 
   update() {

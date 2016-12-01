@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const WebpackNotifierPlugin = require('webpack-notifier');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
 
 module.exports = {
   devtool: 'eval',
@@ -37,11 +39,13 @@ module.exports = {
         test: /\.tsx?$/,
         include: path.join(__dirname, 'src'),
         loaders: ['babel', 'ts-loader']
-      },
-      { 
-        // added this to make the emojione work
+      },{ 
         test: /\.json$/, 
         loader: "json-loader"
+      },{
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract('css!sass')
       }
     ]
   },
@@ -50,5 +54,20 @@ module.exports = {
     new WebpackNotifierPlugin({
       alwaysNotify: true
     }),
+    new ExtractTextPlugin('style.css', {
+      allChunks: true
+    }),
+    new webpackUglifyJsPlugin({
+      cacheFolder: path.resolve(__dirname, 'build/client/cached_uglify/'),
+      debug: true,
+      minimize: true,
+      sourceMap: false,
+      output: {
+        comments: false
+      },
+      compressor: {
+        warnings: false
+      }
+    })
   ]
 };

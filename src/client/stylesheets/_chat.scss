@@ -1,0 +1,134 @@
+.chatBox {
+  position: relative;
+  margin-top: -7.5vh;
+  margin-right: 5vw;
+  height: 59.5vh;
+  width: 35%;
+  float: right;
+  .endGame {
+    position: absolute;
+    margin-top: 12.5vh;
+    margin-left: 0vw;
+    width: 35vw;
+    height: 52vh;
+    border-radius: 15px;
+    z-index: 50;
+    padding-top: 17vh;
+    .endGameMessage {
+      margin: 0 auto;
+      padding: 1vw;
+      font-size: 6vh;
+      font-weight: 700;
+      color: darkslateblue;
+      text-align: center;
+    }
+  }
+  .lose {
+    @extend .endGame;
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+  .win {
+    @extend .endGame;
+    background-color: rgba(34, 139, 34, 0.5);
+  }
+  .chatComponent {
+    text-align: center;
+    box-shadow: 1px 3px 0px lightslategray;
+  }
+  .userMenu {
+    @extend .chatComponent;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px 15px 0px 0px;
+    padding-top: 1.5vh;
+    background: darkslategray;
+    z-index: 100;
+    .menuName {
+      margin: 0 auto;
+      color: white;
+      text-align: center;
+      font-size: 2.5vh;
+    }
+  }
+  .turnDisplay {
+    @extend .chatComponent;
+    margin-top: 7vh;
+    width: 100%;
+    height: 5vh;
+    background: $main-green;
+    opacity: 0.7;
+    z-index: 99;
+    box-shadow: 2px 3px 0px darkslategray;
+    color: white;
+  }
+  .messages {
+    background-color: #ECEFF1;
+    padding-top: 2%;
+    height: 88%;
+    overflow: scroll;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-radius: 0px 0px 15px 15px;
+    ul {
+      list-style-type: none;
+      margin-left: 1vw;
+    }
+    .chat {
+      clear: both;
+      margin-top: 10px;
+      box-shadow: -1px 2px 0px #D4D4D4;
+      font-size: 1.8vh;
+      font-weight: 700;
+    }
+    .chatName {
+      font-weight: 700;
+      color: cadetblue;
+    }
+    .chatDate {
+      font-style: italic;
+      float: right;
+      margin-right: 0.5vw;
+    }
+    .selfChat {
+      @extend .chat;
+      .chatName {
+        color: rebeccapurple;
+      }
+    }
+  }
+  .inputForm {
+    @extend .chatComponent;
+    position: fixed;
+    height: 12vh;
+    width: 35vw;
+    bottom: 2vh;
+    border: 5px solid mediumpurple;
+    border-radius: 15px 15px 15px 15px;
+    background-color: lightgray;
+    box-shadow: 5px 5px darkslategray;
+    input {
+      margin-left: 1vw;
+      width: 75%;
+      background-color: lightgoldenrodyellow;
+      font-family: $font-main;
+      font-size: 1.8vh;
+    }
+    .submitButton {
+      width: 5vw;
+      margin-left: 0.5vw;
+      border-radius: 8px;
+      background-color: $main-darkred;
+      padding-top: 0.3vh;
+      color: white;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .submitButton:hover {
+      background: rebeccapurple;
+    }
+  }
+}

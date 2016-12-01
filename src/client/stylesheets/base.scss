@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Neucha|Sigmar+One');
+@import 'variables';
+@import 'navbar';
+@import 'chat';
+@import 'controller';
+@import 'dashboard';
+@import 'gameDisplay';
+@import 'mapTester';
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+body {
+  margin: 0;
+  background-color: $main-tan;
+  font-family: $font-main;
+  ;
+}

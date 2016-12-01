@@ -10,8 +10,8 @@ export default [{
   avatar_url: 'https://avatars.githubusercontent.com/u/20425875?v=3',
   html_url: 'https://github.com/dabisrat',
   title: 'Scrum Master, Engineer',
-  likes: 'Redux, trail running, functional programming',
-  city: 'Los Angeles'
+  likes: 'React, All things science, JavaScript: the good parts',
+  city: 'Atlanta'
 }, {
   name: 'Mitch Small',
   avatar_url: 'https://avatars.githubusercontent.com/u/12477375?v=3',

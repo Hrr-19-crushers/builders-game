@@ -8,7 +8,7 @@ export default [{
 }, {
   name: 'David Bisrat',
   avatar_url: 'https://avatars.githubusercontent.com/u/20425875?v=3',
-  html_url: 'https://api.github.com/users/dabisrat',
+  html_url: 'https://github.com/dabisrat',
   title: 'Scrum Master, Engineer',
   likes: 'Redux, trail running, functional programming',
   city: 'Los Angeles'
@@ -22,7 +22,7 @@ export default [{
 }, {
   name: 'Andrew Cernek',
   avatar_url: 'https://avatars.githubusercontent.com/u/2206529?v=3',
-  html_url: 'https://api.github.com/users/Numose',
+  html_url: 'https://github.com/Numose',
   title: 'DevOps, Engineer',
   likes: 'Redux, trail running, functional programming',
   city: 'Los Angeles'

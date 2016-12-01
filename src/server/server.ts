@@ -81,7 +81,6 @@ io.on('connection', socket => {
     });
   });
 
-
   // GAME
   socket.on('gameState', () => {
     const gameState = game.gameGetGameState();

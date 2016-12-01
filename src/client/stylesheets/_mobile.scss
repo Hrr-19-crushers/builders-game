@@ -1,0 +1,68 @@
+@media only screen and (max-width: 500px) {
+  .hidden {
+    display: none;
+  }
+  .nav {
+    background-color: goldenrod;
+    background-image: none;
+    box-shadow: 1px 1px dimgray;
+    height: 18vh;
+    border: 10px solid $main-green;
+    .userBadge {
+      @extend .hidden;
+    }
+    .navLink {
+      @extend .hidden;
+    }
+    .top {
+      top: 0.5vh;
+    }
+    .bottom {
+      left: 25vw;
+      top: 7vh;
+    }
+  }
+  .gameDisplay {
+    @extend .hidden;
+  }
+  .chatBox {
+    width: 100%;
+    height: 0;
+    .turnDisplay {
+      @extend .hidden;
+    }
+    .userMenu {
+      @extend .hidden;
+    }
+    .messages {
+      @extend .hidden;
+    }
+    .inputForm {
+      width: 90%;
+      height: 17vh;
+      left: 5vw;
+      .submitButton {
+        width: 12vw;
+      }
+    }
+    .controller {
+      bottom: 2vh;
+      width: 90%;
+      height: 25vh;
+      z-index: 1000;
+      .d-pad {
+        left: 8vw;
+      }
+      .controllerLabel {
+        left: 20vw;
+      }
+    }
+  }
+  #game {
+    height: 10vh;
+  }
+  .gameScreen {
+    width: 80%;
+    height: 10vh;
+  }
+}

@@ -6,6 +6,6 @@ export default ({users, collected}) => (
   <div className='gameDisplay'>
     <HealthbarContainer />
      <span className='user'><span className='users'>{users}</span> players are currently in your party</span>
-     <span className='collect'><span className='collected'>{collected}/8</span> treasure collected</span>
+     <span className='collect'><span className='collected'>{collected}/4</span> treasure collected</span>
   </div>
 )

@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import data from './teamData';
 
 export default() => (
   <div className='about'>

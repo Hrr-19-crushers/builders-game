@@ -12,6 +12,7 @@ import {
 } from '../actions/gameActions';
 import {updateClientsAction} from '../actions/statsActions';
 import {botWelcome} from './chatBot';
+import {runGame} from '../game/index';
 
 const socket = io();
 
@@ -63,11 +64,12 @@ socket.on('userMessage', message => {
 
 // game
 socket.on('gameState', gameState => {
-  console.log('gameState', gameState);
   store.dispatch(updateBoardAction(gameState.gameLayout));
+  runGame();
 });
 
 socket.on('move', charState => {
+  console.log(charState.charLocation);
   store.dispatch(updateCharAction(charState));
 });
 

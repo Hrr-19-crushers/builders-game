@@ -9,8 +9,6 @@ const enum TILE {
   HEIGHT = 16
 };
 
-const coordToPx = (col, row) => [col * TILE.WIDTH, row * TILE.HEIGHT];
-
 interface Location {
   x: number; 
   y: number;
@@ -105,17 +103,10 @@ export class GameState extends Phaser.State {
 
     this.layer.resizeWorld();
 
-    [ // Initialize entity groups
-      this.enemies, 
-      this.faries, 
-      this.hearts, 
-      this.triforce
-    ] = [
-      this.game.add.group(), 
-      this.game.add.group(), 
-      this.game.add.group(), 
-      this.game.add.group()
-    ];
+    this.enemies = this.game.add.group(); 
+    this.faries = this.game.add.group();
+    this.hearts = this.game.add.group();
+    this.triforce = this.game.add.group();
 
     this.placeEntities(gameState);
 
@@ -128,7 +119,7 @@ export class GameState extends Phaser.State {
 
     // Start polling for character events
     this.game.time.events.loop(
-      Phaser.Timer.SECOND,
+      (Phaser.Timer.SECOND / 10),
       () => {
         let {charState} = getGameState();
         this.link.move(charState.charLocation);
@@ -138,44 +129,17 @@ export class GameState extends Phaser.State {
 
   placeEntities({charState, gameBoard}: any) {
     this.link = new Link(this.game, charState.charLocation);
-    console.log(gameBoard);
+    
+    const place = (col, row, sprite) => 
+      this.enemies.create(col * TILE.WIDTH, row * TILE.HEIGHT, sprite);
+
     gameBoard.forEach((row, rowIndex) => {
       row.forEach((cell, columnIndex) => {
-        if (cell.d) {
-          /** Nothing yet */
-        };
-        if (cell.e !== undefined) {
-          console.log('Created enemy.');
-          this.enemies.create(
-            columnIndex * TILE.WIDTH, 
-            rowIndex * TILE.HEIGHT, 
-            'heart'
-          );
-        };
-        if (cell.f !== undefined) {
-          console.log('Created fairy.');
-          this.faries.create(
-            columnIndex * TILE.WIDTH, 
-            rowIndex * TILE.HEIGHT, 
-            'fairy'
-          );
-        };
-        if (cell.h !== undefined) {
-          console.log('Created heart.');
-          this.hearts.create(
-            columnIndex * TILE.WIDTH, 
-            rowIndex * TILE.HEIGHT, 
-            'heart'
-          );
-        };
-        if (cell.i !== undefined) {
-          console.log('Created triforce.');
-          this.triforce.create(
-            columnIndex * TILE.WIDTH, 
-            rowIndex * TILE.HEIGHT, 
-            'triforce'
-          ); 
-        };
+        if (cell.d) { /** Nothing yet */ }
+        if (cell.e !== undefined) { place(columnIndex, rowIndex, 'octorock'); }
+        if (cell.f !== undefined) { place(columnIndex, rowIndex, 'fairy'); }
+        if (cell.h !== undefined) { place(columnIndex, rowIndex, 'heart'); }
+        if (cell.i !== undefined) { place(columnIndex, rowIndex, 'triforce'); }
       })
     });
 

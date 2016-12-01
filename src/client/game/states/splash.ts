@@ -29,8 +29,7 @@ export class SplashState extends Phaser.State {
 
     // Load assets
     this.game.load.tilemap(
-      'zeldamap', 
-      /* 'assets/tilemaps/zeldamap.json', */
+      'zeldamap',
       null,
       boardToCSV(getGameState().gameBoard), 
       Phaser.Tilemap.CSV
@@ -39,13 +38,13 @@ export class SplashState extends Phaser.State {
     this.load.image('heart', 'assets/sprites/heart.png');
     this.load.image('fairy', 'assets/sprites/fairy.png');
     this.load.image('triforce', 'assets/sprites/triforce.png');
-    this.load.image('link', 'assets/sprites/link-single.png');
-    // this.load.spritesheet('link',
-    //   'assets/sprites/link.png',
-    //   16, 16, 8, 0, 16);
-    // this.load.spritesheet('octorock',
-    //   'assets/sprites/octorock.png',
-    //   16, 16, 8, 0, 16);
+    // this.load.image('link', 'assets/sprites/link-single.png');
+    this.load.spritesheet('link',
+      'assets/sprites/link.png',
+      16, 16, 8, 0, 16);
+    this.load.spritesheet('octorock',
+      'assets/sprites/octorock.png',
+      16, 16, 8, 0, 16);
 
     this.load.image('zeldatiles', 'assets/tilemaps/zeldamap.png');
   }

@@ -70,7 +70,8 @@ class Character {
   }
 
   charChangeHealth(healthChange : number) : number {
-    this.charHealth += healthChange;
+    const health = this.charHealth;
+    this.charHealth = health + healthChange > 100 ? 100 : health + healthChange;
     return this.charHealth;
   }
 

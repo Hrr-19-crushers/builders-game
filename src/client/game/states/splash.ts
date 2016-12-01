@@ -36,13 +36,16 @@ export class SplashState extends Phaser.State {
       Phaser.Tilemap.CSV
     );
 
-    this.load.image('mushroom', 'assets/sprites/mushroom2.png');
-    this.load.image('mario', 'assets/sprites/mario.png');
-    this.load.image('crab', 'assets/sprites/crab.png');
-
-    this.load.spritesheet('link',
-      'assets/sprites/link.png',
-      16, 16, 8, 0, 16);
+    this.load.image('heart', 'assets/sprites/heart.png');
+    this.load.image('fairy', 'assets/sprites/fairy.png');
+    this.load.image('triforce', 'assets/sprites/triforce.png');
+    this.load.image('link', 'assets/sprites/link-single.png');
+    // this.load.spritesheet('link',
+    //   'assets/sprites/link.png',
+    //   16, 16, 8, 0, 16);
+    // this.load.spritesheet('octorock',
+    //   'assets/sprites/octorock.png',
+    //   16, 16, 8, 0, 16);
 
     this.load.image('zeldatiles', 'assets/tilemaps/zeldamap.png');
   }

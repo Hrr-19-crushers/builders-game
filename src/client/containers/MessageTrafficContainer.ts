@@ -9,9 +9,9 @@ const mapMessagesToTime = messages => {
   const now = Date.now();
   const levels = _.range(15)
     .map(n => -1 * n)
-    .reverse()
+    .sort()
     .reduce((memo, time) => {
-      const ms = now - time * 60000;
+      const ms = now + time * 60000;
       const total = messages.filter(msg => {
         const date = Date.parse(JSON.parse(msg.date));
         return date < ms && date > ms - 60000;

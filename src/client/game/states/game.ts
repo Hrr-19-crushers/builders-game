@@ -9,8 +9,6 @@ const enum TILE {
   HEIGHT = 16
 };
 
-const coordToPx = (col, row) => [col * TILE.WIDTH, row * TILE.HEIGHT];
-
 interface Location {
   x: number; 
   y: number;

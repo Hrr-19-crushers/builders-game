@@ -31,7 +31,6 @@
   }
   .health {
     display: inline-block;
-    border-radius: 5px;
     height: 20px;
     font-size: 10pt;
     vertical-align: top;
@@ -41,10 +40,12 @@
   }
   .healthLost {
     background-color: red;
+    border-radius: 0 5px 5px 0;
     transition: width 1s ease-in-out;
   }
   .healthLeft {
     background-color: $main-green;
+    border-radius: 5px 0 0 5px;
     transition: width 1s ease-in-out;
   }
 }

@@ -24,6 +24,6 @@ export default [{
   avatar_url: 'https://avatars.githubusercontent.com/u/2206529?v=3',
   html_url: 'https://github.com/Numose',
   title: 'DevOps, Engineer',
-  likes: 'Redux, trail running, functional programming',
-  city: 'Los Angeles'
+  likes: 'Building stuff, cats, and big data',
+  city: 'Phoenix'
 }];

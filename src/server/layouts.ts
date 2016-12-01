@@ -101,7 +101,7 @@ export const overworld : Tile[][] = [
     {p: false, t: 23}, {p: true, t: 2}, {p: false, t: 21}, {p: false, t: 23}, {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 55}, {p: false, t: 91}, {p: false, t: 91}, {p: false, t: 91},
     {p: false, t: 91}, {p: false, t: 91}, {p: false, t: 91}, {p: false, t: 91}, {p: false, t: 92}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2},
     {p: false, t: 19}, {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 19}, {p: false, t: 55}, {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 25}, {p: true, t: 2}, {p: true, t: 96},
-    {p: true, t: 97}, {p: true, t: 97, f: true}, {p: true, t: 97, f: true}, {p: true, t: 97}, {p: true, t: 98}, {p: true, t: 2}, {p: false, t: 25}, {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 55},
+    {p: true, t: 97}, {p: true, t: 97}, {p: true, t: 97, f: true}, {p: true, t: 97}, {p: true, t: 98}, {p: true, t: 2}, {p: false, t: 25}, {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 55},
     {p: false, t: 55}, {p: false, t: 55}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94},
     {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94}, {p: true, t: 94},
   ],

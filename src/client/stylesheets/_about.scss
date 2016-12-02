@@ -36,9 +36,13 @@
     display: inline;
     margin-right: 1vw;
   }
+  .profiles {
+    margin-left: 3vw;
+  }
   .mate {
     display: inline-block;
-    width: 21vw;
+    vertical-align: top;
+    width: 20vw;
     height: 55vh;
     margin: 1vh;
     border: 5px solid $main-buttoncolor;

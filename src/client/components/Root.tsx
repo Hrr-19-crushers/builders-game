@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {IndexRoute, Route, Router, browserHistory} from 'react-router';
 
-import App from './App';
 import About from './About';
+import App from './App';
 import Dashboard from './Dashboard';
 import Main from './Main';
 

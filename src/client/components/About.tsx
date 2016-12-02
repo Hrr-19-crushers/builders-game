@@ -7,7 +7,7 @@ export default() => {
     <a href={mate.html_url}><div className='mate'>
       <h3>{mate.name}</h3>
       <h4>{mate.title}</h4>
-      <img src={mate.avatar_url}></img>
+      <img src={mate.avatar_url} />
       <span>City:&nbsp;{mate.city}</span>
       <span>Likes:&nbsp;{mate.likes}</span>
     </div></a>
@@ -22,7 +22,10 @@ export default() => {
         <a href='https://www.twitch.tv/twitchplayspokemon'>Twitch plays Pokemon</a>
         &nbsp;and Hunter Loftis' talk entitled&nbsp;
         <a
-          href='http://2014.jsconf.eu/speakers/hunter-loftis-we-will-all-be-game-programmers.html'>"We will all be game developers"</a>
+          href='http://2014.jsconf.eu/speakers/hunter-loftis-we-will-all-be-game-programmers.html'
+        >
+          "We will all be game developers"
+        </a>
         &nbsp;where he argues that web developers can apply the lessons pioneered by gaming in
         the areas of networking, state management, and physics-based animations to
         create immersive online experiences.</p>
@@ -56,3 +59,4 @@ export default() => {
     </div>
   );
 }
+;

@@ -298,6 +298,7 @@ export class Game {
       }
     });
   }
+
   
   // TODO allow players to update their name instead of just adding a new name 
   public gameUpdatePlayerName(playerName : string, socketId : string, cb? : any) : void {
@@ -310,13 +311,23 @@ export class Game {
     }
   }
   
-  public gameDeleteHashKey() {
+  gameDeleteAllPlayers() {
     storage.del('players')
   }
 
-  public gameDeletePlayer() {
-    // TODO eventually
+  gameDeletePlayer( socketid: string, cb?: any) {
+    storage.hgetall('players', (err, playersData) => {
+      if (err ) { console.log(err) }
+      for (var feild in playersData){
+        var socket = JSON.parse(playersData[feild]).playerSocketId;
+        if ( socket === socketid ) {
+          storage.hdel('players', feild);
+          cb(feild)
+        } 
+      }
+    });
   }
+  
 
   public gameNewMessage(userName : string, messageText : string, cb? : any) : void {
     const message = new Message(messageText.toLowerCase(), null, userName);

@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 import Login from './Login';
 import UserBadgeContainer from '../containers/UserBadgeContainer';
 
-export default() => (
+export default () => (
   <nav className='nav'>
 
     <div className='navContent'>
@@ -23,5 +23,5 @@ export default() => (
       alt="Fork me on GitHub"
       data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"/>
     </a>
-    </nav>
+  </nav>
 )

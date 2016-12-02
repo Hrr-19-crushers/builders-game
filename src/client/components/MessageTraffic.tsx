@@ -1,5 +1,4 @@
 import * as React from 'react';
-// no typings available so importing using require as type: any
 const {
   LineChart,
   Line,
@@ -10,14 +9,12 @@ const {
   Tooltip
 } = require('recharts');
 
-export default({data, type, text}) => (
+export default ({data, type, text}) => (
   <div className='lineGraph'>
-    <h2>Right now:<span> </span><span className='rate'>
-        {data[data.length - 1][type]}
-      </span><span> </span>
+    <h2>Right now:&nbsp;
+      <span className='rate'>{data[data.length - 1][type]}</span>&nbsp;
       {text}
     </h2>
-
     <LineChart width={300} height={300} data={data}>
       <XAxis dataKey='date'/>
       <YAxis/>

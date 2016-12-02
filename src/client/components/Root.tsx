@@ -6,7 +6,7 @@ import About from './About';
 import Dashboard from './Dashboard';
 import Main from './Main';
 
-export default() => (
+export default () => (
   <div>
     <Router history={browserHistory}>
       <Route path='/' component={App}>

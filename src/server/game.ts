@@ -95,8 +95,8 @@ class Character {
   }
 
   public charResetTriForce() : number {
-    this.charTriForce.forEach(piece => {
-      piece = false;
+    this.charTriForce.forEach((piece, idx) => {
+      this.charTriForce[idx] = false;
     });
     return this.charGetNumTriForceCollected();
   }
@@ -287,6 +287,7 @@ export class Game {
       }
     }); 
   }
+
   public gameGetPlayerSocket(playerName: string, cb?: any): void {
     storage.hget('players', playerName, (err, player) => {
       if (err) {
@@ -298,7 +299,6 @@ export class Game {
       }
     });
   }
-
   
   // TODO allow players to update their name instead of just adding a new name 
   public gameUpdatePlayerName(playerName : string, socketId : string, cb? : any) : void {
@@ -311,18 +311,18 @@ export class Game {
     }
   }
   
-  gameDeleteAllPlayers() {
-    storage.del('players')
+  public gameDeleteAllPlayers() : void {
+    storage.del('players');
   }
 
-  gameDeletePlayer( socketid: string, cb?: any) {
+  public gameDeletePlayer(socketid : string, cb? : any) : void {
     storage.hgetall('players', (err, playersData) => {
-      if (err ) { console.log(err) }
-      for (var feild in playersData){
-        var socket = JSON.parse(playersData[feild]).playerSocketId;
-        if ( socket === socketid ) {
+      if (err) console.log(err);
+      for (let feild in playersData) {
+        let socket = JSON.parse(playersData[feild]).playerSocketId;
+        if (socket === socketid) {
           storage.hdel('players', feild);
-          cb(feild)
+          cb(feild);
         } 
       }
     });

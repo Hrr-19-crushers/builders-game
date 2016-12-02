@@ -70,6 +70,5 @@ socket.on('gameState', gameState => {
 });
 
 socket.on('move', charState => {
-  console.log(charState);
   store.dispatch(updateCharAction(charState));
 });

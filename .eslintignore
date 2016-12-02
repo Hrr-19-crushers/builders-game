@@ -1,9 +1,0 @@
-node_modules
-
-# ignore webpack config
-webpack.config.js
-devServer.js
-settings.json
-
-# ignore build files
-build/*

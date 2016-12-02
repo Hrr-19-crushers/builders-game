@@ -62,6 +62,10 @@ socket.on('userMessage', message => {
   store.dispatch(addChatAction(message));
 });
 
+socket.on('playerLeft', message => {
+  store.dispatch(chatBotAction(message));
+});
+
 // game
 socket.on('gameState', gameState => {
   const initialLoad = !!getGameState().gameBoard;
@@ -73,7 +77,7 @@ socket.on('gameState', gameState => {
 });
 
 socket.on('move', charState => {
-  console.log(charState);
+  //console.log(charState);
   store.dispatch(updateCharAction(charState));
 });
 

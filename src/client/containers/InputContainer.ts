@@ -6,12 +6,12 @@ import { addChatAction , chatBotAction} from '../actions/chatActions';
 import { chat2Server } from '../utils/socket_io';
 import chatActionMiddleWare from '../utils/AddChatMiddleware';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     isAuth: state.authReducer.isAuth,
     user: state.userState.name
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     addChat: (message) => {
       chatActionMiddleWare(addChatAction(message), dispatch);
     },

@@ -59,16 +59,18 @@ any > {
     }
     if (e.keyCode === 65) {
       fakeKeyDown('control-a');
-      return this._submitChat('\\A');
     }
     if (e.keyCode === 66) {
       fakeKeyDown('control-b');
-      return this._submitChat('\\B');
     }
   }
 
   onPressEmojiToggle() {
-    this.setState( {emojiToggle: this.state.emojiToggle ? false : true} );
+    if (this.props.isAuth) {
+      this.setState( {emojiToggle: this.state.emojiToggle ? false : true} );
+    } else {
+      this.props.authError('Please log in to use the emoji feature')
+    }
   }
 
   public render() {
@@ -89,11 +91,12 @@ any > {
           <input className='submitButton' type='submit'/>
         </form> 
         { this.state.emojiToggle ? 
-          <div className='emojiContainer'>
+          <div className='emojiContainer'
+            onMouseLeave={this.onPressEmojiToggle.bind(this)}>
             <EmojiPicker 
               onChange={ data => {
-                const emoji = emojione.toImage(data.shortname).split(' ')[2].substring(5,7); 
-                this.setState( {input: this.state.input + " " + emoji})}}/>
+                const emoji = emojione.toImage(data.shortname).split(' ')[2].substring(5).replace('"','')
+                this.setState( {input: this.state.input + emoji + " "})}}/>
           </div> : null}
       </div>
     )

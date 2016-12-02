@@ -13,6 +13,7 @@
             false
         ],
         "indent": [2, 2],
+        "jsx-no-lambda": false,
         "no-duplicate-variable": true,
         "no-eval": true,
         "no-internal-module": true,
@@ -25,6 +26,7 @@
             "check-open-brace",
             "check-whitespace"
         ],
+        "ordered-imports": [false],
         "quotemark": [
             true,
             "single"

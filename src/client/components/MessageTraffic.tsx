@@ -2,11 +2,9 @@ import * as React from 'react';
 const {
   LineChart,
   Line,
-  Legend,
-  CartesianGrid,
   XAxis,
   YAxis,
-  Tooltip
+  Tooltip,
 } = require('recharts');
 
 export default ({data, type, text}) => (

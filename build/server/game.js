@@ -70,8 +70,8 @@ class Character {
         return this.charTriForce.length === this.charGetNumTriForceCollected();
     }
     charResetTriForce() {
-        this.charTriForce.forEach(piece => {
-            piece = false;
+        this.charTriForce.forEach((piece, idx) => {
+            this.charTriForce[idx] = false;
         });
         return this.charGetNumTriForceCollected();
     }
@@ -260,11 +260,10 @@ class Game {
     }
     gameDeletePlayer(socketid, cb) {
         storage.hgetall('players', (err, playersData) => {
-            if (err) {
+            if (err)
                 console.log(err);
-            }
-            for (var feild in playersData) {
-                var socket = JSON.parse(playersData[feild]).playerSocketId;
+            for (let feild in playersData) {
+                let socket = JSON.parse(playersData[feild]).playerSocketId;
                 if (socket === socketid) {
                     storage.hdel('players', feild);
                     cb(feild);

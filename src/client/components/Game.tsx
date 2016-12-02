@@ -11,6 +11,6 @@ export default class Game extends React.Component < any, any > {
   }
 
   public render() {
-    return (<div className='game' id='game' />);
+    return (<div id='game' />);
   }
 }

@@ -52,17 +52,12 @@
 }
 
 canvas {
-  display: inline;
-  margin: auto;
+  display: block;
+  margin: 1vh auto;
   border: 5px solid darkslategray;
   border-radius: 15px;
 }
 
-.gameScreen {
-  position: relative;
-}
-
 #game {
-  margin: auto;
-  padding: 1vw;
+  width: 58vw;
 }

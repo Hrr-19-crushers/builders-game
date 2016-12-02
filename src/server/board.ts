@@ -102,15 +102,11 @@ export class Board {
   }
 
   // // // TRI-FORCE METHODS // // //
-
-  public boardCreateNewTriForceCollectionForCharacter() : any {
-    return 
-  }
   
   // TODO create tests
   public boardIsTriForceInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
-    return ('i' in tile && typeof tile.i === 'interger');
+    return ('i' in tile);
   }
 
   // TODO create tests

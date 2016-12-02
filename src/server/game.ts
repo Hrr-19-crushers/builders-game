@@ -195,10 +195,6 @@ export class Game {
     return player.playerGetName();
   }
 
-  public gameCountMoveVote(direction : string) {
-    // TODO
-  }
-
   public gameReset() {
     // reset health
     this.gameCharacter.charSetHealth(100);
@@ -262,6 +258,7 @@ export class Game {
       if (isTriForceInTile) {
         const triForcePiece : number = board.boardGetTriForceNumberFromTile(loc);
         this.gameCharacter.charCollectTriForce(triForcePiece);
+        const charState = this.gameCharacter.charGetCharState();
       }
       // call the sever cb with the new char/game states
       charState = this.gameCharacter.charGetCharState();
@@ -278,6 +275,7 @@ export class Game {
   }
 
   //======== Player Methods =========
+
   public gameCheckForExistingPlayer(playerName : string, cb? : any) : void {
     storage.HEXISTS('players', playerName, (err, existance) => { 
       if (err) {

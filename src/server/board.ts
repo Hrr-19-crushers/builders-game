@@ -12,7 +12,7 @@ export class Board {
 
   // // MOVEMENT METHODS // // //
   
-  boardCharCanMoveDirection(direction : string, currentLocation : Location) : boolean {
+  public boardCharCanMoveDirection(direction : string, currentLocation : Location) : boolean {
     // heroku appears to not like destructuring yet
     // const {x, y} = currentLocation;
     const x = currentLocation.x;
@@ -46,7 +46,7 @@ export class Board {
   }
 
   // some duplication of code here and prob not necessary, but fine sep of concerns for now
-  boardGetNewCharLocation(direction : string, currentLocation : Location) : Location {
+  public boardGetNewCharLocation(direction : string, currentLocation : Location) : Location {
     // there's probably a better way to destructure currentLocation here
     // don't call this with a location unless you've already checked it's valid with boardCharCanMoveDirection
     let newLocation: Location;
@@ -69,13 +69,13 @@ export class Board {
 
   // // // ENEMY METHODS // // //
   
-  boardIsEnemyInTile(location : Location) : boolean {
+  public boardIsEnemyInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('e' in tile && tile.e);
   }
 
   // TOD create tests
-  boardGetEnemyLocations() : Location[] {
+  public boardGetEnemyLocations() : Location[] {
     let locations : Location[] = [];
     this.boardLayout.forEach((row, yIdx) => {
       row.forEach((tile, xIdx) => {
@@ -90,37 +90,37 @@ export class Board {
   // // // HEART & FAIRY METHODS // // //
   
   // TODO create tests
-  boardIsHeartInTile(location : Location) : boolean {
+  public boardIsHeartInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('h' in tile && tile.h);
   }
 
   // TODO create tests
-  boardIsFairyInTile(location : Location) : boolean {
+  public boardIsFairyInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('f' in tile && tile.f);
   }
 
   // // // TRI-FORCE METHODS // // //
 
-  boardCreateNewTriForceCollectionForCharacter() : any {
+  public boardCreateNewTriForceCollectionForCharacter() : any {
     return 
   }
   
   // TODO create tests
-  boardIsTriForceInTile(location : Location) : boolean {
+  public boardIsTriForceInTile(location : Location) : boolean {
     const tile = this.boardLayout[location.y][location.x];
     return ('i' in tile && typeof tile.i === 'interger');
   }
 
   // TODO create tests
-  boardGetTriForceNumberFromTile(location : Location) : number {
+  public boardGetTriForceNumberFromTile(location : Location) : number {
     const tile = this.boardLayout[location.y][location.x];
     return tile.i;
   }
 
   // TODO create tests
-  boardGetTriForceLocations() : Location[] {
+  public boardGetTriForceLocations() : Location[] {
     let locations : Location[] = [];
     this.boardLayout.forEach((row, yIdx) => {
       row.forEach((tile, xIdx) => {
@@ -132,7 +132,7 @@ export class Board {
     return locations;
   }
 
-  boardGetTriForceCollection() : Boolean[] {
+  public boardGetTriForceCollection() : Boolean[] {
     const locations : Location[] = this.boardGetTriForceLocations();
     const collection : Boolean[] = [];
     locations.forEach(location => {
@@ -156,7 +156,7 @@ export class Board {
   // // // BOARD STATE METHODS // // //
   
   // TODO create tests
-  boardGetBoardState() : BoardState {
+  public boardGetBoardState() : BoardState {
     return {
       boardLayout: this.boardLayout
     };

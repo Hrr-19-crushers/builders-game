@@ -24,7 +24,7 @@ class Message {
   private timeStamp : number;
   private text : string;
 
-  constructor(text : string, userId? : number, userName? : string) {
+  public constructor(text : string, userId? : number, userName? : string) {
     this.msgId = Math.random() * 10000000000000000;
     this.userId = userId || 10000000000000000;
     this.userName = userName || 'Guest';
@@ -32,7 +32,7 @@ class Message {
     this.text = text;
   }
 
-  messageSaveToStorage() {
+  public messageSaveToStorage() {
     storage.lpush('messages', JSON.stringify(this.text), (err : any) => {
       if (err) console.log(`Error saving message to storage`, err);
     });
@@ -50,7 +50,7 @@ class Character {
   private charHealth : number;
   private charTriForce : Boolean[];
 
-  constructor(charId? : number, charName? : string, charLocation? : Location, charHealth? : number, charTriForce? : Boolean[]) {
+  public constructor(charId? : number, charName? : string, charLocation? : Location, charHealth? : number, charTriForce? : Boolean[]) {
     this.charId = charId || Math.random() * 10000000000000000;
     this.charName = charName || 'Link';
     this.charLocation = charLocation || {x: 0, y: 0};
@@ -59,23 +59,23 @@ class Character {
     this.charTriForce = charTriForce || [false, false, false];
   }
 
-  charSetLocation(newLocation : Location) : Location {
+  public charSetLocation(newLocation : Location) : Location {
     this.charLocation = newLocation;
     return this.charLocation;
   }
 
-  charSetHealth(health : number) : number {
+  public charSetHealth(health : number) : number {
     this.charHealth = health;
     return this.charHealth;
   }
 
-  charChangeHealth(healthChange : number) : number {
+  public charChangeHealth(healthChange : number) : number {
     const health = this.charHealth;
     this.charHealth = health + healthChange > 100 ? 100 : health + healthChange;
     return this.charHealth;
   }
 
-  charGetNumTriForceCollected() : number {
+  public charGetNumTriForceCollected() : number {
     let count = 0;
     this.charTriForce.forEach(piece => {
       if (piece) {
@@ -85,23 +85,23 @@ class Character {
     return count;
   }
 
-  charCollectTriForce(piece : number) : number {
+  public charCollectTriForce(piece : number) : number {
     this.charTriForce[piece] = true;
     return this.charGetNumTriForceCollected();
   }
 
-  charGetHasWon() : boolean {
+  public charGetHasWon() : boolean {
     return this.charTriForce.length === this.charGetNumTriForceCollected();
   }
 
-  charResetTriForce() : number {
+  public charResetTriForce() : number {
     this.charTriForce.forEach(piece => {
       piece = false;
     });
     return this.charGetNumTriForceCollected();
   }
 
-  charGetCharState() : CharacterState {
+  public charGetCharState() : CharacterState {
     return {
       charId: this.charId,
       charName: this.charName,
@@ -121,17 +121,17 @@ class Player {
   private playerName : string;
   private playerSocketId: string;
 
-  constructor(playerName? : string, playerSocketId?: any ) {
+  public constructor(playerName? : string, playerSocketId?: any ) {
     // this.playerId = this.msgId = Math.random() * 10000000000000000;
     this.playerName = playerName || 'Guest';
     this.playerSocketId = playerSocketId || undefined;
   }
 
-  playerGetName() : string {
+  public playerGetName() : string {
     return this.playerName;
   }
 
-  playerGetSocketId() : any {
+  public playerGetSocketId() : any {
     return this.playerSocketId
   }
 
@@ -155,7 +155,7 @@ export class Game {
     left: 0
   };
 
-  constructor(layout? : Tile[][]) {
+  public constructor(layout? : Tile[][]) {
     this.gameLayout = layout || testLayout;
     this.gameBoard = new Board(this.gameLayout);
     // TODO init new character properly later if there are more than 1
@@ -181,7 +181,7 @@ export class Game {
 
   //========= Game Methods =========
 
-  gameAddNewPlayer(playerSocketId? : string, playerName? : string) : string {
+  public gameAddNewPlayer(playerSocketId? : string, playerName? : string) : string {
     playerName = playerName || 'Guest';
     playerSocketId = playerSocketId;
     const player = new Player(playerName, playerSocketId);
@@ -195,11 +195,11 @@ export class Game {
     return player.playerGetName();
   }
 
-  gameCountMoveVote(direction : string) {
+  public gameCountMoveVote(direction : string) {
     // TODO
   }
 
-  gameReset() {
+  public gameReset() {
     // reset health
     this.gameCharacter.charSetHealth(100);
     // reset tri-force
@@ -208,7 +208,7 @@ export class Game {
     this.gameCharacter.charSetLocation({x: 39, y: 52});
   }
 
-  gameGetGameState() : GameState {
+  public gameGetGameState() : GameState {
     const characterState = this.gameCharacter.charGetCharState();
     return {
       gameLayout: this.gameLayout,
@@ -221,17 +221,17 @@ export class Game {
 
   //====== Character Methods ========
 
-  gameGetCharState(cb? : any) : CharacterState {
+ public  gameGetCharState(cb? : any) : CharacterState {
     const charState : CharacterState = this.gameCharacter.charGetCharState();
     if (cb) cb(charState);
     return charState;
   }
 
-  gameSetCharInitialPosition(location : Location) : void {
+  public gameSetCharInitialPosition(location : Location) : void {
     this.gameCharacter.charSetLocation(location);
   }
   
-  gameMoveChar(direction : string, cb? : any) : CharacterState {
+  public gameMoveChar(direction : string, cb? : any) : CharacterState {
     const board = this.gameBoard;
     const char = this.gameCharacter;
     // get the current state of the character
@@ -278,7 +278,7 @@ export class Game {
   }
 
   //======== Player Methods =========
-  gameCheckForExistingPlayer(playerName : string, cb? : any) : void {
+  public gameCheckForExistingPlayer(playerName : string, cb? : any) : void {
     storage.HEXISTS('players', playerName, (err, existance) => { 
       if (err) {
         console.error(err);
@@ -289,7 +289,7 @@ export class Game {
       }
     }); 
   }
-  gameGetPlayerSocket(playerName: string, cb?: any): void {
+  public gameGetPlayerSocket(playerName: string, cb?: any): void {
     storage.hget('players', playerName, (err, player) => {
       if (err) {
         console.error(err);
@@ -302,7 +302,7 @@ export class Game {
   }
   
   // TODO allow players to update their name instead of just adding a new name 
-  gameUpdatePlayerName(playerName : string, socketId : string, cb? : any) : void {
+  public gameUpdatePlayerName(playerName : string, socketId : string, cb? : any) : void {
     let player = JSON.parse(storage.hget('players', playerName))
     // if the socketId === to the object socket id
     if (socketId === player.playerSocketId ) {
@@ -312,15 +312,15 @@ export class Game {
     }
   }
   
-  gameDeleteHashKey() {
+  public gameDeleteHashKey() {
     storage.del('players')
   }
 
-  gameDeletePlayer() {
+  public gameDeletePlayer() {
     // TODO eventually
   }
 
-  gameNewMessage(userName : string, messageText : string, cb? : any) : void {
+  public gameNewMessage(userName : string, messageText : string, cb? : any) : void {
     const message = new Message(messageText.toLowerCase(), null, userName);
     // save message in main chat storage; not sure if we need this at the moment, if ever
     // message.messageSaveToStorage();

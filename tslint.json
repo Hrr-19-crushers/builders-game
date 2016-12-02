@@ -35,6 +35,7 @@
             true,
             "always"
         ],
+        "trailing-comma": [false],
         "triple-equals": [
             true
         ],

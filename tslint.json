@@ -1,4 +1,5 @@
 {
+    "extends": ["tslint:latest", "tslint-react"],
     "rules": {
         "class-name": true,
         "comment-format": [
@@ -8,6 +9,9 @@
         "only-arrow-functions": [
           true  
         ],
+        "interface-name": [
+            false
+        ],
         "indent": [2, 2],
         "no-duplicate-variable": true,
         "no-eval": true,
@@ -15,6 +19,7 @@
         "no-trailing-whitespace": true,
         "no-unsafe-finally": true,
         "no-var-keyword": true,
+        "no-reference": false,
         "one-line": [
             true,
             "check-open-brace",

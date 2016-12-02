@@ -9,11 +9,13 @@ const titles = [
   ' talks to trees'
 ];
 
-export default ({user, isAuth}) => (<div className='userMenu'>
+export default ({user, isAuth}) => {
+  return (<div className='userMenu'>
     <p className='menuName'>
       { user
         ? user + titles[Math.floor(Math.random() * titles.length)]
         : `What\'s your name? Type '\\name [your name]' to set it`}
     </p>
   </div>
-);
+  )
+}

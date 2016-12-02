@@ -5,7 +5,7 @@ const emojione = require('emojione');
 
 export default class Chat extends React.Component < any,
 any > {
-  private constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       input: '',
@@ -13,7 +13,7 @@ any > {
     };
   }
 
-  private _onChange(event : any) : void {
+  public _onChange(event : any) : void {
     this.setState({input: event.target.value});
   }
 
@@ -27,13 +27,13 @@ any > {
       });
   }
 
-  private onSubmit(e : any) {
+  onSubmit(e : any) {
     e.preventDefault();
     this._submitChat(this.state.input);
     this.setState({input: ''});
   }
 
-  private onKeyDown(e : any) {
+  onKeyDown(e : any) {
     const fakeKeyDown = id => {
       const btn = document
         .getElementById(id)
@@ -65,7 +65,7 @@ any > {
     }
   }
 
-  private onPressEmojiToggle() {
+  onPressEmojiToggle() {
     if (this.props.isAuth) {
       this.setState( {emojiToggle: this.state.emojiToggle ? false : true} );
     } else {

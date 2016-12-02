@@ -8,30 +8,30 @@ export interface Auth {
   isFetching: boolean;
   isAuth: boolean;
   profile: any;
-  err?: any
+  err?: any;
 }
 
 const INITAL_STATE: Auth = {
+  isAuth: localStorage.getItem('id_token') ? true : false,
   isFetching: false,
-  isAuth: localStorage.getItem('id_token')? true : false,
-  profile: localStorage.getItem('profile')? JSON.parse(localStorage.getItem('profile')):{name:'Guest'}
+  profile: localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : {name: 'Guest'},
 };
 
 export const authReducer = (state: Auth = INITAL_STATE, action) => {
-  switch (action.type){
+  switch (action.type) {
     case LOCK_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         isAuth: true,
-        profile: action.profile
-      })
+        profile: action.profile,
+      });
     case LOGOUT_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: true,
         isAuth: false,
-        profile: {name:'Guest'}
-      })
-    default: 
-      return state;      
+        isFetching: true,
+        profile: {name: 'Guest'},
+      });
+    default:
+      return state;
   }
-}
+};

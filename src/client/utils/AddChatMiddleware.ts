@@ -22,11 +22,11 @@ export default (action, next) => {
       .text
       .split(' ')[1];
     const text = action
-    .payload
-    .text
-    .split(' ')
-    .slice(2)
-    .join(' ');
+      .payload
+      .text
+      .split(' ')
+      .slice(2)
+      .join(' ');
 
     // POSSIBLE USER ACTIONS FROM COMMAND LINE
     if (verb === 'name') {

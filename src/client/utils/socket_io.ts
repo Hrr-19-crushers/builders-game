@@ -2,11 +2,7 @@ import * as io from 'socket.io-client';
 
 import store, {getGameState} from '../store';
 import { addChatAction, chatBotAction } from '../actions/chatActions';
-import {
-  voteAction,
-  updateCharAction,
-  updateBoardAction,
-} from '../actions/gameActions';
+import {updateCharAction, updateBoardAction} from '../actions/gameActions';
 import {updateClientsAction} from '../actions/statsActions';
 import {botWelcome} from './chatBot';
 import {runGame} from '../game/index';
@@ -74,9 +70,6 @@ socket.on('gameState', gameState => {
 });
 
 socket.on('move', charState => {
+  console.log(charState);
   store.dispatch(updateCharAction(charState));
-});
-
-socket.on('vote', (choice: String) => {
-  store.dispatch(voteAction(choice));
 });

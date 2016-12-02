@@ -6,7 +6,7 @@ import { getGameState } from '../../store';
 
 const enum TILE { WIDTH = 16, HEIGHT = 16 };
 
-interface Location { x: number, y: number };
+interface Location { x: number; y: number; };
 
 class Link extends Phaser.Sprite {
   gridPosition: Phaser.Point;
@@ -26,8 +26,8 @@ class Link extends Phaser.Sprite {
   move(loc: Location) {
     const dir = this.determineDirection(loc);
 
-    if (dir) { 
-      this.animations.play(dir); 
+    if (dir) {
+      this.animations.play(dir);
     } else {
       this.animations.stop();
     }
@@ -40,9 +40,9 @@ class Link extends Phaser.Sprite {
       polarity(y - this.gridPosition.y),
     ];
 
-    if (xPolarity ===  1) { return 'right'; } 
-    if (xPolarity === -1) { return  'left'; } 
-    if (yPolarity ===  1) { return  'down'; } 
+    if (xPolarity ===  1) { return 'right'; }
+    if (xPolarity === -1) { return  'left'; }
+    if (yPolarity ===  1) { return  'down'; }
     if (yPolarity === -1) { return    'up'; }
     return null;
   }
@@ -51,9 +51,9 @@ class Link extends Phaser.Sprite {
     this.gridPosition.x = x * TILE.WIDTH;
     this.gridPosition.y = y * TILE.HEIGHT;
     this.game.add.tween(this).to({
-        x: this.gridPosition.x, 
+        x: this.gridPosition.x,
         y: this.gridPosition.y
-      }, 
+      },
       250, Phaser.Easing.Quadratic.Out, true
     );
   }
@@ -93,11 +93,11 @@ export class GameState extends Phaser.State {
       TILE.WIDTH, TILE.HEIGHT,
       1, 1
     );
-    this.layer = this.tilemap.createLayer(0); 
+    this.layer = this.tilemap.createLayer(0);
 
     this.layer.resizeWorld();
 
-    this.enemies = this.game.add.group(); 
+    this.enemies = this.game.add.group();
     this.faries = this.game.add.group();
     this.hearts = this.game.add.group();
     this.triforce = this.game.add.group();
@@ -123,8 +123,8 @@ export class GameState extends Phaser.State {
 
   placeEntities({charState, gameBoard}: any) {
     this.link = new Link(this.game, charState.charLocation);
-    
-    const place = (col, row, sprite) => 
+
+    const place = (col, row, sprite) =>
       this.enemies.create(col * TILE.WIDTH, row * TILE.HEIGHT, sprite);
 
     gameBoard.forEach((row, rowIndex) => {
@@ -134,7 +134,7 @@ export class GameState extends Phaser.State {
         if (cell.f !== undefined) { place(columnIndex, rowIndex, 'fairy'); }
         if (cell.h !== undefined) { place(columnIndex, rowIndex, 'heart'); }
         if (cell.i !== undefined) { place(columnIndex, rowIndex, 'triforce'); }
-      })
+      });
     });
   }
 
@@ -143,7 +143,7 @@ export class GameState extends Phaser.State {
       if (doubleClick) {
         this.camera.follow(this.link, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
       } else {
-        this.game.camera.unfollow()
+        this.game.camera.unfollow();
       }
     });
 

@@ -12,7 +12,7 @@
     "watch-server": "tsc --pretty -w",
     "watch-client": "webpack --config webpack.config.js --watch",
     "test": "karma start",
-    "lint-ts": "eslint --parser typescript-eslint-parser src/**/*.ts"
+    "lint-ts": "tslint src/**/*.ts*"
   },
   "repository": {
     "type": "git",

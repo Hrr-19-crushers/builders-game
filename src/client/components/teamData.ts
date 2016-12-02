@@ -17,7 +17,7 @@ export default [{
   avatar_url: 'https://avatars.githubusercontent.com/u/12477375?v=3',
   html_url: 'https://github.com/fuzzwizard',
   title: 'Game Developer, Engineer',
-  likes: 'Redux, trail running, functional programming',
+  likes: 'food, videogames, yelling at his Rust compiler',
   city: 'Los Angeles'
 }, {
   name: 'Andrew Cernek',

@@ -464,7 +464,7 @@ export const overworld : Tile[][] = [
     {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, 
     {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25},
     {p: false, t: 25}, {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8}, {p: false, t: 25},
-    {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25},
+    {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8, e: true}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25},
     {p: false, t: 25}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 96}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 97},
     {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 97}, {p: false, t: 98}, {p: true, t: 8},{p: true, t: 8},{p: true, t: 8},
     {p: true, t: 8}, {p: false, t: 25}, {p: false, t: 25}, {p: false, t: 25}, {p: true, t: 8}, {p: false, t: 25}, {p: false, t: 25}, {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8},
@@ -687,7 +687,7 @@ export const overworld : Tile[][] = [
     {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8, e: true}, {p: false, t: 25}, {p: true, t: 8}, {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8}, {p: false, t: 25},
     {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 54}, {p: false, t: 56}, 
     {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 1}, {p: true, t: 2}, {p: false, t: 1}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2},
-    {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2},
+    {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2, e: true}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2},
     {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2, i: 3}, {p: true, t: 2},
   ],
   // 53
@@ -700,7 +700,7 @@ export const overworld : Tile[][] = [
     {p: false, t: 25}, {p: true, t: 8}, {p: false, t: 25}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8},
     {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8}, {p: true, t: 8, e: true}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2},
     {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 1}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: false, t: 36}, {p: false, t: 37}, {p: false, t: 37},
-    {p: false, t: 38}, {p: false, t: 36}, {p: false, t: 37}, {p: true, t: 2}, {p: true, t: 2, e: true}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2},
+    {p: false, t: 38}, {p: false, t: 36}, {p: false, t: 37}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2}, {p: true, t: 2},
     {p: false, t: 36}, {p: false, t: 38}, {p: false, t: 36}, {p: false, t: 38}, {p: false, t: 36}, {p: false, t: 37}, {p: false, t: 37}, {p: false, t: 38}, {p: false, t: 36}, {p: false, t: 37},
   ],
   // 54

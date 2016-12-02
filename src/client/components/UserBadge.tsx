@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import LoginContainer from '../containers/LoginContainer';
 
-export default({profile}) => (
+export default ({profile}) => (
   <div className="userBadge">
     <img
       className="userBadgeProfile"

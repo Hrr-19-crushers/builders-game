@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
-import Login from '../components/Login';
+import UserMenu from '../components/UserMenu';
 
 const mapStateToProps = state => ({
-    isAuth: state.authReducer.isAuth
+  user: state.userState.name,
 });
 
 export default connect(
     mapStateToProps
-)(Login);
+  )(UserMenu);

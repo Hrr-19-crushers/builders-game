@@ -3,9 +3,8 @@ import Dpad from './Dpad';
 const EmojiPicker = require('emojione-picker');
 const emojione = require('emojione');
 
-export default class Chat extends React.Component < any,
-any > {
-  constructor(props) {
+export default class Chat extends React.Component < any, any> {
+  public constructor(props) {
     super(props);
     this.state = {
       input: '',
@@ -13,7 +12,7 @@ any > {
     };
   }
 
-  public _onChange(event : any) : void {
+  private _onChange(event : any) : void {
     this.setState({input: event.target.value});
   }
 
@@ -27,13 +26,13 @@ any > {
       });
   }
 
-  onSubmit(e : any) {
+  private onSubmit(e : any) {
     e.preventDefault();
     this._submitChat(this.state.input);
     this.setState({input: ''});
   }
 
-  onKeyDown(e : any) {
+  private onKeyDown(e : any) {
     const fakeKeyDown = id => {
       const btn = document
         .getElementById(id)
@@ -65,7 +64,7 @@ any > {
     }
   }
 
-  onPressEmojiToggle() {
+  private onPressEmojiToggle() {
     if (this.props.isAuth) {
       this.setState( {emojiToggle: this.state.emojiToggle ? false : true} );
     } else {

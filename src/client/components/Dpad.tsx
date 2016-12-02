@@ -22,6 +22,7 @@ export default ({move, action})=> (
         <span className="label">B</span>
       </div>
     </div>
+    
     <span className='controllerLabel'>Team Crushers 2016</span>
   </div>
 );

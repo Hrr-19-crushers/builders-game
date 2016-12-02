@@ -66,6 +66,7 @@ socket.on('userMessage', message => {
 socket.on('gameState', gameState => {
   const initialLoad = !!getGameState().gameBoard;
   store.dispatch(updateBoardAction(gameState.gameLayout));
+  store.dispatch(updateCharAction(gameState.gameCharacter));
   if (!initialLoad) {
     runGame();
   }

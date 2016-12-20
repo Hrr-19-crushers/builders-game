@@ -1,6 +1,6 @@
 # We Play Perilous is deployed at: [https://builder-game.herokuapp.com/](https://builder-game.herokuapp.com/)
 
-![giphy of app](http://www.giphy.com/gifs/3o7TKEgxA6q5yzgAfu/giphy.gif)
+![](http://www.giphy.com/gifs/3o7TKEgxA6q5yzgAfu/giphy.gif)
 
 ## Description:
 While obstensibly a game, We Play Perilous is a platform that allows multiple users to collaborate in situations akin to gaming.  We Play Perilous currently serves a multiplayer game where users control the hero using chat.
